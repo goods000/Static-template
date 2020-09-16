@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>layui下拉选择地址</p>
+	    	<a href=""></a>
+		</h1>
+		
+		<div class="layui-form-item">
+            <label class="layui-form-label">区域</label>
+            <div class="layui-input-inline">
+                <select name="province" id="province" lay-filter="province">
+                    <option value="">请选择省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="city" id="city" lay-filter="city">
+                    <option value="">请选择市</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="town" id="town" lay-filter="town">
+                    <option value="">请选择县/区</option>
+                </select>
+            </div>
+            <div class="layui-form-mid layui-word-aux"></div>
+        </div>
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/area.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/select.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form;
+        var layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({
+            nickname: function(value){
+                if( value == "" || value == null){
+                    return '请输入用户昵称';
+                }
+            }
+        });
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            var url = $("#from").attr("data-url");
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: 'json',
+                data: data.field,
+                success: function (da) {
+                    if( da.result == 0 ){
+                        layer.open({
+                            content: da.msg//
+                            ,yes: function(index, layero){
+                                var tk = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                parent.layer.close(tk);
+                                layer.close(index);
+                            }
+                            ,cancel:function(index){
+                                var tk = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                parent.layer.close(tk);
+                                layer.close(index);
+                            }
+                        });
+
+                    }else{
+                        layui_alert(da.msg);
+                    }
+                }
+            });
+
+            return false;
+        });
+
+        form.on('select(province)', function(data){
+            console.log(data.elem); //得到select原始DOM对象
+            console.log(data.value); //得到被选中的值
+            console.log(data.othis); //得到美化后的DOM对象
+            form.render('select','city'); //刷新select选择框渲染
+        });
+
+        form.on('select(city)', function(data){
+            form.render('select','town'); //刷新select选择框渲染
+        });
+    });
+	</script>
+</html>

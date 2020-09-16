@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<!--<style type="text/css">
+			body,html{background-image: url(img/record_bg.png);background-repeat: no-repeat;background-size: 100% 100%;}
+		</style>-->
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>充币</p>
+	    	<a href="recharge_record.html">充币记录</a>
+		</h1>
+		<div class="charge_money">
+		<div class="charge_bbj">
+			<div id="code" style="padding:10% 0;margin: auto;">
+			</div>
+			<p data-lang="label_wallet_num">USDT充币地址</p>
+			<div class="chas_lianjie">
+				<textarea readonly="readonly" id="biao1">6467CGDXNBJKBCFGC H8HTVCVXFBCVCXHGYFGYTFRTEFGFSBFV</textarea>
+				<a onclick="copyUrl2()" data-lang="label_administrative_fee">复制</a>
+			</div>
+		</div>
+		<dl class="charge_dl">
+			<dt>注意：</dt>
+			<dd>请勿向上述地址充值任何非USDT资产，否则资产将不可找回。</dd>
+			<dd>您充值到上述地址后，需要网络节点确认。</dd>
+			<dd>您的充值地址不会经常改变，可以重复充值;如有更改我们将通过网站公告或邮件通知您。</dd>
+		</dl>
+	</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+	<script type="text/javascript">
+		$("#code").qrcode({
+	   		width: 120, //宽度 
+	    	height:120, //高度 
+	    	text: "www.zhizuobiao.com" //任意内容 
+		});
+		$('canvas').css({
+	        'display': 'block',
+	        'margin': 'auto',
+	        'padding': '3px',
+	        'border-radius': '21px',
+	        'background': '#FF973F',
+	    });
+	    
+	    function copyUrl2(){
+			var Url2=document.getElementById("biao1");
+			 Url2.select(); // 选择对象
+			document.execCommand("Copy"); // 执行浏览器复制命令
+			layer.msg("已复制好，可粘贴。");
+		}
+	</script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.input_list{margin-top: 20%;}
+			.anniu{margin-top: 5%;}
+			.big_box .input_i .aa{position: absolute;right: 10px;bottom: 10px;color: #FF7122;text-align: right;font-size: 12px;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>提现</p>
+	    	<a href="withdraw_record.html" class="fr">提现记录</a>
+		</h1>
+		<div class="big_box">
+			<div class="input_i">
+				<label>提现数量</label>
+				<input type="text" value="" placeholder="最小提现数量为100.00" class="num">
+				<i>USDT</i>
+			</div>
+			<p class="bi_k"><span>提现钱包USDT</span>：<span class="balance">90.0000</span></p>
+			<div class="input_i">
+				<label>提现到</label>
+				<select name="" class="addr">
+					<option value="">请输入您的提现地址</option>
+				</select>
+				<!--<input type="text" value="" placeholder="请输入您的提现地址" >-->
+				<a class="aa" href="bank.html">去绑定</a>
+			</div>
+			<div class="input_i">
+				<label>手续费</label>
+				<input type="text" value="1.00" readonly="readonly">
+			</div>
+			<div class="input_i">
+				<label>验证码</label>
+				<input type="number" value="" class="code" placeholder="请输入您的验证码">
+				<p id="getCode">获取验证码</p>
+			</div>
+			<div class="input_list">
+				<span>到账数量</span> <span class="num">0.000 CNY</span>
+			</div>
+			<div class="anniu">确认提现</div>
+		</div>
+		<dl class="charge_dl">
+			<dt>注意：</dt>
+			<dd>最小提现数量为10.0USDT</dd>
+			<dd>为保障您的账号安全，策略变更、密码修改我们会对提现进行人工审核，请耐心等待。</dd>
+			<dd>请务必确保电脑及浏览安全，防止信息被篡改或泄露。</dd>
+		</dl>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+	
+		$(".anniu").click(function(){
+			var addr=$(".addr").val();
+			var num=$(".num").val();
+			var code=$(".code").val();
+			// 是否非空
+			if(!isKong(num,$(".num").attr("placeholder"))){
+				$(".num").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(addr,$(".addr").attr("placeholder"))){
+				$(".addr").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				$(".code").focus();
+				return false;
+			}
+			layer.msg('提交成功',{ icon: 6,time: 2000},function() {
+			});
+		})
+	</script>
+</html>

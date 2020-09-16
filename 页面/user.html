@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font.css" />
+    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+    	nav ul li:nth-child(4) i img{display: none;}
+    	nav ul li:nth-child(4) i .on{display: block;}
+		nav ul li:nth-child(4) p{color: #40BC1B;}
+		/* .layui-layer-content{color:#fff !important;} */
+    	body{padding-bottom: 15%;}
+		.personal_header_top u{width: 7vw;height: 6vw;overflow: hidden;border-radius: 50%;position: relative;top: 2.5vh;right: 2.5vh;}
+		.personal_header_top u img{width: 100%;height: 100%;display: block;}
+		.personal_header_top .qr img{width: 55%;}
+		.personal_email{display: flex;align-items: center;justify-content: flex-start;padding: 5% 0;}
+		.personal_email img{width: 7%;margin-left: 3%;}
+		.personal_email span{margin: 0 5px;}
+		.personal_email .btn{background: #40BC20;letter-spacing: 2px;padding: 4px 10px;border-radius: 50px;color: #FFF;margin-left: 3%;}
+    </style>
+</head>
+<body>
+	<div>
+	<h1 class="h1">
+		<p>我的</p>
+		<a href="bulletin.html" ><img src="img/user_top_notice.png" alt=""></a>
+		<!-- <a href="personal.html" ><img src="img/setup.png" alt=""></a> -->
+	</h1>
+	<div class="personal_header">
+		<div class="personal_header_top">
+			<!-- <i><img src="img/chanp.png"/></i> -->
+			<input type="file" name="file1" id="xdaTanFileImg_1" @change="avatar($event)" accept="image/*" style="width: 55px; height: 50px;opacity:0;position:absolute;top: 10px;left: 8px;z-index:2;" />
+			<i><img src="img/logo.png" id="xmTanImg_1"/></i>
+			<u><img src="img/user_e.png" alt=""></u>
+			<!--<u><img src="img/user_ee.png" alt=""></u>-->
+			<div>
+				<h1><span>测试账号</span></h1>
+				<p>UID:123456</p>
+				<p v-show="user.pushUserId!=null">推荐人ID:123564</p>
+			</div>
+			<a href="personal.html" class="qr"><img src="img/user_top_setup.png" alt=""></a>
+		</div>
+		<div class="personal_header_level" v-show="user.userLevel>0">
+			<p class="level"><span>级别：</span>
+				<span>暂无级别</span>
+				<!--<span>个人代理</span>-->
+				<!--<span>商家代理</span>-->
+			</p>
+			<!--<p class="user_time">
+				<span>期限：</span>
+				<span>{{user.userLevelStartTime!=null?user.userLevelStartTime.substr(0,10):""}}~{{user.userLevelEndTime!=null?user.userLevelEndTime.substr(0,10):""}}</span>
+			</p>-->
+		</div>
+	</div>
+	<div class="personal_botto">
+		<div class="personal_order">
+			<h2><img src="img/tips.png" alt=""/>商城订单<div class="right" onclick="location.href='mall_order_list.html?status=0'"><u>查看全部</u> <s class="iconfont icon-xiangyou1"></s></div></h2>
+			<ul>
+				<li><a href="mall_order_list.html?status=1"><i><img src="img/or_4.png"/></i><p>待付款</p></a></li>
+				<li><a href="mall_order_list.html?status=2"><i><img src="img/or_1.png"/></i><p>待发货</p></a></li>
+				<li><a href="mall_order_list.html?status=3"><i><img src="img/or_2.png"/></i><p>待收货</p></a></li>
+				<li><a href="mall_order_list.html?status=4"><i><img src="img/or_3.png"/></i><p>已收货</p></a></li>
+			</ul>
+		</div>
+		<div class="mt"></div>
+		<div class="personal_function">
+			<h2><img src="img/tips.png" alt=""/>常用功能</h2>
+			<ul>
+				<li><a href="income_record.html">
+					<div class="fun_title"><p>我的收益</p><span>收益明细</span></div>
+					<i><img src="img/user_17.png"/></i>
+				</a></li>
+				<li><a href="CTC.html">
+					<div class="fun_title"><p>HOEA平台</p><span>买卖HOEA</span></div>
+					<i><img src="img/user_18.png"/></i>
+				</a></li>
+				<li><a href="team.html">
+					<div class="fun_title"><p>我的团队</p><span>查看团队好友</span></div>
+					<i><img src="img/user_3.png"/></i>
+				</a></li>
+				<li><a href="qrcode.html">
+					<div class="fun_title"><p>推广中心</p><span>邀请好友 赚收益</span></div>
+					<i><img src="img/user_4.png"/></i>
+				</a></li>
+			</ul>
+		</div>
+		<div class="mt"></div>
+		<div class="personal_function">
+			<ul>
+				<li><a onclick="no_open()">
+					<div class="fun_title"><p>我的认租</p><span>进入播种或摘取</span></div>
+					<i><img src="img/user_1.png"/></i>
+				</a></li>
+				<li><a onclick="no_open()">
+					<div class="fun_title"><p>我的认养</p><span>认养实时信息</span></div>
+					<i><img src="img/user_19.png"/></i>
+				</a></li>
+				<li><a onclick="no_open()">
+					<div class="fun_title"><p>我的认植</p><span>您认植 我种树</span></div>
+					<i><img src="img/user_3.png"/></i>
+				</a></li>
+				<li><a onclick="no_open()">
+					<div class="fun_title"><p>我的认购</p><span>风靡产品的预购</span></div>
+					<i><img src="img/user_20.png"/></i>
+				</a></li>
+			</ul>
+		</div>
+		<div class="mt"></div>
+		<div class="personal_tool">
+			<h2><img src="img/tips.png" alt=""/>更多工具</h2>
+			<ul>
+				<li onclick="no_open()"><a><i><img src="img/user_5.png"/></i><p>积分商城</p></a></li>
+				<li onclick="no_open()"><a><i><img src="img/user_6.png"/></i><p>我的优惠券</p></a></li>
+				<li onclick="no_open()"><a><i><img src="img/user_7.png"/></i><p>我的门票</p></a></li>
+				<li onclick="no_open()"><a><i><img src="img/user_8.png"/></i><p>我的拼团</p></a></li>
+				<li onclick="no_open()"><a><i><img src="img/user_9.png"/></i><p>农享卡</p></a></li>
+				<li onclick="no_open()"><a><i><img src="img/user_10.png"/></i><p>我的竞拍</p></a></li>
+				<li onclick="no_open()"><a><i><img src="img/user_11.png"/></i><p>我的认筹</p></a></li>
+				<li onclick="no_open()"><a><i><img src="img/user_12.png"/></i><p>我的众筹</p></a></li>
+			</ul>
+		</div>
+		<div class="mt"></div>
+		 <div class="personal_tool personal_tool_zi">
+			<h2><img src="img/tips.png" alt=""/>客服中心</h2>
+			<ul>
+				<li><a><i><img src="img/user_13.png"/></i><p>服务热线</p><p class="choice">400-033-6166</p></a></li>
+				<li><a href="feedback.html"><i><img src="img/user_14.png"/></i><p>投诉建议</p></a></li>
+				<li><a href="help.html"><i><img src="img/user_15.png"/></i><p>帮助中心</p></a></li>
+				<li><a href="bulletin.html"><i><img src="img/user_16.png"/></i><p>消息中心</p></a></li>
+			</ul>
+		</div> 
+		<div class="mt"></div>
+		<div class="personal_tool personal_email">
+			<img src="img/email.png" alt="">
+			<span>联系客服</span>
+			<span id="email">3616059632@qq.com</span>
+			<button id="email_btn" class="btn" data-clipboard-target="#email" >复制</button>
+		</div>
+		<!-- <div class="personal_list">
+			<ul>
+				<li><a href="mall_order_list.html?status=0"><i><img src="img/personal_7.png"/></i><div><p>商城订单</p><s class="iconfont icon-xiangyou1"></s></div></a></li>
+				<li><a href="team.html"><i><img src="img/personal_1.png"/></i><div><p>我的团队</p><s class="iconfont icon-xiangyou1"></s></div></a></li>
+				<li><a href="qrcode.html"><i><img src="img/personal_2.png"/></i><div><p>邀请好友</p><s class="iconfont icon-xiangyou1"></s></div></a></li>
+				<li><a href="entry_record.html"><i><img src="img/personal_3.png"/></i><div><p>订单记录</p><s class="iconfont icon-xiangyou1"></s></div></a></li>
+				<li><a href="income_record.html"><i><img src="img/personal_3.png"/></i><div><p>收益记录</p><s class="iconfont icon-xiangyou1"></s></div></a></li>
+				<li><a href="address_list.html"><i><img src="img/personal_4.png"/></i><div><p>收货地址</p><s class="iconfont icon-xiangyou1"></s></div></a></li>
+				<li><a href="bankcard.html"><i><img src="img/personal_5.png"/></i><div><p>我的卡包</p><s class="iconfont icon-xiangyou1"></s></div></a></li>
+				<li><a href="feedback.html"><i><img src="img/personal_6.png"/></i><div><p>意见反馈</p><s class="iconfont icon-xiangyou1"></s></div></a></li>
+			</ul>
+		</div> -->
+	</div>
+	</div>
+	
+	<div id="footer"></div>
+	<script type="text/javascript" src="js/clipboard.min.js"></script>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<script>
+	function no_open(){
+		layer.msg("暂未开放！敬请期待！",{ icon: 1,time: 2000});
+	}
+	
+	function preview(file,img) {
+		console.log(file);
+		console.log("file.size = " + file.size); //file.size 单位为byte
+		
+		if (file.size>4194304) {//单位为byte
+			alert('上传图片不能超过4MB，请重新选择!');
+			return;
+		}
+		
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			img.src = e.target.result;
+		}
+		reader.readAsDataURL(file)
+	}
+
+	var clipboard=new Clipboard("#email_btn", {
+     text: function() {
+         return $("#email").val();
+       }
+	});
+	clipboard.on("success",function(e){
+		layer.msg("复制成功",{ icon: 1,time: 2000});
+	})
+
+</script>
+
+</body>
+</html>

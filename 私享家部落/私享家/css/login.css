@@ -1,0 +1,75 @@
+*{margin: 0px;padding: 0px;font-size: 14px;font-family: "microsoft yahei";}
+li{list-style: none;}
+a{text-decoration: none; -webkit-tap-highlight-color:transparent;}
+input[type="text"],input[type="password"],input[type="number"],input[type="submit"],input[type="button"],button,textarea{outline:none;-webkit-appearance: none;}
+select{outline: none;-webkit-appearance: none;}
+s{font-style: normal;text-decoration: none;}
+em{font-style: normal;}
+input,button{background: none;border:0px;outline: none;}
+input::-webkit-input-placeholder{color:#888888;}
+textarea::-webkit-input-placeholder{color:#888888;}
+body,html{background: #fff;}
+i{font-style: normal;}
+.anniu{background: #FF8503;width: 100%;color: #fff;padding: 9px 0;margin-top:10%;border-radius: 3px;text-align: center;}
+.anniu_neibu{background: #FF8503;width:40%;color: #fff;padding: 9px 0;margin: auto;margin-top:20%;display: block;}
+.annius{background: #FF8503;width:90%;color: #fff;padding: 9px 0;margin: auto;margin-top:15%;margin-bottom:10%;display: block;border-radius: 3px;}
+.mt{height: 5px;background: #F5F5F5;}
+
+/*头部*/
+.h1{background:none;text-align: center;font-weight: 500;font-size: 1.3rem;padding:10px 0;color: #FFFFFF;width: 100%;}
+.h1 s{font-size: 18px;color: #FFFFFF;}
+.h1 a{position: absolute;font-size: 14px;right: 15px;top:15px;color: #FFFFFF;}
+.h1 a span{color: #999;font-size: 14px;}
+.h1 button{position: absolute;top:13px;left: 10px;background: none;border: 0px;font-size: 20px;color: #fff;}
+.di{margin-bottom: 8px;}
+
+.logo{text-align: center;background: url(../img/login_top.png);background-repeat: no-repeat;background-size: 100% 100%;}
+.logo img{display: block;width: 20%;margin: auto;padding: 10% 0 30%;}
+.logo h2{font-size:1.4rem;font-weight: 600;}
+.logo p{font-size: 0.8rem;margin-top: 5px;}
+.login input{width:100%;outline: none;background: none;border: 0px;padding: 0px 3%;color: #333;box-sizing: border-box;box-sizing: border-box;}
+.login input.code{width: 66%;}
+.login input.tu_code{width: 75%;}
+/*.login input:focus{border-bottom:1px solid #42c2a8;transition-duration:0.7s;}*/
+.login{width: 100%;margin: auto;border-radius:10px 10px 0 0;padding:10px 8%;text-align: right;box-sizing: border-box;background: #fff;margin-top: -20px;}
+.login h2{color: #333;font-weight: bold;font-size: 22px;margin:8% 0 15%;text-align: center;letter-spacing: 2px;}
+.login h2 a{color: #666;padding-bottom:5px;}
+.login h2 a:nth-child(2){margin-left: 20px;}
+.login form .a{color: #333;margin-top:10px;text-decoration: none;}
+.locgin_i{ margin-top: 8%;}
+.locgin_i .img{width: 6%;}
+.locgin_i{position: relative;display: flex;align-items: center;border-bottom: 1px solid #DDDDDD;padding:10px 5px;}
+.shouji p{background: #f0f3ff;padding: 10px;box-sizing: border-box;color: #185cc7;border-radius: 0 0 5px 5px;margin-top: -15px;margin-bottom: 10px;}
+.getCode1{width: 28% !important;display: block;position: absolute;right:2%;padding:4px 3% !important;color:#fff !important;background: #FF8503 !important;border-radius: 5px;font-size: 0.8rem;}
+.get_code1{display:none;width:30%;position: absolute;right:2%;font-size: 12px;padding:4px 3% !important;color:#fff !important;background: #FF8503 !important;border-radius: 5px;font-size: 0.8rem;}
+#J_second{color: #E69F20;font-size:12px;}
+.login .a_box{display: flex;align-items: center;justify-content:flex-end;}
+.login .a_box a{color: #666;font-size: 0.9rem;}
+.to_regiser{display: block;text-align: center;padding: 5vh 0 15vh;}
+.to_regiser span{font-size: 0.9rem;color: #333333;}
+.to_regiser .chioce{color: #FF8503;}
+
+.login .tab{overflow: hidden;background: #fff;}
+.login .tab a{float:left;display: inline-block;width: 50%;text-align: center;padding: 1rem 0;font-size: 1rem;color:#999999;font-weight:bold;position: relative;}
+.login .tab a.active{color: #FF8503;}
+.login .tab a.active::after{content: " ";position: absolute;bottom: 0;left: 25%;width: 50%;height: 2px; background:#FF8503;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<!--<script src="js/music.js" type="text/javascript" charset="utf-8"></script>-->
+	</head>
+	<body>
+		<div class="height1"></div>
+		<div class="footer">
+			<ul>
+				<li>
+					<a href="index.html">
+						<img src="img/index.png"/>
+						<p class="">首页</p>
+					</a>	
+				</li>
+				<li>
+					<a href="type.html">
+						<img src="img/type.png"/>
+						<p class="" >分类</p>
+					</a>
+				</li>
+				<li>
+					<a href="cart.html">
+						<img src="img/cart.png"/>
+						<p class="" >购物车</p>
+					</a>
+				</li>
+				<li>
+					<a href="user.html">
+						<img src="img/user.png"/>
+						<p class="" >我的</p>
+					</a>	
+				</li>
+			</ul>
+		</div>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var name=$('#footer').attr('name');
+//			console.log("name:"+name)
+			show_footer(name)
+			function show_footer(name){
+				var src=$(".footer li:nth-of-type("+name+") a img").attr("src");
+				src=src.slice(0,-4)
+//				 console.log("src:"+src)
+				src=src+"_selected.png";
+			//	console.log("src:"+src)
+				$(".footer li:nth-of-type("+name+")").addClass("selected");
+				$(".footer li:nth-of-type("+name+") a img").attr("src",src);
+			}
+			
+			//引入底部导航栏需要在引入的页面添加标签并且设置id="footer" name="下标"
+			//<div id="footer" name="1"></div>
+			
+			
+		</script>
+	</body>
+</html>	

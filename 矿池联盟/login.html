@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+	body,html{height:100vh;}
+	.locgin_i{ margin-top: 10%;}
+	.login.login_1{margin-top: 5vh;}
+</style>
+<body>
+	<div class="logo">
+		<img src="img/logo.png"/>
+		<h2>RDTS</h2>
+	</div>
+	<div class="login login_1">
+		<form>			
+			<div class="locgin_i">
+				<label>账号</label>
+				<input type="text" class="account" placeholder="请输入登录账号" />
+			</div>
+			<div class="locgin_i">
+				<label>密码</label>
+				<input type="password" class="pwd" placeholder="请输入登录密码" />
+			</div>
+			<button class="anniu">登录</button>
+			<div class="a_box">
+				<a class="a" href="forget.html">忘记密码？</a>
+				<a href="register.html" class="to_regiser"><span class="chioce">注册</span><span>送RDTSS</span></a>
+			</div>
+		</form>
+	</div>
+</body>
+<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+<script>
+		$("input").on("blur",function(){
+	        var toFix=$(this).offset().top;
+	        window.scroll(0,toFix);//失焦后强制让页面归位
+	    });
+	
+		$(".anniu").click(function(){
+			var account=$(".account").val();
+			var pwd=$(".pwd").val();
+			// 是否非空
+			if(!isKong(account,$(".account").attr("placeholder"))){
+				return false;
+			}
+			// 是否非空
+			if(!isKong(pwd,$(".pwd").attr("placeholder"))){
+				return false;
+			}
+			layer.msg('登录成功',function() {
+				addCookie(mobile,pwd);
+				window.location.href = "index.html";
+			});
+		})
+	
+		</script>
+</html>

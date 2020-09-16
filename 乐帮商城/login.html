@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			button.iconfont{position: absolute;top: 2%;left: 3%;color: #fff;font-size: 1.4rem;}
+			.login_box span.title{margin-bottom: 10%;display: inline-block;}
+			.anniu{margin-bottom: 0;}
+			.anniu_register{margin-top: 5%;}
+		</style>
+	</head>
+	<body>
+		<div class="login">
+			<img src="img/logo.png" class="logo_img"/>
+		</div>
+		<div class="login_box">
+			<span class="title">用户登录</span>
+			
+			<div class="input_box">
+				<i><img src="img/login_3.png"/></i>
+				<input type="text" name="account " id="account" value="" placeholder="请输入您的登录账号"/>
+			</div>
+			<div class="input_box">
+				<i><img src="img/login_4.png"/></i>
+				<input type="password" name="psd" id="psd" value="" placeholder="请输入您的登录密码"/>
+			</div>
+			<div class="bo">
+				<a href="forget.html">忘记密码</a>
+			</div>
+			
+			<a class="anniu">登录</a>
+			<a href="register.html" class="anniu_register">注册账户</a>
+			
+		</div>
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//获取手机验证码
+		$("#get_Code").click(function(){
+			var that=this;
+			getyan(that);
+		})
+		
+		$(".anniu").click(function(){
+			var account=$("#account").val();
+			var psd=$("#psd").val();
+			//是否非空
+			if(!isKong(account,"请输入您的登录账号")){
+				$("#account").focus();
+				return false;
+			}
+			//是否非空
+			if(!isKong(psd,"请输入您的登录密码")){
+				$("#psd").focus();
+				return false;
+			}
+			window.location.href = "index.html";
+		})
+		
+		
+	</script>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.bottom_nav dl dd:nth-child(3) a .dier {display: block !important;}
+		    .bottom_nav dl dd:nth-child(3) a .diyi {display: none !important;}
+		    .bottom_nav dl dd:nth-child(3) a span {color: #4782FF;}
+		    .h1{background: #404040;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">VS</h1>
+		<!--折线图-->
+		<div class="charts">
+			<p class="charts_title">今日价格：0.00 $</p>
+			<div id="chartmain" style="width: 100%;height: 200px;"></div>
+		</div>
+		<div class="tt_div">
+			<img src="img/vs_tips.png" class="l"/>
+			<span>持仓排名</span>
+		</div>
+		<div class="vs_box">
+			<div class="pool">
+				<div class="hang_box">
+					<div class="list">
+						<ul>
+							<li>
+								<div class="info_box">名次</div>
+								<div class="info_box">昵称</div>
+								<div class="info_box">持仓数量（枚）</div>
+								<div class="info_box">持仓占比</div>
+							</li>
+							<li>
+								<div class="info_box">&nbsp;</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">&nbsp;</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">&nbsp;</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">4</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">5</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">6</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">7</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">8</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">9</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+							<li>
+								<div class="info_box">10</div>
+								<div class="info_box">***某某***</div>
+								<div class="info_box">1000</div>
+								<div class="info_box">**%</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--底部导航栏-->
+	    <div id="footer"></div>
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('chartmain'));
+		option = {
+			grid: {
+		        left: '6%',
+		        right: '6%',
+		        top: '3%',
+		        bottom: '1%',
+		        containLabel: true
+		    },
+		    xAxis: {
+		        type: 'category',
+		        data: ['8-31', '9-1', '9-2', '9-3', '9-4', '9-5'],
+		        axisLabel: {
+						show: true,
+						textStyle: {
+							color: '#D5D5D5', //x轴data 的颜色
+							fontSize:10
+						}
+					},
+					nameTextStyle: {
+						color: '#D5D5D5' //x轴名称的 颜色
+					},
+					axisLine:{
+						lineStyle:{
+							color:'#D5D5D5',
+							width:1,//这里是为了突出显示加上的
+						}
+					}
+		    },
+		    yAxis: [
+		    	{
+			        type: 'value',
+			        axisLabel: {
+					show: true,
+					textStyle: {
+							color: '#D5D5D5', //x轴data 的颜色
+							fontSize:10
+						}
+					},
+					nameTextStyle: {
+						color: '#D5D5D5' //x轴名称的 颜色
+					},
+					axisLine:{
+						lineStyle:{
+							color:'#D5D5D5',
+							width:1,//这里是为了突出显示加上的
+						}
+					},
+					splitLine: {	//网格样式
+						show: true,
+						lineStyle:{
+							color: '#484848',
+							width: 1,
+							type: 'solid'
+						}
+					}
+			    }
+		    ],
+		    series: [{
+		        data: [0.8,0.65,0.95, 0.9, 0.6,0.75 ,0.95],
+		        type: 'line',
+			    symbol: null,    // 拐点图形类型
+			    symbolSize: 0,   // 拐点图形大小
+		        itemStyle: {
+					normal: {
+						barGap: '-100%',
+						color:'#E9740E',
+                        borderColor:'#E9740E',  //拐点边框颜色
+						lineStyle: {
+							width:0, //调整 线条的宽度  5已经很宽啦
+                            color : '#E9740E' //线条颜色
+						},
+					},
+				},
+				smooth: true,
+				areaStyle: {
+				  normal: {
+				    color: {
+				      x: 0,
+				      y: 0,
+				      x2: 0,
+				      y2: 1,
+				      colorStops: [{
+				          offset: 0,
+				          color: "#538AFF" // 0% 处的颜色
+				        }, {
+				          offset: 0.3,
+				          color: "#538AFF" // 100% 处的颜色
+				        }, {
+				          offset: 0.7,
+				          color: "#C0D3FE" // 100% 处的颜色
+				         }],
+				          globalCoord: false // 缺省为 false
+				        }
+				      }
+				},
+		    }]
+		};
+		// 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+	</script>
+</html>

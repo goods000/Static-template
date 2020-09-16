@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.input_list{margin-top: 20%;}
+			.anniu{margin-top: 5%;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>提币</p>
+	    	<a href="withdraw_record.html" class="fr">提币记录</a>
+		</h1>
+		<div class="big_box">
+			<div class="input_i">
+				<label>提币地址</label>
+				<input type="text" value="" placeholder="请输入您的提币地址">
+				<i>USDT</i>
+			</div>
+			<div class="input_i">
+				<label>提币数量</label>
+				<input type="text" value="" placeholder="最小提币数量为100.00">
+				<i>USDT</i>
+			</div>
+			<p class="bi_k"><span>提现钱包USDT</span>：<span class="balance">90.0000</span></p>
+			<div class="input_i">
+				<label>手续费</label>
+				<input type="text" value="1.00" readonly="readonly">
+				<i>USDT</i>
+			</div>
+			<div class="input_i">
+				<label>验证码</label>
+				<input type="number" value="" id="code" placeholder="请输入您的验证码">
+				<p id="getCode">获取验证码</p>
+			</div>
+			<div class="input_i">
+				<label>安全密码</label>
+				<input type="password" value="" placeholder="请输入您的安全密码">
+			</div>
+			<div class="input_list">
+				<span>到账数量</span> <span class="num">0.000</span>
+			</div>
+			<div class="anniu">确认提币</div>
+		</div>
+		<dl class="charge_dl">
+			<dt>注意：</dt>
+			<dd>最小提币数量为10.0USDT</dd>
+			<dd>为保障您的账号安全，策略变更、密码修改我们会对提币进行人工审核，请耐心等待。</dd>
+			<dd>请务必确保电脑及浏览安全，防止信息被篡改或泄露。</dd>
+		</dl>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+	
+		$(".anniu").click(function(){
+			var addr=$(".addr").val();
+			var num=$(".num").val();
+			var code=$(".code").val();
+			var re_pwd=$(".re_pwd").val();
+			// 是否非空
+			if(!isKong(addr,$(".addr").attr("placeholder"))){
+				$(".addr").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(num,$(".num").attr("placeholder"))){
+				$(".num").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				$(".code").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(re_pwd,$(".re_pwd").attr("placeholder"))){
+				$(".re_pwd").focus();
+				return false;
+			}
+			layer.msg('修改成功',{ icon: 6,time: 2000},function() {
+			});
+		})
+	</script>
+</html>

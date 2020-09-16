@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+<body>	
+	<header class="header">
+	    <div class="headerLeft" onclick="goBack(-1)">
+	        <img src="img/return-white.png" alt="">
+	    </div>
+	    <span class="headerTitle">详情</span>
+	</header>
+		<div class="goodsinfo mian_top">
+			<!--轮播-->
+			<!-- Swiper -->
+			  <div class="swiper-container">
+			    <div class="swiper-wrapper">
+			      <div class="swiper-slide">
+			      	<img src="img/pro_banner.png"/>
+			      </div>
+			      <div class="swiper-slide">
+			      	<img src="img/pro_banner.png"/>
+			      </div>
+			      <div class="swiper-slide">
+			      	<img src="img/pro_banner.png"/>
+			      </div>
+			    </div>
+			    <!-- Add Pagination -->
+			    <div class="swiper-pagination"></div>
+			  </div>
+			<div class="info">
+				<div class="price">
+					<p class="guige"><b>￥</b><span class="price">1399</span></p>
+				</div>
+				<p class="tips">价格<i>￥5888</i></p>
+				<p class="name">商品名称商品名称商品名称商品名称商品名称商品名称。</p>
+				<div class="div">
+					<p class="fei"><label>快递:</label> <span>2563</span></p>
+					<p class="fei"><label>月销:</label> <span>100</span></p>
+					<p class="stock"><label>正品保障</label></p>
+				</div>
+			</div>
+			<div class="con">
+				<h4 class="title">产品详情</h4>
+				<img src="img/detail.png"/>
+			</div>
+			<div class="sum">
+				<a href="shop.html" class="r">
+					<img src="img/business-1-s.png"/>
+					<span class="a_txt">店铺</span>
+				</a>
+				<div class="sum_btn_box">
+					<button class="add_1">加入购物车</button>
+					<button class="jiesuan_1" onclick="location.href='goods_order.html'">立即购买</button>
+				</div>
+			</div>
+		</div>
+		<div class="gw">
+			<div class="zf_z">
+				<i><img src="img/goods.png"></i>
+				<div class="gw_j">
+					<!--<p class="gw_x">欧诗漫珍珠白护肤品套装女补水保湿美白淡斑水乳化妆欧诗漫珍珠白护肤品套装女补水保湿美白淡斑水乳化妆</p>-->
+					<span class="price jl">
+						<u>￥</u>167
+					</span>
+					<p class="gw_k">库存:1024件</p>
+					<a class="gb_1"><img src="img/gb.png"></a>
+				</div>
+				<div class="zf_right">
+					<div class="gui">
+						<p class="gTitle">尺寸</p>
+						<div class="guiBox">
+							<p class="gg xuan">250g</p>
+							<p class="gg">500g</p>
+							<p class="gg">1000g</p>
+							<p class="gg">1000g</p>
+							<p class="gg">1000g</p>
+							<p class="gg">1000g</p>
+						</div>
+					</div>
+					<div class="gui">
+						<p class="gTitle">颜色</p>
+						<div class="guiBox">
+							<p class="gg xuan">金色</p>
+							<p class="gg">蓝色</p>
+							<p class="gg">红色</p>
+						</div>
+					</div>
+				</div>
+				<div class="slgm">
+					<span>购买数量</span>
+					<input class="addBtn add1" type="button" value="+">
+					<input class="join-money1" type="text" value="1">
+					<input class="addBtn min1" type="button" value="-">
+				</div>
+				<a href="#">确定</a>
+			</div>
+		</div>
+		
+		
+	<!--轮播js-->
+	<script>
+		$('.guiBox').children().each(function() {
+			$(this).click(function(){
+				$(this).addClass("xuan").siblings().removeClass("xuan");
+			})
+		})
+		
+		$(document).ready(function() {
+			$(".add_1").click(function() {
+				$(".gw").animate({
+					top: '0px'
+				})
+			});
+			$(".gb_1").click(function() {
+				$(".gw").animate({
+					top: '100vh'
+				})
+			});
+		});
+		
+		var t1 = $(".join-money1");
+		var m = $(".allMoney").text();
+		var mm = $(".allMoney");
+		$(function() {
+			$(".add1").click(function() {
+				t1.val(parseInt(t1.val()) + 1); //点击加号输入框数值加1
+			});
+			$(".min1").click(function() {
+				t1.val(parseInt(t1.val()) - 1); //点击减号输入框数值减1
+				if(t1.val() <= 0) {
+					t1.val(parseInt(t1.val()) + 1); //最小值为1
+				}
+			});
+		});
+		
+	    var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	        
+	    });
+	</script>
+</body>
+</html>

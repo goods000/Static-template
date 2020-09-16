@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{padding: 0px !important;}
+		</style>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+			<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+		<div class="login_password" v-cloak>
+			<!--<p class="iconfont icon-jingshi">修改资金密码后24小时禁止提币和OTC归集</p>-->
+			<div class="wapk">
+				<h2>实名认证</h2>
+				<input type="" v-if="is_sign==0" value="未实名" readonly/>
+				<input type="" v-if="is_sign==1" value="通过C1" readonly/>
+				<input type="" v-if="is_sign==2" value="通过C2" readonly/>
+			</div>
+			<div class="wapk">
+				<h2>交易绑定</h2>
+				<input type="" v-if="is_bank==0" value="未绑定" readonly/>
+				<input type="" v-if="is_bank==1" value="已绑定" readonly/>
+			</div>
+			<div class="wapk">
+				<h2>商家昵称</h2>
+				<input type="text"  v-model.trim="storeName" placeholder="输入商家昵称"/>
+			</div>
+			<div class="wapk">
+				<h2>保证金</h2>
+				<input type="" :value="bail+'USDT'" readonly/>
+				<span>可用：<s>{{balance}}USDT</s></span>
+			</div>
+			<div class="wapk">
+				<h2>交易密码</h2>
+				<input type="password" oninput="this.value=this.value.substr(0,6)" v-model.trim="pwd" placeholder="输入交易密码"/>		
+			</div>
+			<button @click="submitT()" id="submit">立即申请</button>
+		</div>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+			var vue = new Vue({
+				el: ".login_password",
+				data: {					
+					is_sign:"",	
+					is_bank:"",
+					storeName:"",
+					pwd:"",
+					bail:'',
+					balance:"",
+				},
+				created() {					
+					this.getDetail();	
+					this.getStorees();
+				},
+				mounted() {},
+				methods: {	
+					getDetail(){
+						var that = this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/index',param, 
+						function(res) {
+							if(res.status==0){
+								that.is_sign=res.data.is_sign;
+								if(res.data.wechat!=null || res.data.alipay!=null || res.data.bank!=null){
+									that.is_bank=1;
+								}else{
+									that.is_bank=0;
+								}
+							
+							else{
+								Invalid(res)  //判断登录是否失效
+							}
+							
+						}, 'json');
+
+					},
+					getStorees(){
+						var that = this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/storees/create_check_status',param, 
+						function(res) {
+							//console.log(res.status)
+							if(res.status==1){															
+								that.bail=res.data.bzj;
+								that.balance=res.balance;
+								console.log(res.data.bzj)
+							}else{
+								$("#submit").text(res.msg)
+								$("#submit").attr("disabled", "disabled")
+							}
+							
+						}, 'json');
+
+					},
+						submitT(){
+						var that=this;
+						
+						// 是否非空
+						if(!isKong(that.storeName,"请输入商家昵称")){
+							return false;
+						}					
+						// 是否非空
+						if(!isKong(that.pwd,"请输入交易密码")){
+							return false;
+						}
+						if(that.is_sign==0){
+							layer.msg("未实名，请去实名", { icon: 2,time: 2000,end:function(){
+									
+								}
+								});
+								return false;
+						}
+						if(that.is_bank==0){
+							layer.msg("未交易绑定，请去绑定", { icon: 2,time: 2000,end:function(){
+									
+								}
+								});
+								return false;
+						}
+						var pwd = CryptoJS.MD5(that.pwd).toString().toUpperCase();
+						var param = {
+							"storeName":that.storeName,
+							"pwd":pwd,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						//console.log(param)
+						$("#submit").attr("disabled", "disabled")
+						$.post(localhostUrl+'/index/storees/create',param, 
+						function(res) {
+							if(res.status==0){
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+										$("#submit").attr("disabled", false)
+										window.parent.location.reload()
+									}
+									});
+								
+							}else{
+								Invalid(res)  //判断登录是否失效
+								$("#submit").attr("disabled", false)
+								
+							}
+							
+						}, 'json');
+						
+					}
+				}
+			})
+		</script>
+		
+	
+	
+	</body>
+</html>

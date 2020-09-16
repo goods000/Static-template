@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <title></title>
+	    <link rel="stylesheet" href="css/style.css" />
+	    <link rel="stylesheet" href="css/font.css" />
+	    <script type="text/javascript" src="layer/layer.js" ></script>
+	    <style type="text/css">
+	    	.phone_list select{margin-left: 10%;width: 60%;}
+	    </style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"></button>
+			<p>兑换</p>
+			<a href="exchange_record.html">兑换记录</a>
+		</h1>
+		<div class="phone">
+		     <div class="phone_contert">
+		         <div class="phone_list">
+		             <span>兑换类型</span>
+		             <select name="">
+		             	<option value="">USDT兑换现金券</option>
+		             	<option value="">现金券兑换USDT</option>
+		             </select>
+		         </div>
+		         <div class="phone_list">
+		             <span>提现数量</span>
+		             <input type="number" placeholder="请输入提现数量" />
+		         </div>
+		         <div class="phone_list">
+		             <span>提现手续费</span>
+		             <input type="text" value="5%" readonly="readonly"/>
+		         </div>
+		         <div class="phone_list phone_to">
+		             <span>交易密码</span>
+		             <input type="number" placeholder="请输入交易密码"/>
+		         </div>
+		         <div class="phone_list">
+		             <span>手机号</span>
+		             <input type="text" readonly="readonly" value="12345678900" />
+		         </div>
+		         <div class="phone_list">
+		             <span>验证码</span>
+		             <input type="number" value="" id="code" placeholder="请输入验证码" />
+		             <p id="getCode">获取验证码</p>
+		         </div>
+		     </div>
+		     <button class="annius submit" >提交</button>
+		 </div>
+	</body>
+</html>

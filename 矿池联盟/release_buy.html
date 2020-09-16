@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>CTC</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			body,html{background: #f5f5f5;}
+			.top-tp_bottom .title_list .left{width: 40%;}
+			.top-tp_bottom input{border-bottom: none;padding:0;margin: 0;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>发布求购</p>
+		</h1>
+		<div class="" id="app">
+			<div class="" id="app" v-cloak>
+			<div class="top-tp_bottom">
+				<h4>兑换数量</h4> 
+				<div class="type_box_1">
+					<div class="type" :class="{'choice':buy.amount==100}" @click="selectNumber(100)">100</div>
+					<div class="type" :class="{'choice':buy.amount==300}" @click="selectNumber(300)">300</div>
+					<div class="type" :class="{'choice':buy.amount==500}" @click="selectNumber(500)">500</div>
+					<div class="type" :class="{'choice':buy.amount==1000}" @click="selectNumber(1000)">1000</div>
+					<div class="type" :class="{'choice':buy.amount==2000}" @click="selectNumber(2000)">2000</div>
+				</div>
+			</div>
+			<div class="top-tp_bottom">
+				<div class="pass">
+					<span style="display: block; width: 20%;">单价</span>
+					<input  type="number" placeholder="请输入参考价±20%" value="0.234"/>
+					USDT
+				</div>
+				<span style="color:red;font-size: 0.8rem;">价格为参考价±20%</span>
+			</div>
+			<div class="top-tp_bottom">
+				<div class="title_list">
+					<div class="left">参考价</div>
+					<div class="right">0.234 USDT</div>
+				</div>
+				<div class="title_list">
+					<div class="left">挂卖总额</div>
+					<div class="right o">0USDT</div>
+					<!--<div class="right o">{{price.usd*buy.amount}}USDT</div>-->
+				</div>
+				<div><p>可用USDT：<span>12313123</span> </p><p>可用RDTS：<span>12313</span> </p></div>
+			</div>
+
+			<div class="top-tp_bottom">
+				<div class="title_list">
+					<div class="left">交易密码</div>
+					<input type="password" placeholder="请输入交易密码" name="" id="" value="" />
+				</div>
+			</div>
+			<div class="annius">确认发布</div>
+		</div>
+		</div>
+	</body>
+	<script src="js/Zcheck.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+		$(".type_box_1 .type").each(function(){
+			$(this).click(function(){
+				$(this).addClass("choice").siblings().removeClass("choice");
+			})
+		})
+		
+		
+	</script>
+	
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/slide.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,html{background: #fff;}
+			.form{padding: 0;}
+			.form .group{padding: 15px;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>转现金积分</p>
+		</h1>
+		<div class="edit_address">
+			<div class="form">
+				<!-- <form> -->
+					<div class="group">
+						<label>当前可用</label>
+						<input name="" type="text" class="" value="1000.0000USDT" style="text-align: right;"/>
+					</div>
+					<div class="group">
+						<label>兑换比率</label>
+						<span class="span_title">1USDT=1现金积分</span>
+					</div>
+					<div class="mt"></div>
+					<div class="group">
+						<label>兑换数量</label>
+						<input name="num" type="number" class="num"  placeholder="请输入您要兑换的现金数量"/>
+					</div>
+					<div class="group">
+						<label>安全密码</label>
+						<input name="psd" type="password" class="psd"  placeholder="请输入您的安全密码"/>
+					</div>
+			<!-- </form> -->
+		</div>
+		<div class="mt"></div>
+		<button class="annius">确定</button>
+		<script src="layer/layer.js"></script>
+		<script src="js/check.js"></script>
+		<script src="js/area.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/select.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(".annius").click(function(){
+				var num=$(".num").val();
+				var psd=$(".psd").val();
+				//是否非空
+				if(!isKong(num,"请输入您要兑换的现金数量")){
+					return false;
+				}
+				//是否非空
+				if(!isKong(psd,"请输入您的安全密码")){
+					return false;
+				}
+				
+				window.location.href = "user.html";
+			})
+		</script>
+		
+		
+	</body>
+</html>

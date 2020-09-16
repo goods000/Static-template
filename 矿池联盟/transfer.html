@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.money{color: #3D68EF;}
+			.login{padding: 10px 2%;}
+			.h1shabi{background: #3D68EF;padding-bottom: 10%;}
+			.h1shabi button,.h1shabi p,.h1shabi a.fr{color: #fff;}
+			.login{border-radius:10px;position: relative;margin-top:-2%;z-index: 9;background: #fff;}
+			.login select{background: #F5F9FF;padding: 4%;}
+			.locgin_i:nth-child(1){border-bottom: 0px;}
+			#rds2{display: none;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1 h1shabi">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>划转</p>
+	    	<a href="transfer_record.html" class="fr">划转记录</a>
+		</h1>
+		<div class="login login_1">
+			<form>			
+				<div class="locgin_i" style="border-bottom: none;">
+					<p class="money">余额：<span>0.000000</span></p>
+				</div>
+				<div class="locgin_i">
+					<label>划转类型</label>
+					<select name="">
+						<option value="">USDT</option>
+						<option value="">余额</option>
+					</select>
+				</div>
+				<div class="locgin_i">
+					<label>划转数量</label>
+					<input type="number" class="num" placeholder="请输入划转数量" />
+				</div>
+				<div class="locgin_i">
+					<label>手续费</label>
+					<input type="text" class="" value="20%" readonly="readonly"/>
+				</div>
+				<div class="locgin_i">
+					<label>验证码</label>
+					<input type="number" class="code" placeholder="请输入手机验证码" />
+					<input type="button" class="getCode1" id="getCode"  value="获取验证">
+				</div>
+				<div class="locgin_i">
+					<label>确认密码</label>
+					<input type="password" class="re_pwd" placeholder="请确认交易密码" />
+				</div>
+				<button class="anniu">确定</button>
+			</form>
+		</div>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+	
+		$(".anniu").click(function(){
+			var num=$(".num").val();
+			var code=$(".code").val();
+			var re_pwd=$(".re_pwd").val();
+			// 是否非空
+			if(!isKong(num,$(".num").attr("placeholder"))){
+				$(".num").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				$(".code").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(re_pwd,$(".re_pwd").attr("placeholder"))){
+				$(".re_pwd").focus();
+				return false;
+			}
+			layer.msg('修改成功',{ icon: 6,time: 2000},function() {
+			});
+		})
+	</script>
+</html>

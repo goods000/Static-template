@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			button.iconfont{position: absolute;top: 2%;left: 3%;color: #fff;font-size: 1.4rem;}
+		</style>
+	</head>
+	<body>
+		<div class="login">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+			<img src="img/logo.png" class="logo_img"/>
+		</div>
+		<div class="login_box">
+			<span class="title">用户注册</span>
+			<div class="input_box">
+				<i><img src="img/login_1.png"/></i>
+				<input type="number" name="phone" id="phone" class="phone" value="" placeholder="请输入您的注册手机号"/>
+			</div>
+			<div class="input_box">
+				<i><img src="img/login_2.png"/></i>
+				<input type="number" name="code" id="code" value="" placeholder="请输入短信验证码"/>
+				<input type="button" class="getCode1" id="get_Code" value="获取验证码">
+			</div>
+			<div class="input_box">
+				<i><img src="img/login_3.png"/></i>
+				<input type="text" name="account " id="account" value="" placeholder="请输入您的登录账号"/>
+			</div>
+			<div class="input_box">
+				<i><img src="img/login_4.png"/></i>
+				<input type="password" name="psd" id="psd" value="" placeholder="请输入您的登录密码"/>
+			</div>
+			<div class="input_box">
+				<i><img src="img/login_4.png"/></i>
+				<input type="password" name="re_psd" id="re_psd" value="" placeholder="请输入您的安全密码"/>
+			</div>
+			<div class="input_box">
+				<i><img src="img/login_5.png"/></i>
+				<input type="text" name="invite" id="invite" value="邀请码（26548872）"/>
+			</div>
+			
+			<div class="anniu">注册</div>
+			
+		</div>
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//获取手机验证码
+		$("#get_Code").click(function(){
+			var that=this;
+			getyan(that);
+		})
+		
+		$(".anniu").click(function(){
+			var phone=$(".phone").val();
+			var code=$("#code").val();
+			var account=$("#account").val();
+			var psd=$("#psd").val();
+			var re_psd=$("#re_psd").val();
+			if(!telCheck(phone)){
+				$("#phone").focus();
+				return false;
+			}
+			//是否非空
+			if(!isKong(code,"请输入短信验证码")){
+				$("#code").focus();
+				return false;
+			}
+			//是否非空
+			if(!isKong(account,"请输入您的登录账号")){
+				$("#account").focus();
+				return false;
+			}
+			//是否非空
+			if(!isKong(psd,"请输入您的登录密码")){
+				$("#psd").focus();
+				return false;
+			}
+			//是否非空
+			if(!isKong(re_psd,"请输入您的安全密码")){
+				$("#re_psd").focus();
+				return false;
+			}
+			if(re_psd != psd){
+				layer.msg("两次密码不一致");
+				return false;
+			}
+			
+			window.location.href = "login.html";
+		})
+		
+		
+	</script>
+</html>

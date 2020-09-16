@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+		<style type="text/css">
+			body,html{background: #F5F5F5;}
+			.h1{background: none;}
+			.h1 p{color: #fff;}
+			.h1 button{color: #fff;}
+		</style>
+	</head>
+	<body>
+		<div class="team">
+			<h1 class="h1">
+				<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"></button>
+				<p>我的团队</p>
+			</h1>
+			<div class="top">
+				<div class="l">
+					<p class="id">团队业绩</p>
+				</div>
+				<p class="txt"><span class="num">1,2888.00</span></p>
+				<div class="info">
+					<ul>
+						<li>
+							我的直推：<span>116</span>人
+						</li>
+						<li>
+							团队总人数：<span>18</span>人
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="team_box">
+			<div class="tab">
+				<a href="javascript:;" class="active"><p>左区<span>(12)</span></p></a>
+				<a href="javascript:;"><p>右区<span>(6)</span></p></a>
+				<a href="javascript:;"><p>三区<span>(8)</span></p></a>
+			</div>
+			<div class="div">
+				<div class="list">
+			        <ul>
+			            <li>
+							<div class="info">
+								<div class="div">
+									<div class="l">
+										<p class="name">沐沐</p>
+										<p class="id">UID:455741</p>
+									</div>
+								</div>
+								<div class="r">
+									<p class="num">报单金额：<span>6240</span></p>
+									<p class="time">注册时间：<span>2020/04/13</span></p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="info">
+								<div class="div">
+									<div class="l">
+										<p class="name">沐沐</p>
+										<p class="id">UID:455741</p>
+									</div>
+								</div>
+								<div class="r">
+									<p class="num">报单金额：<span>6240</span></p>
+									<p class="time">注册时间：<span>2020/04/13</span></p>
+								</div>
+							</div>
+						</li>
+			        </ul>
+			    </div>
+				<div class="list on">
+			        <ul>
+			            <li>
+							<div class="info">
+								<div class="div">
+									<div class="l">
+										<p class="name">沐沐</p>
+										<p class="id">UID:666666</p>
+									</div>
+								</div>
+								<div class="r">
+									<p class="num">报单金额：<span>33</span></p>
+									<p class="time">注册时间：<span>2020/04/13</span></p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="info">
+								<div class="div">
+									<div class="l">
+										<p class="name">沐沐</p>
+										<p class="id">UID:666666</p>
+									</div>
+								</div>
+								<div class="r">
+									<p class="num">报单金额：<span>3333</span></p>
+									<p class="time">注册时间：<span>2020/04/13</span></p>
+								</div>
+							</div>
+						</li>
+			        </ul>
+			    </div>
+				<div class="list on">
+			        <ul>
+			            <li>
+							<div class="info">
+								<div class="div">
+									<div class="l">
+										<p class="name">沐沐</p>
+										<p class="id">UID:888888</p>
+									</div>
+								</div>
+								<div class="r">
+									<p class="num">报单金额：<span>6666</span></p>
+									<p class="time">注册时间：<span>2020/04/13</span></p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="info">
+								<div class="div">
+									<div class="l">
+										<p class="name">沐沐</p>
+										<p class="id">UID:888888</p>
+									</div>
+								</div>
+								<div class="r">
+									<p class="num">报单金额：<span>1234</span></p>
+									<p class="time">注册时间：<span>2020/04/13</span></p>
+								</div>
+							</div>
+						</li>
+			        </ul>
+			    </div>
+		    </div>
+		</div>
+		<!--没有数据时显示-->
+		<div class="kong">
+			<img src="img/kong.png" />
+			<p>暂无记录</p>
+		</div>
+		<script type="text/javascript">
+			show();
+			function show(){
+				//没有数据的时候显示
+				if($(".team_box li").length<=0){
+					$(".kong").show();
+				}else{
+					$(".kong").hide();
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			var $div_li = $('.tab a');
+		    $('.tab a').click(function(){
+		        $(this).addClass("active").siblings().removeClass("active"); 
+		            var index =  $div_li.index(this);  
+		        $(".div .list").eq(index).show().siblings().hide(); 
+			}) 
+		</script>
+	</body>
+</html>

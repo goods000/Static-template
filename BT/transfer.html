@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			.h1 a {text-align: right;}
+			.h1 a img {width: 60%;}
+			.select_box .div_r {width: 55%;justify-content: flex-end;}
+			.select {width: 100%;direction: rtl;background: none;border: none;outline: none;-webkit-appearance: none;color: #333;}
+			.select_box .div_r img {margin-left: 5%;width: 5%;}
+			.phone_list .sfer_coin {color: #333;font-size: 1rem;font-weight: bold;position: absolute;right: 4%;bottom: 15%;}
+			.charge_dl{padding: 5% 0;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>划转</p>
+	    	<a href="transferRecord" data-lang="Transfers_records"><img src="img/recharge_record.png" alt=""></a>
+		</h1>
+		<div class="sfer">
+			<div class="select_box">
+				<div class="div" data-lang="tab_id">资金互转</div>
+				<div class="div_r">
+					<select id="fun" class="select" name="type">
+						<option value="1">转账
+						</option>
+						<option value="2">激活</option>
+					</select> <img src="img/h_sel.png" />
+				</div>
+			</div>
+			<div class="phone_list phone_to bt">
+				<span data-lang="btn_reseta">账户号</span>
+				<input type="text" name="tansferAcount" id="tansferAcount" placeholder="请输入划账账号" />
+			</div>
+			
+			<div class="box_top">
+				<p class="p_ti">账户信息：</p>
+				<!-- <div class="ge_top" style="justify-content: center;">
+					查无此人~
+				</div> -->
+				<div class="ge_top">
+					<img src="img/logo.png" class="info_img">
+					<div class="ge_left">
+						<h2>
+							阿尔哈尔
+							<!--<span id="grade">
+								<img src="img/grade.png">
+								<u>创世</u>
+							</span>-->
+						</h2>	
+						<p>UID：<u id="v_code">158779876514244</u></p>
+						<div class="num">手机号：158****4244</div>
+					</div>
+					<img src="img/ge_top_icon.png" class="next">
+				</div>
+			</div>
+			
+			<div class="phone_list phone_to bt">
+				<span data-lang="btn_reseta">消耗数量</span> 
+				<input type="number" name="" id="balacne" placeholder="请输入划账数量" /> 
+				<i class="sfer_coin">BTED</i>
+			</div>
+			<div class="phone_list bb" id="chargeIn">
+				<span data-lang="qudengd">手续费</span> 
+				<input type="text" value="0.0%" id="" readonly="readonly" /> 
+				<i class="sfer_coin">BTED</i>
+			</div>
+			<div class="phone_list bb">
+				<span data-lang="qudengb">交易密码</span> 
+				<input type="password" value="" id="passWord"  placeholder="请输入交易密码" />
+			</div>
+			
+			<dl class="charge_dl">
+				<dt>注意：</dt>
+				<dd>账号激活仅可接受直推互转，且固定为转直推，该互转不收取手续费用。</dd>
+				<dd>资金互转仅节点可进行互转，且固定为上转下，该互转不收取手续费用。</dd>
+			</dl>
+			
+		</div>
+		<button class="annius send-btn" data-lang="qudengf">互转</button>
+		
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#tansferAcount").blur(function(){
+			if ($(this).val()!= '') {
+				$(".box_top").show();
+			}else{
+				$(".box_top").hide();
+			}
+		})
+		
+		
+		$(".send-btn").click(function() {
+			var balacne = $("#balacne").val();
+			var passWord = $("#passWord").val();
+			var tansferAcount = $("#tansferAcount").val();
+			pwd = CryptoJS.MD5(passWord).toString().toUpperCase();
+			console.log("pwd:"+pwd);
+			if (tansferAcount === "") {
+				layer.msg('请输入划账账号');
+				$("#tansferAcount").focus();
+				return false;
+			}
+			if (balacne === "") {
+				layer.msg('请输入划账数量');
+				$("#balacne").focus();
+				return false;
+			}
+			if (passWord === "") {
+				layer.msg('请输入交易密码');
+				$("#passWord").focus();
+				return false;
+			}
+			$(".annius").attr("disabled", true);
+			$.ajax({
+				type : "POST",
+				url : '',
+				dataType : "json",
+				data : {
+					balacne : balacne,
+					tansferAcount : tansferAcount,
+					type : fun,
+					passWord : pwd
+	
+				},
+				success : function(data) {
+					var lang = sessionStorage.getItem('lang');
+					if (data.success == true) {
+						loadPropertiesLocal(lang, '0');
+						layer.msg("转账成功", {
+								icon: 1, //提示的样式
+								time: 5000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+								end: function() {
+										location.reload();
+									}
+							}); 
+						
+					} else {
+						loadPropertiesLocal(lang, data.code);
+						$(".annius").attr("disabled", false);
+					}
+				}
+			})
+	
+		})
+	</script>
+</html>

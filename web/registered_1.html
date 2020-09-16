@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			
+			
+		</style>
+	</head>
+	<style>
+		.login_in{position: absolute;top:10% !important;}
+	</style>
+	<body class="login">
+		<div id="header"></div>
+		<div class="login_in" >
+			<h2>注册</h2>
+			<div class="tab" js-tab="1">
+								
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											
+											<input type="password" class="pwd"  placeholder="请输入登录密码" />
+											<input type="password" class="re_pwd" placeholder="请确认您的登录密码" />
+											<input type="password" class="pay_pwd" placeholder="请输入资金密码(6位数字)" />
+											<input type="password" class="re_pay_pwd" placeholder="请确认您的资金密码" />
+											<input type="nubber" class="invitor" placeholder="邀请码(必填)" />
+											<a href="login.html">去登录</a>
+											<button class="submit" id="submit">注册</button>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+			
+		</div>
+	
+		<!--MD5 js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		<script>
+			var userID=null,account=null;
+			if(GetQueryString("account")!=null){			
+				userID=GetQueryString("userID");
+				account=GetQueryString("account");
+				$(".invitor").val(userID)
+			//	console.log("userID1:"+userID)
+			}else{
+				layer.msg('返回上一步', {icon: 1,title:false,time:3000,end:function(){
+						window.location.href="registered.html"
+					}
+				})
+			}
+			
+			
+			
+		
+			$(".submit").click(function() {				
+				var pwd = $(".pwd").val();
+				var re_pwd = $(".re_pwd").val();
+				var pay_pwd = $(".pay_pwd").val();
+				var re_pay_pwd = $(".re_pay_pwd").val();				
+				
+				// 是否非空
+				if (!isKong(pwd, $(".pwd").attr("placeholder"))) {
+					return false;
+				}
+				// 是否非空
+				if (!isKong(re_pwd, $(".re_pwd").attr("placeholder"))) {
+					return false;
+				}
+				if (pwd != re_pwd) {
+					layer.msg('两次登录密码不一致', { icon: 2,time: 2000});
+					return false;
+				}
+				// 是否非空
+				if (!isKong(pay_pwd, $(".pay_pwd").attr("placeholder"))) {
+					return false;
+				}
+				if (!Check_payPwd(pay_pwd)) {
+					return false;
+				}
+				// 是否非空
+				if (!isKong(re_pay_pwd, $(".re_pay_pwd").attr("placeholder"))) {
+					return false;
+				}
+				if (pay_pwd != re_pay_pwd) {
+					layer.msg('两次资金密码不一致', { icon: 2,time: 2000});
+					return false;
+				}
+				pwd = CryptoJS.MD5(pwd).toString().toUpperCase();
+				pay_pwd = CryptoJS.MD5(pay_pwd).toString().toUpperCase();
+
+				// console.log(timestamp)
+				var param = {
+					"account": account,
+					"password": pwd ,
+					"pay_password":pay_pwd,
+					"pid":userID,
+				}
+				
+
+				param=rsaMethod(param)
+				param={
+					"data":param
+				}
+				//console.log(param)
+				$("#submit").attr("disabled",true)
+				$.post(localhostUrl+'/index/login/nextres',param,
+						function(res) {
+						if(res.status==0){							
+							layer.msg('注册成功', {icon: 1,title:false,time:3000,end:function(){
+									window.location.href="login.html"
+								}
+							})
+						}else{
+							layer.msg(res.msg, { icon: 2,time: 2000});
+							$("#submit").attr("disabled",false)
+						}
+							
+						}, 'json');
+				
+				
+			})
+		</script>
+	</body>
+</html>

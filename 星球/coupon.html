@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			.anniu {width: 90%;position: absolute;bottom: 10%;}
+			.big_box .node_1{margin: 8% auto 2%;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>我的现金券</p>
+		</h1>
+		<div class="big_box dao_d">
+			<img src="img/coupon_1.png" class="node_1"/>
+			<span class="dangi">当前可用</span>
+			<p class="num_cou">2000.00</p>
+			
+			<div class="anniu">充值现金券</div>
+			
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".anniu").click(function(){
+			location.href='coupon_recharge.html'
+		})
+	</script>
+</html>

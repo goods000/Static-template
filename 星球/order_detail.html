@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.h1{background: none;}
+			.layui-layer-btn{display: flex;}
+			.layui-layer-btn a{width: 50%;text-align: center;}
+			#pay_pwd .maskBox .titleText,#pay_pwd .maskBox .contentText,#pay_pwd .maskBox .pwdInput,#pay_pwd .maskBox .fakeBox input{color: #000;}
+			.submitOrder .yunfei{justify-content:space-between;}
+			.submitOrder .yunfei_1{justify-content:flex-end;}
+			.submitOrder .sum{justify-content: flex-end;}
+		</style>
+	</head>
+	<body>
+		<div class="order_tt">
+			<h1 class="h1">
+				<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+		    	<p>确认订单</p>
+			</h1>
+			<div class="order_state_box">
+				<div class="state_l">
+					<b>等待买家付款</b>
+					<!--<b>卖家已发货</b>
+					<b>交易已完成</b>-->
+					<p>剩余23小时59分自动关闭</p>
+				</div>
+				<img src="img/order_top.png" class="state_r"/>
+			</div>
+		</div>
+		<div class="submitOrder">
+			<a href="address.html" class="order_a">
+				<div class="info">
+					<img src="img/goods_addr.png" class="goods_addr"/>
+					<div class="info_details">
+						<div class="person">
+							<div class="l">
+								<div class="l_r">
+									<span>范文文</span>
+								</div>
+								<div class="l_r">
+									<span class="iphone">188 8888 8888</span>
+								</div>
+							</div>
+						</div>
+						<div class="chooseAddress">
+							<p class="l_r"><span class="addr">深圳市 南山区 深南大道9028号益田假日广场B1层(下沉式广场)</span></p>
+						</div>
+					</div>
+					<!--<div>
+						<div class="person">
+							<p>暂无收货地址~~~</p>
+						</div>
+						<div class="chooseAddress">
+							<p>请前往添加地址~~~</p>
+						</div>
+					</div>-->
+					<img src="img/info_next.png" class="more"/>
+				</div>
+			</a>
+			
+			
+			<div class="pay-pro">
+				<div class="pay-info">
+					<img src="img/goods_1.png" class="img">
+					<div class="pay-div pay_bo">
+						<div class="name">格子连衣裙女喇叭长袖 2020秋冬季新款复古V领气质收腰显瘦大…</div>
+						<p class="tips">XL</p>
+						<div class="shue">
+						<p class="price"><b>￥</b><span>1399.00</span></p> <p class="Num">X<i class="num_c">1</i></p>
+						</div>
+					</div>
+				</div>		
+				<div class="pay-info">
+					<img src="img/goods_1.png" class="img">
+					<div class="pay-div">
+						<div class="name">格子连衣裙女喇叭长袖 2020秋冬季新款复古V领格子连衣裙女喇叭长袖 2020秋冬季新</div>
+						<p class="tips">XL</p>
+						<div class="shue">
+						<p class="price"><b>￥</b><span>1399.00</span></p> <p class="Num">X<i class="num_c">1</i></p>
+						</div>
+					</div>
+				</div>	
+				
+				<div class="yunfei">
+					<p class="l">商品总价</p>
+					<p class="r">￥799.00</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">快递运费</p>
+					<p class="r">￥0.00</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">赠送</p>
+					<p class="r">399 QSC</p>
+				</div>
+				<div class="yunfei yunfei_1">
+					<p class="r">共2件，小计：<i class="active">￥799.00</i></p>
+				</div>
+			</div>
+			
+			<div class="pay-other">
+				<header class="header"><s></s>订单信息</header>
+				<div class="yunfei">
+					<p class="l">订单编号</p>
+					<p class="r">25787498JGYNB457474</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">创建时间</p>
+					<p class="r">2020/08/04 20:30</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">付款时间</p>
+					<p class="r">2020/08/04 20:30</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">成交时间</p>
+					<p class="r">2020/08/04 20:30</p>
+				</div>
+				
+			</div>
+			
+			<!--占位，防止被底部遮住-->
+			<div class="height1"></div>
+			<div class="sum">
+				<button class="a che_btn">取消订单</button>
+				<button class="a jiesuan">去支付</button>
+				<!--<button class="a jiesuan">确认收货</button>
+				<button class="a che_btn">删除订单</button>-->
+			</div>
+		</div>
+		
+	<!-- 放支付密码 -->
+	<div id="pay_pwd" style="display: none;"></div>
+	
+	
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		/*点击加一*/
+		$('.btn2').click(function(){
+			$(this).prev('.number').html(parseInt($(this).prev('.number').html())+1);
+		})
+		/*点击减一*/
+		$('.btn1').click(function(){
+			if($(this).next('.number').html()==1)
+				$(this).next('.number').html(1);
+			else
+				$(this).next('.number').html(parseInt($(this).next('.number').html())-1);	
+		})
+		
+		$('.jiesuan').click(function(){
+			var that = this;
+			layer.confirm('确认去支付吗？', {
+				btn: ['确定', '取消'] //按钮
+			}, function() {
+				location.href='pay.html';
+			}, function() {
+				layer.close();
+			});
+		})
+		
+		
+	</script>
+</html>

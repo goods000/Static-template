@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+<body>
+	<img src="img/return.png" class="return" onclick="javascript:history.back(-1);"/>
+		<div class="goodsinfo">
+			<!--轮播-->
+			<!-- Swiper -->
+			  <div class="swiper-container">
+			    <div class="swiper-wrapper">
+			      <div class="swiper-slide">
+			      	<a href=""><img src="img/pro.png"/></a>
+			      </div>
+			      <div class="swiper-slide">
+			      		<a href=""><img src="img/pro.png"/></a>
+			      </div>
+			      <div class="swiper-slide">
+			      		<a href=""><img src="img/pro.png"/></a>
+			      </div>
+			    </div>
+			    <!-- Add Pagination -->
+			    <div class="swiper-pagination"></div>
+			  </div>
+				
+			
+			<div class="info">
+				<p class="name"> Swisse斯维诗 葡萄籽精华片14250mg 180片/瓶 含原花青素和VC 有助胶原蛋白生成 澳洲进口 。</p>
+				<p class="tips"> 构建天然抵抗力,建议随餐或餐后服用,含原花青素和维生素C,促进胶原蛋白生成点击速抢！</p>
+				<div class="price">
+					<p class="guige"><b>￥</b><span class="price">1568</span></p>
+				</div>
+				<div class="div">
+					<p class="fei"><label>销量：</label> <span>2563</span></p>
+					<p class="stock"><label>库存：</label> <span>22252</span></p>
+				</div>
+			</div>
+			<div class="mt"></div>
+			<div class="con">
+				<h4 class="title">商品详情</h4>
+				<img src="img/pro.png"/>
+			</div>
+			<div class="sum">
+				<div class="r">
+					<span>总计:</span>
+					<span class="price"><b>￥</b><span class="price">1568</span></span>
+				</div>
+				<button class="a jiesuan" onclick="location.href='goods_order.html'">立即购买</button>
+			</div>
+		</div>
+		
+		
+	<!--轮播js-->
+	<script>
+	    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 1,
+        paginationClickable: true,
+        loop: true,
+        autoplay: 3500,
+        autoplayDisableOnInteraction: false
+        
+    });
+	</script>
+</body>
+</html>

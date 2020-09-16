@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.team_title{}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<!--<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>-->
+			<button class="iconfont icon-xiangzuo1" onclick="androidClose()" id="android"></button>
+			<button class="iconfont icon-xiangzuo1" onclick="iosClose()" id="ios"></button>
+	    	<p>详情</p>
+		</h1>
+		<div class="team">
+			<div class="info">
+				<div class="ge_top">
+					<img src="img/logo.png" class="info_img"/>
+					<div class="ge_left">
+						<h2>
+							阿尔哈尔
+							<span id="grade">
+								<img src="img/grade.png">
+								<i>创世</i>
+							</span>
+						</h2>	
+						<p>UID：<i id="v_code">158779876514244</i></p>
+					</div>
+					<img src="img/index_record.png" class="next"  data-clipboard-target="#v_code"/>
+					<a href="team_record.html" class="go_detail">详情</a>
+				</div>	
+				<p class="num" th:text="${moenyAll}"]>0.000</p>
+				<p class="txt"><span data-lang="Team_performance">总推广收益(BTED)</span></p>
+				 <ul>
+					<li>
+						<span class="b" data-lang="Keep_pushing_number" >直推人数：</span>
+						<span class="p"  th:text="${frontUserDO.directNum}">0</span>
+					</li>
+					<li>
+						<span class="b" data-lang="The_number_team">团队人数：</span>
+						<span class="p" th:text="${count}">0</span>
+					</li>
+				</ul> 
+			</div> 
+	
+			<div class="index"> 
+				<p class="team_record_title" data-lang="My_straight_on">近7日收益</p>
+				<div class="mt team_record">
+					<div class="list">
+						<ul>
+							<li>
+								<p class="time">20/07/18 17:40</p>
+								<div class="profit">
+									<div class="profit_box">
+										<i>持币收益(byez)</i>
+										<p>0.124874</p>
+									</div>
+									<div class="profit_box">
+										<i>推广收益(BTED)</i>
+										<p>85847.354744</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<p class="time">20/07/18 17:40</p>
+								<div class="profit">
+									<div class="profit_box">
+										<i>持币收益(byez)</i>
+										<p>0.124874</p>
+									</div>
+									<div class="profit_box">
+										<i>推广收益(BTED)</i>
+										<p>85847.354744</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<script type="text/javascript">
+	var clipboard=new Clipboard(".next");
+	clipboard.on("success",function(e){
+		layer.msg("复制成功");
+	})
+	
+	//判断iOS和安卓的公共方法
+	var u = navigator.userAgent,
+	app = navigator.appVersion;
+	var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	var isIos = true;//初始化为true
+		 if (isiOS) {
+		 	$("#android").hide();
+		 	$("#ios").show();
+			console.log('isIos');
+		 } else {
+		 	$("#android").show();
+		 	$("#ios").hide();
+			console.log('isAndroid');
+	}
+	//安卓
+	function androidClose(){
+		window.native.close();
+	}
+	//苹果
+	function iosClose(){
+		window.webkit.messageHandlers.currentCookies.postMessage({
+				"body": "buttonActionMessage"
+		});
+	}
+	
+		 
+	</script>
+</html>

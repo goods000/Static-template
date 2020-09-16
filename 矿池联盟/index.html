@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.type_box .type.se{padding: 15px 15px 20px;}
+			.type_box .type .type_r b.se{color: #3D68EF;}
+			.type_box .type .type_r b .se.i{color: #3D68EF;font-size: 0.6rem;font-weight: normal;}
+			.type_box .type .type_l .bei_1 span.tips{width: 75%;display: block;}
+			.type_box .type .type_r .se_btn{background: #F6931B;color: #FFFFFF;border-radius: 3px;padding: 4px 0;font-size: 0.9rem;margin-top: 20%;width: 75px;text-align: center;}
+		</style>
+	</head>
+	<body>
+		<div class="index">
+			<div class="indeX_top">
+				<h1 class="h1">
+					<a href="customer.html" class="fl"><img src="img/index_kefu.png" class="index_img_1"/></a>
+			    	<p>首页</p>
+			    	<a href="qrcode.html" class="fr"><img src="img/index_qr.png" class="index_img_2"/></a>
+				</h1>	
+			</div>
+			<!--轮播-->
+			<div class="swiper-container banner">
+		        <div class="swiper-wrapper">
+		            <div class="swiper-slide"><img src="img/banner.png"/></div>
+		            <div class="swiper-slide"><img src="img/banner.png"/></div>
+		            <div class="swiper-slide"><img src="img/banner.png"/></div>
+		            <div class="swiper-slide"><img src="img/banner.png"/></div>
+		        </div>
+		        <!-- Add Pagination -->
+		        <div class="swiper-pagination"></div>
+		        <!-- Add Arrows -->
+		        <div class="swiper-button-next"></div>
+		        <div class="swiper-button-prev"></div>
+		    </div>
+		    <!--公告-->
+			<div id="notice" onclick="location.href='news.html'">
+				<img src="img/nitoce.png" class="notice_img"/>
+				<marquee class="dia" scrollAmount=2 >关于RDTS上线通知...</marquee>
+			</div>
+			<div class="indexNav">
+				<ul>
+					<li class="no_open">
+						<a class="nav_box">
+							<img src="img/top_1.png" class="nav_img"/>
+							<p class="nav_title">智慧城市</p>
+						</a>
+					</li>
+					<li class="no_open">
+						<a class="nav_box">
+							<img src="img/top_2.png" class="nav_img"/>
+							<p class="nav_title">商城</p>
+						</a>
+					</li>
+					<li class="no_open">
+						<a class="nav_box">
+							<img src="img/top_3.png" class="nav_img"/>
+							<p class="nav_title">开源代码</p>
+						</a>
+					</li>
+					<li>
+						<a class="nav_box" href="turntable.html">
+							<img src="img/top_4.png" class="nav_img"/>
+							<p class="nav_title">游戏</p>
+						</a>
+					</li>
+					<li class="no_open">
+						<a class="nav_box">
+							<img src="img/top_5.png" class="nav_img"/>
+							<p class="nav_title">资讯</p>
+						</a>
+					</li>
+					<li class="no_open">
+						<a class="nav_box">
+							<img src="img/top_6.png" class="nav_img"/>
+							<p class="nav_title">社交</p>
+						</a>
+					</li>
+					<li class="no_open">
+						<a class="nav_box">
+							<img src="img/top_7.png" class="nav_img"/>
+							<p class="nav_title">竞猜</p>
+						</a>
+					</li>
+					<li class="no_open">
+						<a class="nav_box">
+							<img src="img/top_8.png" class="nav_img"/>
+							<p class="nav_title">交易所</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="mt"></div>
+			<div class="data_box">
+				<div class="data_l">
+					<i><img src="img/index_top_1.png" alt=""/></i>
+					<div class="data">
+						<b class="name">RDTS</b>
+						<p class="pirce">933.89</p>
+						<i class="money">≈$5712.89</i>
+					</div>
+				</div>
+				<div class="data_l">
+					<i><img src="img/index_top_2.png" alt=""/></i>
+					<div class="data">
+						<b class="name">销毁数量</b>
+						<p class="pirce">33.89</p>
+						<i class="money">---</i>
+					</div>
+				</div>
+			</div>
+			
+			<div class="tips_box">
+				<b>抢购专区</b>
+				<div onclick="location.href='record.html'">
+					<span>抢购记录</span>
+					<img src="img/more.png" alt=""/>
+				</div>
+			</div>
+			<div class="type_box">
+				<div class="type se">
+					<i><img src="img/index_RDTS.png"/></i>
+					<div class="type_l">
+						<div class="bei b_mt"><b>剩余抢购额度：</b></div>
+						<div class="bei_1"><span class="tips">每推荐1人注册即可抢购价值为30-300USDT的RDTS</span></div>
+					</div>
+					<div class="type_r">
+						<b class="profit"><b class="se">1200</b><i class="se i">USDT</i></b>
+						<a class="se_btn">立即抢购</a>
+					</div>
+				</div>
+			</div>
+				
+			<div class="tips_box">
+				<b>理财专区</b>
+				<div onclick="location.href='rule.html'">
+					<span>规则</span>
+					<img src="img/rule.png" alt=""/>
+				</div>
+			</div>
+			
+			<!--专区-->
+			<div class="type_box">
+				<div class="type">
+					<i><img src="img/index_1.png"/></i>
+					<div class="type_l">
+						<div class="bei b_mt"><b>7天理财</b><span class="ti">新人专享</span></div>
+						<div class="bei"><span>期限：</span><span>7</span><i>天</i></div>
+						<div class="bei"><span>金额：</span><span>$</span><i>1500</i><span>/ $</span><i>4500.00</i></div>
+						<div class="bei_1"><span>剩余数量：</span><span>100</span><i>份</i></div>
+					</div>
+					<div class="type_r">
+						<b class="profit">10.00%</b>
+						<i>总收益率</i>
+						<a class="btn">立即购买</a>
+					</div>
+				</div>
+				
+				<div class="type">
+					<i><img src="img/index_2.png"/></i>
+					<div class="type_l">
+						<div class="bei b_mt"><b>15天理财</b></div>
+						<div class="bei"><span>期限：</span><span>15</span><i>天</i></div>
+						<div class="bei"><span>金额：</span><span>$</span><i>1500</i><span>/ $</span><i>4500.00</i></div>
+						<div class="bei_1"><span>剩余数量：</span><span>0</span><i>份</i></div>
+					</div>
+					<div class="type_r">
+						<b class="profit">12.50%</b>
+						<i>总收益率</i>
+						<a class="btn no">立即购买</a>
+					</div>
+					<img src="img/out.png" class="out"/>
+				</div>
+				<div class="type">
+					<i><img src="img/index_3.png"/></i>
+					<div class="type_l">
+						<div class="bei b_mt"><b>30天理财</b></div>
+						<div class="bei"><span>期限：</span><span>30</span><i>天</i></div>
+						<div class="bei"><span>金额：</span><span>$</span><i>1500</i><span>/ $</span><i>4500.00</i></div>
+						<div class="bei_1"><span>剩余数量：</span><span>0</span><i>份</i></div>
+					</div>
+					<div class="type_r">
+						<b class="profit">15.00%</b>
+						<i>总收益率</i>
+						<a class="btn">立即购买</a>
+					</div>
+				</div>
+				<div class="type">
+					<i><img src="img/index_4.png"/></i>
+					<div class="type_l">
+						<div class="bei b_mt"><b>45天理财</b></div>
+						<div class="bei"><span>期限：</span><span>45</span><i>天</i></div>
+						<div class="bei"><span>金额：</span><span>$</span><i>1500</i><span>/ $</span><i>4500.00</i></div>
+						<div class="bei_1"><span>剩余数量：</span><span>100</span><i>份</i></div>
+					</div>
+					<div class="type_r">
+						<b class="profit">20.00%</b>
+						<i>总收益率</i>
+						<a class="btn">立即购买</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<style type="text/css">
+			.buy_content{display: none;}
+			.select{width: 60%;border: 1px solid #EBEBF0;border-radius: 3px;padding: 2px 5px;background: none;}
+		</style>
+		<!--购买弹框-->
+		<div class="buy_content" id="content">
+			<div class="locgin_i">
+				<label>购买金额</label>
+				<select class="select">
+			        <option value="0">$1500</option>
+			        <option value="1">$4500</option>
+			      </select>
+			</div>
+		</div>
+		<!--<form class="layui-form" action="">
+			<div class="layui-form-item">
+			    <label class="layui-form-label">选择框</label>
+			    <div class="layui-input-block">
+			      <select name="city" lay-verify="required">
+			        <option value="0">北京</option>
+			        <option value="1">上海</option>
+			        <option value="2">广州</option>
+			        <option value="3">深圳</option>
+			        <option value="4">杭州</option>
+			      </select>
+			    </div>
+		 	</div>
+		</form>-->
+		<div id="footer" name="1"></div>
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>-->
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	        
+	    });
+	    
+	    $(".btn").click(function(){
+			layer.open({title: '是否确定购买？', btn: ['确定','取消'], content: $("#content").html(),
+                yes: function (index,layero) {
+                    layer.msg("购买成功");
+            	}
+            })
+		})
+	    
+//	    $(".btn").click(function(){
+//			layer.open({
+//          title: '是否确定购买？'
+//          , btn: ['确定','取消']
+//          , content: '<div class="layui-form-item">' +
+//              '<label class="layui-form-label">购买金额</label>' +
+//              '<div class="layui-input-block">' +
+//              '<select name="" id="" lay-verify="required">' +
+//              '<option value="0">$1500</option>' +
+//              '<option value="1">$4500</option>' +
+//              '</select>' +
+//              '</div>' +
+//              '</div>',
+//              yes: function (index,layero) {
+//                  layer.msg("购买成功");
+//              }
+//             })
+//			});
+	    
+	</script>
+</html>

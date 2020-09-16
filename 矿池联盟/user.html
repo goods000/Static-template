@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font.css" />
+    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/public.js" ></script>
+    <script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    	.h1{background: transparent;border: none;}
+    </style>
+</head>
+<body>
+	<div class="header_ge">
+		<h1 class="h1"><p>&nbsp;</p></h1>
+		<div class="ge_top">
+			<div id="xmTanDiv_1" class="touImg" style="height: 64px">
+				<form>
+					<!--<input type="hidden" id="uploadOrderid" name="id" value="">-->
+					<!--<input type="file" name="file" id="xdaTanFileImg_1" onchange="preview(this)" accept="image/*" />-->
+					<!--<input type="file" name="file1" id="xdaTanFileImg_1" onchange="preview()"  accept="image/*" />-->
+					<i><img src="img/logo.png" alt="" id="xmTanImg_1"/></i>
+				</form>
+			</div>
+			<div class="ge_left">
+				<h2>Summer_的风</h2>
+				<p>139 2384 1893</p>
+			</div>
+			<a href="qrcode.html" class="ge_yi">
+				<img src="img/user_qr.png" />
+			</a>
+		</div>
+	</div>
+	
+	<!--邀请码-->
+	
+	<div class="body">
+		<div class="thing">
+			<ul>
+				<a href="order.html">
+					<li>
+						<img src="img/user_top_1.png" />
+						<p>理财订单</p>
+					</li>
+				</a>
+				<a href="wallet.html">
+					<li>
+						<img src="img/user_top_2.png" />
+						<p>钱包地址</p>
+					</li>
+				</a>
+				<a href="team.html">
+					<li>
+						<img src="img/user_top_3.png" />
+						<p>我的团队</p>
+					</li>
+				</a>
+			</ul>
+		</div>
+	</div>
+	<img src="img/user_qrcode.png" class="user_qrcode" onclick="location.href='qrcode.html'"/>
+	<div class="xx">
+		<!--<p class="yong">其他信息</p>-->
+		<div class="ge_list">
+			<a href="record.html" class="list">
+				<div class="list_left">
+					<img src="img/user_1.png" class="tups_img" />
+					<span class="zi">收益记录</span>
+				</div>
+				<img src="img/more.png" class="next_img" />
+			</a>
+			<a href="real_name.html" class="list">
+				<div class="list_left">
+					<img src="img/user_2.png" class="tups_img" />
+					<span class="zi">实名认证</span>
+				</div>
+				<img src="img/more.png" class="next_img" />
+			</a>
+			<a href="news.html" class="list">
+				<div class="list_left">
+					<img src="img/user_3.png" class="tups_img" />
+					<span class="zi">消息中心</span>
+				</div>
+				<img src="img/more.png" class="next_img" />
+			</a>
+			<a href="customer.html" class="list">
+				<div class="list_left">
+					<img src="img/user_4.png" class="tups_img" />
+					<span class="zi">联系客服</span>
+				</div>
+				<img src="img/more.png" class="next_img" />
+			</a>
+			<a href="feedback.html" class="list">
+				<div class="list_left">
+					<img src="img/user_5.png" class="tups_img" />
+					<span class="zi">意见反馈</span>
+				</div>
+				<img src="img/more.png" class="next_img" />
+			</a>
+			<a href="setup.html" class="list">
+				<div class="list_left">
+					<img src="img/user_6.png" class="tups_img" />
+					<span class="zi">设置</span>
+				</div>
+				<img src="img/more.png" class="next_img" />
+			</a>
+		</div>
+	</div>
+
+	<div id="footer" name="5"></div>
+</body>
+<script type="text/javascript">
+	$(".no_open").click(function(){
+		layer.msg("暂未开放，敬请期待！！！",{icon:6,time:1000})
+	})
+</script>
+</html>

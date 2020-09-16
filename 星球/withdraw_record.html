@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>提币记录</p>
+		</h1>
+		<div class="record tixn_record">
+		<ul>
+			<li>
+				<p><span>流水编号：</span><i>fgdkjk68599898655</i></p>
+				<p><span>提币数量：</span><i class="y">888.00</i></p>
+				<p><span>提币状态：</span><i class="y">提币中</i></p>
+				<p><span>提币类型：</span><u>USDT</u></p>
+				<p><span>实际到账：</span><u>0.0000</u></p>
+				<p><span>手续费用：</span><u>5%</u></p>
+				<p><span>提币地址：</span><i>5lkpokoc6984a4688d213fa6c983f54</i></p>
+				<span class="span"><span>创建时间：</span><u>2019-12-23 21:00</u></span>
+			</li>
+			<li>
+				<p><span>流水编号：</span><i>fgdkjk68599898655</i></p>
+				<p><span>提币数量：</span><i class="y">888.00</i></p>
+				<p><span>提币状态：</span><i>已完成</i></p>
+				<p><span>提币类型：</span><u>USDT</u></p>
+				<p><span>实际到账：</span><u>0.0000</u></p>
+				<p><span>手续费用：</span><u>5%</u></p>
+				<p><span>提币地址：</span><i>0x1c6984a4688412b5e3f7617517d213fa6c983f54</i></p>
+				<span class="span"><span>创建时间：</span><u>2019-12-23 21:00</u></span>
+			</li>
+		</ul>
+	</div>
+	<!--没有数据时显示-->
+	<div class="kong">
+		<img src="img/kong.png" />
+		<p>暂无提币记录</p>
+	</div>
+	</body>
+	<script type="text/javascript">
+		function show() {
+			//没有数据的时候显示
+			if($(".record ul li").length <= 0) {
+				$(".kong").show();
+			} else {
+				$(".kong").hide();
+			}
+		}
+		show();	
+	</script>
+</html>

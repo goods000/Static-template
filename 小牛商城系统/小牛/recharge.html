@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <title></title>
+	    <link rel="stylesheet" href="css/style.css" />
+	    <link rel="stylesheet" href="css/font.css" />
+	    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="layer/layer.js" ></script>
+	    <style type="text/css">
+	    	.form .group label{width: 4rem;}
+	    	.form .group input, .form .group select, .form .group textarea{width: 80%;}
+	    </style>
+	</head>
+	<body>
+		<h1 class="h1 qrodeh1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+			<p>充值</p>
+			<a href="recharge_record.html">充值记录</a>
+		</h1>
+		<div class="mt"></div>
+		<div class="">
+			<div class="with">
+				<p class="money">充值金额</p>
+				<div class="with_box">
+					<b>￥</b>
+					<input type="number" placeholder="请输入充值数量" name="num" id="num" class="num" value="" />
+				</div>
+			</div>
+		</div>
+		<div class="mt"></div>
+		<div class="">
+			<div class="with">
+				<p class="money">充值方式</p>
+				<div class="sel_box">
+			        <ul>
+			            <li>
+			                <div class="top">
+			                    <p><img src="img/Alipay.png"/><s>支付宝</s><i class="rightArrow"></i></p>
+			                </div>
+			                <div class="bottom">
+			                	<p class="p">支付宝账号：<i>1888888888</i></p>
+			                	<p>收款二维码：<i class="chioce"><img src="img/see_img.png"/>查看大图</i></p>
+			                </div>
+			            </li>
+			            <li>
+			                <div class="top">
+			                    <p><img src="img/WeChat.png"/><s>微信</s><i class="rightArrow"></i></p>
+			                </div>
+			                <div class="bottom">
+			                	<p class="p">微信账号：<i>1888888888</i></p>
+			                	<p>收款二维码：<i class="chioce"><img src="img/see_img.png"/>查看大图</i></p>
+			                </div>
+			            </li>
+			            <li>
+			                <div class="top">
+			                    <p><img src="img/bank.png"/><s>银行卡</s><i class="rightArrow"></i></p>
+			                </div>
+			                <div class="bottom">
+			                	<p class="p">姓名：<i>暗暗</i></p>
+			                	<p class="p">银行卡：<i>中国工商银行</i></p>
+			                	<p>银行卡号：<i>621 2552 5555 5587</i></p>
+			                </div>
+			            </li>
+			        </ul>
+			    </div>
+			</div>
+		</div>
+		<div class="mt"></div>
+		<div class="">
+			<div class="with">
+				<p class="money">交易凭证</p>
+				<div class="with_box">
+					<input type="number" placeholder="点击上传交易凭证" readonly="readonly" name="upload" id="upload" class="upload" value="" />
+				</div>
+			</div>
+		</div>
+		<button class="annius">确认</button>
+		
+		<!--上传凭证-->
+		<div class="mo">
+			<div class="colse"></div>
+			<div class="mo_box">
+				<div class="phone_list bb">
+					<input type="file" name="file1" id="xdaTanFileImg_1" onchange="xmTanUploadImg_1(this)" accept="image/*" />
+					<img src="img/chuan.png" style="width: 100%;height: 100%;display:block;" id="xmTanImg_1" alt=""/>
+				</div>
+				<button class="annius_mo">确认</button>
+			</div>
+		</div>
+		
+		<!--查看大图-->
+			<!--支付宝图片-->
+			<div class="img_box">
+				<img src="img/Alipay.png"/>
+			</div>	
+			<!--微信-->
+			<div class="img_box_1">
+				<img src="img/WeChat.png"/>
+			</div>	
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(" .sel_box ul li").each(function(i,item){
+			$(this).children().click(function(){
+				var type = i+1;
+				if(type == 1){
+					console.log("支付宝")
+			     }
+				 if(type == 2){
+					console.log("微信")
+			     }
+				 if(type == 3){
+					console.log("银行卡")
+			     }
+			})
+		})	
+		
+		$(" .sel_box ul").each(function(i,item){
+			$(this).find(".chioce").click(function(){
+				if ($(this).parent().parent().siblings().find(" p s").html() == '支付宝') {
+					$(".img_box").show();
+				} else{
+					$(".img_box_1").show();
+				}
+			})
+		})
+		
+		$(".img_box").click(function(){$(this).hide()})
+		$(".img_box_1").click(function(){$(this).hide()})
+		$(".upload").click(function(){$(".mo").show()})
+		$(".colse").click(function(){$(".mo").hide()})
+		
+		$(".annius").click(function(){
+			var num=$(".num").val();
+			var xmTanImg_1=$("#xmTanImg_1").attr('src');
+			if(!isKong(num,"请输入充值数量")){
+				return false;
+			}
+			
+			
+			window.location.href = "";
+		})
+		$(function () {
+            $('.top p').click(function () {
+                $(this).parent().siblings().slideToggle()
+                if ($(this).children('i').hasClass('dropArrow')) {
+                    $(this).children('i').removeClass('dropArrow').addClass('rightArrow')
+                    return
+                }
+                $(this).children('i').removeClass('rightArrow').addClass('dropArrow')
+                $(this).parent().parent().siblings().children('.bottom').slideUp()
+                $(this).parent().parent().siblings().children('.top').children('p').children('i').removeClass(
+                    'dropArrow').addClass('rightArrow')
+            })
+        })
+	</script>
+	<script type="text/javascript">
+		function xmTanUploadImg_1(obj) {
+	        var file = obj.files[0];
+			console.log(obj);console.log(file);
+			console.log("file.size = " + file.size); //file.size 单位为byte
+			var reader = new FileReader();
+			//读取文件过程方法
+	//		reader.onloadstart = function (e) {
+	//		console.log("开始读取....");
+	//		}
+	//		reader.onprogress = function (e) {
+	//		console.log("正在读取中....");
+	//		}
+	//		reader.onabort = function (e) {
+	//		console.log("中断读取....");
+	//		}
+	//		reader.onerror = function (e) {
+	//		console.log("读取异常....");
+	//		}
+			reader.onload = function (e) {
+			console.log("成功读取....");
+			var size = file.size/1024;
+			var size = size/1024;
+			if (size>4) {
+				layer.msg("上传图片不能超过4MB，请重新选择!", { icon: 2,time: 2000});
+			}
+			var img = document.getElementById("xmTanImg_1");
+			img.src = e.target.result;
+			//或者 img.src = this.result; //e.target == this
+			}
+			reader.readAsDataURL(file)
+		}
+	</script>
+</html>

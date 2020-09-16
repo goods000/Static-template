@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header" name="2"></div>
+		<div class="markets" v-cloak>
+			<div class="container">
+				<div class="top_menu">
+					<div class="common liactive iconfont icon-guanzhu"> 自选</div>
+				<!--	<div class="common">全部行情</div>-->
+				</div>
+				
+				<div class="ul">
+					<div class="bottom_content">
+						<div class="body_1 markets_itme">
+							<dl>
+												<dt>交易对</dt>
+												<dt>最新价</dt>
+												<dt>涨幅</dt>
+												<dt>最高价</dt>
+												<dt>最低价</dt>
+												<dt>24H量</dt>
+												<dt>24H成交额</dt>
+											</dl>
+											<dl v-for="(item,index) in coinList" >
+												<dd><a class="iconfont icon-guanzhu guanzhu"></a><em>{{item.name}}</em></dd>
+												<dd><div><p>{{item.close}}</p><span>≈￥{{item.close}}</span></div></dd>
+												<dd><s>{{item.range}}</s></dd>
+												<dd><div><p>{{item.high}}</p><span>≈￥{{item.high}}</span></div></dd>
+												<dd><div><p>{{item.low}}</p><span>≈￥{{item.low}}</span></div></dd>
+												<dd>{{item.amount}}</dd>
+												<dd>￥{{item.vol}}</dd>
+											</dl>
+										<!--	<dl>
+												<dd><a class="iconfont icon-guanzhu guanzhu"></a><em>ETH</em></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><s>+0.39%</s></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd>7705.21</dd>
+												<dd>￥1,718,276,679</dd>
+											</dl>-->
+											
+							</div>
+						<div class="body_1">
+							<div class="tab" js-tab="1">
+								<div class="tab-title">
+									<a href="javascript:;" class="item">USDT</a>
+					  				<a href="javascript:;" id="1" class="item">BTC</a>
+					  				<a href="javascript:;" id="2" class="item">ETH</a>
+					  				<a href="javascript:;" id="2" class="item">EOS</a>
+					  				<a href="javascript:;" id="2" class="item">JSC</a>
+								</div>
+			
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											<dl>
+												<dt>交易对</dt>
+												<dt>最新价</dt>
+												<dt>涨幅</dt>
+												<dt>最高价</dt>
+												<dt>最低价</dt>
+												<dt>24H量</dt>
+												<dt>24H成交额</dt>
+											</dl>
+											<dl>
+												<dd><a class="iconfont icon-guanzhu"></a><em>BTC</em></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><s>+0.39%</s></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd>7705.21</dd>
+												<dd>￥1,718,276,679</dd>
+											</dl>
+											<dl>
+												<dd><a class="iconfont icon-guanzhu"></a><em>ETH</em></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><s>+0.39%</s></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd>7705.21</dd>
+												<dd>￥1,718,276,679</dd>
+											</dl>
+											<dl>
+												<dd><a class="iconfont icon-guanzhu"></a><em>EOS</em></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><s>+0.39%</s></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd>7705.21</dd>
+												<dd>￥1,718,276,679</dd>
+											</dl>
+											<dl>
+												<dd><a class="iconfont icon-guanzhu"></a><em>JSC</em></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><s>+0.39%</s></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd>7705.21</dd>
+												<dd>￥1,718,276,679</dd>
+											</dl>
+										</div>
+										<div class="item markets_itme" >
+											<dl>
+												<dt>交易对</dt>
+												<dt>最新价</dt>
+												<dt>涨幅</dt>
+												<dt>最高价</dt>
+												<dt>最低价</dt>
+												<dt>24H量</dt>
+												<dt>24H成交额</dt>
+											</dl>
+											<dl>
+												<dd><a class="iconfont icon-guanzhu"></a><em>ETH</em></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><s>+0.39%</s></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd>7705.21</dd>
+												<dd>￥1,718,276,679</dd>
+											</dl>
+											<dl>
+												<dd><a class="iconfont icon-guanzhu"></a><em>EOS</em></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><s>+0.39%</s></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd>7705.21</dd>
+												<dd>￥1,718,276,679</dd>
+											</dl>
+											<dl>
+												<dd><a class="iconfont icon-guanzhu"></a><em>JSC</em></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><s>+0.39%</s></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd><div><p>7705.21</p><span>≈￥57898.20</span></div></dd>
+												<dd>7705.21</dd>
+												<dd>￥1,718,276,679</dd>
+											</dl>
+										</div>	
+										<div class="item markets_itme">
+											ETH
+										</div>
+										<div class="item markets_itme">
+											EOS
+										</div>
+										<div class="item markets_itme">
+											JSC
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		
+   		<script type="text/javascript" src="js/tab_wo.js" ></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		
+		<script type="text/javascript">
+	
+			
+		var vue = new Vue({
+				el: ".markets",
+				data: {					
+					coinList:[
+						{name1:"比特币",enName:"BTC",range:0,price:"0.0","money":"0.0",vol:"0"},
+						{name1:"以太坊",enName:"ETH",rate:0,price:"0.0","money":"0.0",vol:"0"},
+						{name1:"柚子",enName:"EOS",rate:0,price:"0.0","money":"0.0",vol:"0"},
+					],
+					rageS:[0,0,0,0],				//存放上一次数据
+				},
+				created() {					
+					this.getList();
+				//	this.getPrice();
+					console.log(this.coinList)
+				},
+				mounted() {},
+				methods: {					
+					getPrice(callback){
+						//获取交易所价格
+						var ws = new WebSocket("ws://39.108.98.14:8282");
+						var that=this;
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					        console.log(data)
+
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.zichan_price"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+					            return;
+					            case "zichan_price":
+					           	console.log(data);
+					
+					        }
+					    }					
+						},
+					getList(){
+						//获取交易所价格
+						var ws = new WebSocket("ws://39.108.98.14:8282");
+						var that=this;
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					        if(data.tick){
+								that.coinList=data.tick;
+								that.coinList.forEach(function(item, index) {
+									
+									item.money=(that.sudtPrice) * (item.close);								
+									if(item.name=="btc"){
+										item.enName="比特币";
+										item.type=1;
+									}
+									if(item.name=="eth"){
+										item.enName="以太坊";
+										item.type=2;
+									}
+									if(item.name=="eos"){
+										item.enName="柚子";
+										item.type=3;
+									}
+									if(item.name=="jsc"){
+										item.enName="平台币";
+										item.type=5;
+									}
+									item.name=(item.name).toUpperCase();
+									//	console.log(that.rageS)
+									if(item.range==undefined){		//当没有涨幅的时候就给上一次的数据
+										item.range=that.rageS[index];
+									//	console.log(item.range)
+									}
+									item.name=(item.name).toUpperCase();
+									
+									that.rageS[index]=item.range;
+									
+								})
+							}
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.all_24h"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+					              console.log(data);
+					            return;
+					            case "subject":
+					           	console.log(data);
+					
+					        }
+					    }
+					},
+					chooseType(type,name){			//从行情跳到币币交易去
+						window.location.href = "exchange.html?type="+type+"&name="+name;
+					}	
+				}
+			})	
+			
+		</script>
+		
+	</body>
+</html>

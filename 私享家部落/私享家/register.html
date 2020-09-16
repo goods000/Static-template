@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+	.login h2{margin: 8% 0;}
+	.login .tab{overflow: hidden;background: #fff;}
+	.login .tab a{float:left;display: inline-block;width: 50%;text-align: center;padding: 1rem 0;font-size: 1rem;color:#999999;font-weight:bold;position: relative;}
+	.login .tab a.active{color: #FF8503;}
+	.login .tab a.active::after{content: " ";position: absolute;bottom: 0;left: 25%;width: 50%;height: 2px; background:#FF8503;}
+	.login form{overflow: hidden;display: none;}
+	.login form.on{display: block;}
+</style>
+<body>
+	<div class="logo">
+		<h1 class="h1 qrodeh1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+		</h1>
+		<img src="img/login_logo.png"/>
+	</div>
+	<div class="login login_1">
+		<h2>注册</h2>
+		<div class="tab">
+			<a href="javascript:;" class="active">手机注册</a>
+			<a href="javascript:;">邮箱注册</a>
+		</div>
+		<div class="box">
+			<form class="on">			
+				<div class="locgin_i">
+					<input type="text" class="phone" placeholder="请输入注册手机号" />
+				</div>
+				<div class="locgin_i">
+					<input type="text" class="code" placeholder="输入短信验证码"/>
+					<input type="button" class="getCode1" id="getCode"  value="获取验证码">
+				</div>
+				<div class="locgin_i">
+					<input type="text" class="account" placeholder="输入6~18位账号,包含字母、数字" />
+				</div>
+				<div class="locgin_i">
+					<input type="password" class="pwd" placeholder="输入您的登陆密码" />
+				</div>
+				<div class="locgin_i">
+					<input type="password" class="pay_pwd" placeholder="输入您的交易密码" />
+				</div>
+				<div class="locgin_i">
+					<input type="password" class="invite" placeholder="请输入邀请码" />
+				</div>
+				<button class="anniu">确定</button>
+			</form>
+			<form>			
+				<div class="locgin_i">
+					<input type="text" class="email" placeholder="请输入注册邮箱号" />
+				</div>
+				<div class="locgin_i">
+					<input type="text" class="code" placeholder="输入短信验证码"/>
+					<input type="button" class="getCode1" id="getCode"  value="获取验证码">
+				</div>
+				<div class="locgin_i">
+					<input type="text" class="account" placeholder="输入6~18位账号,包含字母、数字" />
+				</div>
+				<div class="locgin_i">
+					<input type="password" class="pwd" placeholder="输入您的登陆密码" />
+				</div>
+				<div class="locgin_i">
+					<input type="password" class="pay_pwd" placeholder="输入您的交易密码" />
+				</div>
+				<div class="locgin_i">
+					<input type="password" class="invite" placeholder="请输入邀请码" />
+				</div>
+				<button class="anniu">确定</button>
+			</form>
+		</div>
+		
+	</div>
+	<a href="" class="to_regiser"><span>  还没有安装？</span><span class="chioce">下载APP</span></a>
+</body>
+<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+<script>
+		$("input").on("blur",function(){
+	        var toFix=$(this).offset().top;
+	        window.scroll(0,toFix);//失焦后强制让页面归位
+	    });
+		
+		$(".tab a").click(function() {
+			var index = $(".tab a").index($(this));
+			$(".tab a").removeClass("active").eq(index).addClass("active");
+			$(".box form").removeClass("on").eq(index).addClass("on");
+		})
+		
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+	
+		$(".anniu").click(function(){
+			var phone=$(".phone").val();
+			var code=$(".code").val();
+			var account=$(".account").val();
+			var pwd=$(".pwd").val();
+			var pay_pwd=$(".pay_pwd").val();
+			var invite=$(".invite").val();
+			// 是否非空
+			if(!isKong(phone,$(".phone").attr("placeholder"))){
+				return false;
+			}
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				return false;
+			}
+			if(!isKong(account,$(".account").attr("placeholder"))){
+				return false;
+			}
+			if(!telCheck(phone)){
+				$(".phone").focus();
+				return false;
+			}
+			if(!CheckPw(pwd)){
+				$(".pwd").focus();
+				return false;
+			}
+			if(!Check_payPwd(pay_pwd)){
+				$(".pay_pwd").focus();
+				return false;
+			}
+			if(!isKong(invite,$(".invite").attr("placeholder"))){
+				return false;
+			}
+			layer.msg('登录成功',function() {
+				window.location.href = "login.html";
+			});
+		})
+	
+		</script>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		 <link rel="stylesheet" href="css/select_gj.css">
+		 <!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+		
+		</style>
+	<body>
+		<div id="header" name="0"></div>
+		<div class="gonggong">
+			<div>
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);">设置昵称</button>
+			</div>
+		</div>
+		<div class="login_password real-name" v-cloak>
+			<h1>设置昵称</h1>
+			<!--<p class="iconfont icon-jingshi">修改资金密码后24小时禁止提币和OTC归集</p>-->
+			<div class="wapk">
+				<h2>昵称</h2>
+				<input type="text" :value="nick" v-model.trim="nick" placeholder="设置昵称"/>
+			</div>
+			<button @click="submitN">提交</button>
+		</div>
+		
+			<!--MD5 js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+			var vue = new Vue({
+				el: ".login_password",
+				data: {					
+					nick:'',				
+				},
+				created() {						
+					//this.getDetail();		
+					var nickName=decodeURI(decodeURI($.cookie("nickName")));
+					if(nickName != null){			 
+							this.nick=nickName;
+						}else{
+							this.nick="暂无昵称，请设置";
+						}					
+				},
+				mounted() {},
+				methods: {					
+					getDetail(){
+						var that = this;
+						var param = {							
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/get_nickname',param, 
+						function(res) {
+							that.nick=res.data;
+							console.log(that.nick)
+						}, 'json');
+					},
+					submitN(){
+						var that = this;
+						
+						var param = {
+							nickname:that.nick,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/set_nickname',param, 
+						function(res) {
+							if(res.status==0){
+							layer.msg('设置成功', {icon: 1,title:false,time:2000,end:function(){
+									window.location.href = "";
+								}
+							})
+								
+							}else{
+								Invalid(res)  //判断登录是否失效
+							}
+							
+						}, 'json');
+					},
+				}
+			})
+		</script>
+		
+	</body>
+</html>

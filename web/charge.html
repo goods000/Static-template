@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{padding: 0px !important;}
+			.qrod button{position: absolute;right: 0px;top:-18px;width: 100px !important;}
+			.qrod{position: relative;}
+		</style>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+
+		<div class="login_password buy" v-cloak>
+			<p class="iconfont icon-jingshi"> 请勿向上述地址充值任何非 ERC20_ USDT资产，否则资产将不可找回。</p>
+			<div class="wapk" v-if="type==4 ">
+				<h2>充币类型</h2>
+				<select id="selectExample" v-model="typenSelected"  @change="typeSelected">
+					<option value="4">ERC20</option>
+				<!--	<option value="42">OMNI</option>-->
+				</select>
+			</div>
+			<div class="yihang adt">
+				<div class="wapk">
+					<h2>充币地址</h2>
+					<div class="qrod">
+					<input  id="foo" type="text" :value="address.addr" readonly="readonly">
+			    	<button onclick="copy()" class="btn" data-lang="label_transaction_id" data-clipboard-action="copy" data-clipboard-target="#foo">复制连接</button>
+					</div>
+				</div>
+				<div class="wapk">
+					<h2>充币二维码</h2>
+					<div id="qrode" style="margin: auto;"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script src="js/clipboard.min.js"></script>
+		<script>
+
+		
+			function copy(){
+			layer.msg('复制成功！', { icon: 1,time: 2000});
+	
+}
+  var clipboard = new Clipboard('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+	var vue = new Vue({
+				el: ".login_password",
+				data: {					
+					address:{},
+					type:"",	
+					typenSelected:4,					
+				},
+				created() {		
+					if(GetQueryString("type")!=null){
+						this.type=GetQueryString("type")
+					}
+					this.getDetail();				
+				},
+				mounted() {},
+				methods: {					
+					getDetail(){
+						var that = this;
+						var param = {
+							"type":that.type,
+							"token": $.cookie("token")
+						}
+					//	console.log(param)
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/wallet/get_addr',param, 
+						function(res) {
+						if(res.status==0){
+							that.address=res.data;							
+							
+							jQuery(function(){
+								var widt = document.body.clientWidth;
+								jQuery('#qrode').qrcode({	
+								width:150,
+								height:150,
+								text:that.address.addr
+								});
+
+							});
+							
+						}
+						else{
+							Invalid(res)  //判断登录是否失效
+						}
+						}, 'json');
+					},
+					typeSelected(){
+					this.type=this.typenSelected;
+					console.log(this.typenSelected)
+					this.getDetail()
+				},
+				},
+				
+			})
+		</script>
+	</body>
+</html>

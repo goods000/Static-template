@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <title></title>
+	    <link rel="stylesheet" href="css/style.css" />
+	    <link rel="stylesheet" href="css/font.css" />
+	    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="layer/layer.js" ></script>
+	    <style type="text/css">
+	    	.form .group label{width: 4rem;}
+	    	.form .group input, .form .group select, .form .group textarea{width: 80%;}
+	    </style>
+	</head>
+	<body>
+		<h1 class="h1 qrodeh1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+			<p>提现</p>
+			<a href="withdraw_record.html">提现记录</a>
+		</h1>
+		<div class="mt"></div>
+		<div class="">
+			<div class="with">
+				<a href="bank.html">
+					<div class="with_box">
+						<img src="img/tx.png" class="with_top"/>
+						<div class="l">
+							<p>中国工商银行</p>
+							<input type="text" readonly="readonly" name="" id="" value="尾号(2568)" />
+						</div>
+						<img src="img/next.png" class="r"/>
+					</div>
+				</a>	
+			</div>
+			<div class="with">
+				<p class="money">可提现金额：<span>0.000000</span></p>
+				<div class="with_box">
+					<b>￥</b>
+					<input type="number" placeholder="请输入提现金额" name="num" id="num" class="num" value="" />
+					<span class="span">全部</span>
+				</div>
+			</div>
+		</div>
+		<div class="mt"></div>
+		<div class="form">
+			<div class="group">
+				<label>手续费 </label>
+				<input type="text" class="charge" name="charge"  value="0.00" readonly="readonly"/>
+			</div>
+			<div class="group">
+				<label>验证码 </label> 
+				<input  type="text" name="code" id="code" class="code" placeholder="请输入短信验证码 " style="width: 50%;"/>
+				<input type="button" class="getCode1"   id="getCode"  value="获取验证码">
+			</div>
+			<div class="group">
+				<label>交易密码 </label>
+				<input type="password" name="pwd" class="pwd" id="pwd" placeholder="请输入交易密码"/>
+			</div>
+			<button class="anniu" >确认</button>
+		</div>
+			
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".anniu").click(function(){
+				var num=$(".num").val();
+				var code=$("#code").val();
+				var pwd=$(".pwd").val();
+				if(!isKong(num,"请输入提现金额")){
+					return false;
+				}
+				//是否非空
+				if(!isKong(code,"请输入短信验证码")){
+					return false;
+				}
+				if(!Check_payPwd(pwd)){
+					return false;
+				}
+				window.location.href = "";
+			})
+	</script>
+</html>

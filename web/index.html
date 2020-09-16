@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="icon" type="image/png" href="images/logo.png" sizes="32x32">
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="header" name="1"></div>
+		<div class="index" v-cloak>
+		<div class="swiper-container swiper-container_sy">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" v-for="(item,index) in lunbo" :key="index">
+					<a href=""><img :src="item.images" /></a>
+				</div>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+			<!-- Add Arrows -->
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		</div>
+		<div class="news">
+			<div class="news_conter">
+				<a v-for="(item,index) in news" :key="index" href="message.html">{{item.title}}</a><span>/</span>
+			</div>
+		</div>
+		<div class="contert">
+			<div class="bizong" v-for="(item,index) in coinList">
+				<h2><span>{{item.name}} {{item.enName}} / USDT</span><s>{{item.range}}</s></h2>
+				<h1>{{item.close}}</h1>
+				<P>≈{{item.money}} CNY</P>
+				<em>24H量 {{item.amount}}</em>
+			</div>
+		</div>
+		<div class="contert_1">
+			<h1>共建交易所</h1>
+			<p>为全球超过130个国家的数千万用户提供安全、可信赖的数字资产交易及资产管理服务</p>
+			<div class="conter_attb">
+				<div class="contert_in">
+					<i><img src="img/in_1.png"/></i>
+					<p>专注合作</p>
+					<span>COOPERATION</span>
+				</div>
+				<div class="contert_in">
+					<i><img src="img/in_2.png"/></i>
+					<p>多端登录</p>
+					<span>FOCUSONCOOPERATION</span>
+				</div>
+				<div class="contert_in">
+					<i><img src="img/in_3.png"/></i>
+					<p>流畅运行</p>
+					<span>SMOOTH OPERATION</span>
+				</div>
+				<div class="contert_in">
+					<i><img src="img/in_4.png"/></i>
+					<p>资金安全</p>
+					<span>CAPITAL SECURITY</span>
+				</div>
+			</div>
+		</div>
+		<div class="contert_2">
+			<h1>随时随地 多平台终端交易</h1>
+			<p>覆盖iOS、Android、Windows、Mac多个平台，支持全业务功能</p>
+			<div class="conter_apt">
+				<div class="cont_pad">
+					<div class="pad_left">
+						<i><img src="img/er.png"/></i>
+						<p>iOS & Android 扫码下载</p>
+					</div>
+					<div class="pad_right">
+						<p><i><img src="img/w_1.png"/></i><span>Windows下载</span></p>
+						<p><i><img src="img/w_2.png"/></i><span>iPhone下载</span></p>
+						<p><i><img src="img/w_3.png"/></i><span>Android下载</span></p>
+					</div>
+				</div>
+				<i><img src="img/index_dian.png"/></i>
+			</div>
+		</div>
+	</div>
+	
+		
+		
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!--MD5 js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script type="text/javascript">
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				slidesPerView: 1,
+				paginationClickable: true,
+				loop: true,
+				autoplay: 3500,
+				autoplayDisableOnInteraction: false
+
+			});
+
+			var vue = new Vue({
+				el: ".index",
+				data: {
+					lunbo: [{id:1,images:"img/banner.jpg"}, {id:2,images:"img/banner.jpg"}],
+					news:[],
+					sudtPrice:0,   //最新USDT价格
+					coinList:[
+						{name1:"比特币",enName:"BTC",range:0,price:"0.0","money":"0.0",deal:"0"},
+						{name1:"以太坊",enName:"ETH",rate:0,price:"0.0","money":"0.0",deal:"0"},
+						{name1:"柚子",enName:"EOS",rate:0,price:"0.0","money":"0.0",deal:"0"},
+						{name1:"平台币",enName:"JSC",rate:0,price:"0.0","money":"0.0",deal:"0"}
+					],
+					rageS:[0,0,0,0],				//存放上一次数据		
+					
+				},
+				created() {
+					this.getLunbo()
+					this.getNews();
+					this.getList();
+					this.getPrice();
+				//	console.log(this.coinList)
+				},
+				mounted() {},
+				methods: {
+					getLunbo() {
+						var that = this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)		
+						param={
+							"data":param
+						}
+//						$.ajax({
+//							url: "http://jsex.wgzvip.com/index/index/shuffling",
+//							type: "post",
+//							dataType: "json",
+//							contentType: "application/json",
+//							
+//							data: param,
+//							async: false,
+//							success: function(res) {
+//								console.log(res)
+//							}
+//							
+//						})
+						$.post(localhostUrl+'/index/index/shuffling',param, 
+						function(res) {
+						if(res.status==0){
+							if(res.data!=null){
+								that.lunbo=res.data;							
+								that.lunbo.forEach(function(item, index) {
+									item.images="http://cnd.cjlnet.com/"+item.images
+								})
+							//	console.log(that.lunbo)
+							}
+						
+							}
+						}, 'json');
+
+					},
+					getNews(){
+						var that = this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)		
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/index/notice',param, 
+						function(res) {
+							if(res.status==0){
+								if(res.data!=null){
+									that.news=res.data;
+									if(that.news.length>5){
+										that.news=that.news.slice(0,5)
+									}
+							//	console.log(that.news)
+								}
+							}
+							else{
+								Invalid(res)  //判断登录是否失效
+							}
+							
+						}, 'json');
+					},
+					getPrice(callback){
+						//获取交易所价格
+						var ws = new WebSocket("ws://39.108.98.14:8282");
+						var that=this;
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					       // console.log(data)
+							if(data.tick){
+								data.tick.forEach(function(item, index) {
+									if(item.name=='usdt')
+									that.sudtPrice=item.price;
+									console.log("USDT:"+that.sudtPrice)
+								})
+							}
+														
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.zichan_price"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+					            return;
+					            case "zichan_price":
+					           	console.log(data);
+					
+					        }
+					    }					
+					},
+					getList(){
+						//获取交易所价格
+						var ws = new WebSocket("ws://39.108.98.14:8282");
+						var that=this;
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+							 if(data.tick){
+					        that.coinList=data.tick;
+				//	        var arrlist= new Array(); //存放以上数组
+				//			JSON.stringify(that.tabList)
+							//console.log(that.coinList)
+					        //for(i in that.coinList){
+				
+							that.coinList.forEach(function(item, index) {
+					        	//that.coinList[''+i+''].name=(that.coinList[''+i+''].name).toUpperCase();
+								item.money=(that.sudtPrice) * (item.close);								
+								if(item.name=="btc"){
+									item.enName="比特币";
+								}
+								if(item.name=="eth"){
+									item.enName="以太坊";
+								}
+								if(item.name=="eos"){
+									item.enName="柚子";
+								}
+								if(item.name=="jsc"){
+									item.enName="平台币";
+								}
+							//	console.log(that.rageS)
+								if(item.range==undefined){		//当没有涨幅的时候就给上一次的数据
+									item.range=that.rageS[index];
+									console.log(item.range)
+								}
+								item.name=(item.name).toUpperCase();
+								
+								that.rageS[index]=item.range;
+								
+					        	
+							})
+
+//					        	console.log(that.coinList[''+i+''].name)
+					        }
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.all_24h"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+					              console.log(data);
+					            return;
+					            case "subject":
+					           	console.log(data);
+					
+					        }
+					    }
+					},
+				}
+			})
+		</script>
+	</body>
+
+</html>

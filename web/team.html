@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="header" name="2"></div>
+		<div class="gonggong">
+			<div>
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);">我的团队</button>
+			</div>
+		</div>
+		<div class="markets">
+			<div class="container team_conter">
+				<div class="top_menu">
+					<div class="common liactive">我的团队</div>
+					<div class="common">团队收益</div>
+				</div>
+				
+				<div class="ul scroll" @scroll="getScroll" v-cloak>
+					<div class="bottom_content">
+						<div class="body_1 markets_itme team">
+							<dl>
+								<dt>邀请人账号</dt>
+								<dt>邀请时间</dt>
+								<dt>团队人数</dt>
+							</dl>
+							<dl v-for="(item,index) in list" :key="index">
+								<dd>{{item.mobile}}</dd>
+								<dd>{{item.add_time}}</dd>
+								<dd>{{item.total}}</dd>
+							</dl>	
+							<div class="kong" v-if="list.length<=0">					
+								<p>没有更多数据</p>
+							</div>							
+						</div>
+						<div class="body_1 markets_itme team">
+							<dl>
+								<dt>邀请人账号</dt>
+								<dt>数量（JSC）</dt>
+								<dt>邀请时间</dt>
+								<dt>收益类型</dt>
+							</dl>
+							<dl v-for="(item,index) in list1" :key="index">
+								<dd>{{item.mobile}}</dd>
+								<dd>{{item.anum}}</dd>
+								<dd>{{item.add_time}}</dd>
+								<dd>{{item.type}}</dd>
+							</dl>	
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="kong" v-if="list1.length<=0">					
+						<p>没有更多数据</p>
+					</div>
+			</div>
+		</div>
+		
+		<script src="js/flexible.js"></script>
+   		<script type="text/javascript" src="js/tab_wo.js" ></script>
+
+		<!--MD5 js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script type="text/javascript">
+		
+		var vue = new Vue({
+				el: ".ul",
+				data: {					
+					list:[],	
+					list1:[],					
+					page:1,					
+					pageList:[],   //每页获取的数据					
+				},				
+				mounted() {
+				//	window.addEventListener('scroll', this.getScroll);
+				},
+				destroyed() {
+				//	window.removeEventListener('scroll', this.getScroll);
+				},
+				created() {				
+					this.getList();					
+				},
+				mounted() {},
+				methods: {		
+					getList(){
+						var that = this;
+						if(that.page==1){		//第一次的时候或者刷新，切换清空数据
+							that.pageList=[];
+							that.list=[];
+						}	
+						var param = {
+							"page":that.page,							
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/user/team',param, 
+						function(res) {
+						if(res.status==0){
+						//	console.log(res.data)
+							if(res.data!=null){								
+								that.pageList=res.data;
+								that.list = that.list.concat(that.pageList);
+								console.log(that.list)
+							}
+						}
+						else{
+								Invalid(res)  //判断登录是否失效			
+							}							
+						}, 'json');
+						console.log(that.trade_list)
+					},
+					getList1(){
+						var that = this;
+						if(that.page==1){		//第一次的时候或者刷新，切换清空数据
+							that.pageList=[];
+							that.list1=[];
+						}	
+						var param = {
+							"page":that.page,							
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/user/income',param, 
+						function(res) {
+							if(res.status==0){
+							//console.log(res.data)
+								if(res.data!=null){								
+								that.pageList=res.data;
+								that.list1 = that.list1.concat(that.pageList);
+								console.log(that.list1)
+								}
+							}else{
+								Invalid(res)  //判断登录是否失效
+							}								
+							
+						}, 'json');
+					},
+					getScroll() {
+						var that=this;																
+						 var h = $(".scroll").height();//div可视区域的高度
+						var sh = $(".scroll")[0].scrollHeight;//滚动的高度，$(this)指代jQuery对象，而$(this)[0]指代的是dom节点
+						var st =$(".scroll")[0].scrollTop;//滚动条的高度，即滚动条的当前位置到div顶部的距离
+						if(h+st>=sh){
+						//上面的代码是判断滚动条滑到底部的代码
+						//	console.log("滑到底部了");
+							if(that.pageList.length<10){		//买的每页不足10,说明没下一页							
+									layer.msg('没有更多数据');
+									return false;
+								}else{
+									that.page++									
+									
+								}
+							if(index==0){      //初始化的买的
+								that.getList()
+							}
+							if(index==1){      //初始化的卖的
+								that.getList1()
+							}
+							console.log("page:"+that.page)
+						}																												
+
+					},
+				}
+			});
+		
+		
+		$(".icon-guanzhu").click(function(){
+			$(this).addClass("guanzhu");
+		})
+		$(function(){
+  $('[js-tab=1]').tab();
+});
+			//console.log("left -右滑",(parseInt($('.bottom_content')[0].style.left)));
+			$('.bottom_content')[0].style.left = "0%";
+			var startX = '',disX ='';
+			var index=0;
+			$('.top_menu').on('click','.common',function(){
+				var index = $(this).index();
+				$('.bottom_content').css('left','-' + index * 100 + '%');
+				$('.top_menu .common').eq(index).addClass('liactive').siblings().removeClass('liactive')
+				vue.page=1	;  //每次点击page都为1
+				if(index==1){	///点击才初始化  第二个
+					vue.getList1()					
+				}else{		// 第一次的时候或者刷新，切换清空数据  第一个
+					vue.getList()					
+				}
+				
+			});
+			$('.bottom_content').on('touchstart','.body_1',function(e){
+				startX = e.originalEvent.changedTouches[0].clientX;
+			});
+			$('.bottom_content').on('touchmove','.body_1',function(e){
+				e.stopPropagation()
+			})
+			$('.bottom_content').on('touchend','.body_1',function(e){
+				disX = e.originalEvent.changedTouches[0].clientX - startX;
+				var leftNum = parseInt($('.bottom_content')[0].style.left);
+				if(disX > 0 && disX > 100) {
+					if(leftNum <= -100) {
+						$('.bottom_content')[0].style.left = leftNum + 100 + "%";
+						var order = -parseInt($('.bottom_content')[0].style.left)/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				} else if(disX < 0 && disX < -100) {
+					if(leftNum >= -200) {
+						$('.bottom_content')[0].style.left = leftNum - 100 + "%";
+						var order = (-parseInt($('.bottom_content')[0].style.left))/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

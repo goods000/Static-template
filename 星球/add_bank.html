@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.big_box .input_i .aa{position: absolute;right: 10px;bottom: 10px;color: #FF7122;text-align: right;font-size: 12px;}
+			.big_box .label{float: right;text-align: right;}
+			.big_box .input_i select{background: url(img/info_next.png) no-repeat right 10px center; background-size: 8px 12px;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>添加银行卡</p>
+		</h1>
+		<div class="big_box">
+			<div class="input_i">
+				<label>用户姓名</label>
+				<input type="text" value="" placeholder="请输入您的姓名" class="account">
+			</div>
+			<div class="input_i">
+				<label>银行</label>
+				<select name="">
+					<option value="">中国工商银行</option>
+					<option value="">中国建设银行</option>
+					<option value="">中国农业银行</option>
+					<option value="">中国民生银行</option>
+				</select>
+			</div>
+			<div class="input_i">
+				<label>银行卡号</label>
+				<input type="text" value="" placeholder="请输入您的银行卡号码" class="card">
+			</div>
+			<div class="input_i">
+				<label>预留手机号</label>
+				<input type="text" value="" placeholder="请输入银行卡预留手机号" class="phone">
+			</div>
+			<div class="input_i">
+				<label>验证码</label>
+				<input type="number" value="" id="code" placeholder="请输入您的验证码">
+				<p id="getCode">获取验证码</p>
+			</div>
+			<div class="anniu">确认</div>
+		</div>
+		<dl class="charge_dl">
+			<dt>注意：</dt>
+			<dd>为保障您的账号安全，策略变更、密码修改我们会对划转进行人工审核，请耐心等待。</dd>
+		</dl>
+	</body>
+	<script src="js/area.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/select.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".anniu").click(function(){
+			var account=$(".account").val();
+			var card=$(".card").val();
+			var phone=$(".phone").val();
+			var code=$(".code").val();
+			// 是否非空
+			if(!isKong(account,$(".account").attr("placeholder"))){
+				$(".account").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(card,$(".card").attr("placeholder"))){
+				$(".card").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(phone,$(".phone").attr("placeholder"))){
+				$(".phone").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				$(".code").focus();
+				return false;
+			}
+			layer.msg('提交成功',{ icon: 6,time: 2000},function() {
+			});
+		})
+	</script>
+</html>

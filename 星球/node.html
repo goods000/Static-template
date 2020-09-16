@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			.anniu {width: 90%;position: absolute;bottom: 10%;}
+			.big_box input.check{border-bottom: none;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>节点申请</p>
+	    	<a href="node_record.html">申请记录</a>
+		</h1>
+		<div class="big_box dao_d">
+			<img src="img/node_1.png" class="node_1"/>
+			<div class="state_1">
+				<div class="input_i">
+					<label>申请等级</label>
+					<div class="check_box">
+						<div class="label mark">
+							<input type="radio" class="check" name="1" checked="checked">
+							小节点
+						</div>
+						<div class="label">
+							<input type="radio" class="check" name="1" >
+							中节点
+						</div>
+					</div>
+				</div>
+				<div class="input_i">
+					<label>支付金额</label>
+					<input type="text" value="1,0000.000" readonly="readonly">
+					<i>USDT</i>
+				</div>
+				<div class="banlance">可用 4512125.154 USDT</div>
+				<div class="input_i">
+					<label>安全密码</label>
+					<input type="password" value="" placeholder="请输入您的安全密码"/>
+					<i>RDTS</i>
+				</div>
+				<div class="anniu">提交申请</div>
+			</div>
+			
+			<!--<div class="state_2">
+				<p class="titie">节点申请审核中请耐心等待……</p>
+			</div>-->
+			
+			<!--<div class="state_3">
+				<p class="titie">您的钱包账户余额不足，节点申请失败请充值后重新申请</p>
+				<div class="anniu">重新申请</div>
+			</div>-->
+			
+			<!--<div class="state_4">
+				<p class="titie">节点申请已通过，恭喜您成为小节点会员是否申请大节点？？</p>
+				<div class="anniu">申请大节点</div>
+			</div>-->
+				
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//切换默认
+		$(".check").click(function(){
+			var index=$(".check").index($(this));
+			$(".check").attr("checked",false).eq(index).attr("checked","checked");
+			$(".label").removeClass("mark").eq(index).addClass("mark");
+			if($("label").eq(index).hasClass("mark")){
+				console.log($(this).val());
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+	    <link rel="stylesheet" href="css/font.css" />
+	    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="js/public.js" ></script>
+	    <script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	    <style type="text/css">
+	    	.h1{background: transparent;border: none;}
+	    	.h1 p,.h1 a{color: #fff !important;}
+	    	.tips_box{margin: 15px 0;}
+	    	.asset_box .asset_type .asset_t{position: relative;}
+	    	.release_b{color: #fff;background: #3D68EF;box-shadow:0px 3px 6px rgba(191,207,255,0.6);border-radius: 10px;font-size: 0.8rem;padding: 3px 0;
+	    	width: 15%;text-align: center;position: absolute;right: 0;}
+	    </style>
+	</head>
+	<body>
+		<div class="header_asset">
+			<h1 class="h1"><p>总资产</p><a href="record.html" class="fr">明细</a></h1>
+			<div class="asset_top">
+				<i>$</i><b>3,782.6013</b>
+			</div>
+			<div class="gongneng">	
+				<ul>
+					<a href="withdraw.html">
+					<li>
+						<p class="ico"><img src="img/asset_1.png"></p>
+						<p class="txt">提币</p>
+					</li>
+					</a>
+					<a href="recharge.html">
+					<li>
+						<p class="ico"><img src="img/asset_2.png"></p>
+						<p class="txt">充币</p>
+					</li>
+					</a>
+					<a href="exchange.html">
+					<li>
+						<p class="ico"><img src="img/asset_3.png"></p>
+						<p class="txt">兑换</p>
+					</li>
+					</a>
+					<a class="no_open">
+					<li>
+						<p class="ico"><img src="img/asset_4.png"></p>
+						<p class="txt">划转</p>
+					</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+		<div class="price_box">
+			<i></i><span class="price_title">RDTS 当前价：</span><span class="price">$1.52</span>
+		</div>
+		<div class="tips_box">
+			<b>所有资产</b>
+		</div>
+		<div class="asset_box">
+			<div class="asset_type">
+				<div class="asset_t">
+					<i><img src="img/RDTSS.png"/></i>
+					<b>RDTSS</b>
+					<p class="release_b">释放</p>
+				</div>
+				<div class="asset_b">
+					<div class="info">
+						<i>可用</i>
+						<p>1,293.6453</p>
+					</div>
+					<div class="info">
+						<i>冻结</i>
+						<p>689.2352</p>
+					</div>
+					<div class="info">
+						<i>折合</i>
+						<p>$ 1094.32</p>
+					</div>
+				</div>
+			</div>
+			<div class="asset_type">
+				<div class="asset_t">
+					<i><img src="img/RDTS.png"/></i>
+					<b>RDTS</b>
+				</div>
+				<div class="asset_b">
+					<div class="info">
+						<i>可用</i>
+						<p>1,293.6453</p>
+					</div>
+					<div class="info">
+						<div class="line"></div>
+					</div>
+					<div class="info">
+						<i>折合</i>
+						<p>$ 1094.32</p>
+					</div>
+				</div>
+			</div>
+			<div class="asset_type">
+				<div class="asset_t">
+					<i><img src="img/USDT.png"/></i>
+					<b>USDT</b>
+				</div>
+				<div class="asset_b">
+					<div class="info">
+						<i>可用</i>
+						<p>1,293.6453</p>
+					</div>
+					<div class="info">
+						<div class="line"></div>
+					</div>
+					<div class="info">
+						<i>折合</i>
+						<p>$ 1094.32</p>
+					</div>
+				</div>
+			</div>
+			<div class="asset_type">
+				<div class="asset_t">
+					<i><img src="img/wallet_1.png"/></i>
+					<b>本金钱包</b>
+				</div>
+				<div class="asset_b">
+					<div class="info">
+						<i>可用</i>
+						<p>1,293.6453</p>
+					</div>
+					<div class="info">
+						<div class="line"></div>
+					</div>
+					<div class="info">
+						<i>折合</i>
+						<p>$ 1094.32</p>
+					</div>
+				</div>
+			</div>
+			<div class="asset_type">
+				<div class="asset_t">
+					<i><img src="img/wallet_2.png"/></i>
+					<b>锁仓钱包</b>
+				</div>
+				<div class="asset_b">
+					<div class="info">
+						<i>可用</i>
+						<p>1,293.6453</p>
+					</div>
+					<div class="info">
+						<div class="line"></div>
+					</div>
+					<div class="info">
+						<i>折合</i>
+						<p>$ 1094.32</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer" name="2"></div>
+	</body>
+	<script type="text/javascript">
+		$(".no_open").click(function(){
+//			layer.msg("暂未开放，敬请期待！！！",{icon:6,time:1000})
+			layer.open({title: '提示', btn: ['确定','取消'], content: '确定是否划转？',
+                yes: function (index,layero) {
+                    layer.msg("划转成功");
+            	}
+            })
+		})
+	</script>
+</html>

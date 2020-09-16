@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<body>
+		<template>
+		  <div>
+		      <!-- 2. 给想要加载的数据列表外层添加该标签和方法 -->
+		       <v-scroll :on-refresh="onRefresh" :on-infinite="onInfinite">
+		            <ul>
+		                <li v-for="(item,index) in currentlist" >{{item.name}}</li>
+		            </ul>
+		       </v-scroll>
+		  </div>
+		</template>
+	</body>
+<script src="PullToRefresh.vue" type="module" charset="utf-8"></script>	
+<script>
+//import Scroll from "PullToRefresh.vue";//  1.在此引入封装好的刷新和加载的插件
+export default {
+  data() {
+    return {
+      endId: "", //记录上拉加载时应该从哪一条数据开始取
+      pageCount: "", //每次请求的条数
+      currentlist: [], //当前显示的列表
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd1VybHMiOiJbXCIvXCIsXCJsb3N0XCIsXCJtZWRpY2FsUmVwb3J0XCIsXCJjYXJkXCIsXCJzY2hvb2xOZXRcIixcImFubnVhbFBheW1lbnRcIixcInJlc2VhcmNoUHJvamVjdFwiLFwibWFya2V0XCIsXCJ0ZWFjaGVySW5jb21lXCIsXCJpbVwiLFwic2NoZWR1bGVcIixcImNhcmRNYW5hZ2VcIixcIm5ld3NcIixcInZlbnVlXCIsXCJvZmZpY2VQaG9uZVwiXSIsImF1ZCI6WyJzcGFya2xyIl0sInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsInRydXN0Il0sIm5hbWUiOiLnjovmlowxIiwiaWQiOiJmNzk2NDE4M2YzMjE0ODE3ODI0MThmMDQxOGZmOGMzZiIsImV4cCI6MTUyNTgzMTkyNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjUzMjk4Y2QwLTg4MDgtNGUzMS1iODllLWY2OWRkZDliYjU0YyIsImNsaWVudF9pZCI6IjAwMDAwMCJ9.WOwgMAtlOsCmRq8Hf6OoUAVGnEG0NyOzueeluT7CREY",
+      deviceType: ""
+    };
+  },
+  mounted: function() {
+    this.onRefresh();
+  },
+  methods: {
+    /**@done 加载数据成功的回调
+     * 下拉刷新方法
+     */
+    onRefresh: function(done) {
+    //   3. 在刷新方法内部进行自己的逻辑处理 此处调用了后台接口
+      this.onRefreshPort(done);
+    },
+ 
+    /**@done 加载数据成功的回调
+     * 下拉刷新接口
+     */
+    onRefreshPort(done) {
+      this.$http.defaults.headers.common["token"] = this.token;
+      var that = this;
+      let url = "http://42.236.83.132:90/market/market/getAllList";
+      this.$http
+        .get(url)
+        .then(function(response) {
+          if (response.data.message == "OK") {
+            //下拉刷新直接用最新的数据将原来的覆盖
+            that.currentlist = response.data.data;
+            // 5. 在后台接口返回数据之后一定记得调用done方法，将信息传给插件从而将状态从加载中变为下拉更新或者上拉更新
+            done();
+          } else {
+          }
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+ 
+    /**@augments
+     * 上拉加载方法
+     */
+    onInfinite: function(done) {
+      this.onInfinitePort(done);
+    },
+    /**
+     * 上拉加载接口
+     */
+    onInfinitePort(done) {
+      this.$http.defaults.headers.common["token"] = this.token;
+      var that = this;
+      let url = "http://42.236.83.132:90/market/market/getAllList";
+      this.$http
+        .get(url)
+        .then(function(response) {
+          if (response.data.message == "OK") {
+            //上拉加载将请求回来的数据追加到现有数据的最后面
+            that.currentlist = that.currentlist.concat(response.data.data);
+            done();
+          } else {
+          }
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    }
+  },
+  components: {
+    "v-scroll": Scroll
+  }
+};
+</script>
+</html>

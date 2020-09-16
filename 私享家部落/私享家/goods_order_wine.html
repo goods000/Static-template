@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.h1{background: url(img/order_top_bg.png);padding: 3% 2% 35%;}
+			.h1 button{color: #fff;}
+			.h1 p{color: #fff;}
+			body{background: #F5F5F5;height: 100vh;}
+			.layui-layer-btn{display: flex;}
+			.layui-layer-btn a{width: 50%;text-align: center;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>提交订单</p>
+		</h1>
+		<div class="submitOrder">
+			<a href="address.html" class="order_a">
+				<div class="info">
+					<div>
+						<div class="person">
+							<p class="l">
+								<span>穆牧</span>
+								<span class="iphone">150****6686</span>
+							</p>
+						</div>
+						<div class="chooseAddress">
+							<p><span class="addr">广东省深圳市龙华区玉龙路与白龙路交汇处民治工业区13栋6楼。</span></p>
+						</div>
+					</div>
+					<!--<div>
+						<div class="person">
+							<p>暂无收货地址~~~</p>
+						</div>
+						<div class="chooseAddress">
+							<p>请前往添加地址~~~</p>
+						</div>
+					</div>-->
+					<img src="img/next.png" class="more"/>
+				</div>
+			</a>
+			<div class="pay-pro">
+				<div class="pay-info">
+				<img src="img/pro_wine.png" class="img">
+				<div class="pay-div">
+					<p class="name">【子爵套餐】澳洲/法国酒庄顶级系列红酒2箱 6瓶/箱</p>
+					<div class="guige">
+						<p class="price">
+							<b>$</b>
+							<span>500</span>
+						</p>
+						<i class="Num">X1</i>
+					</div>
+				</div>
+				</div>							
+			</div>
+			<div class="pay-other">
+				<div class="yunfei">
+					<p class="l">支付后返</p>
+					<p class="r">住房补贴3间/夜</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">派送方式</p>
+					<p class="r">普通配送</p>
+				</div>
+			</div>
+			
+			<!--占位，防止被底部遮住-->
+			<div class="height1"></div>
+			<div class="sum">
+				<div class="r">
+					<span>共1件，合计：</span>
+					<span class="price"><b>$</b><span class="price">500.00</span></span>
+				</div>
+				<button class="a jiesuan">提交订单</button>
+			</div>
+		</div>
+	
+	<!--支付方式-->
+	<!-- <div class="payment">
+		<div class="info">
+			<div class="set" onclick="choosetype(this)">
+				<input type="radio" class="check" value="1"/>
+				<label for="" class="label" name="1"></label>
+				<img src="img/zhifubao.png" class="ico" />
+				<span class="txt">支付宝</span>
+			</div>
+			<div class="set" onclick="choosetype(this)">
+				<input type="checkbox" class="check"  value="2"/>
+				<label for="" class="label" name="2"></label>
+				<img src="img/coupon.png" class="ico" /> <span class="txt">消费券</span>
+			</div>
+		</div>
+	</div> -->
+	
+	<!-- 放支付密码 -->
+	<div id="pay_pwd" style="display: none;"></div>
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		//立即购买
+		$(".jiesuan").click(function(){
+//			var remarks = $("#remarks").val();
+//			var pwd = $("#pwd").val();
+//			if(!isKong(remarks,'请填写你的需求,如产品规格等')){
+//				$("#remarks").focus();
+//				return false;
+//			}
+//			if(!Check_payPwd(pwd)){
+//				$("#pwd").focus();
+//				return false;
+//			}
+//			location.href = 'index.html';
+			layer.prompt({title: '请输入支付密码并确认', formType: 1}, function(pay_password, index){
+//		        layer.close(index);
+//		        layer.msg('处理中...', {icon: 16,shade: 0.01});
+//		        var param = {
+//		    			'goods_id':goods_id,
+//		    			'note':$("#note").val(),
+//		    			'name':$("#name").html(),
+//		    			'tel':$("#tel").html(),
+//		    		    'address':$("#address").html(),
+//		    			'pay_password':CryptoJS.MD5(pay_password).toString().toUpperCase()
+//		    	}
+//		    	Ajax.submitAjaxToJSON("/web/goods/info/pay",param,function(data){
+//		    		layer.closeAll();
+//		    		if(data.success==true){
+//		    			layer.msg('跳转首页',{icon:6,time : 1000},function(){
+//		    				Ajax.pageJumps("/web/index/toIndex");
+//		    			});
+//		        	}else{
+//		        		layer.msg(data.msg,{icon:5,time : 1000});
+//		        	}
+//		    	},function(jqXHR, textStatus, errorThrown){
+//		    		if(errorThrown != 'abort'){
+//		            	//ajax被调用abort后执行的方法
+//		        		alert("网络连接失败，请重新登录");
+//		       		}
+//		    	})
+		    });
+
+		})
+		console.log($(".layui-layer-input").val());
+		
+	</script>
+</html>

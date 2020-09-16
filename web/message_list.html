@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="header" name="0"></div>
+		<div class="gonggong">
+			<div>
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"> 新闻中心</button>
+			</div>
+		</div>
+		<div class="message message_list" v-cloak>
+			<h1>{{news_detail.title}}</h1>
+			<span>{{news_detail.create_time}} </span>
+			<div v-html="news_detail.content">
+			</div>
+			
+		</div>
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+			var vue = new Vue({
+				el: ".message",
+				data: {					
+					news_detail:{},
+					id:"",	
+					
+				},
+				created() {		
+					if(GetQueryString("id")!=null){
+						this.id=GetQueryString("id")
+					}
+					this.getDetail();				
+				},
+				mounted() {},
+				methods: {					
+					getDetail(){
+						var that = this;
+						var param = {
+							"id":that.id,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/index/notice_detail',param, 
+						function(res) {
+							if(res.status==0){
+								that.news_detail=res.data;
+								//console.log(that.news_detail)
+							}
+							else{
+								Invalid(res)  //判断登录是否失效
+							}
+							
+						}, 'json');
+					},
+				}
+			})
+		</script>
+	</body>
+</html>

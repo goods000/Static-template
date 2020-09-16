@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>首页</title>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/font.css" />
+	<style>
+		nav ul li:nth-child(1) i img {
+			display: none;
+		}
+
+		nav ul li:nth-child(1) i .on {
+			display: block;
+		}
+
+		nav ul li:nth-child(1) p {
+			color: #40BC1B;
+		}
+
+		body {
+			padding-bottom: 15%;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 class="h1">
+		<p><img src="img/logo.png" />鹏睿</p>
+	</h1>
+	<!-- <header>
+		<img src="img/banner.png" />
+	</header> -->
+	<!-- Swiper -->
+	<div class="swiper-container swiper-container_sy">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"><img src="img/banner.png"/></div>
+			<div class="swiper-slide"><img src="img/banner.png"/></div>
+			<div class="swiper-slide"><img src="img/banner.png"/></div>
+			<div class="swiper-slide"><img src="img/banner.png"/></div>
+		</div>
+		<div class="swiper-pagination"></div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+	</div>
+	<div id="app" v-cloak>
+		<!-- v-cloak -->
+		<div class="Index_conter">
+			<div class="index_news">
+				<i class="iconfont icon-gonggao"></i>
+				<marquee class="dia" scrollAmount=2 id="test">{{title}}</marquee>
+				<img src="img/next.png"/>
+			</div>
+			<div class="mt"></div>
+			<div class="indexNav">
+				<ul>
+					<li>
+						<a href="recharge.html" class="nav_box">
+							<img src="img/index_1.png" class="nav_img">
+							<p class="nav_title">充值</p>
+						</a>
+					</li>
+					<li>
+						<a href="convert.html" class="nav_box">
+							<img src="img/index_2.png" class="nav_img">
+							<p class="nav_title">兑换</p>
+						</a>
+					</li>
+					<li>
+						<a href="deal.html" class="nav_box">
+							<img src="img/index_3.png" class="nav_img">
+							<p class="nav_title">互转</p>
+						</a>
+					</li>
+					<li>
+						<a href="qrcode.html" class="nav_box">
+							<img src="img/index_4.png" class="nav_img">
+							<p class="nav_title">邀请</p>
+						</a>
+					</li>
+					<li>
+						<a href="form_order_list.html" class="nav_box">
+							<img src="img/index_5.png" class="nav_img">
+							<p class="nav_title">报单</p>
+						</a>
+					</li>
+					<li>
+						<a href="mall_index.html" class="nav_box">
+							<img src="img/index_6.png" class="nav_img">
+							<p class="nav_title">赶集</p>
+						</a>
+					</li>
+					<li>
+						<a href="integral.html" class="nav_box">
+							<img src="img/index_7.png" class="nav_img">
+							<p class="nav_title">积分</p>
+						</a>
+					</li>
+					<li>
+						<a href="CTC.html" class="nav_box">
+							<img src="img/index_8.png" class="nav_img">
+							<p class="nav_title">算力</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="mt"></div>
+			<div class="index_content">
+				<h2 class="index_h2">鹏睿报单专区</h2>
+				<!-- <p class="index_p">套餐</p> -->
+				<ul>
+					<li v-for="item in gradeList">
+						<a :href="'form_product.html?id='+item.id">
+							<!-- <i><img src="img/chanp.png"/></i> -->
+							<i><img :src="item.picUrl" /></i>
+							<div class="index_list">
+								<h1><s>{{item.packages}}</s>
+									<!-- <span>每日释放</span><span>{{item.quota}}倍出局</span> -->
+								</h1>
+								<!-- <h2>{{item.interestScale}}%</h2> -->
+								<!-- <h2>{{item.gradeName}}</h2> -->
+								<div class="index_list_bottom">
+									<p><span>{{item.reachNum}} </span><i>USDT</i></p>
+									<s>立即购买</s>
+								</div>
+							</div>
+						</a>
+					</li>
+					<!-- <li>
+					<a href="">
+						<i><img src="img/chanp.png"/></i>
+						<div class="index_list">
+							<h1><s>版通生态普卡</s><span>每日释放</span><span>1.5倍出局</span></h1>
+							<h2>0.4%</h2>
+							<div class="index_list_bottom"><p>普卡收益率</p><s>$7000</s></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<i><img src="img/chanp.png"/></i>
+						<div class="index_list">
+							<h1><s>版通生态普卡</s><span>每日释放</span><span>1.5倍出局</span></h1>
+							<h2>0.4%</h2>
+							<div class="index_list_bottom"><p>普卡收益率</p><s>$35000</s></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<i><img src="img/chanp.png"/></i>
+						<div class="index_list">
+							<h1><s>版通生态普卡</s><span>每日释放</span><span>1.5倍出局</span></h1>
+							<h2>0.4%</h2>
+							<div class="index_list_bottom"><p>普卡收益率</p><s>$70000</s></div>
+						</div>
+					</a>
+				</li> -->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="footer"></div>
+	<script type="text/javascript" src="js/zhaler/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/zhaler/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="js/layer/layer.js"></script>
+	<script type="text/javascript" src="js/zhaler/vue.min.js"></script>
+	<script type="text/javascript" src="js/zhaler/config.js"></script>
+	<script type="text/javascript" src="js/nav.js"></script>
+
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+		    pagination: '.swiper-pagination',
+		    nextButton: '.swiper-button-next',
+		    prevButton: '.swiper-button-prev',
+		    slidesPerView: 1,
+		    paginationClickable: true,
+		    loop: true,
+		    autoplay: 3500,
+		    autoplayDisableOnInteraction: false
+		    
+		});
+
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				currency: null,
+				user: {
+					username: null
+				},
+				account: {},
+				title: null,
+				bannerList: {},
+				priceList: {},
+				gradeList: {},
+				openId: null
+			},
+			methods: {
+				getUser: function () {
+					$.get(baseURL + "user/info", function (r) {
+						// isLogin(r);
+
+						vm.user = r.user;
+						console.log(r.user);
+						vm.account = r.account;
+					});
+				},
+				getBulletin: function () {
+					$.get(baseURL + "bulletin/list", function (r) {
+						// isLogin(r);
+						console.log(r.list);
+						console.log(r.list.length);
+						if (r.list != null) {
+							vm.title = r.list[0].title;
+						}
+
+					});
+				},
+				getGrade: function () {
+					$.get(baseURL + "grade/list/user_level", function (r) {
+						isLogin(r);
+						r.list.forEach(function (e, i) {
+
+							r.list[i].packages = e.packages.replace(',', ' 或者 ');
+						});
+						vm.gradeList = r.list;
+					});
+				},
+				getPriceList: function () {
+					$.get(baseURL + "pricelog/list", function (r) {
+						isLogin(r);
+						vm.priceList = r.list;
+					});
+				},
+				getBanner: function () {
+					$.get(baseURL + "banner/list/index", function (r) {
+						isLogin(r);
+						if (r.list != null) {
+							vm.bannerList = r.list;
+						}
+
+					});
+				},
+				getSessionCurrency: function () {
+					this.currency = getCurrency();
+				}
+			},
+			created: function () {
+				//this.getUser();
+				this.getPriceList();
+				this.getBanner();
+				this.getBulletin();
+				this.getSessionCurrency();
+				this.getGrade();
+
+
+				var ua = navigator.userAgent.toLowerCase();
+				var isWeixin = ua.indexOf('micromessenger') != -1;
+				if (isWeixin && sessionStorage.openId == undefined) { //如果是微信中打开 跳转到确定页面之前拿到code
+					$.get(baseURL + "weixinMobile/getPublicAuthorizeUrl", function (r) {
+						window.location.href = r.url;
+					});
+				}
+
+				var code = getParameter("code");
+				if (code != null && isWeixin && sessionStorage.openId == undefined) {
+					$.get(baseURL + "weixinMobile/getOpenId/" + code, function (r) {
+						sessionStorage.openId = r.openId;
+					});
+				}
+
+
+			}
+		});
+
+	</script>
+
+
+
+</body>
+
+</html>

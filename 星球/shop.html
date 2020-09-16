@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.bottom_nav dl dd:nth-child(2) a .dier {display: block !important;}
+			.bottom_nav dl dd:nth-child(2) a .diyi {display: none !important;}
+			.bottom_nav dl dd:nth-child(2) a span {color: #FF8F46;}
+			.annius{margin: 10% auto;width: 95%;}
+			.swiper-pagination-bullet{background: #FFAA63 !important;width: 5px !important;height: 5px !important;border-radius: 50px;}
+			.swiper-pagination-bullet-active{background: #FF7122 !important;width: 5px !important;height: 5px !important;border-radius: 50px;}
+			.search_box{background: #18192B;width:100vw;height: 100vh;position: fixed;top: 0;display: none;z-index: 99;}
+			.search_box .shop .h1{display: flex;justify-content: flex-end;align-items: center;}
+	    	.search_box .shop .h1 button{left: 2%;}
+			.search_box .shop .search{width: 90%;}
+			.search_box .shop .search .search_btn{color: #fff;background: #FF7122;border-radius: 4px;width: 35%;text-align: center;padding: 6px 0;margin-right: 2px;}
+			.shop_title{background: url(img/tips_bg.png);background-repeat: no-repeat;background-size: 100% 100%;color: #FF7122;width: 30%;
+    		height: 10px;line-height: 10px;text-align: center;margin:20px auto 8px;font-size: 1rem;}
+		</style>
+		</style>
+	</head>
+	<body>
+		<div class="shop">
+			<div class="indeX_top">
+				<h1 class="h1">
+			    	<div class="search">
+						<img src="img/search.png" class="s_btn"/>
+						<input type="text" placeholder="请输入搜索内容" name="" id="innput" value="" autocomplete="off" />
+					</div>
+					<a href="cart.html" class="cart"><img src="img/go_cart.png"/><span class="num">2</span></a>
+				</h1>	
+			</div>
+			<!--轮播-->
+			<div class="swiper-container banner">
+		        <div class="swiper-wrapper">
+		            <div class="swiper-slide"><img src="img/shop_banner.png"/></div>
+		            <div class="swiper-slide"><img src="img/shop_banner.png"/></div>
+		            <div class="swiper-slide"><img src="img/shop_banner.png"/></div>
+		        </div>
+		        <!-- Add Pagination -->
+		        <div class="swiper-pagination"></div>
+		        <!-- Add Arrows -->
+		        <div class="swiper-button-next"></div>
+		        <div class="swiper-button-prev"></div>
+		    </div>
+		    <!--分类-->
+		    <div class="gongneng">	
+				<ul>
+					<a href="type.html?type=0">
+					<li>
+						<p class="ico"><img src="img/index_top_1.png"></p>
+						<p class="txt">精选服装</p>
+					</li>
+					</a>
+					<a href="type.html?type=1">
+					<li>
+						<p class="ico"><img src="img/index_top_2.png"></p>
+						<p class="txt">生鲜产品</p>
+					</li>
+					</a>
+					<a href="type.html?type=2">
+					<li>
+						<p class="ico"><img src="img/index_top_3.png"></p>
+						<p class="txt">家居电器</p>
+					</li>
+					</a>
+					<a href="type.html?type=3">
+					<li>
+						<p class="ico"><img src="img/index_top_4.png"></p>
+						<p class="txt">医疗养生</p>
+					</li>
+					</a>
+					<a  href="type.html?type=0">
+					<li>
+						<p class="ico"><img src="img/index_top_5.png"></p>
+						<p class="txt">更多推荐</p>
+					</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+		<a href="" class="index_invite"><img src="img/discount.png" style="margin: 15px auto;"></a>
+		
+		<div class="shop_title">
+			商城推荐
+		</div>
+		
+		<div class="index_bottom">
+			<div class="goods">
+				<i class="i_img"><img src="img/goods_1.png" class="goods_img"></i>
+				<p class="goods_title">2019新款 小米X6</p>
+				<div class="goods_box">
+					<span class="price">RMB:699.00</span>
+					<i class="i">赠送QSC:2699</i>
+				</div>
+				<a href="goods_detail.html" class="shop_buy">立即购买</a>
+			</div>
+			<div class="goods">
+				<i class="i_img"><img src="img/goods_1.png" class="goods_img"></i>
+				<p class="goods_title">RET/MET TP运动球鞋</p>
+				<div class="goods_box">
+					<span class="price">RMB:2699.00</span>
+					<i class="i">赠送QSC:2699</i>
+				</div>
+				<a href="goods_detail.html" class="shop_buy">立即购买</a>
+			</div>
+			<div class="goods">
+				<i class="i_img"><img src="img/goods_1.png" class="goods_img"></i>
+				<p class="goods_title">RET/MET TP运动球鞋</p>
+				<div class="goods_box">
+					<span class="price">￥299.00</span>
+					<i class="i">赠送QSC:2699</i>
+				</div>
+				<a href="" class="shop_buy">立即购买</a>
+			</div>
+		</div>
+		
+		<div class="search_box">
+			<div class="shop">
+				<div class="indeX_top">
+					<h1 class="h1">
+						<button class="iconfont icon-xiangzuo1 close"></button>
+				    	<div class="search">
+							<img src="img/search.png" class="s_btn"/>
+							<input type="text" placeholder="请输入搜索内容" name="" id="ss" value="" autofocus="autofocus" autocomplete="off" />
+							<div class="search_btn" onclick="location.href='search.html'">搜索</div>
+						</div>
+					</h1>	
+				</div>
+			</div>
+		</div>
+		
+		<!--导入底部导航栏-->
+		<div id="footer"></div>
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	        
+	    });
+	    
+	    $(".indeX_type ul li").each(function(){
+	    	$(this).click(function(){
+	    		$(this).addClass("active").siblings().removeClass("active");
+	    	})
+	    })
+	    
+	    $("#innput").click(function(){$(".search_box").show();})
+	    $(".close").click(function(){$(".search_box").hide()})
+	    
+//	    $(".indeX_type ul li").each(function(){
+//	    	$(this).click(function(){
+//	    		$(this).find("span").addClass("active").parent().siblings().find("span").removeClass("active");
+//	    	})
+//	    })
+	</script>
+</html>

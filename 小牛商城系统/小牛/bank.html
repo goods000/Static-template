@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>银行卡</p>
+	    	<a href="add_bank.html">添加银行卡</a>
+		</h1>
+		<div class="mt"></div>
+		<div class="bank_big">
+			<div class="bank_box">
+				<div class="top">
+					<img src="img/bank_logo.png"/>
+					<div class="left">
+						<b>中国工商银行</b>
+						<p class="title">持卡人:陈建伟</p>
+					</div>
+				</div>
+				<div class="bottom">
+					**** **** **** 2565
+				</div>
+				<div class="right">
+					<a href="javascritp:;" class="del"><img src="img/bank_del.png" />删除</a>
+				</div>
+			</div>
+			<div class="bank_box">
+				<div class="top">
+					<img src="img/bank_logo.png"/>
+					<div class="left">
+						<b>中国建设银行</b><p class="title">持卡人:陈建伟</p>
+					</div>
+				</div>
+				<div class="bottom">
+					**** **** **** 8865
+				</div>
+				<div class="right">
+					<a href="javascritp:;" class="del"><img src="img/bank_del.png" />删除</a>
+				</div>
+			</div>
+		</div>
+		
+		<!--没有数据时显示-->
+		<div class="kong">
+			<img src="img/kong.png" />
+			<p>暂无记录</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function show() {
+			//没有数据的时候显示
+			console.log($(".bank_big .bank_box").length);
+			if($(".bank_big .bank_box").length <= 0) {
+				$(".kong").show();
+			} else {
+				$(".kong").hide();
+			}
+		}
+		show();
+		
+		$(".del").click(function(){
+			$(this).parent().parent().parent().remove();
+		})
+	</script>
+</html>

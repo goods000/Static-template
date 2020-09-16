@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+	body,html{height:100vh;}
+	.login{padding:10px;}
+</style>
+<body>
+	<h1 class="h1">
+		<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+    	<p>添加钱包地址</p>
+	</h1>	
+	<div class="login login_1">
+		<form>			
+			<div class="locgin_i">
+				<label>钱包名称</label>
+				<input type="text" class="name" placeholder="请输入钱包名称" />
+			</div>
+			<div class="locgin_i">
+				<label>钱包地址</label>
+				<input type="text" class="addr" placeholder="请输入钱包地址" />
+			</div>
+			<button class="anniu">确定</button>
+		</form>
+	</div>
+</body>
+<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+<script>
+		$("input").on("blur",function(){
+	        var toFix=$(this).offset().top;
+	        window.scroll(0,toFix);//失焦后强制让页面归位
+	    });
+	
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+	
+		$(".anniu").click(function(){
+			var name=$(".name").val();
+			var addr=$(".addr").val();
+			// 是否非空
+			if(!isKong(name,$(".name").attr("placeholder"))){
+				$(".name").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(addr,$(".addr").attr("placeholder"))){
+				$(".addr").focus();
+				return false;
+			}
+			layer.msg('修改成功',{ icon: 6,time: 2000},function() {
+			});
+		})
+	
+		</script>
+</html>

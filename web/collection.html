@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="header" name="0"></div>
+		<div class="gonggong">
+			<div>
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);">收款方式</button>
+			</div>
+		</div>
+		<div class="collection" v-cloak>
+			<h2>收款方式<span>请务必使用您本人的实名账户,被激活的收款方式将在交易时向对方展示</span></h2>
+			
+			<div v-if="bankList.length >0" >
+			<div class="coll_cont" v-for="(item,index) in bankList" :key="index">
+				
+				<div class="coll_left"  v-if="item.type==3">
+					<i>银行卡</i>
+					<p>{{item.realname}}</p>
+					<h3>{{item.card_num}}<s>{{item.bank_name}}</s></h3>
+				</div>			
+			
+				<div class="coll_left"  v-if="item.type==2">
+					<i>微信</i>
+					<p>{{item.realname}}</p>
+					<h3>{{item.account}}</h3>
+				</div>			
+
+				<div class="coll_left" v-if="item.type==1">
+					<i>支付宝</i>
+					<p>{{item.realname}}</p>
+					<h3>{{item.account}}</h3>
+				</div>
+				<a class="coll_right" @click="removeB(item.id,item.type)">删除</a>
+			</div>
+		</div>
+			<a onclick="add(0)">+ 添加收款方式</a>
+			<div class="kong" v-if="bankList.length<=0">					
+				<p>暂无收款方式</p>
+			</div>
+		</div>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+			function add(id){
+			var title="添加收款方式"
+				if(id==	1){
+					title="修改收款方式"
+				}
+				layer.open({
+				  type: 2,
+				  title:title,
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['600px', '650px'], //宽高
+				  content: 'add.html?edit_add='+id
+				});
+			}
+			var vue = new Vue({
+				el: ".collection",
+				data: {					
+					bankList:[],				
+				},
+				created() {					
+					this.getBank();				
+				},
+				mounted() {},
+				methods: {					
+					getBank(){
+						var that = this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/pay/get_pay_list',param, 
+						function(res) {
+						if(res.status==0){
+							if(res.data!=null){
+								that.bankList=res.data;						
+								//console.log(that.bankList)
+							}
+						}
+						else{
+								Invalid(res)  //判断登录是否失效
+							}
+							
+						}, 'json');
+
+					},				
+					removeB(id,type){
+						var n=layer.confirm("确定删除？",{
+							  title:false,
+							  btn: ["确定","取消"] ,//按钮
+							  yes:function(){
+								 var param = {
+											"type":type,
+											"id":id,
+											"token": $.cookie("token")
+											}
+								param=rsaMethod(param)
+								param={
+									"data":param
+								}
+								$.post(localhostUrl+'/index/pay/delete_pay',param, 
+								function(res) {
+									if(res.status==0){
+										layer.msg("删除成功", { icon: 1,time: 2000,end:function(){										
+											window.parent.location.reload()
+										}
+										});
+									}else{
+										Invalid(res)  //判断登录是否失效
+										//layer.msg(res.msg, { icon: 2,time: 2000});
+									}
+								}, 'json');
+							  },
+							  btn2:function(){
+								layer.close(n);
+							  },
+							})
+					},
+				},
+			})
+		</script>
+	</body>
+</html>

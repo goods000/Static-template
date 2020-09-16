@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <title></title>
+	    <link rel="stylesheet" href="css/style.css" />
+	    <link rel="stylesheet" href="css/font.css" />
+	    <script type="text/javascript" src="layer/layer.js" ></script>
+		<style type="text/css">
+			.phone_list .info{width: 70%;margin-left: 10%;}
+			.zi_ti{color: #EC1B1B;font-size: 0.8rem;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"></button>
+			<p>购买股权</p>
+			<a href="">购买记录</a>
+		</h1>
+		<div class="phone">
+		     <div class="phone_contert">
+		         <div class="phone_list">
+		             <span>可用余额</span>
+		             <input type="number"  value="5000.00" readonly="readonly"/>
+		         </div>
+		         <div class="phone_list">
+		             <span>股价</span>
+		             <input type="number"  value="1.5" readonly="readonly"/>
+		         </div>
+		         <div class="phone_list">
+		             <span>兑换数量</span>
+		             <input type="number" placeholder="请输入兑换数量" />
+		         </div>
+		         <div class="phone_list phone_to">
+		             <span>交易密码</span>
+		             <input type="password" placeholder="请输入交易密码" value="" />
+		         </div>
+				 <div class="phone_list">
+					<span class="zi_ti">* 注意:</span>
+					<div class="info">
+						<p class="zi_ti">以100倍数起兑换</p>
+					</div>
+				</div>
+		     </div>
+		     <button class="annius submit" >提交</button>
+		 </div>
+	</body>
+</html>

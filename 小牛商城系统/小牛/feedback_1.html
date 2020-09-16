@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="css/font.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<h1 class="h1">
+		<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+    	<p>意见反馈</p>
+	</h1>
+	<div class="mt"></div>
+	<div class="feedback">
+		<div class="feedb_list">
+			<h2>反馈标题</h2>
+			<div class="feedback_contert">
+				<input id="text" type="text" placeholder="请输入反馈标题"  maxlength="30" onkeyup="checknum()" />
+				<span id="in" type="text" disabled="disabled"></span>
+			</div>
+		</div>
+		<div class="mt"></div>
+		<div class="feedb_list">
+			<h2>反馈内容<span id="ins">0/200</span></h2>
+			<div class="feedback_contert">
+				<textarea id="texts" placeholder="请输入反馈详细内容" type="text"  maxlength="200" onkeyup="checknums()" /></textarea>
+			</div>
+		</div>
+		<div class="mt"></div>
+		<div class="feedb_list images">
+			<h2>上传图片<s>(最多上传5张)</s></h2>
+			<div class="release_up_pic">		
+				<div class="up_pic">
+					<span id="chose_pic_btn" style="">
+						<input type="file" id="files" accept="image/*" />
+					</span>	
+				</div>
+			</div>
+		</div>
+		<button class="annius" onclick="login()">提交</button>
+	</div>
+	
+	
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+<script type="text/javascript" src="js/LocalResizeIMG.js"></script>
+<script type="text/javascript" src="js/mobileBUGFix.mini.js"></script>
+<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+var picArr = new Array();// 存储图片
+	$('input:file').localResizeIMG({
+		width:800,// 宽度
+		quality: 0.5, // 压缩参数 1 不压缩 越小清晰度越低
+		success: function (result) {
+			var img = new Image();
+			img.src = result.base64;
+			var _str = "<span class='pic_look' style='background-image: url("+ img.src + ")'><em id='delete_pic'>-</em></span>"
+			$('#chose_pic_btn').before(_str);
+			var _i =  picArr.length
+			picArr[_i] = result.base64;
+			// picArr[_i] = _i;
+//			console.log(_str)
+//			console.log(picArr)
+		}
+	});
+	// 删除
+	$(document).on('click', '#delete_pic', function(event) {
+		var aa = $(this).parents(".pic_look").index();
+		picArr.splice(aa,1);
+		$(this).parents(".pic_look").remove();
+		console.log(picArr);
+	});	
+    function checknum(){
+        var nMax = 30;
+        var textDom =  document.getElementById("text");
+        var len =textDom.value.length;    
+        if(len>nMax){
+            textDom.value = textDom.value.substring(0,nMax);
+            nMax = 0;
+        }
+        document.getElementById("in").innerText=(nMax-len)+"/30";
+    }
+    
+    function checknums(){
+        var nMaxs = 200;
+        var textDoms =  document.getElementById("texts");
+        var lens =textDoms.value.length;
+        if(lens>nMaxs){
+            textDoms.value = textDoms.value.substring(0,nMaxs);
+            nMaxs = 0;
+        }
+        document.getElementById("ins").innerText=(nMaxs-lens)+"/200";
+    }
+     
+    checknum();
+    var files;
+    function login(){
+    	var title = $("#text").val();
+    	var content = $("#texts").val();
+    	var form = new FormData();
+    	for (var i = 0; i < picArr.length; i++) {
+    		form.append('files',picArr[i]);
+		}
+    	form.append('picArr',picArr);
+    	form.append('title',title);
+    	form.append('content',content);
+    	if(title == ""){
+    		layer.msg('请输入标题', { icon: 2,time: 2000});
+    		return ;
+    	}
+    	if(content == ""){
+    		layer.msg('请输入内容', { icon: 2,time: 2000});
+    		return ;
+    	}
+    	if(picArr == ""){
+    		layer.msg('请上传有效信息', { icon: 2,time: 2000});
+    		return ;
+    	}
+		$.ajax({
+			url:'',
+            type: 'POST',
+            data: form,
+            dataType: 'JSON',
+            cache: false,
+            processData: false,
+            contentType: false,
+			success:function(res){
+				layer.alert("提交成功",function(){window.location.href = "/toUser";});
+				//layer.msg('提交成功');
+				/* layer.open({
+					title: ['提示'],
+					content: '提交成功',
+					btn: ['确定'],
+					shadeClose: true,
+					//回调函数
+					yes: function(index, layero){
+						window.location.href = "/toUser";
+					}
+			});   */
+            	//window.location.href = "/toUser";
+            }
+		})
+    }
+</script>
+</body>
+</html>

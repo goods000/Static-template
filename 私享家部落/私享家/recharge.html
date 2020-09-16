@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="css/font.css"/>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body >
+	<h1 class="h1">
+		<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+    	<p data-lang="">充币</p>
+    	<a href="recharge_record.html" data-lang="">充值记录</a>
+	</h1>
+	<div class="mt"></div>
+	<div class="charge_money">
+		<div class="charge_bbj">
+			<p class="top">USDT充值</p>
+			<div id="code" style="padding:5% 0;margin: auto;">
+			</div>
+			<button class="anniu_neibu">保存二维码至相册</button>
+			<p class="bo">充币地址</p>
+			<div class="chas_lianjie">
+				<textarea name="" rows="" cols="2" id="biao1" readonly="readonly">0x88c06160cf66503af479c24dfadeaff3728427100x88c06160cf66503af479c24dfadeaff372842710</textarea>
+				<a onclick="copyUrl2()" >复制</a>
+			</div>
+		</div>
+		<dl class="charge_dl">
+			<dd>1.USDT钱包禁止充值任何除USDT之外的其他资产,非USDT资产充值将不可找回,请确认所充数字币,以免发生不必要的损失。</dd>
+			<dd>2.请务必确定网络安全，防止信息的泄露或更改</dd>
+		</dl>
+	</div>
+	
+	<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(".select_box").click(function(){$(".mo").show();})
+		$(".mo").click(function(){$(this).hide();})
+		$(".mo .mo_box ul li").each(function(){
+			$(this).click(function(){
+				$(".coin").html($(this).html());
+				console.log($(this));
+				$(this).addClass("active").siblings().removeClass("active");;
+				$(".mo").hide();
+			})
+		})
+		
+		$("#code").qrcode({
+	   		width: 150, //宽度 
+	    	height:150, //高度 
+	    	text: "www.zhizuobiao.com" //任意内容 
+		});
+		$('canvas').css({
+	        'display': 'block',
+	        'margin': 'auto',
+	        'background': '#fff',
+	    });
+		
+		function copyUrl2(){
+			var Url2=document.getElementById("biao1");
+			 Url2.select(); // 选择对象
+			document.execCommand("Copy"); // 执行浏览器复制命令
+			layer.msg("已复制好，可贴粘。");
+		 }
+	</script>
+	<script type="text/javascript">
+		//点击按钮截图才生成
+	      $("#btn").on("click", function() {
+	        var getPixelRatio = function(context) {     // 获取设备的PixelRatio
+	            var backingStore = context.backingStorePixelRatio ||
+	                context.webkitBackingStorePixelRatio ||
+	                context.mozBackingStorePixelRatio ||
+	                context.msBackingStorePixelRatio ||
+	                context.oBackingStorePixelRatio ||
+	                context.backingStorePixelRatio || 1;
+	            return (window.devicePixelRatio || 1) / backingStore;
+	        };
+	        var shareContent = $("#app")[0]; 
+	        var width = shareContent.offsetWidth; 
+	        var height = shareContent.offsetHeight; 
+	        var canvas = document.createElement("canvas"); 
+	        var context = canvas.getContext('2d'); 
+	        var scale = getPixelRatio(context);    //将canvas的容器扩大PixelRatio倍，再将画布缩放，将图像放大PixelRatio倍。
+	        canvas.width = width * scale; 
+	        canvas.height = height * scale;
+	        canvas.style.width = width + 'px';
+	        canvas.style.height = height + 'px';
+	        context.scale(scale, scale);
+	 
+	        var opts = {
+	            scale: scale, 
+	            canvas: canvas,
+	            width: width, 
+	            height: height,
+	            dpi: window.devicePixelRatio
+	        };
+	        html2canvas(shareContent, opts).then(function (canvas) {
+	            context.mozImageSmoothingEnabled = false;
+	            context.webkitImageSmoothingEnabled = false;
+	            context.msImageSmoothingEnabled = false;
+	            context.imageSmoothingEnabled = false;
+	            var dataUrl = canvas.toDataURL('image/jpeg', 1.0);
+	            var newImg = document.createElement("img");
+	            newImg.src =  dataUrl;
+	            newImg.width = width;
+	            newImg.height= height;
+	            $("body")[0].appendChild(newImg);
+	          });
+	 
+	      })
+	</script>
+</body>
+</html>

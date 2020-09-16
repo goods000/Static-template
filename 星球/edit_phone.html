@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>修改手机号/邮箱</p>
+		</h1>
+		<div class="big_box">
+			<div class="input_i">
+				<label>原手机号/邮箱</label>
+				<input type="text" value="17565453265" readonly="readonly">
+			</div>
+			<div class="input_i">
+				<label>验证码</label>
+				<input type="number" value="" id="code" placeholder="请输入您的验证码">
+				<p id="getCode">获取验证码</p>
+			</div>
+			<div class="input_i">
+				<label>新手机号/邮箱</label>
+				<input type="text" value="" id="phone" placeholder="请输入您的新手机号/邮箱">
+			</div>
+			<div class="input_i">
+				<label>验证码</label>
+				<input type="number" value="" id="code_1" placeholder="请输入您的验证码">
+				<p id="getCode_1">获取验证码</p>
+			</div>
+			<div class="anniu">确认</div>
+		</div>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+		$("#getCode_1").click(function(){
+			var that=this;
+			getyan(that);
+		})
+		
+		$(".anniu").click(function(){
+			var code = $("#code").val();
+			var phone = $("#phone").val();
+			var code_1 = $("#code_1").val();
+			if(code === ""){
+				layer.msg('请输入您的验证码');
+				$("#code").focus();
+				return false;
+			}
+			if(!isTelOrEmail(phone)){
+				$("#phone").focus();
+				return false;
+			}
+			if(code_1 === ""){
+				layer.msg('请输入您的验证码');
+				$("#code_1").focus();
+				return false;
+			}
+			return true;
+		})
+	</script>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.bottom_nav dl dd:nth-child(2) a .dier {display: block !important;}
+		    .bottom_nav dl dd:nth-child(2) a .diyi {display: none !important;}
+		    .bottom_nav dl dd:nth-child(2) a span {color: #4782FF;}
+		    .h1{background: rgb(68, 64, 56, .5);}
+		    .banner{margin-top: -44px;z-index: -1;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			奖池
+			<a href="">规则详情</a>
+		</h1>
+		<!--轮播-->
+		<div class="swiper-container banner">
+	        <div class="swiper-wrapper">
+	            <div class="swiper-slide"><img src="img/pool_banner.png"/></div>
+	            <div class="swiper-slide"><img src="img/pool_banner.png"/></div>
+	            <div class="swiper-slide"><img src="img/pool_banner.png"/></div>
+	        </div>
+	        <!-- Add Pagination -->
+	        <div class="swiper-pagination"></div>
+	        <!-- Add Arrows -->
+	        <div class="swiper-button-next"></div>
+	        <div class="swiper-button-prev"></div>
+	    </div>
+		
+		<div class="p_box">
+			<div class="pool">
+				<p class="hang_title">
+					<img src="img/pooi_tips_top.png"/>
+					<span>冠军奖池</span>
+				</p>
+				<div class="hang_box">
+					<div class="list">
+						<ul>
+							<li>
+								<div class="info_box">排名</div>
+								<div class="info_box">账号</div>
+								<div class="info_box">奖金</div>
+							</li>
+							<li>
+								<div class="info_box">&nbsp;</div>
+								<div class="info_box">LKJA5..3KJHL</div>
+								<div class="info_box">8658.89</div>
+							</li>
+							<li>
+								<div class="info_box">&nbsp;</div>
+								<div class="info_box">LKJA5..3KJHL</div>
+								<div class="info_box">8658.89</div>
+							</li>
+							<li>
+								<div class="info_box">&nbsp;</div>
+								<div class="info_box">LKJA5..3KJHL</div>
+								<div class="info_box">8658.89</div>
+							</li>
+							<li>
+								<div class="info_box">4</div>
+								<div class="info_box">LKJA5..3KJHL</div>
+								<div class="info_box">8658.89</div>
+							</li>
+							<li>
+								<div class="info_box">5</div>
+								<div class="info_box">LKJA5..3KJHL</div>
+								<div class="info_box">8658.89</div>
+							</li>
+							<li>
+								<div class="info_box">6</div>
+								<div class="info_box">LKJA5..3KJHL</div>
+								<div class="info_box">8658.89</div>
+							</li>
+							<li>
+								<div class="info_box">7</div>
+								<div class="info_box">LKJA5..3KJHL</div>
+								<div class="info_box">8658.89</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="con_btn">
+					<a id="day_have"  class="additional">领取全网排名奖励</a>
+				</div>
+				<div class="title_box">
+					<p class="title_top">今日开奖倒计时</p>
+					<div class="time-wr">
+						<span id="time-d" class="time-d">00</span> <span class="time-point">天</span> 
+						<span id="time-h" class="time-h">00</span> <span class="time-point">:</span> 
+						<span id="time-m" class="time-m">00</span> <span class="time-point">:</span>
+						<span id="time-s" class="time-s">00</span> <span class="time-point"></span>
+					</div>
+					<div class="box_info">
+						<p class="info">昨日冠军奖池（ETH）:79164115.12</p>
+						<p class="info">今日冠军奖池（ETH）:79164115.12</p>
+						<p class="info">我的排名：</p>
+						<p class="info">我的奖金（ETH）:0.00</p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--底部导航栏-->
+	    <div id="footer"></div>
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//		window.onload=clock;
+//		$(document).ready(function(){
+			function clock(){
+				var today=new Date(),//当前时间
+			    h=today.getHours(),
+			    m=today.getMinutes(),
+			    s=today.getSeconds();
+			  	var stopTime=new Date("2020-09-15 10:47:00"),//结束时间
+			    stopH=stopTime.getHours(),
+			    stopM=stopTime.getMinutes(),
+			    stopS=stopTime.getSeconds();
+			  	var shenyu=stopTime.getTime()-today.getTime(),//倒计时毫秒数
+			    shengyuD=parseInt(shenyu/(60*60*24*1000)),//转换为天
+			    D=parseInt(shenyu)-parseInt(shengyuD*60*60*24*1000),//除去天的毫秒数
+			    shengyuH=parseInt(D/(60*60*1000)),//除去天的毫秒数转换成小时
+			    H=D-shengyuH*60*60*1000,//除去天、小时的毫秒数
+			    shengyuM=parseInt(H/(60*1000)),//除去天的毫秒数转换成分钟
+			    M=H-shengyuM*60*1000;//除去天、小时、分的毫秒数
+			    S=parseInt((shenyu-shengyuD*60*60*24*1000-shengyuH*60*60*1000-shengyuM*60*1000)/1000)//除去天、小时、分的毫秒数转化为秒
+			    shengyuD = checkTime(shengyuD);
+//			    shengyuH = parseInt(shengyuH)+parseInt(shengyuD*24)
+			    shengyuH = checkTime(shengyuH);
+			    console.log("shengyuH："+shengyuH)
+			    shengyuM = checkTime(shengyuM);
+			    S = checkTime(S);
+			    if (shengyuD > 00 || shengyuH > 00 || shengyuM > 00 || S > 00) {
+			    	document.getElementById("time-d").innerHTML=shengyuD
+				    document.getElementById("time-h").innerHTML=shengyuH
+					document.getElementById("time-m").innerHTML=shengyuM
+					document.getElementById("time-s").innerHTML=S
+				    setTimeout(clock,500);
+				    console.log("继续")
+			    } else if(shengyuD == 00 || shengyuH == 00 || shengyuM == 00 || S == 00){
+			    	document.getElementById("time-d").innerHTML="00"
+				    document.getElementById("time-h").innerHTML="00"
+					document.getElementById("time-m").innerHTML="00"
+					document.getElementById("time-s").innerHTML="00"
+					clearTimeout(clock);
+					console.log("停止了")
+			    }
+			}
+			clock();
+			function checkTime(i) { //将0-9的数字前面加上0，例1变为01 
+				if(i < 10) {
+					i = "0" + i;
+				}
+				return i;
+			}
+//		})
+	</script>
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	        
+	    });
+	</script>
+</html>

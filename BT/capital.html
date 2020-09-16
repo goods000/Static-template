@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.bottom_nav dl dd:nth-child(5) a .dier {display: block !important;}
+			.bottom_nav dl dd:nth-child(5) a .diyi {display: none !important;}
+			.bottom_nav dl dd:nth-child(5) a span {color: #2983FF;}
+			.cap_top_msg{display: flex;justify-content: space-between;}
+			.capital_top .ge_top{display: flex;flex-direction: row;justify-content: flex-start;align-items: center;padding: 20px 0px 10px;position: relative;}
+			.capital_top .ge_top .next{position: absolute;right: 0%;width: 4%;}
+			.capital_top .ge_left h2{font-size: 1.15rem;color:#FFFFFF;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+			.capital_top .ge_left h2 #grade{position: relative;background: #DC7D00;border-radius: 8px 0px 8px 0px;padding:1px 2px 0;}
+			.capital_top .ge_left h2 #grade img{width: 12px;}
+			.capital_top .ge_left h2 #grade u{font-size: 10px;font-style: normal;position: relative;right: 1px;bottom: 3px;color: #fff;}
+			.capital_top .ge_left P{font-size: 10px;color:#7B899B;margin: 5px 0;white-space: nowrap;border-radius: 50px;border: 1px solid #7B899B;padding: 0 5px;}
+			.capital_top .ge_left P #v_code{font-size: 10px;color:#7B899B;margin: 5px 0;text-decoration: none;}
+			.capital_top .ge_left .num{font-size: 10px;color:#FFFFFF;margin: 5px 0;text-decoration: none;}
+			.capital_top .info_img{width: 18%;display: block;margin-right: 5%;}
+
+		</style>
+	</head>
+	<body>
+		<header class="capital_top">
+			<!--<p>账户总资产折合</p>
+			<b>1420.0000000</b>
+			<i>≈54542455.1111257 CNY</i>-->
+			<div class="ge_top">
+				<img src="img/logo.png" class="info_img">
+				<div class="ge_left">
+					<h2>
+						阿尔哈尔
+						<span id="grade">
+							<img src="img/grade.png">
+							<u>创世</u>
+						</span>
+					</h2>	
+					<p>UID：<u id="v_code">158779876514244</u></p>
+					<div class="num">手机号：158****4244</div>
+				</div>
+				<img src="img/index_record_1.png" class="next" data-clipboard-target="#v_code">
+			</div>
+			
+		</header>
+		<div class="capital_conter">
+			<ul>
+				<li>
+					<a href="recharge">
+						<i><img src="img/capital_1.png"></i>
+						<p>充值</p>
+					</a>
+				</li> 
+				<li>	
+					<a href="withdraw">
+						<i><img src="img/capital_2.png"></i>
+						<p>提币</p>
+					</a>
+				</li> 	
+				<li>	
+					<a href="code.html">
+						<i><img src="img/capital_3.png"></i>
+						<p>划转</p>
+					</a>
+				</li> 
+			</ul>
+		</div>
+		<div class="backcolor"></div>
+		<div class="capital">
+			<div class="otc_list">
+				<div class="tab" js-tab="1">
+					<div class="tab-title">
+		  				<a href="javascript:;" class="item item-cur"><span>币账户</span></a>
+		  				<a href="javascript:;" class="item"><span>创世账户</span></a>
+		  				<a href="javascript:;" class="item"><span>社区账户</span></a>
+					</div>
+					<div class="tab-cont">
+						<div class="tab-cont_wrap">
+							<ul class="item" >
+								<li>
+									<div class="cap_top">
+										<i class="title">币币账户总资产</i>
+										<div class="cap_info">
+											<b>00.00000000</b><span>≈0.00 CNY</span>
+										</div>
+									</div>
+									<div class="backcolor"></div>
+									<div class="cap_bottom">
+										<div class="tips">
+											<span class="wen">BTED</span>
+											<img src="img/tips_next.png" class="tips_next"/>
+										</div>
+										<div class="recode-cont2">
+											<dl>
+												<dt>
+													<p data-lang="index_title_sale">可用</p>
+													<span>1150.121481</span>
+												</dt>
+												<dt>
+													<p data-lang="index_tab_no">冻结</p>
+													<span>0.124874</span>
+												</dt>
+												<dt>
+													<p data-lang="index_tab_time">折合(CNY)</p>
+													<span>85847.354744</span>
+												</dt>
+											</dl>
+									</div>
+									</div>
+								</li>
+							</ul>
+							<ul class="item" >
+								<li>
+									<div class="cap_top cap_top_msg">
+										<div>
+											<i class="title">可用金额(BTED)</i>
+											<div class="cap_info">
+												<b>00.00000000</b>
+											</div>
+										</div>
+										<div>
+											<i class="title">锁仓金额(BTED)</i>
+											<div class="cap_info">
+												<b>00.00000000</b>
+											</div>
+										</div>
+									</div>
+									<div class="backcolor"></div>
+									<div class="cap_bottom">
+										<div class="tips">
+											<span class="wen">BTED</span>
+											<img src="img/tips_next.png" class="tips_next"/>
+										</div>
+										<div class="recode-cont2">
+											<dl>
+												<dt>
+													<p data-lang="index_title_sale">可用</p>
+													<span>1150.121481</span>
+												</dt>
+												<dt>
+													<p data-lang="index_tab_no">冻结</p>
+													<span>0.124874</span>
+												</dt>
+												<dt>
+													<p data-lang="index_tab_time">折合(CNY)</p>
+													<span>85847.354744</span>
+												</dt>
+											</dl>
+									</div>
+									</div>
+								</li>
+							</ul>
+							<ul class="item" >
+								<li>
+									<div class="cap_top cap_top_msg">
+										<div>
+											<i class="title">可用金额(BTED)</i>
+											<div class="cap_info">
+												<b>00.00000000</b>
+											</div>
+										</div>
+										<div>
+											<i class="title">锁仓金额(BTED)</i>
+											<div class="cap_info">
+												<b>00.00000000</b>
+											</div>
+										</div>
+									</div>
+									<div class="backcolor"></div>
+									<div class="cap_bottom">
+										<div class="tips">
+											<span class="wen">BTED</span>
+											<img src="img/tips_next.png" class="tips_next"/>
+										</div>
+										<div class="recode-cont2">
+											<dl>
+												<dt>
+													<p data-lang="index_title_sale">可用</p>
+													<span>1150.121481</span>
+												</dt>
+												<dt>
+													<p data-lang="index_tab_no">冻结</p>
+													<span>0.124874</span>
+												</dt>
+												<dt>
+													<p data-lang="index_tab_time">折合(CNY)</p>
+													<span>85847.354744</span>
+												</dt>
+											</dl>
+									</div>
+									</div>
+								</li>
+							</ul>
+						</div>		
+					</div>		
+				</div>		
+			</div>	
+		</div>
+		
+		 <!--导入底部导航栏-->
+		<div id="footer"></div>
+	</body>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<script type="text/javascript">
+		$(function(){
+		  $('[js-tab=1]').tab();
+		});
+		
+		var clipboard=new Clipboard(".next");
+		clipboard.on("success",function(e){
+			layer.msg("复制成功");
+		})
+	</script>
+</html>

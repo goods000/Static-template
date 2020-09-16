@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header class="header">
+			<div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">添加/删除规格</span>
+		</header>
+		
+		<div class="add_box mian_top">
+			<div class="gorup specs_gorup line_b">
+				<label>请选择规格</label>
+			</div>
+			<div class="specs_box specs_box_1">
+				<div class="specs_s">
+					<div class="specs_i">
+						<span class="txt">颜色</span>
+						<img src="img/qu.png"/>
+					</div>
+					<div class="specs_i">
+						<span class="txt">销售量</span>
+						<img src="img/qu.png"/>
+					</div>
+					<div class="specs_i">
+						<span class="txt">价格价格</span>
+						<img src="img/qu.png"/>
+					</div>
+				</div>
+			</div>
+			
+			<div class="gorup specs_gorup line_b mt">
+				<label>规格</label>
+				<i class="i_img"><img src="img/add_specs_1.png" class="edit_s"/></i>
+			</div>
+			<div class="specs_box">
+				<div class="specs_s">
+					<div class="specs_i">
+						<span class="txt">颜色</span>
+						<img src="img/qu.png" class="qu"/>
+					</div>
+					<div class="specs_i">
+						<span class="txt">销售量</span>
+						<img src="img/qu.png" class="qu"/>
+					</div>
+					<div class="specs_i">
+						<span class="txt">价格价格</span>
+						<img src="img/qu.png" class="qu"/>
+					</div>
+					<div class="specs_i">
+						<span class="txt">颜色</span>
+						<img src="img/qu.png" class="qu"/>
+					</div>
+					<div class="specs_i">
+						<span class="txt">颜色</span>
+						<img src="img/qu.png" class="qu"/>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">销售量</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i">
+						<span class="txt">颜色</span>
+						<img src="img/qu.png" class="qu"/>
+					</div>
+				</div>
+				<div class="specs_search">
+					<input type="text" placeholder="输入自定义标签，最多20个字符" name="" id="content" value="" />
+					<span class="confirm_btn">添加</span>
+				</div>
+			</div>
+			<div class="gorup specs_gorup line_b mt">
+				<label>推荐标签</label>
+			</div>
+			<div class="specs_box">
+				<div class="specs_s">
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">销售量</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i">
+						<span class="txt">价格价格</span>
+						<img src="img/qu.png" class="qu"/>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+	</body>
+	<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".edit_s").click(function(){
+			$(this).attr("src","img/add_specs.png");
+			$(".qu").show();
+		})
+		$(".qu").click(function(){
+			$(this).parent().remove();
+			$(".edit_s").attr("src","img/add_specs_1.png");
+			$(".qu").hide();
+		})
+	</script>
+</html>

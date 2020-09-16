@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<style>
+			.bottom_nav dl dd:nth-child(1) a .dier {display: block !important;}
+			.bottom_nav dl dd:nth-child(1) a .diyi {display: none !important;}
+			.bottom_nav dl dd:nth-child(1) a span {color: #FF8F46;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<p>首页</p>
+		</h1>
+		<div class="swiper-container swiper-container_sy ">
+	        <div class="swiper-wrapper">
+	            <div class="swiper-slide"><img src="img/banner.png"/></div>
+	            <div class="swiper-slide"><img src="img/banner.png"/></div>
+	            <div class="swiper-slide"><img src="img/banner.png"/></div>
+	            <div class="swiper-slide"><img src="img/banner.png"/></div>
+	        </div>
+	        <!--<div class="swiper-pagination"></div>
+	        <div class="swiper-button-next"></div>
+	        <div class="swiper-button-prev"></div>-->
+	    </div>
+		<!--公告-->
+		<div id="notice" onclick="location.href='news.html'">
+			<img src="img/gonggao.png" class="notice_img"/>
+			<marquee class="dia" scrollAmount=2 id="test">系统公告：关于量子星球合约相关公告如下……</marquee>
+			<!--<a href="/news.html"><span class="tong">07-15</span></a>-->	
+		</div>
+		<div class="indexNav">
+			<ul>
+				<li>
+					<a href="recharge.html" class="nav_box">
+						<img src="img/index_1.png" class="nav_img"/>
+						<p class="nav_title">充币</p>
+					</a>
+				</li>
+				<li>
+					<a href="withdraw.html" class="nav_box">
+						<img src="img/index_2.png" class="nav_img"/>
+						<p class="nav_title">提币</p>
+					</a>
+				</li>
+				<li>
+					<a href="transfer.html" class="nav_box">
+						<img src="img/index_5.png" class="nav_img"/>
+						<p class="nav_title">划转</p>
+					</a>
+				</li>
+				<li>
+					<a href="invite.html" class="nav_box">
+						<img src="img/index_3.png" class="nav_img"/>
+						<p class="nav_title">邀请好友</p>
+					</a>
+				</li>
+				<li>
+					<a class="nav_box">
+						<img src="img/index_6.png" class="nav_img"/>
+						<p class="nav_title">旅游</p>
+					</a>
+				</li>
+				<li>
+					<a href="" class="nav_box">
+						<img src="img/index_7.png" class="nav_img"/>
+						<p class="nav_title">充话费</p>
+					</a>
+				</li>
+				<li>
+					<a href="" class="nav_box">
+						<img src="img/index_8.png" class="nav_img"/>
+						<p class="nav_title">充油卡</p>
+					</a>
+				</li>
+				<li>
+					<a href="shop.html" class="nav_box">
+						<img src="img/index_9.png" class="nav_img"/>
+						<p class="nav_title">商城</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="index_data">
+			<p class="p">0.00000.000 </p>
+			<i class="i">总资产</i>
+			<div class="balance_box">
+				<div class="b_b">
+					<span>锁仓资产：</span>
+					<p class="balance">0.00000.000 </p>
+				</div>
+				<div class="line"></div>
+				<div class="b_b">
+					<span>释放资产：</span>
+					<p class="balance">0.00000.000 </p>
+				</div>
+			</div>
+		</div>
+		<a href="node.html" class="index_invite"><img src="img/index_node_1.png"/></a>
+		<div class="tt_div">
+			<s></s>
+			<span>数据</span>
+			<i class="inf">当前价格：1 QST =7 USDT</i>
+		</div>
+		<!--折线图-->
+		<div class="charts">
+			<div id="chartmain" style="width: 100%;height: 200px;"></div>
+		</div>
+		
+		
+	    <!--导入底部导航栏-->
+		<div id="footer"></div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	        
+	    });
+	</script>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('chartmain'));
+		option = {
+			grid: {
+		        left: '2%',
+//		        right: '4%',
+		        top: '3%',
+		        containLabel: true
+		    },
+		    xAxis: {
+		        type: 'category',
+		        data: ['07/30', '07/31', '08/01', '08/02', '08/03', '08/04'],
+		        axisLabel: {
+						show: true,
+						textStyle: {
+							color: '#FFFFFF', //x轴data 的颜色
+							fontSize:10
+						}
+					},
+					nameTextStyle: {
+						color: '#212121' //x轴名称的 颜色
+					},
+					axisLine:{
+						lineStyle:{
+							color:'#212121',
+							width:1,//这里是为了突出显示加上的
+						}
+					}
+		    },
+		    yAxis: [
+		    	{
+			        type: 'value',
+			        axisLabel: {
+					show: true,
+					textStyle: {
+							color: '#FFFFFF', //x轴data 的颜色
+							fontSize:10
+						}
+					},
+					nameTextStyle: {
+						color: '#212121' //x轴名称的 颜色
+					},
+					axisLine:{
+						lineStyle:{
+							color:'#212121',
+							width:1,//这里是为了突出显示加上的
+						}
+					},
+					splitLine: {	//网格样式
+						show: true,
+						lineStyle:{
+							color: '#212121',
+							width: 1,
+							type: 'solid'
+						}
+					}
+			    }
+		    ],
+		    series: [{
+		        data: [820,1330,1320, 934, 290,330 ,220 ],
+		        type: 'line',
+			    symbol: null,    // 拐点图形类型
+			    symbolSize: 0,   // 拐点图形大小
+		        itemStyle: {
+					normal: {
+						barGap: '-100%',
+						color:'#E9740E',
+                        borderColor:'#E9740E',  //拐点边框颜色
+						lineStyle: {
+							width:2, //调整 线条的宽度  5已经很宽啦
+                            color : '#E9740E' //线条颜色
+						},
+					},
+				},
+				smooth: true,
+				areaStyle: {
+				  normal: {
+				    color: {
+				      x: 0,
+				      y: 0,
+				      x2: 0,
+				      y2: 1,
+				      colorStops: [{
+				          offset: 0,
+				          color: "#6A362D" // 0% 处的颜色
+				        }, {
+				          offset: 0.3,
+				          color: "#432429" // 100% 处的颜色
+				        }, {
+				          offset: 0.9,
+				          color: "#291A28" // 100% 处的颜色
+				         }],
+				          globalCoord: false // 缺省为 false
+				        }
+				      }
+				},
+		    }]
+		};
+		// 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+	</script>
+</html>

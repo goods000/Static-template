@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.specs_box_1{display: flex;flex-direction:row;align-items: center;}
+			.specs_box .specs_search{margin-top: 0;width: 85%;}
+			.specs_box .specs_search input{width: 85%;}
+			.specs_box .specs_search img{width: 7%;}
+			.confirm_btn{color: #0772F9;font-size: 14px;padding-left: 1rem;}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">品牌</span>
+		</header>
+		
+		<div class="add_box mian_top">
+			<div class="specs_box specs_box_1">
+				<div class="specs_search">
+					<input type="text" placeholder="输入自定义标签，最多20个字符" name="" id="content" value="Emporio Armani" />
+					<img src="img/input_close.png" class="input_close"/>
+				</div>
+				<span class="confirm_btn">添加</span>
+			</div>
+			
+			<div class="gorup specs_gorup line_b mt">
+				<label>推荐标签</label>
+			</div>
+			<div class="specs_box">
+				<div class="specs_s">
+					<div class="specs_i_1">
+						<span class="txt">颂拓</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">卡西欧</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">泰格豪雅</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">佳明</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">浪琴</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">名士</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">精工</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</body>
+	<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".input_close").click(function(){
+			$(this).prev().val("");
+			console.log($(this).prev().val());
+		})
+		$(".confirm_btn").click(function(){
+			var content = $("#content").val();
+			console.log(content);
+		})
+		
+		$(".specs_i_1").click(function(){
+			$("#content").val($(this).find("span.txt").html());
+		})
+		
+	</script>
+</html>

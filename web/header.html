@@ -1,0 +1,145 @@
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+		<header>
+			<div class="header_left">
+				<img src="img/logo.png"/>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="markets.html">行情</a></li>
+					<li><a href="otc.html">OTC交易</a></li>
+					 <li><a href="exchange.html">币币交易</a></li>
+				</ul>
+			</div>
+			<div class="haeder_right" v-cloak>
+				<ul>
+					<li class="assets">资产
+					<div class="pas_dl assets_dl">
+							<dl>
+								<dd><a href="assets.html?type=1">币币账户</a></dd>
+								<dd><a href="assets.html?type=2">空投账户</a></dd>
+							</dl>
+						</div>
+					</li>
+					<li class="order">订单
+					<div class="pas_dl order_dl">
+							<dl>
+								<dd><a href="bibi_entrust.html">币币订单</a></dd>
+								<dd><a href="otc_order.html">OTC订单</a></dd>
+							</dl>
+						</div>
+					</li>
+					<li class="wocao iconfont icon-wode">
+						<div class="personal pas_dl">
+							<dl>
+								<dt><a href="nick.html">
+								<p>Hi,<s> <span v-if="nick!=''" id="nick">{{nick}}</span> <span v-else>暂无昵称，请设置</span></s></p>
+								<span>UID <s>{{userID}}</s></span>
+								</a>
+								</dt>
+								<dd><a href="real-name.html">实名认证</a></dd>
+								<dd><a href="invitation.html">邀请好友</a></dd>
+								<dd><a href="team.html">我的团队</a></dd>
+								<dd><a href="account.html">账号中心</a></dd>
+								<dd><a href="collection.html">收款方式管理</a></dd>
+								<dd><a href="javascript:;" @click="loginOut">退出登录</a></dd>
+							</dl>
+						</div></li>
+					<li class="iconfont icon-xiaoxi" onclick="window.top.location='message.html';window.close"></li>
+					<li @click="window.location.href ='https://testflight.apple.com/join/uBFdduG0'">下载</li>
+				</ul>
+			</div>
+			
+		</header>
+		<footer>
+			<!-- 首页 帮助中心 客户端下载 --> © 2020-2022 JSEx
+		</footer>
+		<script>
+		
+		var config;
+$('a').click(function() {
+    config = $(this).css('href').substring($(this).css('href').indexof('id=')+1)
+});
+			
+		var vue1 = new Vue({
+				el: ".haeder_right",
+				data: {					
+					nick:"",
+					userID:$.cookie("userID"),
+					AppDown:$.cookie("AppDown"),
+				},
+				created() {						
+					//this.getDetail();	
+						if(decodeURI(decodeURI($.cookie("nickName")))!=null){
+							this.nick=decodeURI(decodeURI($.cookie("nickName")));
+						}else{
+							this.nick="暂无昵称，请设置"
+						}
+				},
+				mounted() {},
+				methods: {					
+					getDetail(){
+						var that = this;
+						var param = {							
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/get_nickname',param, 
+						function(res) {
+							that.nick=res.data;											
+
+						}, 'json');
+					},
+					loginOut(){
+						var that = this;
+							var n=layer.confirm("确定退出？",{
+							  title:false,
+							  btn: ["确定","取消"] ,//按钮
+							  yes:function(){
+								 var param = {							
+												"token": $.cookie("token")
+											}
+								param=rsaMethod(param)
+								param={
+									"data":param
+								}
+								$.post(localhostUrl+'/index/login/logout',param, 
+								function(res) {
+									if(res.status==0){
+										layer.msg("退出登录成功", { icon: 1,time: 2000,end:function(){
+											clearAllCookie()
+											window.location.href="login.html"
+										}
+										});
+									}else{
+										layer.msg(res.msg, { icon: 2,time: 2000});
+									}
+								}, 'json');
+							  },
+							  btn2:function(){
+								layer.close(n);
+							  },
+							})
+						
+					},
+				}
+			})	
+		var name=$('#header').attr('name');
+//			console.log("name:"+name)
+			show_footer(name)
+			function show_footer(name){
+				$(".header_left li:nth-of-type("+name+")").addClass("selected");
+			}	
+		</script>

@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/font.css" />
+<link rel="stylesheet" type="text/css" href="css/swiper.css" />
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<style>
+.bottom_nav dl dd:nth-child(2) a .dier {
+	display: block !important;
+}
+
+.bottom_nav dl dd:nth-child(2) a .diyi {
+	display: none !important;
+}
+
+.bottom_nav dl dd:nth-child(2) a span {
+	color: #2983FF;
+}
+body,html{background: #fff !important;}
+.h1 img {
+	position: absolute;
+	right: 5%;
+	top: 25%;
+	width: 5%;
+	display: block;
+}
+.btn button{
+	width: 54px;
+    height: 22px;
+    background: rgba(41,131,255,1);
+    opacity: 1;
+    border-radius: 4px;
+    color: white;
+}
+.getCode{top: 0% !important;right: 10px !important;}
+.h1{border-bottom: none !important;}
+</style>
+</head>
+<body>
+	<h1 class="h1">
+		<p style="text-align: left;">
+			<span>BTED/USDT</span>
+			<!-- <img src="img/h_sel.png" /> -->
+		</p>
+		<img src="img/asset_l.png"
+			onclick="location.href='assets_detailed'" />
+	</h1>
+	<div class="trade_i">
+		<i class="tr">-0.12%</i>
+	</div>
+	<div class="trade">
+		<div class="trade_l">
+			<div id="nav">
+				<ul>
+					<li class="navTitle"><span class="navContent"
+						data-lang="index_title">买入</span></li>
+					<li><span class="navContent" data-lang="label_index_gsp">卖出</span></li>
+				</ul>
+			</div>
+			<div class="tab">
+				<div class="box buy">
+					<div class="trade_select">
+						<span class="bo"><span class="zi" data-lang="label_index_balnace">限价委托</span><i
+							class="i"></i></span> 
+							<!-- <img src="" /> -->
+					</div>
+					<div class="trade_input fist">
+						<input type="number" name="" id="numr" class="input_num"
+							th:value="${hrfPrice}" data-lang="label_index_expire"
+							placeholder="買入價"
+							oninput="if(value.length>4)value=value.slice(0,6);if(value<0)value=0" />
+						<img src="img/reduce.png" class="reduce" /> <img
+							src="img/plus.png" class="plus" />
+					</div>
+					<div class="market_input">
+						<input type="number" name="" id="market" class="market border"
+							value="" data-lang="label_index_current_price"
+							placeholder="以当前最优惠价格买入" readonly="readonly" />
+					</div>
+					<p class="cny">
+						≈￥<i th:text="${#numbers.formatDecimal(hrfPrice*usdtPrice,1,4)}">0</i>CNY
+					</p>
+					<div class="trade_input">
+						<input type="number" name="" id="numrn" class="border" data-lang="label_index_pu_unit" placeholder="请输入数量" /> <span>BTED </span>
+					</div>
+					<p class="usdt">
+						<span data-lang="label_index_register_wallet">可用</span><span
+							class="yue">[[${wallet.usdtBalance}]]BTED</span>
+					</p>
+					<div class="specs">
+						<div class="gg">25%</div>
+						<div class="gg">33%</div>
+						<div class="gg">50%</div>
+						<div class="gg" data-lang="label_index_cash_wallet">全倉</div>
+					</div>
+					<p class="us_usdt">
+						<span data-lang="index_title_charts">交易额</span><span
+							id="usdtPrice">0.00</span>
+					</p>
+					<div class="buy_btn" data-lang="index_title" onclick="buyInbb()">卖出BTED</div>
+				</div>
+				<div class="box two">
+					<div class="trade_select">
+						<span class="bo"><span class="zi" data-lang="label_index_balnace">限時</span><i
+							class="i"></i></span> 
+							<!-- <img src="" /> -->
+					</div>
+					<div class="trade_input fist">
+						<input type="number" name="" id="numc" class="input_num"
+							th:value="${hrfPrice}" data-lang="label_index_recommender_id"
+							placeholder="賣出價"
+							oninput="if(value.length>4)value=value.slice(0,6);if(value<0)value=0" />
+						<img src="img/reduce.png" class="reduce" /> 
+						<img src="img/plus.png" class="plus" />
+					</div>
+					<div class="market_input">
+						<input type="number" name="" id="market" class="market border"
+							value="" data-lang="label_index_vip_id" placeholder="以当前最优惠价格卖出"
+							readonly="readonly" />
+					</div>
+					<p class="cny">
+						≈￥<i th:text="${#numbers.formatDecimal(hrfPrice*usdtPrice,1,4)}">0</i>CNY
+					</p>
+					<div class="trade_input">
+						<input type="number" name="" id="numcn" class="border" data-lang="label_index_pu_unit" placeholder="數量" /> <span>F39 </span>
+					</div>
+					<p class="usdt">
+						<span data-lang="index_tab_match">可用FEEL</span><span class="yue">[[${wallet.utBalance}]]</span>
+					</p>
+					<div class="specs maichu">
+						<div class="gg">25%</div>
+						<div class="gg">33%</div>
+						<div class="gg">50%</div>
+						<div class="gg" data-lang="label_index_cash_wallet">全倉</div>
+					</div>
+					<p class="us_usdt">
+						<span data-lang="index_title_charts">交易对</span><span
+							id="feelPrice">F39 </span>
+					</p>
+					<div class="buy_btn" data-lang="index_title_user"
+						onclick="buyOutbb()">卖出BTED</div>
+				</div>
+			</div>
+		</div>
+		<div class="trade_r">
+			<div class="list_top">
+				<ul>
+					<li><span class="" data-lang="label_index_vip_name">盤口</span>
+						<span class="" data-lang="label_index_nick_name">價格/USDT</span> <span
+						class="n" data-lang="label_index_match">數量</span></li>
+					<li><span class="">10</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">9</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">8</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">7</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">6</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">5</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">4</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">3</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">2</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">1</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+				</ul>
+			</div>
+
+			<div class="list_middle">
+					<p class="num" id="cjprice">[[${hrfPrice}]]</p>
+				<p class="ban" id="cjpricecny" th:text="'≈'+${#numbers.formatDecimal(hrfPrice*usdtPrice,1,4)}+' CNY'"></p>
+			</div>
+
+			<div class="list_bottom">
+				<ul>
+					<li><span class="">1</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">2</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">3</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">4</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">5</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">6</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">7</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">8</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">9</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+					<li><span class="">10</span> <span class="">0</span> <span
+						class="n">0</span>
+						<p class="p"></p></li>
+				</ul>
+			</div>
+		
+			<div class="img_b">
+				<img src="img/tu_1.png" alt="" class="choice">
+				<img src="img/tu_2.png" alt="">
+				<img src="img/tu_3.png" alt="">
+			</div>
+		
+		</div>
+	</div>
+	<div class="backcolor mt"></div>
+	<div class="witip">
+		<div class="entrust">
+			<div class="entrust_l" data-lang="label_index_register_time">当前委托</div>
+			<div class="entrust_r" onclick="location.href='entrust'">
+				<!-- <img src="img/history.png" />  -->
+				<span data-lang="label_index_bonus_algebra">全部</span>
+			</div>
+		</div>
+		<div class="tab-list-li" id="result" >
+			<div class="shabi">
+				<div class="recode-cont1">
+					<div class="title">
+						<span class="zi">买入</span>
+						<span>BTED/USDT</span>
+					</div>
+					<div class="btn">
+						<button>撤单</button>
+					</div>
+				</div>
+				<div class="recode-cont2">
+					<dl>
+						<dt>
+							<p data-lang="index_title_sale">时间</p>
+							<span>15:22 7/16</span>
+						</dt>
+						<dt>
+							<p data-lang="index_tab_no">委托价(usdt)</p>
+							<span>市价</span>
+						</dt>
+						<dt>
+							<p data-lang="index_tab_time">交易额(BTED)</p>
+							<span>0.245754</span>
+						</dt>
+					</dl>
+			</div>
+			<div class="recode-cont2">
+				<dl>
+					<dt>
+						<p data-lang="index_title_sale">成交总额(usdt)</p>
+						<span>021457</span>
+					</dt>
+					<dt>
+						<p data-lang="index_tab_no">成交均价(USDT)</p>
+						<span>0.0234</span>
+					</dt>
+					<dt>
+						<p data-lang="index_tab_time">成交量(BTED)</p>
+						<span>100.0</span>
+					</dt>
+				</dl>
+			</div>
+			<div class="chexiao"></div>
+		</div>
+	</div>
+
+	<div class="mo">
+		<div class="mo_box">
+			<ul>
+				<li class="active" data-lang="index_tab_type">限价</li>
+				<li data-lang="index_tab_id">市价</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 挂单详情 -->
+	<div class="mo_k">
+		<div class="mo_box_k">
+			<h1 class="h1">
+				<p class="buy_show_1">卖出挂单详情</p>
+				<p class="buy_show_2">买入挂单详情</p>
+				<a href="javascript:;" class="close">×</a>
+			</h1>
+			<div class="info_box">
+				<div class="info_1 info_mo">
+					<div><span>当前价格：</span><span>1 (BTED)≈0.24568 (USDT)</span></div>
+					<div><span>挂单数量：</span><span>100 (BTED)</span></div>
+					<div class="buy_show_1"><span>委托价格：</span><span>市价委托</span></div>
+					<div><span>交易总额：</span><span>24.568 (USDT)</span></div>
+					<div class="buy_show_2"><span>交易数量：</span><span>24.568 (USDT)</span></div>
+				</div>
+				<div class="info_1">
+					<div class="info_left">
+						<input type="text" placeholder="请输入您的短信验证码" name="" id="">
+					</div>
+					<div class="info_right">
+						<p id="getCode" class="getCode">获取验证码</p>
+					</div>
+				</div>
+				<div class="info_1">
+					<div class="info_left">
+						<input type="text" placeholder="请输入您的资金密码" name="" id="">
+					</div>
+					<div class="info_right">
+					</div>
+				</div>
+			</div>
+			<div class="annius_chu buy_show_1">确定</div>
+			<div class="annius_rui buy_show_2">确定</div>
+		</div>
+	</div>
+
+
+	<!--导入底部导航栏-->
+	<div id="footer"></div>
+</body>
+<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" th:inline="javascript">
+
+$(".img_b").children().each(function(){
+	$(this).click(function(){
+		$(this).addClass("choice").siblings().removeClass("choice");
+	})
+})
+
+
+$(".witip #result").children().each(function(){
+	$(this).click(function () { 
+		if($("span").hasClass("zi1")){
+			$(".mo_k").show();$(".buy_show_1").hide();$(".buy_show_2").show();
+		}else{
+			$(".mo_k").show();$(".buy_show_1").show();$(".buy_show_2").hide();
+		}
+
+	})
+})
+$(".close").click(function () { $(".mo_k").hide();})
+
+var lang = sessionStorage.getItem('lang');
+		if(!lang) lang = "zh";
+	    if(lang == 'zh'){
+	    	var text1 = 'USDT兌換人民幣價格';
+	    	var text2 = '請輸入數量';
+	    	var text3 = '請輸入價格';
+	    	var text4 = '確定發佈購買嗎？';
+	    	var text5 = '確定發佈賣出嗎？';
+	    	var text6 = '别滚动了，已经到底了...';
+	    	var text7 = '盤口';
+	    	var text8 = '價格/USDT';
+	    	var text9 = '數量';
+	    	var text10 = '确认撤单？';
+	    	var text11 = '取消';
+	    	var text12 = '賣出';
+	    	var text13 = '買入';
+	    	var text14 = '已成交';
+	    }else{
+	    	var text1 = 'USDT for RMB';
+	    	var text2 = 'Please enter the quantity';
+	    	var text3 = 'Please enter the price';
+	    	var text4 = 'Are you sure about the release purchase?';
+	    	var text5 = 'Are you sure to release and sell?';
+	    	var text6 = 'Stop scrolling, its all over...';
+	    	var text7 = 'dish';
+	    	var text8 = 'price/USDT';
+	    	var text9 = 'Number';
+	    	var text10 = 'Confirm cancellation of order?';
+	    	var text11 = 'Cancel';
+	    	var text12 = 'Sell';
+	    	var text13 = 'Buy';
+	    	var text14 = 'Traded';
+	    }
+//	var usdtPrice = [[${usdtPrice}]]
+//	 var  token=[[${#session.id}]];
+//  var  userId=[[${wallet.userId}]];
+//  var  prefix='pk'+userId;
+	console.log(text1,usdtPrice);
+    var socket;
+    $(function(){
+        if(typeof(WebSocket) == "undefined") {
+            console.log(text2);
+        }else{
+        	 console.log(text3);
+             //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
+             //等同于socket = new WebSocket("ws://localhost:8888/xxxx/im/25");
+             //var socketUrl="${request.contextPath}/im/"+$("#userId").val();
+          //   var socketUrl="ws://127.0.0.1:8317/imserver/"+token+"/"+userId+"/"+prefix;
+             var socketUrl="ws://feel.wgzvip.com/imserver/"+token+"/"+userId+"/"+prefix;
+		//	 var socketUrl=" wss://www.tokenbankc.com/imserver/"+token+"/"+userId+"/"+prefix;
+             //socketUrl=socketUrl.replace("https","ws").replace("http","ws");
+             console.log(socketUrl);
+             if(socket!=null){
+                 socket.close();
+                 socket=null;
+             }
+             socket = new WebSocket(socketUrl);
+             //打开事件
+             socket.onopen = function() {
+                 console.log("websocket已打开");
+             };
+             //监听服务器数据推送
+   		    socket.onmessage = function (msg) {
+        	 console.log("data,",msg.data);
+   		      if (msg.data=='webScoket服务端连接成功') {
+				return;
+			}
+   		   var listp = $.parseJSON(msg.data);
+           var pp = listp.listp;
+           var ss = listp.lists;
+           var html = "";
+           var html1 = "";
+           var zhangdie = listp.zhangdie;
+           var price = listp.price;
+           if(zhangdie == 1){
+               $("#cjprice").html('<span style="color: #03BD9C;">'+price+'</span>');
+           }else{
+               $("#cjprice").html('<span style="color: #D34C64;">'+price+'</span>');
+           }
+           $("#cjpricecny").text('≈'+(price*usdtPrice).toFixed(4)+'CNY');
+             for (var i = 0; i < 10; i++) {
+           	if(typeof(pp[i]) == "undefined") {
+           		html = html + '<li><span class="">'+(i+1)+'</span><span class=""></span><span class="n"></span><p class="p"></p></li>';
+           	}else{
+           		html = html + '<li><span class="">'+(i+1)+'</span><span class="">'+pp[i].price+'</span><span class="n">'+pp[i].num+'</span><p class="p" style="width:'+((pp[i].num)/100).toFixed(1)+'%"></p></li>';
+           	}
+			}
+         
+           	 for (var i = 10; i > 0; i--) {
+           	if(typeof(ss[i-1]) == "undefined") {
+           		html1 = html1 + '<li><span class="">'+(i)+'</span><span class=""></span><span class="n"></span><p class="p"></p></li>';
+           	}else{
+           		html1 = html1 + '<li><span class="">'+(i)+'</span><span class="">'+ss[i-1].price+'</span><span class="n">'+ss[i-1].num+'</span><p class="p" style="width:'+((ss[i-1].num)/100).toFixed(1)+'%"></p></li>';
+           	}
+			}
+           $(".list_bottom").html('<ul>'+html+'</ul>');
+           $(".list_top").html('<ul><li class="aaa"><span class="" data-lang="asset_Handicap">'+text7+'</span><span class="" data-lang="asset_Price_usdt">'+text8+'</span><span class="n" data-lang="Number">'+text9+'</span></li>'+html1+"</ul>");
+   		    };
+
+   		    //监听连接关闭
+   		    socket.onclose = function (evt) {
+   		       // alert("连接关闭");
+   		     console.log("websocket挂逼了");
+             }
+   		//发生了错误事件
+            socket.onerror = function() {
+                console.log("websocket发生了错误");
+            }
+        }
+    });
+    function sendMessage() {
+        if(typeof(WebSocket) == "undefined") {
+            console.log("您的浏览器不支持WebSocket");
+        }else {
+            console.log("您的浏览器支持WebSocket");
+            console.log('{"toUserId":"'+$("#toUserId").val()+'","contentText":"'+$("#contentText").val()+'"}');
+            socket.send('{"toUserId":"'+$("#toUserId").val()+'","contentText":"'+$("#contentText").val()+'"}');
+        }
+    }
+	</script>
+<script type="text/javascript">
+   var lang = sessionStorage.getItem('lang');
+   console.log("data",lang);
+	 var flag1 = false;
+	function buyInbb(){
+    	var num = $("#numrn").val();
+    	var price = $("#numr").val();
+
+    	if(num == ''){
+    		layer.msg(text2, {time: 2000});
+			return;
+    	}
+    	if(price == ''){
+    		layer.msg(text3, {time: 2000});
+			return;
+    	}
+    	if(flag1){
+    		 flag1 = false;
+    		return;
+    	}
+    	flag1 = true;
+    	layer.confirm(text4,function(){
+			$.ajax({
+				type: "post",
+				url: "/buyInbb",
+				data: {
+					"payNum" :num,
+					"payPrice" :price
+				},
+				//dataType: "json",
+				async:false,
+				success: function(data){
+					if (data.code == 0) {
+						loadPropertiesLocal(lang,'0');
+						window.location.reload();
+					} else {
+						loadPropertiesLocal(lang,data.code)
+					/* 	layer.msg(data.msg, {
+							time : 1000
+						}); */
+						flag1 = false;
+					}
+				}
+			});
+    	});
+	}
+	  var flag2 = false;
+		function buyOutbb(){
+      	var num = $("#numcn").val();
+      	var price = $("#numc").val();
+
+      	if(num == ''){
+      		layer.msg(text2, {time: 2000});
+				return;
+      	}
+      	if(price == ''){
+      		layer.msg(text3, {time: 2000});
+				return;
+      	}
+      	if(flag2){
+      		flag2 = false;
+      		return;
+      	}
+      	flag2 = true;
+      	layer.confirm(text5,function(){
+				$.ajax({
+					type: "post",
+					url: "/buyOutbb",
+					data: {
+						"payNum" :num,
+						"payPrice" :price
+					},
+					//dataType: "json",
+					async:false,
+					success: function(data){
+						if(data.code == 0){
+							loadPropertiesLocal(lang,'0');
+							window.location.reload()
+						}else{
+							loadPropertiesLocal(lang,data.code);
+							flag2 = false;
+						}    
+					}
+				});
+      	});
+		}
+		
+		/*进度条上*/
+		$(function(){
+			$(".list_top ul li").each(function(){
+				var n = $(this).find('.n').html();
+		        var widthTemp =  (($(this).find('.n').html()) / 10).toFixed(4) + '%';
+		 		$(this).children().eq(3).css('width', widthTemp)
+			})
+		})
+		/*进度条下*/
+		$(function(){
+			$(".list_bottom ul li").each(function(){
+				var n = $(this).find('.n').html();
+		        var widthTemp =  (($(this).find('.n').html()) / 10).toFixed(4) + '%';
+		 		$(this).children().eq(3).css('width', widthTemp)
+			})
+		})
+//		var usdt = [[${wallet.usdtBalance}]];
+//		var asset = [[${wallet.utBalance}]];
+//		var hxtzPrice = [[${hrfPrice}]];
+		/*规格切换*/
+		$(".box .specs").children().each(function(){
+			$(this).click(function(){
+				$(this).addClass("ac_specs").siblings().removeClass("ac_specs");
+				var value = $(this).html();
+				var rate = 0;
+				if (value == "全倉"||value == "Warehouse") {
+				//	$("#usdtPrice").text(usdt+'USDT');
+					rate = usdt/hxtzPrice;
+					rate = formatDecimal(rate,4);
+					$(this).parent().prev().prev().find("input#numrn").val(rate);
+				}else{
+					rate = usdt/hxtzPrice*value.slice(0,-1)/100;
+				//	$("#usdtPrice").text( usdt*value.slice(0,-1)/100+'USDT');
+					rate = formatDecimal(rate,4);
+					$(this).parent().prev().prev().find("input#numrn").val(rate);
+				}
+			})
+		})
+			/*卖出规格切换*/
+		$(".box .maichu").children().each(function(){
+			$(this).click(function(){
+				$(this).addClass("ac_specs").siblings().removeClass("ac_specs");
+				var value = $(this).html();
+				var rate = 0;
+				if (value == "全倉"||value == "Warehouse") {
+				//	$("#feelPrice").text(usdt+'FEEL');
+					$(this).parent().prev().prev().find("input#numcn").val(asset);
+				}else{
+					rate = value.slice(0,-1)/100*asset;
+					rate = formatDecimal(rate,4);
+			//		$("#feelPrice").text(rate+'FEEL');
+					$(this).parent().prev().prev().find("input#numcn").val(rate);
+				}
+			})
+		})
+			function formatDecimal(num, decimal) {
+		  num = num.toString()
+		  let index = num.indexOf('.')
+		  if (index !== -1) {
+		    num = num.substring(0, decimal + index + 1)
+		  } else {
+		    num = num.substring(0)
+		  }
+		  return parseFloat(num).toFixed(decimal)
+		}
+		/*限价弹出框*/
+/* 		$(".trade_select").click(function(){$(".mo").show();})
+		$(".mo").click(function(){$(this).hide();})
+		$(".mo .mo_box ul li").each(function(){
+			$(this).click(function(){
+				$(".trade_select .zi").html($(this).html());
+				if ($(".trade_select .zi").html() == "市价") {
+					$(".fist").hide();
+					$(".cny").css("opacity","0");
+					$(".market_input").show();
+					$(".trade .trade_l .tab .box .trade_input span").html("USDT");
+				} else{
+					$(".fist").show();
+					$(".cny").css("opacity","1");
+					$(".market_input").hide();
+					$(".trade .trade_l .tab .box .trade_input span").html("FEEL");
+				}
+				$(this).addClass("active").siblings().removeClass("active");
+				$(".mo").hide();
+			})
+		}) */
+		/*买入和卖出切换*/
+		var $div_li = $('#nav ul li');
+        $('#nav ul li').click(function(){
+            $(this).addClass("navTitle").siblings().removeClass("navTitle"); 
+                var index =  $div_li.index(this);  
+            $("div.tab > div").eq(index).show().siblings().hide(); 
+		})
+        
+        
+        
+        // 价格文本框事件
+		$(".input_num").keyup(function(){
+			var num = $(this).val();
+			var count = (parseFloat((num*7)).toFixed(4));
+			$(this).parent().next().next().find("i").html(count);
+		})
+        
+        /*加*/
+        $(".plus").click(function(){
+			var num = $(this).prev().prev().val();
+			var num_tow = (parseFloat(num)+parseFloat(0.0001)).toFixed(4)
+        	$(this).prev().prev().val(num_tow);
+			var count = (parseFloat((num_tow*7)).toFixed(4));
+			$(this).parent().next().next().find("i").html(count);
+        })
+        /*减*/
+        $(".reduce").click(function(){
+			var num = $(this).prev().val()
+        	if(num == 0){
+				$(this).prev().val(num);
+        	}
+			else{
+				var num_tow = (parseFloat(num)-parseFloat(0.0001)).toFixed(4)
+				$(this).prev().val(num_tow);
+				var count = (parseFloat((num_tow*7)).toFixed(4));
+				$(this).parent().next().next().find("i").html(count);
+			}
+        })
+		
+	</script>
+	<script>
+	var pageSize =0; // 当前每页条数
+	var lastId;
+	var winH = $(window).height();//页面可视区域高度
+	var p=0, t=0; // 顶部和底部的距离
+	$(function(){
+		getData();//初始获取数据，加载数据事件
+		//鼠标滚动事件
+		$(document).scroll(function() {
+			var pageH = $(document).height(); //当前文档总高度
+			var scrollT = $(window).scrollTop();  //滚动条top的值
+			var bottomH = (pageH - winH - scrollT);  // 当前所滚动位置到底部距离
+			p = $(this).scrollTop(); //顶部距离
+			if (bottomH <=0) {
+					if (pageSize == 10) {
+						getData();
+					}else{ //
+						$("#bottom").show().html(text6);
+					}
+				}
+			setTimeout(function(){t = p;},2000);//延时2秒
+		});
+
+	})
+	function getData() {
+		var html = '';
+		$.ajax({
+			type: "post",
+			url:"/nowBbList",
+			//当前页由于是按照id倒序排列的，那么最后一个id就是下拉分页的最开始的一个ID
+			data:{
+				"lastId":lastId
+			//	"type":'21'
+				},
+				//
+			success: function (result) {
+				if(result.code=='0'){
+					var list = result.bibilist?result.bibilist:null;
+					console.log("list",list);
+					if (list.length>0) {
+						pageSize =list.length;
+						$.each(list, function(index, val) {
+							if (val.fee>0) {
+								html+=`<div class="shabi"><div class="recode-cont1">
+									<div class="title">
+									<span class="zi1" data-lang="label_index_gsp">${text12}</span><span>F39 /USDT</span>`
+							}else{
+								html+=`<div class="shabi"><div class="recode-cont1">
+									<div class="title">
+									<span class="zi" data-lang="index_title">${text13}</span><span>F39 /USDT</span>`
+							}
+								html+=`	</div>
+							<div class="time">${val.create_time}</div>
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p data-lang="index_title_sale">${text8}（USDT)</p>
+									<span>${val.price}</span>
+								</dt>
+								<dt>
+									<p data-lang="index_tab_no">${text9}（USDT)</p>
+									<span>${val.amount}</span>
+								</dt>
+								<dt>
+									<p data-lang="index_tab_time">${text14}（USDT)</p>
+									<span>${(val.amount-val.amount_yu).toFixed(4)}</span>
+								</dt>
+							</dl>
+						</div>`
+							if (val.fee>0) {
+								html+=`<div class="chexiao"><button data-lang="cancel" onclick="quxiaobb(${val.id},2)">${text11}</button></div></div>`
+							}else{
+								html+=`<div class="chexiao"><button  data-lang="cancel" onclick="quxiaobb(${val.id},1)">${text11}</button></div></div>`
+							}
+							if (index == 9) {
+								lastId=val.ordercode;
+							}
+						});
+						$("#result").append(html);
+					}else {
+						if (lastId) {
+							$("#bottom").show().html(text6);
+						}else {
+						}
+					}
+				}
+			}
+		});
+	}
+	var flag4 = false;
+	function quxiaobb(id,type){
+		layer.confirm(text10,function(){
+			if(flag4){
+				return;
+			}
+			flag4 = true;
+			$.ajax({
+				type: "post",
+				url: "/xiajiaOrderbb",
+				data: {
+					"orderid" :id,
+					"type" :type,
+				},
+				async:false,
+				success: function(data){
+					var lang = sessionStorage.getItem('lang');
+					if (data.code == 0) {
+						loadPropertiesLocal(lang,'0');
+						window.location.reload();
+						flag4 = false;
+					} else {
+						loadPropertiesLocal(lang,data.code)
+						flag1 = false;
+					}   
+				}
+			});
+		});
+	}
+	</script>
+</html>

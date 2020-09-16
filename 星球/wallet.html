@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.bottom_nav dl dd:nth-child(4) a .dier {display: block !important;}
+			.bottom_nav dl dd:nth-child(4) a .diyi {display: none !important;}
+			.bottom_nav dl dd:nth-child(4) a span {color: #FF8F46;}
+			.indexNav ul li{margin: 0px;width: 25%;}
+			.indexNav ul li .nav_img{width: 46%;}
+			.cap_top_msg{display: flex;justify-content: space-between;}
+			.capital_top .ge_top{display: flex;flex-direction: row;justify-content: flex-start;align-items: center;padding: 20px 0px 10px;position: relative;}
+			.capital_top .ge_top .next{position: absolute;right: 0%;width: 4%;}
+			.capital_top .ge_left h2{font-size: 1.15rem;color:#FFFFFF;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+			.capital_top .ge_left h2 #grade{position: relative;background: #DC7D00;border-radius: 8px 0px 8px 0px;padding:1px 2px 0;}
+			.capital_top .ge_left h2 #grade img{width: 12px;}
+			.capital_top .ge_left h2 #grade u{font-size: 10px;font-style: normal;position: relative;right: 1px;bottom: 3px;color: #fff;}
+			.capital_top .ge_left P{font-size: 10px;color:#7B899B;margin: 5px 0;white-space: nowrap;border-radius: 50px;border: 1px solid #7B899B;padding: 0 5px;}
+			.capital_top .ge_left P #v_code{font-size: 10px;color:#7B899B;margin: 5px 0;text-decoration: none;}
+			.capital_top .ge_left .num{font-size: 10px;color:#FFFFFF;margin: 5px 0;text-decoration: none;}
+			.capital_top .info_img{width: 18%;display: block;margin-right: 5%;}
+			.capital .cap_bottom .tips .wen{color: #FF973F;}
+			.wallet_data .wallet_price{display: flex;align-items: center;justify-content: space-between;}
+			.capital{padding: 2vh 8px 0;}
+			.tab_box{border: 1px solid #FF7122;border-radius: 50px;display: flex;align-items: center;width: 60%;margin: auto;}
+			.tab_box .a{color: #fff;padding: 8px 0;width: 50%;text-align: center;}
+			.tab_box .a.active{background: #FF7122;border-radius: 50px;}
+			.eye-no-img{width: 6%;position: absolute;right: 15px;}
+			.txt_eye_no{display: none;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<p>钱包</p>
+		</h1>
+		
+		<div class="wallet_data">
+			<img src="img/eye.png" class="eye-no-img eye-no">
+			<span class="zong">总资产</span>
+			<p class="count txt_eye">0.00000.000 </p>
+			<p class="count txt_eye_no">******</p>
+			<div class="wallet_price">
+				<i class="i txt_eye">≈￥0.0000</i>
+				<i class="i txt_eye_no">******</i>
+				<div class="">
+					<span>当前最大刷单金额：</span><b class="txt_eye">200</b><b class="txt_eye_no">******</b>
+				</div>
+			</div>
+		</div>
+		<div class="indexNav">
+			<ul>
+				<li>
+					<a href="recharge.html" class="nav_box">
+						<img src="img/index_1.png" class="nav_img"/>
+						<p class="nav_title">充币</p>
+					</a>
+				</li>
+				<li>
+					<a href="withdraw.html" class="nav_box">
+						<img src="img/index_2.png" class="nav_img"/>
+						<p class="nav_title">提币</p>
+					</a>
+				</li>
+				<li>
+					<a href="cash.html" class="nav_box">
+						<img src="img/index_tx.png" class="nav_img"/>
+						<p class="nav_title">提现</p>
+					</a>
+				</li>
+				<li>
+					<a href="transfer.html" class="nav_box">
+						<img src="img/index_5.png" class="nav_img"/>
+						<p class="nav_title">划转</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="tt_div">
+			<s></s>
+			<span>我的钱包</span>
+		</div>
+		<div class="capital">
+			<div class="tab_box">
+				<div class="a active">USDT钱包</div>				
+				<div class="a">QSC钱包</div>				
+			</div>
+			<div class="tab_bigbox">
+				<div class="tab_capital">
+					<div class="cap_bottom">
+						<div class="tips">
+							<span class="wen">赠送钱包</span>
+							<!--<img src="img/tips_next.png" class="tips_next"/>-->
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p>已释放</p>
+									<span>1150.121481</span>
+								</dt>
+								<dt>
+									<p>冻结</p>
+									<span>0.124874</span>
+								</dt>
+								<dt>
+									<p>可用</p>
+									<span>85847.354744</span>
+								</dt>
+							</dl>
+						</div>
+					</div>
+					<div class="cap_bottom">
+						<div class="tips">
+							<span class="wen">投资钱包</span>
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p>已释放</p>
+									<span>1150.121481</span>
+								</dt>
+								<dt>
+									<p>冻结</p>
+									<span>0.124874</span>
+								</dt>
+								<dt>
+									<p>可用</p>
+									<span>85847.354744</span>
+								</dt>
+							</dl>
+						</div>
+					</div>
+					<div class="cap_bottom">
+						<div class="tips">
+							<span class="wen">交易钱包</span>
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p>已释放</p>
+									<span>1150.121481</span>
+								</dt>
+								<dt>
+									<p>冻结</p>
+									<span>0.124874</span>
+								</dt>
+								<dt>
+									<p>可用</p>
+									<span>85847.354744</span>
+								</dt>
+							</dl>
+						</div>
+					</div>
+					<div class="cap_bottom">
+						<div class="tips">
+							<span class="wen">锁仓钱包</span>
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p>已释放</p>
+									<span>1150.121481</span>
+								</dt>
+								<dt>
+									<p>冻结</p>
+									<span>0.124874</span>
+								</dt>
+								<dt>
+									<p>可用</p>
+									<span>85847.354744</span>
+								</dt>
+							</dl>
+						</div>
+					</div>
+					<div class="cap_bottom">
+						<div class="tips">
+							<span class="wen">节点钱包</span>
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p>已释放</p>
+									<span>1150.121481</span>
+								</dt>
+								<dt>
+									<p>冻结</p>
+									<span>0.124874</span>
+								</dt>
+								<dt>
+									<p>可用</p>
+									<span>85847.354744</span>
+								</dt>
+							</dl>
+						</div>
+					</div>
+					<div class="cap_bottom">
+						<div class="tips">
+							<span class="wen">USDT钱包</span>
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p>已释放</p>
+									<span>1150.121481</span>
+								</dt>
+								<dt>
+									<p>冻结</p>
+									<span>0.124874</span>
+								</dt>
+								<dt>
+									<p>可用</p>
+									<span>85847.354744</span>
+								</dt>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div class="tab_capital two">
+					<div class="cap_bottom">
+						<div class="tips">
+							<span class="wen">可用(交易)钱包</span>
+							<!--<img src="img/tips_next.png" class="tips_next"/>-->
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p>冻结</p>
+									<span>0.124874</span>
+								</dt>
+								<dt>
+									<p>可用</p>
+									<span>85847.354744</span>
+								</dt>
+							</dl>
+						</div>
+					</div>
+					<div class="cap_bottom">
+						<div class="tips">
+							<span class="wen">提现钱包</span>
+							<!--<img src="img/tips_next.png" class="tips_next"/>-->
+						</div>
+						<div class="recode-cont2">
+							<dl>
+								<dt>
+									<p>冻结</p>
+									<span>0.124874</span>
+								</dt>
+								<dt>
+									<p>可用</p>
+									<span>85847.354744</span>
+								</dt>
+							</dl>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		 <!--导入底部导航栏-->
+		<div id="footer"></div>
+	</body>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<script type="text/javascript">
+//		console.log("111："+window.sessionStorage);
+//		if(window.sessionStorage){   
+//		   alert("support sessionStorage");
+//		}else{   
+//		   alert("not support sessionStorage");   
+//		} 
+		
+		$('.tab_box .a').click(function() {
+	        $(this).addClass("active").siblings().removeClass("active");
+			var index = $(this).index()
+	        $("div.tab_bigbox > div.tab_capital").eq(index).show().siblings().hide();
+	    })
+		
+		var toggle = true;
+		$(".eye-no-img").click(function(){
+			var count = $(".count").html();
+			var i = $(".i").html();
+			var b = $(".b").html();
+			if (toggle) {
+				$(this).attr("src","img/eye-no.png");
+				$(".txt_eye_no").show();
+				$(".txt_eye").hide();
+				toggle = false;
+			} else{
+				$(this).attr("src","img/eye.png");
+				$(".txt_eye_no").hide();
+				$(".txt_eye").show();
+//				$(".count").show();
+//				$(".i").show();
+//				$(".b").show();
+				toggle = true;
+			}
+			
+		})
+		
+		
+	</script>
+</html>

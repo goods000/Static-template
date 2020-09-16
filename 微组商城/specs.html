@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header class="header">
+		    <span class="headerTitle">商品规格</span>
+		    <span class="headerRight fr">编辑</span>
+		</header>
+		
+		<div class="add_box mian_top">
+			<div class="gorup specs_gorup line_b">
+				<label>规格</label>
+				<i class="i_img"><img src="img/add_specs_1.png" class="edit_s"/></i>
+			</div>
+			<div class="specs_box">
+				<div class="specs_s">
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+						<img src="img/qu_cion.png" class="qu_cion"/>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">销售量</span>
+						<img src="img/qu_cion.png" class="qu_cion"/>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+						<img src="img/qu_cion.png" class="qu_cion"/>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+						<img src="img/qu_cion.png" class="qu_cion"/>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+						<img src="img/qu_cion.png" class="qu_cion"/>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+						<img src="img/qu_cion.png" class="qu_cion"/>
+					</div>
+				</div>
+				<div class="specs_search">
+					<input type="text" placeholder="输入自定义标签，最多20个字符" name="" id="content" value="" />
+					<span class="confirm_btn">添加</span>
+				</div>
+			</div>
+			<div class="gorup specs_gorup line_b mt">
+				<label>推荐标签</label>
+			</div>
+			<div class="specs_box">
+				<div class="specs_s">
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">销售量</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">颜色</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+					<div class="specs_i_1">
+						<span class="txt">价格价格</span>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		<footer class="footer">
+		    <div class="footerItem" onclick="navigate('business.html')">
+		        <img src="img/business-1.png" alt="">
+		        	商家端
+		    </div>
+		    <div class="footerItem" onclick="navigate('release.html')">
+		        <img src="img/business-2.png" alt="">
+		        	发布商品
+		    </div>
+		    <div class="footerItem footerItemActive" onclick="navigate('specs.html')">
+		        <img src="img/business-4-s.png" alt="">
+		        	商品规格
+		    </div>
+		    <div class="footerItem" onclick="navigate('see_business.html')">
+		        <img src="img/business-3.png" alt="">
+		       	 	查看店铺
+		    </div>
+		</footer>
+		
+	</body>
+	<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//删除单独
+		$(".qu_cion").click(function(){
+			$(this).parent().remove();
+			$(this).remove();
+		})
+		//删除操作
+		$(".fr").click(function(){
+			if ($(this).html()=="编辑") {
+				$(".edit_s").attr("src","img/add_specs.png");
+				$(".qu_cion").show();
+		       	$(this).html("完成");
+		    }else{
+		    	$(".edit_s").attr("src","img/add_specs_1.png");
+				$(".qu_cion").hide();
+		       	$(this).html("编辑");
+		    }
+		})
+		//添加
+		$(".confirm_btn").click(function(){
+			var content = $("#content").val();
+			console.log(content);
+			$(".specs_s").
+		})
+		
+		$(".specs_s").children().click(function(){
+			console.log(111);
+			$("#content").val($(this).find("span.txt").html());
+		})
+	</script>
+</html>

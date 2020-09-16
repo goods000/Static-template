@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			.fw-b{font-weight: bold;}
+			.border-b{border-bottom: 1px solid #ddd;}
+			.mt-2{margin-top: 10px;}
+			.submit{
+				 display: block;
+			    margin: auto;margin-top: 20px;
+			    color: #fff;border: 0;
+			    background: #1984D6;
+			    width: 100px;
+			    padding: 10px 10px;
+			    width: 170px;
+			    text-align: center;
+			}
+			#chooseType .content{display: flex;}
+			#chooseType .submit{margin-left: 20px;}
+		</style>
+	</head>
+	<body>
+		<div id="header" name="3"></div>
+		<div class="gonggong">
+			<div>
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"> OTC订单详情</button>
+			</div>
+		</div>
+	<div class="order_detail">
+		<div class="otc_orde_details_top">
+			<div class="otc_tt">
+				<div class="otc_tt_left">
+					<h1 class="iconfont icon-shijian1"> {{order_detail.stxt}}</h1>
+					<!--<p>请查收对方付款</p>-->
+				</div>
+				<div class="otc_tt_right" v-if="order_detail.derection==1">
+					<p>{{order_detail.buyer.mobile}}</p>
+					<span>{{order_detail.buyer.nick}}</span>
+				</div>
+				<div class="otc_tt_right" v-if="order_detail.derection==0">
+					<p>{{order_detail.saler.mobile}}</p>
+					<span>{{order_detail.saler.nick}}</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="otc_orde_details_conter">
+			<div class="details_left">
+				<h1>￥{{order_detail.total_money}}</h1>
+				<p>单价：<s>￥{{order_detail.price}}</s></p>
+				<p>数量：<s>{{order_detail.num}} {{order_detail.flg}}</s></p>
+				<p>手续费：<s>{{fee}} {{order_detail.flg}}</s></p>
+				<p>订单号：<s>{{order_detail.order_no}}</s></p>
+				<p>下单时间：<s>{{order_detail.add_time}}</s></p>
+				<!--购买显示卖家信息-->
+				<div v-if="order_detail.derection==1">
+					<p>卖家昵称：<s>{{order_detail.saler.nick}}</s></p>
+					<p>卖家实名：<s>{{order_detail.saler.realname}}</s></p>
+					<p>支付方式：
+					<s>
+						<span v-if="order_detail.bank.alipay!=null">支付宝</span>
+						<span v-if="order_detail.bank.wechat!=null">微信</span>
+						<span v-if="order_detail.bank.bank!=null">银行卡</span>
+					</s>
+					</p>			
+				</div>
+				<!--出售显示买家信息-->
+				<div v-if="order_detail.derection==0">
+					<p>买家昵称：<s>{{order_detail.buyer.nick}}</s></p>
+					<p>买家实名：<s>{{order_detail.buyer.realname}}</s></p>
+				<!--	<p v-if="order_detail.status==3">交易凭证：
+					<s>
+						<i @click="chakan('http://cnd.cjlnet.com/'+order_detail.pay_code,'交易凭证')" class="iconfont icon-erweima1"></i>
+					</s>
+					</p>	-->		
+				</div>
+				<!--申述信息-->
+				<div v-if="order_detail.app>=0">
+					<p>申述消息：<s>{{order_detail.app_msg}}</s></p>
+					<p>申述时间：<s>{{order_detail.app_time}}</s></p>
+				</div>
+			</div>
+			<div class="details_right">
+				<!--购买显示卖家信息-->
+				<div v-if="order_detail.derection==1">
+					<p class="fw-b">支付信息</p>
+					<div class="border-b"  v-if="order_detail.bank.alipay!=null">					
+						<p>收款人：<s>{{order_detail.bank.alipay.name}}</s></p>
+						<p>收款二维码：<i @click="chakan('http://cnd.cjlnet.com/'+order_detail.bank.alipay.code,'支付宝收款码')" class="iconfont icon-erweima1"></i></p>
+						<p>支付宝账号：<s>{{order_detail.bank.alipay.account}}</s></p>
+					</div>
+					<div  class="border-b"  v-if="order_detail.bank.wechat!=null">					
+						<p>收款人：<s>{{order_detail.bank.wechat.name}}</s></p>
+						<p>支付宝收款二维码：<i @click="chakan('http://cnd.cjlnet.com/'+order_detail.bank.wechat.code,'微信收款码')" class="iconfont icon-erweima1"></i></p>
+						<p>微信账号：<s>{{order_detail.bank.wechat.account}}</s></p>
+					</div>
+					<div class="border-b"  v-if="order_detail.bank.bank!=null">					
+						<p>姓名：<s>{{order_detail.bank.bank.name}}</s></p>
+						<p>开户行：<s>{{order_detail.bank.bank.account}}</s></p>
+						<p>银行卡号：<s>{{order_detail.bank.bank.code}}</s></p>
+					</div>									
+				</div>
+			</div>
+		</div>
+		<!--购买显示买家按钮-->
+		<div v-if="order_detail.derection==1">
+			<div class="btn" >
+				<p>
+					<a href="javascript:;" class="a" v-if="order_detail.status==1" @click="cancelOrder(order_detail.id)">取消订单</a>
+					
+					<!--<a href="javascript:;" class="a bg-bule" v-if="order_detail.status==1" @click="uploadO(order_detail.id)">上传打款凭证</a>-->
+					<a href="javascript:;" class="a bg-bule" v-if="order_detail.status==1" @click="confirmOrder(order_detail.id)">确定打款</a>
+					<a href="javascript:;" class="a bg-bule" v-if="order_detail.apply==1" @click="appelOrder(order_detail.id)">申述</a>
+				</p>
+				<p class="mt-2">
+					请在<span id="dateShow1" :data-date="order_detail.expire_time"> 
+						<!--<span class="date-tiem d">00</span>天
+						<span class="date-tiem h">00</span>时-->
+						<span class="date-tiem m">00</span>分
+						<span class="date-s s">00</span>秒
+						
+					</span>
+					<span>内付款给卖家</span>
+				</p>				
+				
+			</div>
+		</div>
+		<!--出售显示卖家按钮-->
+		<div v-if="order_detail.derection==0">
+			<div class="btn" >
+				<p>
+					<a href="javascript:;" class="a" v-if="order_detail.status==1" @click="cancelOrder(order_detail.id)">取消订单</a>
+					
+					<a href="javascript:;" class="a" v-if="order_detail.status==1">待打款</a>
+					<a href="javascript:;" class="a bg-bule" v-if="order_detail.status==2" @click="goOrder(order_detail.id)">放行</a>
+					<a href="javascript:;" class="a bg-bule" v-if="order_detail.apply==1" @click="appelOrder(order_detail.id)">申述</a>
+				</p>									
+				
+			</div>
+		</div>
+	
+		<div class="wapk" id="uploadImg" style="width: 200px;margin: auto; display: none;">
+				<h2>上传打款凭证</h2>
+				<div class="line"> 
+				<a  href=" " class="a-upload">   
+					<form id="uploadFile" class="formF" enctype="multipart/form-data" action="#" onsubmit="return false" >  
+						<input type="file" name="file" id="file" onchange="preview(this)"  accept="image/*" placeholder="上传打款凭证"/>
+					</form>
+					<div id="xmTanDiv_1" class="img">
+						上传打款凭证
+					</div> 
+				</a> 
+				<button class="submit" id="submit" @click="submitT()">确定上传</button>
+			</div>
+			
+		</div>	
+		<!--选择付款方式-->
+		<div class="wapk" id="chooseType" style="width: 400px;margin: auto; display: none;">
+			<p class="p">选择付款方式</p>
+			<div class="content">
+				<button class="submit" v-if="order_detail.bank.alipay!=null" id="" @click="choose(order_detail.bank.alipay.id)">支付宝</button>
+				<button class="submit" v-if="order_detail.bank.wechat !=null" id="" @click="choose(order_detail.bank.wechat.id)">微信</button>
+				<button class="submit" v-if="order_detail.bank.bank !=null" id="" @click="choose(order_detail.bank.bank.id)">银行卡</button>
+			</div>
+		</div>
+		
+	</div>	
+		<script src="js/leftTime.min.js"></script>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+		var vue = new Vue({
+				el: ".order_detail",
+				data: {					
+					order_detail:{},
+					id:"",	
+					fee:"",
+					bank:{},
+					alipay:{},
+					typeNum:1,    //支付方式是否只有一种
+					
+				},
+				created() {		
+					if(GetQueryString("id")!=null){
+						this.id=GetQueryString("id");
+						this.fee=GetQueryString("fee")
+					}
+					this.getDetail();
+					
+				},
+				mounted() {},
+				methods: {					
+					getDetail(){
+						var that = this;
+						var param = {
+							"id":that.id,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/order_detail',param, 
+						function(res) {
+							that.order_detail=res.data;							
+		
+						}, 'json');
+					},
+					 chakan(src,title){
+							layer.open({
+							  type:1,
+							  title:title,
+							  skin: 'layui-layer-rim', //加上边框
+							  area: ['600px', '700px'], //宽高
+							  content: '<img style="width:80%;display:block;margin:auto;" src="'+src+'"/>'
+							});
+					},
+					getTT(){
+						var that=this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						$.post(localhostUrl+'/index/index/getQiNiuToken',param, 
+						function(res) {
+							if(res.status==0){
+							that.qiniu_token=res.data;				
+							console.log("token1:"+that.qiniu_token)		
+						}else{
+							Invalid(res)  //判断登录是否失效
+							$("#submit").attr("disabled", false)
+						}
+						
+						}, 'json')
+					},
+					uploadO(id){   //上传打款凭证
+						layer.open({
+						  type:1,
+						  title:'上传打款凭证',
+						  skin: 'layui-layer-rim', //加上边框
+						  area: ['600px', '700px'], //宽高
+						  content: $("#uploadImg")
+						});
+					},
+					submitT(){
+						var that = this;
+						var file = $("#file").val();
+						// 是否非空
+						if (!isKong(file, $("#file").attr("placeholder"))) {
+							return false;
+						}						
+						var close1=	layer.confirm("确定上传？", {
+								title:"上传",
+								btn: ["确定","取消"] ,//按钮
+								yes:function(){	
+									layer.close(close1)
+									$("#submit").attr("disabled", "disabled");
+									layer.msg("提交成功", {
+									  icon: 1,//提示的样式
+									  time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+										end:function(){
+											that.getTT();
+											//uploadImg("uploadFile");
+										}
+									});  
+								},
+							})			
+						
+					},
+					uploadImg(tt){
+						var that=this;							
+						console.log(tt)	
+						//this.getTT();	
+						console.log("token:"+that.qiniu_token)	
+						var file=document.getElementById(tt);
+						console.log(file)	
+						var param = new FormData(file);
+						param.append('token', that.qiniu_token);
+						$.ajax({
+							url: 'https://upload-z2.qiniup.com/',
+							type: "post",
+							dataType: 'JSON',
+							async: false,
+							cache: false,
+							contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+							processData: false, // 告诉jQuery不要去处理发送的数据
+							beforeSend: function(request) {
+								request.setRequestHeader("token", that.qiniu_token);
+							},
+							data: param,
+							// async:false,
+							success: function(res) {
+								 console.log(res)								
+									var imgurl=res.key;
+									imgurl=imgurl;
+									
+							},
+							error: function() {
+								layer.msg('网络不好，稍微再试！');
+							}
+							
+						});
+						$("#submit").attr("disabled", false);
+						
+					},
+					
+					revokeOrder(id){
+					var that = this;
+					var close1=	layer.confirm("确定撤单？", {
+							title:"撤单",
+							btn: ["确定","取消"] ,//按钮
+							yes:function(){	
+								layer.close(close1)								
+								var param = {
+									"id":that.id,
+									"token": $.cookie("token")
+								}
+								param=rsaMethod(param)
+								param={
+									"data":param
+								}
+								$.post(localhostUrl+'/index/c2c/confirm_trade',param, 
+								function(res) {
+									if(res.status==0){
+										layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+												$("#submit").attr("disabled", false)
+												window.location.reload()
+											}
+											});
+										
+									}else{							
+										Invalid(res)  //判断登录是否失效
+										$("#submit").attr("disabled", false)
+									}
+								}, 'json');
+								  
+							},
+						})			
+					
+					
+				},
+				confirmOrder(id){
+					var that = this;
+					var close1=	layer.confirm("确定打款？", {
+							title:"确定打款",
+							btn: ["确定","取消"] ,//按钮
+							yes:function(){	
+								layer.close(close1);
+								closeCon=layer.open({
+								  type:1,
+								  title:'选择付款方式',
+								  skin: 'layui-layer-rim', //加上边框
+								  area: ['600px', '700px'], //宽高
+								  content: $("#chooseType")
+								});								
+								
+								  
+							},
+						})
+					
+				},
+				choose(type){	//选择付款方式
+					var that = this;
+					console.log(type)
+					$(".submit").attr("disabled", true)
+					layer.close(closeCon)					
+					var param = {
+								"id":that.id,
+								"type":type,
+								"token": $.cookie("token")
+								}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/proof',param, 
+						function(res) {
+							if(res.status==0){
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+										$(".submit").attr("disabled", false)
+										window.location.reload()
+									}
+									});
+								
+							}else{							
+								Invalid(res)  //判断登录是否失效
+								$("#submit").attr("disabled", false)
+							}
+						}, 'json');
+				},
+				goOrder(id){
+					var that = this;
+					var close1=	layer.confirm("确定放行？", {
+							title:"确定放行",
+							btn: ["确定","取消"] ,//按钮
+							yes:function(){	
+								layer.close(close1)
+								layer.prompt({title: '交易密码', formType: 1}, function(pwd, index){
+									layer.close(index);
+								   
+									//console.log("pwd:"+pwd)
+									layer.msg("提交成功", {
+									  icon: 1,//提示的样式
+									  time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+										end:function(){
+											pwd = CryptoJS.MD5(pwd).toString().toUpperCase();
+											var param = {
+												"id":that.id,
+												"status":3,
+												"paypass":pwd,
+												"token": $.cookie("token")
+											}
+											param=rsaMethod(param)
+											param={
+												"data":param
+											}
+											$.post(localhostUrl+'/index/c2c/confirm_order',param, 
+											function(res) {
+												if(res.status==0){
+													layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+															$("#submit").attr("disabled", false)
+															window.location.reload()
+														}
+														});
+													
+												}else{							
+													Invalid(res)  //判断登录是否失效
+													$("#submit").attr("disabled", false)
+												}
+											}, 'json');
+										}
+									});  
+								  });								
+								
+								  
+							},
+						})													
+				},
+				cancelOrder(id){
+					var that = this;
+					var close1=	layer.confirm("确定取消订单？", {
+							title:"取消订单",
+							btn: ["确定","取消"] ,//按钮
+							yes:function(){	
+								layer.close(close1)								
+								var param = {
+									"id":that.id,
+									"status":4,
+									"token": $.cookie("token")
+								}
+								param=rsaMethod(param)
+								param={
+									"data":param
+								}
+								$.post(localhostUrl+'/index/c2c/confirm_order',param, 
+								function(res) {
+									if(res.status==0){
+										layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+												$("#submit").attr("disabled", false)
+												window.location.reload()
+											}
+											});
+										
+									}else{							
+										Invalid(res)  //判断登录是否失效
+										$("#submit").attr("disabled", false)
+									}
+								}, 'json');
+								  
+							},
+						})			
+					
+					
+				},
+				appelOrder(id){
+				//console.log(id);
+					var close1=	layer.confirm("确定申述？", {
+							title:"确定申述",
+							btn: ["确定","取消"] ,//按钮
+							yes:function(){	
+								layer.close(close1)
+								layer.prompt({title: '填写申述理由', formType: 2}, function(text, index){
+									layer.close(index);								   
+									console.log("text:"+text)
+										var param = {
+												"id":that.id,
+												"content":text,
+												"token": $.cookie("token")
+											}
+											console.log(param)
+											param=rsaMethod(param)											
+											param={
+												"data":param
+											}
+											$.post(localhostUrl+'/index/c2c/confirm_order',param, 
+											function(res) {
+												if(res.status==0){
+													layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+															$("#submit").attr("disabled", false)
+															window.location.reload()
+														}
+														});
+													
+												}else{							
+													Invalid(res)  //判断登录是否失效
+													$("#submit").attr("disabled", false)
+												}
+											}, 'json');  
+								  });
+								
+							},
+						})											
+				},										
+																												
+					
+			}
+		})
+		//图片预览
+		function preview(file) {	
+				var parent=$(file).parents('.formF').siblings(".img");
+			//	console.log(parent.html())
+				var img;
+				if (file.files && file.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function (evt) {
+					//	console.log('src11:'+evt.target.result)
+						var src=evt.target.result;
+//		                parent.innerHTML = '<img src="' + evt.target.result + '" class="img"/>';
+						img='<img src="' + evt.target.result + '" />';
+					//	console.log(img)
+						parent.html(img);
+					}
+					reader.readAsDataURL(file.files[0]);
+				} else {
+				   // parent.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+					var src=file.value;
+					img='<img src="' + src + '" class="img"/>';
+					parent.html(img);
+//					console.log('src22:'+src)
+
+				}
+			}
+			$(function(){
+			//日期倒计时,现在距离下面的日期
+			var data_show = $('.data-box');
+			for(var i=1;i<=data_show.length;i++){
+				function_name($("#dateShow"+i).data("date"),"#dateShow"+i);
+			}
+			// function_name('2018/02/22 23:45:24','.data-show-box');
+			// function_name('2018/02/20 21:43:55','.data-show-box');
+			function function_name(time,obj) {
+				$.leftTime(time,function(d){
+					if(d.status){
+						var $dateShow1=$(obj);
+						$dateShow1.find(".d").html(d.d);
+						$dateShow1.find(".h").html(d.h);
+						$dateShow1.find(".m").html(d.m);
+						$dateShow1.find(".s").html(d.s);
+					}
+				});
+			}
+		});
+		</script>
+		
+	</body>
+</html>

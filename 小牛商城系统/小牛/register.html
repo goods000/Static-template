@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+	.logo{ margin-top: 10%;margin-left:5%;text-align: left;}
+	.login h2 a:nth-child(1){font-size:20px;font-weight:600;color: #333;border-bottom: 2px solid #677ee8;}
+</style>
+<body>
+	<h1 class="h1 qrodeh1">
+		<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	</h1>
+	<div class="logo">
+		<h2>注册账号</h2>
+		<p>欢迎来到小牛</p>
+	</div>
+	<div class="login login_1">
+		<form>			
+			<div class="locgin_i">
+				<input type="text" class="phone" placeholder="输入注册账号" />
+			</div>
+			<div class="locgin_i">
+				<input type="text" class="code" placeholder="输入短信验证码"/>
+				<input type="button" class="getCode1" id="getCode"  value="获取验证码">
+			</div>
+			<div class="locgin_i">
+				<input type="text" class="account" placeholder="输入6~12位字母、数字作为登录账号" />
+			</div>
+			<div class="locgin_i">
+				<input type="password" class="pwd" placeholder="输入登录密码" />
+				<img src="img/login_nosee.png" class="img see_img"/>
+			</div>
+			<div class="locgin_i">
+				<input type="password" class="re_pwd" placeholder="确认登录密码" />
+				<img src="img/login_nosee.png" class="img see_img"/>
+			</div>
+			<div class="locgin_i">
+				<input type="password" class="pay_pwd" placeholder="输入交易密码" />
+				<img src="img/login_nosee.png" class="img see_img"/>
+			</div>
+			<div class="locgin_i">
+				<input type="password" class="pay_re_pwd" placeholder="确认交易密码" />
+				<img src="img/login_nosee.png" class="img see_img"/>
+			</div>
+			<div class="locgin_i">
+				<input type="password" class="invite" placeholder="请输入邀请码" />
+			</div>
+			<button class="anniu">确定</button>
+		</form>
+	</div>
+	<a href="" class="to_regiser"><span class="chioce">下载APP</span></a>
+</body>
+<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+<script>
+		$("input").on("blur",function(){
+	        var toFix=$(this).offset().top;
+	        window.scroll(0,toFix);//失焦后强制让页面归位
+	    });
+		
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+	
+		$(".anniu").click(function(){
+			var phone=$(".phone").val();
+			var code=$(".code").val();
+			var account=$(".account").val();
+			var pwd=$(".pwd").val();
+			var re_pwd=$(".re_pwd").val();
+			var pay_pwd=$(".pay_pwd").val();
+			var pay_re_pwd=$(".pay_re_pwd").val();
+			var invite=$(".invite").val();
+			// 是否非空
+			if(!isKong(phone,$(".phone").attr("placeholder"))){
+				return false;
+			}
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				return false;
+			}
+			if(!isKong(account,$(".account").attr("placeholder"))){
+				return false;
+			}
+			if(!CheckPw(pwd)){
+				$(".pwd").focus();
+				return false;
+			}
+			if(!CheckPw(re_pwd)){
+				$(".re_pwd").focus();
+				return false;
+			}
+			if(re_pwd != pwd){
+				layer.msg('两次密码不一致',{icon:2,time:1000});
+				$(".re_pwd").focus();
+				return false;
+			}
+			if(!Check_payPwd(pay_pwd)){
+				$(".pay_pwd").focus();
+				return false;
+			}
+			if(!Check_payPwd(pay_re_pwd)){
+				$(".pay_re_pwd").focus();
+				return false;
+			}
+			if(pay_re_pwd != pay_pwd){
+				layer.msg('两次密码不一致',{icon:2,time:1000});
+				$(".re_pwd").focus();
+				return false;
+			}
+			if(!isKong(invite,$(".invite").attr("placeholder"))){
+				return false;
+			}
+			layer.msg('登录成功',function() {
+				window.location.href = "login.html";
+			});
+		})
+	
+		</script>
+		<script type="text/javascript">
+			var toggle = true;
+			$(".see_img").click(function() {
+				if(toggle) {
+					$(this).attr("src","img/login_see.png");
+					$(this).prev().attr("type","text");
+					toggle = false;
+				} else {
+					$(this).attr("src", "img/login_nosee.png");
+					$(this).prev().attr("type","password");
+					toggle = true;
+				}
+			});
+		</script>
+</html>

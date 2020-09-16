@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.h1{background: none;}
+		</style>
+	</head>
+	<body>
+		<div class="invite">
+			<h1 class="h1"><button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button><p>邀请好友</p></h1>
+			<img src="img/invite_logo.png" class="invite_logo"/>
+			<div class="tab">
+				<a href="javascript:;" class="active">左区邀请码</a>
+				<a href="javascript:;">右区邀请码</a>
+			</div>
+			<div class="inviteBox on">
+				<div class="qrBox">
+					<span id="uid"><i>邀请码:</i><i>164723</i></span>
+					<div class="invite_box">
+						<p class="qrcode"></p>
+					</div>
+					<p class="title_i">邀请链接</p>
+					<textarea name="" id="foo_1" rows="2" cols="">https://www.newduba.cn/?un_456645_1232&hid=16_&pru=164723</textarea>
+					<div class="anniu_neibu">
+						<button onclick="copy()" class="btn copy" data-lang="label_transaction_id" data-clipboard-action="copy" data-clipboard-target="#foo_1">复制链接</button>
+					</div>
+				</div>
+			</div>
+			<div class="inviteBox">
+				<div class="qrBox">
+					<span id="uid"><i>邀请码:</i><i>123456</i></span>
+					<div class="invite_box">
+						<p class="qrcode_1"></p>
+					</div>
+					<p class="title_i">邀请链接</p>
+					<textarea name="" id="foo_2" rows="2" cols="">https://www.newduba.cn/</textarea>
+					<div class="anniu_neibu">
+						<button onclick="copy()" class="btn copy" data-lang="label_transaction_id" data-clipboard-action="copy" data-clipboard-target="#foo_2">复制链接</button>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</body>
+	<script src="js/jquery.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		jQuery(function(){
+			var widt = document.body.clientWidth;
+			jQuery('.qrcode').qrcode({	
+			width:widt*0.35,
+		    height:widt*0.35,
+		    text:"https://www.baidu.com/"
+		    });
+		});
+		jQuery(function(){
+			var widt = document.body.clientWidth;
+			jQuery('.qrcode_1').qrcode({	
+			width:widt*0.35,
+		    height:widt*0.35,
+		    text:"https://www.baidu.com/"
+		    });
+		});
+		
+		function copy(){
+			layer.msg("复制成功！", { icon: 6,time: 2000});
+			}
+			var clipboard = new Clipboard('.btn');
+			clipboard.on('success', function(e) {
+			console.log(e);
+			});
+			clipboard.on('error', function(e) {
+			console.log(e);
+		});
+		
+		$(".tab a").click(function() {
+			var index = $(".tab a").index($(this));
+			$(".tab a").removeClass("active").eq(index).addClass("active");
+			$(".inviteBox").removeClass("on").eq(index).addClass("on");
+			show();
+		})
+	</script>
+</html>

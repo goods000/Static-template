@@ -1,0 +1,73 @@
+.setting-switch {
+    position: absolute;
+    /*font-size: .16rem;*/
+    right:0rem;
+    top: 0%;
+    /*margin-top: -0.16rem;*/
+    width: .7rem;
+    height: .3rem;
+    line-height: .3rem;
+}
+.setting-switch input {
+    width: .7rem;
+    height: -1rem;
+    position: absolute;
+    top: -10px;
+    left: -2rem;  
+    z-index: 2;
+    border: 0;
+    /*background: #03FBFE 0;*/
+    -webkit-appearance: none;
+    outline: 0;
+    border-radius: 25px;
+}
+.setting-switch input:before {
+    content: '';
+    width: 2.7rem;
+    height: 1.5rem;
+    background-color: #DDDDDD;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    border-color: #dfdfdf;
+    -webkit-box-shadow: #dfdfdf 0 0 0 0 inset;
+    box-shadow: #dfdfdf 0 0 0 0 inset;
+    -webkit-transition: border .4s,-webkit-box-shadow .4s;
+    transition: border .4s,box-shadow .4s;
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
+    border-radius: 25px;
+}
+
+.setting-switch input:checked:before {
+    border-color: #03FBFE;
+    -webkit-box-shadow: #03FBFE 0 0 0 0.16rem inset;
+    box-shadow: #03FBFE 0 0 0 0.16rem inset;
+    background-color: #03FBFE;
+    transition: border .4s,box-shadow .4s,background-color 1.2s;
+    -webkit-transition: border .4s,-webkit-box-shadow .4s,background-color 1.2s;
+    background-color: #03FBFE;
+    border-radius: 25px;
+}
+.setting-switch input:checked:after {
+    left: 1.35rem;
+}
+.setting-switch input:after {
+    content: '';
+    width:1.2rem;
+    height: 1.2rem;
+    position: absolute;
+    top: 51%;
+    left: .2rem;
+    -webkit-transform:translateY(-50%);
+    border-radius: 50%;
+    border:none;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0.01rem 0.03rem rgba(0,0,0,.4);
+    box-shadow: 0 0.01rem 0.03rem rgba(0,0,0,.4);
+    -webkit-transition: left .2s;
+    transition: left .2s
+}

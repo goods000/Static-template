@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,html{background: #fff;}
+			.annius{width: 100%;}
+			.touImg{background: #217AFF;width: 70px;height: 70px;border-radius: 50px;margin: 5% auto;}
+			.touImg #xdaTanFileImg_1{width: 70px; height: 70px;opacity:0;position:absolute;z-index:2;}
+			.touImg i{border-radius: 50px;position:relative;width: 70px; height: 70px;overflow:hidden;z-index:1;}
+			.touImg i img{width: 100%;height: 100%;display:block;border-radius: 50px;}
+			img:not([src]) {opacity: 0;}
+		</style>
+	</head>
+	<body>
+		
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>修改个人信息</p>
+		</h1>
+		<div class="edit_user">
+			<div id="xmTanDiv_1" class="touImg">
+				<input type="hidden" id="uploadOrderid" name="id" value="">
+				<input type="file" name="file1" id="xdaTanFileImg_1" onchange="xmTanUploadImg_1(this)" accept="image/*">
+				<i>
+					<img src="" id="xmTanImg_1" alt="" onerror="this.src='img/logo.png'" >
+			    </i>
+			</div>
+			<div class="form">
+				<!-- <form> -->
+					<div class="group">
+						<label>新昵称</label>
+						<input id="text" type="text" value="" placeholder="请输入昵称" maxlength="10" onkeyup="checknum()" />
+						<i id="in" type="text" disabled="disabled"></i>
+					</div>
+					<button class="annius">确认</button>
+			<!-- </form> -->
+		</div>
+		
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+		function checknum(){
+	        var nMax = 10;
+	        var textDom =  document.getElementById("text");
+	        var len =textDom.value.length;    
+	        if(len>nMax){
+	            textDom.value = textDom.value.substring(0,nMax);
+	            nMax = 0;
+	        }
+	        document.getElementById("in").innerText=(nMax-len)+"/10";
+	    }
+	    checknum();
+	
+		$(".annius").click(function(){
+			var img = $("#xdaTanFileImg_1").val();
+			console.log("img："+img);
+			var text = $("#text").val();
+			if(img === ""){
+				layer.msg('请上传头像');
+				return false;
+			}
+			if(text === ""){
+				layer.msg('请输入昵称');
+				$("#text").focus();
+				return false;
+			}
+			return true;
+		})
+		
+		function xmTanUploadImg_1(obj) {
+        var file = obj.files[0];
+		console.log("file.size = " + file.size); //file.size 单位为byte
+		var reader = new FileReader();
+		reader.onload = function (e) {
+		console.log("成功读取....");
+		var size = file.size/1024;
+		var size = size/1024;
+		if (size>4) {
+		alert('上传图片不能超过4MB，请重新选择!');return false;
+		}
+		var img = document.getElementById("xmTanImg_1");
+		img.src = e.target.result;
+		//或者 img.src = this.result; //e.target == this
+		}
+		reader.readAsDataURL(file)
+		}
+		</script>
+	</body>
+</html>

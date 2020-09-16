@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript" src="js/tab_wo.js" ></script>
+		
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			.body_1{height:800px;}
+			.markets_itme dl dd s{background: none;}
+			.markets_itme dl dd  s .s1{border: 1px solid #E83F60;color:#E83F60; }
+			.markets_itme dl dd  s .s2{border: 1px solid #1984D6;color:#1984D6;}
+			.markets_itme dl dd  s .s3{border: 1px solid #00AF8E;color:#00AF8E;}
+			.markets_itme dl dd  s span{border-radius: 3px;padding: 2px 4px;}
+		</style>
+	</head>
+	<body>
+		<div id="header" name="3"></div>
+		
+		<div class="markets otc_ul" >
+			<div class="container">
+				<div class="top_menu">
+					<div class="common liactive">购买</div>
+					<div class="common">出售</div>
+					<div class="otc_top">
+						<a onclick="release()">发布订单</a>
+						<a onclick="shangjai()">商家管理</a>
+						<a href="application.html">商家申请</a>
+						<a href="otc_order.html">OTC订单</a>
+						<a href="otc_release.html">OTC挂单</a>
+					</div>
+				</div>
+				
+				<div class="ul scroll" @scroll="getScroll"  v-cloak>
+					<div class="bottom_content">
+						<div class="body_1 markets_itme ">
+							<div class="tab" js-tab="2">
+								<div class="tab-title">
+									<a href="javascript:;" class="item">USDT</a>
+								</div>
+								
+								<div class="dingdan tab-cont " >
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme" >
+											<dl>
+												<dt>广告方<span>30天成交<s>50</s>单</span></dt>
+												<dt>数量</dt>
+												<dt>限额</dt>
+												<dt>单价</dt>
+												<dt>支付方式</dt>
+												<dt>操作</dt>
+											</dl>
+											<dl  v-for="(item,index) in trade_list" :key="index" >
+												<dd>{{item.nick}} </dd>
+												<dd>{{item.lave}} USDT </dd>
+												<dd>{{item.min}}-{{item.max}} CNY </dd>
+												<dd>{{item.price}} CNY </dd>
+												<dd> <s>
+													<span class="s1" v-if="item.bank.bank==1"> 银行卡</span>
+													<span class="s2" v-if="item.bank.alipay==1"> 支付宝</span>
+													<span class="s3" v-if="item.bank.wechat==1"> 微信</span>
+												</s> 
+												</dd>
+												<dd> <a @click="buy(item)">购买</a> </dd>
+											</dl>
+											<div class="kong"  v-if="trade_list.length<=0">					
+												<p>没有更多数据</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>		
+						</div>
+						
+						
+						<div class="body_1">
+							<div class="tab" js-tab="1">
+								<div class="tab-title">
+									<a href="javascript:;" class="item">USDT</a>
+								</div>
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme"  v-cloak>
+											<dl >
+												<dt>广告方<span>30天成交<s>50</s>单</span></dt>
+												<dt>数量</dt>
+												<dt>限额</dt>
+												<dt>单价</dt>
+												<dt>支付方式</dt>
+												<dt>操作</dt>
+											</dl>
+											<dl  v-for="(item,index) in sout_list" :key="index">
+												<dd>{{item.nick}} {{sout_list.length}}</dd>
+												<dd>{{item.lave}} {{item.flg}}</dd>
+												<dd>{{item.min}}-{{item.max}} CNY</dd>
+												<dd>{{item.price}} CNY</dd>
+												<dd><s>
+													<span class="s1" v-if="item.bank.bank==1"> 银行卡</span>
+													<span class="s2" v-if="item.bank.alipay==1"> 支付宝</span>
+													<span class="s3" v-if="item.bank.wechat==1"> 微信</span>
+												</s></dd>
+												<dd><a @click="sell(item)">出售</a></dd>
+											</dl>
+											<div class="kong" v-if="sout_list.length<=0">					
+												<p>没有更多数据</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+   	
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script type="text/javascript">			
+						
+		function release(){
+			layer.open({
+				  type: 2,
+				  title:'发布广告',
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['600px', '740px'], //宽高
+				  content: 'release.html'
+				});
+		}
+		function shangjai(){
+			layer.open({
+				  type: 2,
+				  title:'商家信息',
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['600px', '500px'], //宽高
+				  content: 'business.html'
+				});
+		}
+			function buy1(){
+				layer.open({
+				  type: 2,
+				  title:'购买',
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['600px', '500px'], //宽高
+				  content: 'buy.html'
+				});
+			}
+			function sell1(){
+				layer.open({
+				  type: 2,
+				  title:'出售',
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['600px', '430px'], //宽高
+				  content: 'sell.html'
+				});
+			}
+		
+
+		$(function(){
+ 			 $('[js-tab=1]').tab();
+		});
+		$(function(){
+ 			 $('[js-tab=2]').tab();
+		});
+		
+			//console.log("left -右滑",(parseInt($('.bottom_content')[0].style.left)));
+			$('.bottom_content')[0].style.left = "0%";
+			var startX = '',disX ='';
+			var index=0;    //初始化，0代表买，1代码卖
+			$('.top_menu').on('click','.common',function(){
+				 index = $(this).index();
+				$('.bottom_content').css('left','-' + index * 100 + '%');
+				$('.top_menu .common').eq(index).addClass('liactive').siblings().removeClass('liactive');
+				vue.page=1	;  //每次点击page都为1
+				if(index==1){	///点击才初始化 卖//第一次的时候或者刷新，切换清空数据
+					vue.getsoutList()					
+				}else{		//买 第一次的时候或者刷新，切换清空数据
+					vue.gettradeList()					
+				}
+			});
+			$('.bottom_content').on('touchstart','.body_1',function(e){
+				startX = e.originalEvent.changedTouches[0].clientX;
+			});
+			$('.bottom_content').on('touchmove','.body_1',function(e){
+				e.stopPropagation()
+			})
+			$('.bottom_content').on('touchend','.body_1',function(e){
+				disX = e.originalEvent.changedTouches[0].clientX - startX;
+				var leftNum = parseInt($('.bottom_content')[0].style.left);
+				if(disX > 0 && disX > 100) {
+					if(leftNum <= -100) {
+						$('.bottom_content')[0].style.left = leftNum + 100 + "%";
+						var order = -parseInt($('.bottom_content')[0].style.left)/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				} else if(disX < 0 && disX < -100) {
+					if(leftNum >= -200) {
+						$('.bottom_content')[0].style.left = leftNum - 100 + "%";
+						var order = (-parseInt($('.bottom_content')[0].style.left))/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				}
+		})
+		
+		
+		var vue = new Vue({
+				el: ".ul",
+				data: {					
+					trade_list:[],	
+					sout_list:[],	
+					pageList:[],    //每页数据					
+					page:1,	
+					soutPage:1,
+				},				
+				mounted() {
+				//	window.addEventListener('scroll', this.getScroll);
+				},
+				destroyed() {
+				//	window.removeEventListener('scroll', this.getScroll);
+				},
+				created() {		
+				
+					this.gettradeList();					
+				},
+				mounted() {},
+				methods: {		
+					gettradeList(){
+						var that = this;
+						if(that.page==1){		//第一次的时候或者刷新，切换清空数据
+							that.pageList=[];
+							that.trade_list=[];
+						}					
+						var param = {
+							"page":that.page,
+							derection:0,
+							type:4,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/trade',param, 
+						function(res) {
+						if(res.status==0){
+						//console.log(res.data)
+							if(res.data!=null){								
+								that.pageList=res.data;
+								that.trade_list = that.trade_list.concat(that.pageList);
+								console.log(that.trade_list)
+							}
+						}
+						else{
+								Invalid(res)  //判断登录是否失效							
+							}							
+						}, 'json');
+					
+					},
+					getsoutList(){
+						var that = this;
+						if(that.page==1){		//第一次的时候或者刷新，切换清空数据
+							that.pageList=[];
+							that.trade_list=[];
+						}	
+						var param = {
+							"page":that.page,
+							derection:1,
+							type:4,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/trade',param, 
+						function(res) {
+							if(res.status==0){
+						//	console.log(res.data)
+								if(res.data!=null){
+									that.pageList=res.data;
+									that.sout_list = that.sout_list.concat(that.pageList);
+									console.log(that.sout_list)
+								}
+							}else{
+								Invalid(res)  //判断登录是否失效		
+							}								
+							
+						}, 'json');
+					},
+					buy(item){			//购买出来弹窗
+					//console.log("id:"+id)
+						layer.open({
+						  type: 2,
+						  title:'购买',
+						  skin: 'layui-layer-rim', //加上边框
+						  area: ['600px', '500px'], //宽高
+						  content: 'buy.html?id='+item.id+"&min="+item.min+"&max="+item.max+"&price="+item.price+"&coin="+item.flg
+						});
+					},
+					sell(item){			//出售出来弹窗
+					//console.log("id:"+id)
+						layer.open({
+						  type: 2,
+						  title:'购买',
+						  skin: 'layui-layer-rim', //加上边框
+						  area: ['600px', '500px'], //宽高
+						  content: 'sell.html?id='+item.id+"&min="+item.min+"&max="+item.max+"&price="+item.price+"&coin="+item.flg
+						});
+					},
+					getScroll() {
+						var that=this;										
+
+						//如果上拉高度 大于 (内容高度 - wrapper高度) 50px 以上  且是未刷新状态时触发 ; 
+						 var h = $(".scroll").height();//div可视区域的高度
+						var sh = $(".scroll")[0].scrollHeight;//滚动的高度，$(this)指代jQuery对象，而$(this)[0]指代的是dom节点
+						var st =$(".scroll")[0].scrollTop;//滚动条的高度，即滚动条的当前位置到div顶部的距离
+						if(h+st>=sh){
+						//上面的代码是判断滚动条滑到底部的代码
+						//	console.log("滑到底部了");
+							if(that.pageList.length<10){		//买的每页不足10,说明没下一页							
+									layer.msg('没有更多数据');
+									return false;
+								}else{
+									that.page++									
+									
+								}
+							if(index==0){      //初始化的买的
+								that.gettradeList()
+							}
+							if(index==1){      //初始化的卖的
+								that.getsoutList()
+							}
+						//	console.log("page:"+that.page)
+						}																												
+
+					},
+				}
+			});
+
+
+	
+
+	
+
+		</script>
+		
+	</body>
+</html>

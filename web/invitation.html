@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" 
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="header" name="0"></div>
+		<img class="inviation_img" src="img/incitation.png"/>
+		<div class="invita_conter">
+			<div class="index_saa">
+				<i><img src="img/iv_1.png"/></i><div><p>发送邀请给好友</p><span>通过分享邀请好友注册</span></div>
+			</div>
+			<div class="index_saa">
+				<i><img src="img/iv_2.png"/></i>
+				<div><p>好友注册</p><span>好友接受邀请完成注册</span></div>
+			</div>
+			<div class="index_saa">
+				<i><img src="img/iv_3.png"/></i><div><p>获取奖励</p><span>获得相应比例奖励</span></div>
+			</div>
+		</div>
+		<div class="invita_co">
+			<div class="invita_left">
+				<div class="qrode_copy"> 
+					<h1>邀请链接</h1>
+					<div class="qrod">
+					<input  id="foo" type="text" value="hello" readonly="readonly">
+			    	<button onclick="copy()" class="btn" data-lang="label_transaction_id" data-clipboard-action="copy" data-clipboard-target="#foo">复制链接</button>
+					</div>
+				</div>
+			</div>
+			<div class="invita_right">
+				<div id="qrode"></div>
+			</div>
+		</div>
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+		<script src="js/clipboard.min.js"></script>
+		<script>
+		var userID= $.cookie("userID")
+		var url = location.href.split('/');
+			url = url[url.length -3];
+			url=url+"/web/registered.html?userID="+userID;
+			//console.log(url)
+		$("#foo").val(url)
+			jQuery(function(){
+			var widt = document.body.clientWidth;
+			jQuery('#qrode').qrcode({	
+			width:150,
+			height:150,
+			text:url
+			});
+
+		});
+
+function copy(){
+	layer.msg('复制成功！', { icon: 1,time: 2000});
+	//layer.msg('复制成功！');
+}
+  var clipboard = new Clipboard('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+		</script>
+		
+		
+	</body>
+</html>

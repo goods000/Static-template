@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="css/uploadimg.css">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/feedback.css">
+
+<style>s{text-decoration: none;}</style>
+</head>
+<body>
+	<header class="header">
+		<div class="headerLeft" onclick="goBack(-1)">
+			<img src="img/return-white.png" alt="">
+		</div>
+		<span class="headerTitle" data-lang="yijianfankui">意见反馈</span>
+		<!-- 	<span class="headerRight" onclick="navigate('feedbackrecord.html')">我的反馈</span> -->
+	</header>
+
+	<main class="main">
+	<form id="formAdd" enctype="multipart/form-data">
+		<p class="title" data-lang="wentimiaoshu">问题描述</p>
+		<textarea id="content" data-lang="qingshuruwushiziyish" placeholder="请输入50字以上的问题描述，以便更好的解决您的问题。"
+			name="coontent"></textarea>
+		<div id="length-note">
+			<s data-lang="gong">共</s> <label id="now-length">0</label><s data-lang="zi">字</s>
+		</div>
+
+		<div class="img-box full">
+			<section class="img-section">
+				<div class="z_photo upimg-div clear">
+					<section class="z_file fl">
+						<img src="img/camera.png" class="add-img">
+						<p data-lang="dianjishangchuan">点击上传</p>
+						<input type="file" multiple  name="file" id="file" class="file"accept="image/jpg,image/jpeg,image/png,image/bmp" />
+					</section>
+				</div>
+			</section>
+		</div>
+		<p class="max">
+			<s data-lang="shangchuanwenti">上传问题截图</s>（<span id="max">0</span>/3）
+		</p>
+
+		<p class="title" data-lang="lianxifangshi">联系方式</p>
+		<input type="text" name="userTel" class="input" data-lang="qingshurunide" placeholder="请输入您的邮箱/手机号方便我们联系" /> 
+			<a class="submit confirm-btn" data-lang="label_completed_transactions">提交</a>
+			<p class="tips" style="width: 100%;" data-lang="wenxintishi">温馨提示：意见反馈，只用于收集市场信息。人工线下回复。</p>
+			
+	</form>
+	</main>
+
+</body>
+
+<aside class="mask works-mask">
+	<div class="mask-content">
+		<p class="del-p">您确定要删除该图片吗？</p>
+		<p class="check-p">
+			<span class="del-com wsdel-ok">确定</span><span class="wsdel-no">取消</span>
+		</p>
+	</div>
+</aside>
+<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+<script src="js/common.js"></script>
+<script src="layer/layer.js"></script>
+<script src="js/imgUp.js"></script>
+<script type="text/javascript">
+	let textarea = $("textarea");
+	let length = $('#now-length');
+
+	textarea.on('input', function() {
+		length.text(this.value.length)
+	});
+	$(".submit").click(function() {
+		var file = $("#file").val();
+		$.ajax({
+			type : "POST",
+			url : '/saveFeedBack',
+			dataType : "json",
+			data : new FormData($('#formAdd')[0]),
+			processData : false, //data值是FormData对象，不需要对数据做处理。
+			contentType : false,//设置contentType值，因为是由<form>表单构造的FormData对象，且已经声明了属性enctype="multipart/form-data"，所以这里设置为false。
+			success : function(data) {
+				var lang = sessionStorage.getItem('lang');
+				if (data.success == true) {
+					loadPropertiesLocal(lang,'0');
+					window.location.href = "";
+				} else {
+					loadPropertiesLocal(lang,data.code);
+				}
+			}
+		})
+	})
+</script>
+</html>

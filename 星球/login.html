@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+	body,html{height:100vh;}
+	.login h2 a:nth-child(1){font-size:20px;font-weight:600;color: #333;border-bottom: 2px solid #677ee8;}
+</style>
+<body>
+	<div id="app">
+		<div class="logo"></div>
+		<img src="img/logo.png" class="logo_img"/>
+		<div class="login login_1">
+			<h2>登录</h2>
+			<!--<h2><a href="login.html">登录</a><a href="rst.html">注册</a></h2>-->
+			<form>			
+				<div class="locgin_i">
+					<label>登录账户</label>
+					<input type="text"class="mobile" placeholder="请输入您的登录账户" />
+				</div>
+				<div class="locgin_i">
+					<label>登录密码</label>
+					<input type="password" class="pwd" placeholder="请输入您的登录密码" />
+				</div>
+				<div class="a_box">
+					<a class="a" href="forget.html">忘记密码</a>
+					<a class="a" href="register.html">注册账户</a>
+				</div>
+				<div class="anniu" @click="login">确认登录</div>
+			</form>
+		</div>
+	</div>	
+</body>
+<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/vue-2.4.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/vue-resource-1.3.4.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+		$("input").on("blur",function(){
+	        var toFix=$(this).offset().top;
+	        window.scroll(0,toFix);//失焦后强制让页面归位
+	    });
+	
+		var vm = new Vue({
+			el:'#app',
+			data:{
+				user:{username:null,password:null},
+			},
+			methods: {
+				login: function(){
+					$.ajax({
+			            type: "POST",
+			            contentType:"application/json",
+			            url:'json/login/login.json',
+//			            data:md5Method(vm.user),//JSON.stringify(vm.user),//serialize
+			            async: false,
+			            success: function(r) {
+							if(r.code==0){
+	
+								$.cookie('username', vm.user.username);
+								$.cookie('token', r.data.token, { expires: 15 });
+			
+								window.location.href= "index.html"
+			    			}else{
+								//alert(r.msg);
+								layer.msg(r.msg);
+							}
+	
+					    } 
+			         })
+				}
+			},
+			created: function(){
+				var username=$.cookie('username');
+				this.user.username=username;
+		    }
+		});
+	
+	
+//		$(".anniu").click(function(){
+//			var mobile=$(".mobile").val();
+//			var pwd=$(".pwd").val();
+//			// 是否非空
+//			if(!isKong(mobile,$(".mobile").attr("placeholder"))){
+//				return false;
+//			}
+//			// 是否非空
+//			if(!isKong(pwd,$(".pwd").attr("placeholder"))){
+//				return false;
+//			}
+//			$.ajax({
+//	            type: "get",
+//	            contentType:"application/json",
+//		        url:'json/login/login.json',
+//	            async: false,
+//	            data : {
+//  				"username" :mobile,
+//  				"password" : pwd
+//  			},
+//	            success: function(data) {
+//	            	console.log(data)
+//					if(data.code == 0){
+//						layer.msg('登录成功',{icon:6,time:1000},function() {
+////							window.location.href = "index.html";
+//						});
+//	    			}else{
+//						layer.msg('登录失败',{icon:2,time:1000});
+//					}
+//				},
+//				error:function(data){
+//			        console.log(data);
+//			    }
+//	        })
+
+//			$.get('json/login/login.json',function(data){
+//				console.log(data);
+//				if(data.code==0){	
+//					layer.msg('登录成功',{icon:2,time:1000},function() {
+//						window.location.href = "index.html";
+//					});
+//				}else{					
+//					layer.msg('登录失败',{icon:2,time:1000});
+//				}
+//			})
+
+//			return true;
+//		})
+	
+		</script>
+</html>

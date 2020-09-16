@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+	    <link rel="stylesheet" href="css/font.css" />
+	    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	    <style type="text/css">
+	    	body,html{background: #3D68EF;}
+	    	.h1{background: none;border: none;}
+	    	.h1 p,.h1 button{color: #fff;}
+	    </style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p data-lang="">实名认证</p>
+		</h1>
+		<div class="real_name_box">
+			<div class="locgin_i">
+				<label>姓名</label>
+				<input type="text" class="account" placeholder="请输入姓名" />
+			</div>
+			<div class="locgin_i">
+				<label>身份证号码</label>
+				<input type="text" class="idcard" placeholder="请输入身份证号码" />
+			</div>
+			<div class="img_top_box">
+				<div class="img_box">
+				 	<input type="file" id="photo1" name="" accept="image/*"/>
+				    <div id="image1" class="image">
+				        <img src="" alt=""/>
+				    </div>
+				    <span>点击上传身份证正面</span>
+    			</div>
+				<div class="img_box">
+				 	<input type="file" id="photo2" name="" accept="image/*"/>
+				    <div id="image2" class="image">
+				        <img src="" alt=""/>
+				    </div>
+				    <span>点击上传身份证反面</span>
+    			</div>
+			</div>
+			<p class="real_name_tips">为了您的资金安全需要验证您的身份才可进行其他操作，认证信息一经验证不能修改，请务必如实填写</p>
+			<div class="anniu">确认提交</div>
+		</div>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		document.getElementById('photo1').onchange = function() {
+		    var imgFile = this.files[0];
+		    var fr = new FileReader();
+		    fr.onload = function() {
+		        document.getElementById('image1').getElementsByTagName('img')[0].src = fr.result;
+		    };
+		    fr.readAsDataURL(imgFile);
+		};
+		document.getElementById('photo2').onchange = function() {
+		    var imgFile = this.files[0];
+		    var fr = new FileReader();
+		    fr.onload = function() {
+		        document.getElementById('image2').getElementsByTagName('img')[0].src = fr.result;
+		    };
+		    fr.readAsDataURL(imgFile);
+		};
+		$(".anniu").click(function(){
+			var account=$(".account").val();
+			var idcard=$(".idcard").val();
+			// 是否非空
+			if(!isKong(account,$(".account").attr("placeholder"))){
+				return false;
+			}
+			if(!isIdCard(idcard)){
+				$(".idcard").focus();
+				return false;
+			}
+			
+		})
+	</script>
+</html>

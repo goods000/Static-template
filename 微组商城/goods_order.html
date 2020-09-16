@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{height: 100vh;}
+			.layui-layer-btn{display: flex;}
+			.layui-layer-btn a{width: 50%;text-align: center;}
+			#pay_pwd .maskBox .titleText,#pay_pwd .maskBox .contentText,#pay_pwd .maskBox .pwdInput,#pay_pwd .maskBox .fakeBox input{color: #000;}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+		    <div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">订单详情</span>
+		</header>
+		<div class="submitOrder mian_top">
+			<a href="address.html" class="order_a">
+				<div class="info">
+					<img src="img/goods_addr.png" class="goods_addr"/>
+					<div class="info_details">
+						<div class="person">
+							<div class="l">
+								<div class="l_r">
+									<span>微货铺</span>
+								</div>
+								<div class="l_r">
+									<span class="iphone">188 8888 8888</span>
+								</div>
+							</div>
+						</div>
+						<div class="chooseAddress">
+							<p class="l_r"><span class="addr">广东省 深圳市 龙华区上芬社区18栋阳光公寓8楼808室</span></p>
+						</div>
+					</div>
+					<!--<div>
+						<div class="person">
+							<p>暂无收货地址~~~</p>
+						</div>
+						<div class="chooseAddress">
+							<p>请前往添加地址~~~</p>
+						</div>
+					</div>-->
+					<img src="img/info_next.png" class="more"/>
+				</div>
+			</a>
+			
+			
+			<div class="pay-pro">
+				<div class="nes_box">
+					<i><img src="img/goods.png"/></i>
+					<span>Weihuopu</span>
+				</div>
+				<div class="pay-info">
+					<img src="img/goods.png" class="img">
+					<div class="pay-div">
+						<div class="xx_box">
+							<div class="name">
+								格子连衣裙女喇叭长袖 2020秋冬季新款复古V领气质收腰显瘦大…
+							</div>
+							<div class="price_data">
+								<b>￥</b><span>1399.00</span>
+							</div>
+						</div>
+						<div class="shue">
+							<div class="guige_box">
+								<span class="tips">XL</span>
+								<i class="num_c">X1</i>
+							</div>
+						</div>
+					</div>
+				</div>	
+				<div class="pay-info">
+					<img src="img/goods.png" class="img">
+					<div class="pay-div">
+						<div class="xx_box">
+							<div class="name">
+								格子连衣裙女喇叭长袖 2020秋冬季新款复古V领气质收腰显瘦大…
+							</div>
+							<div class="price_data">
+								<b>￥</b><span>1399.00</span>
+							</div>
+						</div>
+						<div class="shue">
+							<div class="guige_box">
+								<span class="tips">XL</span>
+								<i class="num_c">X1</i>
+							</div>
+						</div>
+					</div>
+				</div>		
+				
+				<div class="yunfei">
+					<p class="l hs">商品总价</p>
+					<p class="r hs">￥3000.00</p>
+				</div>
+				<div class="yunfei">
+					<p class="l hs">快递运费</p>
+					<p class="r hs">￥0.00</p>
+				</div>
+				<div class="yunfei">
+					<p class="l hs">优惠</p>
+					<p class="r hs">-￥200.00</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">订单总价</p>
+					<p class="r"><i class="active">￥799.00</i></p>
+				</div>
+			</div>
+			
+			<div class="pay-other">
+				<div class="tips_h"><s></s>支付状态<span class="pay_state">已支付</span></div>
+				<div class="other_box">
+					<p class="l_box">支付方式：</p>
+					<p class="r_box">银行卡支付</p>
+				</div>
+				<div class="other_box">
+					<p class="l_box">支付时间：</p>
+					<p class="r_box">2020-09-10  12:12:12</p>
+				</div>
+				<div class="other_box">
+					<p class="l_box">发货时间：</p>
+					<p class="r_box">暂未发货</p>
+				</div>
+			</div>
+			<div class="pay-other">
+				<div class="tips_h"><s></s>快递状态<span class="pay_state">未发货</span></div>
+				<div class="other_box">
+					<p class="l_box">物流公司：</p>
+					<p class="r_box hs">暂无信息</p>
+				</div>
+				<div class="other_box">
+					<p class="l_box">物流单号：</p>
+					<p class="r_box hs">暂无信息</p>
+				</div>
+			</div>
+			
+			<div class="anniu">立即发货</div>
+			
+			
+			<!--发货-->
+			<div class="pay-other">
+				<div class="tips_h">快递发货</div>
+				<div class="yunfei yunfei_1">
+					<p class="l">物流公司：</p>
+					<p class="r input_box">
+						<select name="">
+							<option value="">请选择</option>
+						</select>
+					</p>
+				</div>
+				
+				<div class="yunfei yunfei_1">
+					<p class="l">物流单号：</p>
+					<p class="r input_box">
+						<input type="text" value="" placeholder="请输入单号" />
+					</p>
+				</div>
+			</div>
+			
+			<div class="order_btn">
+				<div class="cancel_btn">取消</div>
+				<div class="deliver_btn">发货</div>
+			</div>
+			
+			
+		</div>
+	
+	<style type="text/css">
+    	.layui-layer.layui-layer-page{width: 65%;left: 0 !important;right: 0;margin: auto;}
+    	#pay_pwd{padding: 10px;margin: 8% auto 0;display: block;border: 1px solid #eee;width: 90%;}
+    </style>
+    <!-- 放支付密码 -->
+    <div id="pay_box" style="display: none;">
+		<input type="password" placeholder="请输入安全密码" name="pay_pwd" id="pay_pwd" value="" />
+	</div>
+		
+	<style type="text/css">
+		.pay_mo{background: rgba(0,0,0,0.5);width: 100vw;height: 100vh;display: none;position: fixed;top:0px;z-index: 1;}
+		.pay_mo .middle_box{width: 100%;position: absolute;bottom: 0px;}
+		.pay_mo .middle_box{bottom: 15vh !important;}
+		.pay_close{position: absolute;right: 6%;top: 3vh;z-index: 9;width: 6%;}
+		.pay_close img{width: 100%;}
+	</style>	
+	<!-- 支付方式 -->
+	<div class="pay_mo">
+		<div class="middle_box">
+			<i class="pay_close"><img src="img/close.png"/></i>
+			<div class="big_box">
+				<b class="pay_price">￥399.90</b>
+				<i class="pay_txt">支付金额</i>
+				<div class="tt_div">
+					<span>请选择交易方式</span>
+				</div>
+				<div class="pay_box">
+					<ul>
+						<li>
+							<div class="pay_l">
+								<img src="img/pay_1.png"/>
+								<i>现金券</i>
+							</div>
+							<div class="label">
+								<input type="radio" class="check" name="type" checked="checked" value="1"/>
+							</div>
+						</li>
+						<li>
+							<div class="pay_l">
+								<img src="img/pay_2.png"/>
+								<i>在线支付</i>
+							</div>
+							<div class="label">
+								<input type="radio" class="check" name="type" value="2"/>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="anniu">立即支付</div>
+			</div>
+		</div>
+	</div>
+	
+	</body>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		/*点击加一*/
+		$('.btn2').click(function(){
+			$(this).prev('.number').html(parseInt($(this).prev('.number').html())+1);
+		})
+		/*点击减一*/
+		$('.btn1').click(function(){
+			if($(this).next('.number').html()==1)
+				$(this).next('.number').html(1);
+			else
+				$(this).next('.number').html(parseInt($(this).next('.number').html())-1);	
+		})
+		
+		$(".pay_close").click(function(){$(".pay_mo").hide();})
+        
+        $('.jiesuan').click(function(){$(".pay_mo").show();})
+		
+		$('.anniu').click(function(){
+            layer.open({title: '请输入安全密码', btn: ['确认','取消'],type:1, content: $('#pay_box'),
+				btn1:function(){
+					var payment = $("#pay_pwd").val();
+					console.log("payment"+payment);
+					if(payment == ""){
+						layer.msg("请输入安全密码");
+						return false;
+					}
+					var pay_type = $("input[name='type']:checked").val();
+					console.log("pay_type"+pay_type);
+                    var address_id = $('input[name="address_id"]').val();
+                    var remarks = $('input[name="remarks"]').val();
+                    var data = {goods: goods,address_id:address_id,remarks:remarks ,payment: payment};
+                    $.ajax({
+                        type: "POST",
+                        url: "",
+                        data: {data: data},
+                        dataType: 'json',
+                        success: function(res) {
+                            console.log(res);
+                            if (res.result == 0) {
+                                layer.msg("支付成功",function () {
+                                    location.href = '/order/index';
+                                });
+                                layer.closeAll();
+                                // setTimeout(function() {
+                                //     window.location.reload(); //刷新当前页面.
+                                // }, 2000)
+                            }else {
+                                layer.msg(res.msg);
+                            }
+                        }
+                    })
+				},
+				btn2:function(){
+					layer.closeAll();
+				}
+			});
+		})	
+		
+	</script>
+</html>

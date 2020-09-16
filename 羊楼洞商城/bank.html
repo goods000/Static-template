@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<style type="text/css">
+			.bank_list li{width: 95%;margin:5% auto;padding:4% 3%;box-sizing: border-box;border-radius: 2px;position: relative;}
+			.bank_list li:nth-child(odd){background: linear-gradient(to left,#60938B,#1A5C52);}
+			.bank_list li:nth-child(even){background: linear-gradient(to left,#1E71D3,#6FA4E2);}
+			.bank_list li:nth-child(3n){background: linear-gradient(to left,#EA992A,#F2C88D);}
+			.bank_list li h2{font-weight: 500;font-size: 1.2rem;color: #F5F5F5;}
+			.bank_list li h2 span{font-size: 0.8rem;float: right;}
+			.bank_list li p{font-size: 1.2rem;margin:3% 0;color: #fff;}
+			.bank_bottom{display: flex;justify-content:flex-end;}
+			.bank_bottom s{position: absolute;top: 15px;right: 5%;
+			display: flex;flex-direction: column;justify-content:space-between;height: 65%;}
+			.bank_bottom s a:nth-child(1){margin-bottom: 5%;}
+			.bank_bottom s a{color: #fff;}
+			.bank_bottom span{font-size: 0.9rem;position: relative;display: block;}
+			.add{border: 1px solid #1A5C52;color: #1A5C52;width: 40%;text-align: center;border-radius: 5px;padding: 2% 0;margin: auto;margin-top: 20%;margin-bottom: 10%;display: block;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>银行卡</p>
+		</h1>
+		<div class="bank">
+			<div class="bank_list">
+			<ul>
+				<li>
+					<h2>中国邮政储蓄银行<span></span></h2>
+					<p>23624563456543547563</p>
+					<div class="bank_bottom">
+						<s><a class="iconfont icon-shanchu2"></a><a href="add_bank.html" class="iconfont icon-bianji1"></a></s>
+					</div>
+				</li>
+				<li>
+					<h2>中国建设银行<span></span></h2>
+					<p>6332 1234 9987 1244</p>
+					<div class="bank_bottom">
+						<s><a class="iconfont icon-shanchu2"></a><a href="add_bank.html" class="iconfont icon-bianji1"></a></s>
+					</div>
+				</li>
+				<li>
+					<h2>中国平安银行<span></span></h2>
+					<p>6332 1234 9987 1244</p>
+					<div class="bank_bottom">
+						<s><a class="iconfont icon-shanchu2"></a><a href="add_bank.html" class="iconfont icon-bianji1"></a></s>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<a class="add" href="add_bank.html">添加银行卡</a>
+		</div>
+	</body>
+</html>

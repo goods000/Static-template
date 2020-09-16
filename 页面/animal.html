@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font.css" />
+    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+    	nav ul li:nth-child(2) i img{display: none;}
+    	nav ul li:nth-child(2) i .on{display: block;}
+		nav ul li:nth-child(2) p{color: #40BC1B;}
+    	body{background: url(img/a-bg.png);background-repeat: no-repeat;background-size:100% 100%;min-height: 100vh;font-size: 0.14rem;}
+    </style>
+</head>
+	<body>
+		<div id="app">
+			<img src="img/pig-house.png"  class="float-img-2 float-1">
+		
+		
+			<img src="img/pig.gif" class="pig-img" >
+		
+		
+		</div>
+		
+		<div id="footer"></div>
+	</body>
+	<script src="js/vue-2.4.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//		var vm = new Vue({
+//			el:"#app",
+//			data:{
+//				
+//			},
+//			methods:{
+//				console.log("111");
+//				vm.$nextTick(function(){
+//					console.log("222");
+//					reids();
+//				})
+//			},
+//			
+//		})
+		
+		var zindex = 100;
+		var timerList=[];
+		function reids(){
+			//关闭之前的定时
+			$.each(timerList,function(index,timer){
+				clearInterval(timer);
+			});
+			
+			$(".pig-img").each(function(index,item){
+				console.log("对象："+$(this));
+				var obj=$(this);
+				obj.css('z-index',zindex-index)
+				var objwid=obj.width();//盒子的宽
+				var winwid=$(window).width();//页面的宽
+				console.log(objwid);
+				console.log(winwid);
+				var randomtop = random(48, 82);
+				$(this).css("top",randomtop+'%');
+				
+				if (index%2==1) {
+					// document.write('奇数')
+					var randomnum = random(0, winwid);
+					$(this).css("left",randomnum);
+					var x=obj.offset().left;//盒子距离左部的位置
+					obj.css("transform","rotateY(180deg)");
+					var max=10;//设置最大视觉差，就是感觉这个距离刚好碰到
+					var winx=winwid-objwid-max;//盒子x轴最远达到的距离
+					var sx=0;//x轴是否返回的状态，0是值++即正向移动，1是值--即返回
+					var timename = 'time'+index
+					timename=setInterval(function(){
+						if(sx==0){
+							x= x+0.15;
+							obj.css("left",x);
+							obj.css("transform","rotateY(180deg)");
+						}else if(sx==1){
+							x= x-0.15;
+							obj.css("left",x);
+							obj.css("transform","rotateY(0deg)");
+						}
+						if(x<=0){
+						  sx=0;
+						}else if(x>=winx){
+						  sx=1;
+						}
+					},1)
+					
+					timerList.push(timename);//定时加入list中
+				}else{
+					// document.write('偶数')
+					var randomnum = random(0, winwid);
+					$(this).css("left",randomnum);
+					var xr=obj.offset().left;//盒子距离左部的位置
+					obj.css("transform","rotateY(0deg)");
+					var max=10;//设置最大视觉差，就是感觉这个距离刚好碰到
+					var winx=winwid-objwid-max;//盒子x轴最远达到的距离
+					var nx=0;//x轴是否返回的状态，0是值++即正向移动，1是值--即返回
+					var timename = 'time'+index
+					console.log(timename);
+					window.clearInterval(timename);//先关掉在创建
+					timename=setInterval(function(){
+						if(nx==0){
+							xr= xr+0.15;
+							obj.css("left",xr);
+							obj.css("transform","rotateY(180deg)");
+						}else if(nx==1){
+							xr= xr-0.15;
+							obj.css("left",xr);
+							obj.css("transform","rotateY(0deg)");
+						}
+						if(xr<=0){
+						  nx=0;
+						}else if(xr>=winx){
+						  nx=1;
+						}
+					},1)
+					
+					timerList.push(timename);//定时加入list中
+				}
+				
+		  })
+		}
+		reids();
+		
+		function random(min, max) {
+		  return Math.floor(Math.random() * (max - min)) + min;
+		}
+		
+	</script>
+</html>

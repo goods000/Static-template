@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>收货地址</p>
+	    	<a href="add_address.html" class="fr">添加地址</a>
+		</h1>
+		<div class="mt"></div>
+		<div class="address">
+			<ul class="list">
+				<li>
+					<p class="userName">穆木<span class="phone">150****6686</span><span class="chico">默认</span></p>
+					<p class="detail">广东省深圳市龙华新区 樟坑1区25栋</p>
+					<div class="set">
+						<div class="btn">
+							<a class="det"><img src="img/delet.png" />删除</a>
+							<a href="" class="edit"><img src="img/edit.png" /></a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="kong">
+			<img src="img/kong.png" />
+			<p>暂无收货地址~</p>
+		</div>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			
+			show();
+			function show(){
+				//没有数据的时候显示
+				if($(".list li").length <= 0) {
+					$(".kong").show();
+				} else {
+					$(".kong").hide();
+				}
+			}
+			
+			$(".det").click(function(){
+				var btnArray = ['取消', '确认'];
+				layer.confirm('确认删除该地址？', btnArray, function(e) {
+					if (e.index == 1) {
+						layer.confirm("删除成功","确定",function(){
+							window.location.href = "";
+						})
+					} else {
+						layer.msg("取消", { icon: 2,time: 2000});
+					}
+				})
+			})
+			
+			
+		</script>
+
+	</body>
+
+</html>

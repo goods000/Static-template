@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>退货详情</title>
+    <link rel="stylesheet" type="text/css" href="css/layui.css">
+    <link rel="stylesheet" href="css/user-common.css">
+    <style>
+        .layui-table td, .layui-table th {
+    position: relative;
+    padding: 5px 10px;
+}
+.layui-table thead tr{
+    background: #646c84;
+    color: #fff;
+}
+.title{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+}
+.headmsg{
+    border: 1px solid #e6e6e6;
+    padding: 5px 10px;
+}
+.headmsg .headbox{
+    display: flex;
+    margin: 20px;
+}
+.headbox div{
+    width: 50%;
+}
+.msgfoot{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.msgbox{
+    border: 1px solid #e6e6e6;
+    height: 300px;
+    width: 30%;
+}
+.msgdata{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%
+}
+    </style>
+</head>
+<link id="layuicss-layer" rel="stylesheet" href="css/layer.css" media="all">
+<link id="layuicss-laydate" rel="stylesheet" href="css/laydate.css" media="all">
+
+<body>
+    <div class="layui-body">
+        <div class="header_top_submenu">
+            <a href="https://www.chntcf.com/index/inquiry/report.html">首页</a>
+            <a href="https://www.chntcf.com/index/inquiry/report/menu_id/1.html">/订单</a>
+            <a href="">/退货订单</a>
+            <span style="float: right;color: #35d0fe;">退货详情</span>
+            <div class="clear"></div>
+        </div>
+        <div class="container" style="width:97%;margin: 0 auto;background: #fff;">
+            <div>
+                <table class="layui-table">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>订单编号</th>
+                            <th>生产批号</th>
+                            <th>客户</th>
+                            <th>订单商品</th>
+                            <th>订单状态</th>
+                            <th>下单时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>A133205450</td>
+                            <td>B13205450</td>
+                            <td>成都市同城坊广告有限公司</td>
+                            <td>
+                                <div style="display:flex;align-items: center;justify-content: space-around;">
+                                    <img src="img/user.png" alt="">
+                                    <span>产品名产品名产品名产品名</span>
+                                </div>
+                            </td>
+                            <td>已出库</td>
+                            <td>2020-05-09 21:41:37</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="title">
+                <span>重要提示：同城坊平台不会以任何理由，要求您点击任何网址链接进行操作，点击查看“同城坊诈骗公告生声明”</span>
+            </div>
+            <div class="details">
+                <div class="headmsg">
+                    <span>服务单信息</span>
+                </div>
+                <div class="headmsg">
+                    <div class="headbox">
+                        <div>
+                            <span>商品处理方式：</span>
+                            <span>客户期望处理方式为“我要换货哦”</span>
+                        </div>
+                        <div>
+                            <span>退货说明：</span>
+                            <span>无</span>
+                        </div>
+                    </div>
+                    <div class="headbox">
+                        <div>
+                            <span>商品返回方式：</span>
+                            <span>客户期望返件方式为“上门取件”</span>
+                        </div>
+                        <div>
+                            <span>收货地址：</span>
+                            <span>四川省成都市锦江区春熙路8号</span>
+                        </div>
+                    </div>
+                    <div class="headbox">
+                        <div>
+                            <span>申请原因：</span>
+                            <span>质量问题</span>
+                        </div>
+                        <div>
+                            <span>联系人：</span>
+                            <span>张三</span>
+                            <span>手机号：</span>
+                            <span>13550123200</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="msgfoot">
+                <div class="msgbox">
+                    <div class="headmsg">快递信息</div>
+                    <div class="msgdata">暂无数据</div>
+                </div>
+                <div class="msgbox">
+                    <div class="headmsg">快递信息</div>
+                    <div class="msgdata">暂无数据</div>
+                </div>
+                <div class="msgbox">
+                    <div class="headmsg">退货说明</div>
+                    <div>
+                        <p>问题描述</p>
+                        <p>质量问题质量问题质量问题</p>
+                    </div>
+                    <div>补充说明问题描述</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 50px;"></div>
+    </div>
+    
+    
+</body>
+
+<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+
+<script src="js/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/macarons.js"></script>
+<script>
+
+    $('#allot').click(function () {
+        $('.allot').show();
+
+    });
+    $('.close').click(function () {
+        $('.tun_box').hide();
+    });
+    $('.return').click(function () {
+        $('.tun_box').hide();
+    });
+    $('.comfir').click(function () {
+        $('.msg').hide();
+    });
+    $('#bill').click(function () {
+        $('.bill').show();
+    });
+    $('#ems').click(function () {
+        $('.ems').show();
+    });
+    $('#finish').click(function () {
+        $('.finish').show();
+    });
+    //文件上传
+    $("#upfile").click(function () {
+        $("input[type='file']").trigger('click');
+    });
+    $("input[type='file']").change(function () {
+        $("#upfile").val($(this).val());
+    });
+    //渲染
+    layui.use(['form', 'laypage', 'layer'], function () {
+        //表单
+        var form = layui.form;
+        form.render();
+        //分页
+        var laypage = layui.laypage;
+        laypage.render({
+            elem: 'page' //分页容器的id
+            , count: 100 //总页数
+            , theme: '#ff8888' //自定义选中色值
+            //,skip: true //开启跳页
+
+        });
+
+    });
+</script>
+
+</html>

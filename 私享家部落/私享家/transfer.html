@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>互转</p>
+	    	<a href="transfer_record.html">互转记录</a>
+		</h1>
+		<div class="mt"></div>
+		<div class="edit_address">
+			<div class="form">
+				<!-- <form> -->
+					<div class="group">
+						<label>可用积分</label>
+						<input name="" type="text" class="" value="100.00" readonly="readonly"/>
+					</div>
+					<div class="group">
+						<label>互转账户</label>
+						<input name="account" type="text" class="account" placeholder="输入互转账户"/>
+					</div>
+					<div class="group">
+						<label>转账数量</label>
+						<input name="phone" type="number" class="num"  placeholder="请输入转账数量,且为100的倍数"/>
+						<span class="span">全部</span>
+					</div>
+					<div class="group">
+						<label>手续费用</label>
+						<input type="text" name="" id="" value="10" readonly="readonly"/>
+					</div>
+					<div class="group">
+						<label>到账积分</label>
+						<input type="text" name="" id="" value="0.0000" readonly="readonly"/>
+					</div>
+			<!-- </form> -->
+		</div>
+		<div class="mt"></div>
+		<button class="annius">确定</button>
+		<script src="layer/layer.js"></script>
+		<script src="js/check.js"></script>
+		<script>
+			function qrcodeCallback(result){
+		         var lang="${lang}";
+		         if(result.indexOf(window.location.host)==-1){ //等于-1表示这个字符串中没有o这个字符
+		         layer.msg('当前扫描的不属于私享家二维码',{icon:5,time:1000});
+		         }else{
+		         window.location.href=result
+		         }
+			}
+			
+			$(".annius").click(function(){
+				var addr=$(".addr").val();
+				var num=$(".num").val();
+				//是否非空
+				if(!isKong(addr,"输入或长按粘贴地址")){
+					return false;
+				}
+				
+				
+				//是否非空
+				if(!isKong(num,"请输入提币数量")){
+					return false;
+				}
+				
+				window.location.href = "";
+			})
+		</script>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	    <link rel="stylesheet" href="css/font.css" />
+	    <link rel="stylesheet" href="css/style.css" />
+	    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+	    <style type="text/css">
+	    	nav ul li:nth-child(2) i img{display: none;}
+			nav ul li:nth-child(2) i .on{display: block;}
+			nav ul li:nth-child(2) p{color: #1A5C52;}
+	    	.h1{border-bottom: 1px solid #eee;padding: 1%;}
+	    	.tab{display: flex;flex-direction: row;justify-content: space-between;height: 86vh;}
+	    	.tab-title{overflow: scroll;background: #fff;display: flex;flex-direction: column;width: 25%;height: 95%;padding: 5% 0;}
+	    	.tab-title a{width: 100%;display:block;text-align: center;float: left;color: #333;font-size: 1rem;margin:5% 0;}
+			.tab-title span{display: inline-block;padding: 6px 12px;}
+			.item-cur span{color:#fff !important;background: #1A5C52;border-radius: 25px;}
+			.tab-cont{width: 75%;height: 100%;overflow: scroll;}
+	    </style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<div class="search">
+				<input type="text" placeholder="请输入产品名" name="" id="" value="" />
+				<span class="s_btn">搜索</span>
+			</div>
+		</h1>	
+		<div class="tab" js-tab="1">
+			<div class="tab-title">
+				<a href="javascript:;" class="item item-cur"><span>商城推荐</span></a>
+				<a href="javascript:;" class="item"><span>家用电器</span></a>
+				<a href="javascript:;" class="item"><span>家居家装</span></a>
+				<a href="javascript:;" class="item"><span>居家餐厨</span></a>
+				<a href="javascript:;" class="item"><span>智能家庭</span></a>
+				<a href="javascript:;" class="item"><span>日用玩具</span></a>
+				<a href="javascript:;" class="item"><span>电视影音</span></a>
+				<a href="javascript:;" class="item"><span>手机电脑</span></a>
+				<a href="javascript:;" class="item"><span>数码周边</span></a>
+				<a href="javascript:;" class="item"><span>服装配饰</span></a>
+				<a href="javascript:;" class="item"><span>鞋靴箱包</span></a>
+				<a href="javascript:;" class="item"><span>家用电器</span></a>
+				<a href="javascript:;" class="item"><span>家用电器</span></a>
+				<a href="javascript:;" class="item"><span>智能家庭</span></a>
+				<a href="javascript:;" class="item"><span>日用玩具</span></a>
+				<a href="javascript:;" class="item"><span>电视影音</span></a>
+				<a href="javascript:;" class="item"><span>手机电脑</span></a>
+				<a href="javascript:;" class="item"><span>数码周边</span></a>
+				<a href="javascript:;" class="item"><span>服装配饰</span></a>
+			</div>
+		
+			<div class="tab-cont">
+				<div class="tab-cont_wrap">
+					
+					<div class="type_box">
+						<div class="support">
+					    	<div class="area">
+								<ul>
+									<a href="goods_detail.html">
+										<li>
+											<img src="img/goods_1.png"/>
+											<b>班章典藏熟茶</b>
+											<p>￥186</p>
+										</li>
+									</a>
+									
+								</ul>
+							</div>
+					    </div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div id="footer" name="2"></div>
+	</dody>
+	<script type="text/javascript">
+		$(function(){$('[js-tab=1]').tab();});
+	</script>
+</html>

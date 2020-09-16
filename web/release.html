@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+			<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+	</head>
+	<style>
+		body{padding: 0px;}
+		.markets{margin-top:0px;}
+		.body_1{text-align: left;}/*
+		.ul{height: 650px;}*/
+		[v-cloak] {
+				display: none;
+			}
+	</style>
+	<body>
+		
+		<div class="markets otc_ul">
+			<div class="container">
+				<div class="top_menu">
+					<div class="common liactive">我要买</div>
+					<div class="common">我要卖</div>
+				</div>
+				<div class="ul" v-cloak>
+					<div class="bottom_content">
+						<div class="body_1 markets_itme">
+							<div class="login_password">
+								<!--<p class="iconfont icon-jingshi">修改资金密码后24小时禁止提币和OTC归集</p>-->
+								<div class="wapk">
+									<h2>交易币种</h2>
+									<select id="selectExample" v-model="typeSelected"  @change="type_Selected">
+									<option v-for="(item,index) in coinList" :key="index" :id="item.id" :value="item.id" >{{item.name}}</option>
+									</select>
+								</div>
+								</select>
+								<div class="wapk">
+									<h2>交易价格CNY</h2>
+									<input type="number" oninput="this.value>0?this.value:''" v-model.trim="price" placeholder="交易价格CNY"/>
+								</div>
+								<div class="wapk">
+									<h2>交易数量</h2>
+									<input type="number" oninput="this.value>0?this.value:''" v-model.trim="inpNum" placeholder="输入交易数量"/>
+								</div>
+								<div class="wapk">
+									<h2>单笔限额</h2>
+									<div class="rel">
+										<input type="number" oninput="this.value>0?this.value:''" v-model.trim="min" placeholder="请输入最小值(CNY)"/>
+										<span>——</span>
+										<input type="number" oninput="this.value>0?this.value:''" v-model.trim="max" placeholder="请输入最大值(CNY)"/>
+									</div>
+								</div>
+								<div class="wapk">
+									<h2>付款方式</h2>
+									<div class="rels">
+										<h4   >
+										<span  class="iconfont icon-weixin">微信</span>
+										<span class="radion"><input type="checkbox" name="item" :checked="item" @click="item=!item"/><label></label></span>
+										</h4>
+										<h4 >
+										<span  class="iconfont icon-zhifubao1">支付宝</span>
+										<span class="radion"><input type="checkbox" name="item" :checked="item1" @click="item1=!item1"/><label></label></span>
+										</h4>
+										<h4 >
+										<span  class="iconfont icon-yinhangqia">银行卡 </span>
+										<span class="radion"><input type="checkbox" name="item" :checked="item2" @click="item2=!item2"/><label></label></span>
+										</h4>
+									</div>
+								</div>
+								<div class="wapk">
+									<h2>交易密码</h2>
+									<input type="password" oninput="this.value=this.value.substr(0,6)" v-model.trim="pwd" placeholder="输入交易密码"/>	
+								</div>
+								<button @click="submitT(1)" id="submit">发布</button>
+							</div>
+						</div>
+						<div class="body_1">
+							<div class="login_password">
+								<!--<p class="iconfont icon-jingshi">修改资金密码后24小时禁止提币和OTC归集</p>-->
+								<div class="wapk">
+									<h2>交易币种</h2>
+									<select id="selectExample" v-model="typeSelected"  @change="type_Selected">
+									<option v-for="(item,index) in coinList" :key="index" :id="item.id" :value="item.id" >{{item.name}}</option>
+									</select>
+								</div>
+								</select>
+								<div class="wapk">
+									<h2>交易价格CNY</h2>
+									<input type="number" oninput="this.value>0?this.value:''" v-model.trim="price" placeholder="交易价格CNY"/>
+								</div>
+								<div class="wapk">
+									<h2>交易交易数量</h2>
+									<input type="number" oninput="this.value>0?this.value:''" v-model.trim="inpNum" placeholder="输入交易数量"/>
+								</div>
+								<div class="wapk">
+									<h2>单笔限额</h2>
+									<div class="rel">
+										<input type="number" oninput="this.value>0?this.value:''" v-model.trim="min" placeholder="请输入最小值(CNY)"/>
+										<span>——</span>
+										<input type="number" oninput="this.value>0?this.value:''" v-model.trim="max" placeholder="请输入最大值(CNY)"/>
+									</div>
+								</div>
+								<div class="wapk">
+									<h2>付款方式</h2>
+									<div class="rels">
+										<h4 v-if="bankList.wechat !=null"  >
+										<span  class="iconfont icon-weixin">微信</span>
+										<span class="radion"><input type="checkbox" name="item" :checked="item" @click="item=!item"/><label></label></span>
+										</h4>
+										<h4 v-if="bankList.alipay !=null">
+										<span  class="iconfont icon-zhifubao1">支付宝</span>
+										<span class="radion"><input type="checkbox" name="item" :checked="item1" @click="item1=!item1"/><label></label></span>
+										</h4>
+										<h4 v-if="bankList.bank !=null">
+										<span  class="iconfont icon-yinhangqia">银行卡 </span>
+										<span class="radion"><input type="checkbox" name="item" :checked="item2" @click="item2=!item2"/><label></label></span>
+										</h4>
+									</div>
+								</div>
+								<div class="wapk">
+									<h2>交易密码</h2>
+									<input type="password" oninput="this.value=this.value.substr(0,6)" v-model.trim="pwd" placeholder="输入交易密码"/>	
+								</div>
+								<button @click="submitT(0)" id="submit">发布</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+   		<script type="text/javascript" src="js/tab_wo.js" ></script>
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script type="text/javascript">
+			var vue = new Vue({
+				el: ".ul",
+				data: {		
+					coinList:[],
+					bankList:[],
+					inpNum:"",
+					pwd:"",
+					id:"",	
+					price:"",
+					min:"",
+					max:"",
+					typeSelected:'',			 //默认选中的ID
+					item:false,
+					item1:false,
+					item2:false,
+			
+					
+				},
+				created() {		
+					this.getCoin()
+					this.getBank()
+					
+				},
+				mounted() {},
+				methods: {	
+					getCoin(){
+						var that = this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/get_coin_list',param, 
+						function(res) {
+							that.coinList=res.data;
+							that.typeSelected=res.data[0].id;
+							
+							//console.log(that.typeSelected)
+						}, 'json');
+
+					},
+					getBank(){
+						var that = this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/index',param, 
+						function(res) {
+							if(res.status==0){
+							that.bankList=res.data;	
+							
+							//console.log(that.bankList.bank)
+							}
+							else{
+								Invalid(res)  //判断登录是否失效
+							}
+						}, 'json');
+					},
+					type_Selected(){
+						this.type=this.typeSelected;
+						console.log("typeSelected:"+this.typeSelected)
+					},												
+					submitT(derection){
+						var that=this;
+						console.log("derection:"+derection)
+						// 是否非空
+						if(!isKong(that.price,"请输入交易价格")){
+							return false;
+						}
+						// 是否非空
+						if(!isKong(that.inpNum,"请输入交易数量")){
+							return false;
+						}
+						// 是否非空
+						if(!isKong(that.min,"请输入最小值")){
+							return false;
+						}
+						// 是否非空
+						if(!isKong(that.max,"请输入最大值")){
+							return false;
+						}
+						if(that.min>=that.max){
+							layer.msg("最大值要比最小值高", { icon: 2,time: 2000});
+							return false;
+						}
+						
+						// 是否非空
+						if(!isKong(that.pwd,"请输入交易密码")){
+							return false;
+						}
+						var pwd = CryptoJS.MD5(that.pwd).toString().toUpperCase();
+						if(that.item){		//勾选支付宝
+							if(that.bankList.alipay!=null){
+								that.alipay=that.bankList.alipay.id;
+							}else{
+								that.alipay="";
+							}
+							
+						}
+						if(that.item1){		//勾选微信
+							if(that.bankList.wechat!=null){
+								that.wechat=that.bankList.wechat.id;
+							}
+							else{
+								that.wechat="";
+							}
+						}
+						if(that.item2){		//勾选银行卡
+							if(that.bankList.bank!=null){
+								that.bank=that.bankList.bank.id;
+							}
+							else{
+								that.bank="";
+							}
+							
+						}
+						var param = {
+							"type":that.typeSelected,
+							"num":that.inpNum,
+							"price":that.price,
+							"min":that.min,
+							"max":that.max,
+							"derection":derection,					
+							"bank":that.bank,
+							"alipay":that.alipay,
+							"wechat":that.wechat,
+							"paypass":pwd,
+							"token": $.cookie("token")
+						}
+					//	console.log(param)
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$("#submit").attr("disabled", "disabled")
+
+						$.post(localhostUrl+'/index/c2c/sale',param, 
+						function(res) {
+							if(res.status==0){
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+										$("#submit").attr("disabled", false)
+										window.parent.location.reload()
+									}
+									});
+								
+							}else{
+								Invalid(res)  //判断登录是否失效
+								$("#submit").attr("disabled", false)
+							}
+							
+						}, 'json');
+						
+					}
+				}
+			})
+			//console.log("left -右滑",(parseInt($('.bottom_content')[0].style.left)));
+			$('.bottom_content')[0].style.left = "0%";
+			var startX = '',disX ='';
+			$('.top_menu').on('click','.common',function(){
+				var index = $(this).index();
+				$('.bottom_content').css('left','-' + index * 100 + '%');
+				$('.top_menu .common').eq(index).addClass('liactive').siblings().removeClass('liactive')
+			});
+			$('.bottom_content').on('touchstart','.body_1',function(e){
+				startX = e.originalEvent.changedTouches[0].clientX;
+			});
+			$('.bottom_content').on('touchmove','.body_1',function(e){
+				e.stopPropagation()
+			})
+			$('.bottom_content').on('touchend','.body_1',function(e){
+				disX = e.originalEvent.changedTouches[0].clientX - startX;
+				var leftNum = parseInt($('.bottom_content')[0].style.left);
+				if(disX > 0 && disX > 100) {
+					if(leftNum <= -100) {
+						$('.bottom_content')[0].style.left = leftNum + 100 + "%";
+						var order = -parseInt($('.bottom_content')[0].style.left)/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				} else if(disX < 0 && disX < -100) {
+					if(leftNum >= -200) {
+						$('.bottom_content')[0].style.left = leftNum - 100 + "%";
+						var order = (-parseInt($('.bottom_content')[0].style.left))/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.h1{border-bottom: 1px solid #eee;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>浏览记录</p>
+	    	<a class="del">清除全部</a>
+		</h1>	
+		<div class="browse_box">
+			<ul>
+				<li>
+					<a href="">
+						<i><img src="img/goods_1.png"/></i>
+						<div class="index_list">
+							<h1><s>易武普洱茶熟茶易武熟饼云南七子饼茶勐腊黑茶</s></h1>
+							<div class="index_list_bottom"><p><i>￥</i><span>249.99</span></p></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<i><img src="img/goods_1.png"/></i>
+						<div class="index_list">
+							<h1><s>易武普洱茶熟茶易武熟饼云南七子饼茶勐腊黑茶</s></h1>
+							<div class="index_list_bottom"><p><i>￥</i><span>249.99</span></p></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<i><img src="img/goods_1.png"/></i>
+						<div class="index_list">
+							<h1><s>易武普洱茶熟茶易武熟饼云南七子饼茶勐腊黑茶</s></h1>
+							<div class="index_list_bottom"><p><i>￥</i><span>249.99</span></p></div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(".del").click(function(){
+			layer.confirm("确定删除全部吗？",{btn: ['确定', '取消']},
+			function() {
+				$(".browse_box ul li").remove();
+				layer.msg("删除成功!", { icon: 1,time: 2000},function(){
+                    window.location.onload();
+                });
+			})
+		})
+	</script>
+</html>

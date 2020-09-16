@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <title></title>
+	    <link rel="stylesheet" href="css/style.css" />
+	    <link rel="stylesheet" href="css/font.css" />
+	    <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="layer/layer.js" ></script>
+	    <style type="text/css">
+	    	body,html{background: #F5F5F5;}
+	    </style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>理财订单</p>
+		</h1>
+		<div class="">
+			<div class="otcOrder">
+				<div class="otc_list">
+					<div class="tab" js-tab="1">
+						<div class="tab-title">
+			  				<a href="javascript:;" class="item item-cur"><span>全部</span></a>
+			  				<a href="javascript:;" class="item"><span>理财中</span></a>
+			  				<a href="javascript:;" class="item"><span>已出局</span></a>
+						</div>
+						<div class="tab-cont">
+							<div class="tab-cont_wrap">
+								<ul class="item">
+									<li>
+										<a href="goods_order.html">
+											<div class="top">
+												<p class="store">RD100000873</p>
+												<p class="state_in">理财中</p>
+											</div>
+											<div class="pay-pro">
+												<div class="pay-info">
+												<img src="img/index_1.png" class="img">
+												<div class="pay-div">
+													<p class="name">7天理财</p>
+													<div class="t mmt"> 
+														<span>$1500.00</span> <span class="choice">108.25 RDTS</span>
+													</div>
+													<div class="t">
+														<span class="i">金额</span> <span class="i">累计收益</span>
+													</div>
+												</div>
+												</div>							
+											</div>
+										</a>
+										<div class="div">
+											<p class="time"> 剩余天数：<span class="day">3天</span></p>
+											<p class="btn">
+												<a href="order_record.html" class="a">加速记录</a>
+											</p>
+										</div>
+									</li>
+								</ul>
+								<ul class="item">
+									
+								</ul>
+								<ul class="item">
+									<li>
+										<a href="goods_order.html">
+											<div class="top">
+												<p class="store">RD100000873</p>
+												<p class="state_out">已出局</p>
+											</div>
+											<div class="pay-pro">
+												<div class="pay-info">
+												<img src="img/index_1.png" class="img">
+												<div class="pay-div">
+													<p class="name">7天理财</p>
+													<div class="t mmt"> 
+														<span>$1500.00</span> <span class="choice">108.25 RDTS</span>
+													</div>
+													<div class="t">
+														<span class="i">金额</span> <span class="i">累计收益</span>
+													</div>
+												</div>
+												</div>							
+											</div>
+										</a>
+										<div class="div">
+											<p class="time"> 剩余天数：<span class="day">3天</span></p>
+											<p class="btn">
+												<a href="order_record.html" class="a">加速记录</a>
+											</p>
+										</div>
+									</li>
+								</ul>
+							</div>		
+						</div>		
+					</div>		
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+		  $('[js-tab=1]').tab();
+		});
+	</script>	
+</html>

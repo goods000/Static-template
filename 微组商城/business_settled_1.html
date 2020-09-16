@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.anniu{width: 100%;}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+		    <div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">商家入驻</span>
+		</header>
+		
+		<div class="settled_box mian_top">
+			<div class="business_state state_box">
+				<ul>
+					<li class="slow">
+						<img src="img/state_1-s.png" class="state_icon"/>
+						<span class="state_active">商家信息</span>
+					</li>
+					<li class="line_s_1"></li>
+					<li class="slow">
+						<img src="img/state_2-s.png"  class="state_icon"/>
+						<span class="state_active">身份验证</span>
+					</li>
+					<li class="line_a"></li>
+					<li class="slow">
+						<img src="img/state_3.png"  class="state_icon"/>
+						<span class="state_txt">支付保证金</span>
+					</li>
+					<li class="line_s"></li>
+					<li class="slow">
+						<img src="img/state_4.png"  class="state_icon"/>
+						<span class="state_txt">审核完成</span>
+					</li>
+				</ul>
+			</div>
+			<div class="tips_h"><s></s>身份信息</div>
+			<div class="add_box">
+				<div class="gorup line_b radius_t">
+					<label>身份证号码:</label>
+					<input type="text" placeholder="请输入证件号码" name="" id="idcard" value="" />
+				</div>
+				<div class="gorup gorup_flex">
+					<label>上传证件:</label>
+					<div class="img_top_box">
+						<div class="img_box">
+							<div class="img_box_big">
+							 	<input type="file" id="photo1" name="" accept="image/*">
+							    <div id="image1" class="image">
+							        <img src="" alt="">
+							    </div>
+							</div>
+						    <span>点击上传身份证人像面</span>
+						</div>
+						<div class="img_box">
+							<div class="img_box_big">
+							 	<input type="file" id="photo2" name="" accept="image/*">
+							    <div id="image2" class="image">
+							        <img src="" alt="">
+							    </div>
+							</div>
+						    <span>点击上传身份证国徽面</span>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="tips_h"><s></s>商家信息</div>
+			<div class="add_box">
+				<div class="gorup line_b radius_t">
+					<label>商品名称:</label>
+					<input type="text" placeholder="请输入店铺名称" name="" id="account" value="" />
+				</div>
+				<div class="gorup line_b">
+					<label>主营业务:</label>
+					<input type="text" placeholder="请输入主营业务" name="" id="business" value="" />
+				</div>
+				<div class="gorup">
+					<i class="real_tips">*上传有效期内的营业执照，且为原件照片</i>
+				</div>
+				<div class="gorup gorup_i">
+					<div class="bu_box">
+						<div class="bu_box_big">
+						 	<input type="file" id="photo3" name="" accept="image/*">
+						    <div id="image3" class="image">
+						        <img src="" alt="">
+						    </div>
+						    <span>点击上传营业执照</span>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			<div class="anniu">下一步</div>
+			
+		</div>
+			
+	</body>
+	<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		document.getElementById('photo1').onchange = function() {
+		    var imgFile = this.files[0];
+		    var fr = new FileReader();
+		    fr.onload = function() {
+		        document.getElementById('image1').getElementsByTagName('img')[0].src = fr.result;
+		    };
+		    fr.readAsDataURL(imgFile);
+		};
+		document.getElementById('photo2').onchange = function() {
+		    var imgFile = this.files[0];
+		    var fr = new FileReader();
+		    fr.onload = function() {
+		        document.getElementById('image2').getElementsByTagName('img')[0].src = fr.result;
+		    };
+		    fr.readAsDataURL(imgFile);
+		};
+		document.getElementById('photo3').onchange = function() {
+		    var imgFile = this.files[0];
+		    var fr = new FileReader();
+		    fr.onload = function() {
+		        document.getElementById('image3').getElementsByTagName('img')[0].src = fr.result;
+		    };
+		    fr.readAsDataURL(imgFile);
+		};
+		$(".anniu").click(function(){
+			var idcard=$("#idcard").val();
+			var account=$("#account").val();
+			var business=$("#business").val();
+			// 是否非空
+			if(!isKong(account,$("#account").attr("placeholder"))){
+				return false;
+			}
+			if(!isKong(account,$("#account").attr("placeholder"))){
+				return false;
+			}
+			if(!isKong(business,$("#business").attr("placeholder"))){
+				return false;
+			}
+			if(!isIdCard(idcard)){
+				$(".idcard").focus();
+				return false;
+			}
+			location.href='business_settled_2.html';
+			
+		})
+	</script>
+	
+</html>

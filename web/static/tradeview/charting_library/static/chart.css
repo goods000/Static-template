@@ -1,0 +1,42 @@
+body{background: #121a2e;}
+.group-wWM3zP_M-{background:none !important;}    /*头部背景色*/
+.layout__area--center{background: #121a2e }
+/*.wrap-18oKCBRc-{background: #4c5263;}    /*分时按钮总体颜色*/*/
+.customButton--jqJTfH5-{
+	color: rgb(109, 121, 154);
+   
+}
+.customButton--jqJTfH5-{color:#8992ad ;}    /*按钮颜色*/
+/*.button-13wlLwhJ-{color: #fff;background: #4c5263;}*/
+.menu-1fA401bY-:only-child{background: #4c5263;}
+
+.customButton--jqJTfH5-:hover{color: #fff;}
+.wrap-3tiHesTk-{background: #121a2e;}
+.content-3mgFz85m-{background: #121a2e;}
+.pane-legend-line {
+    display: inline;
+    cursor: default;
+    pointer-events: none !important;
+    font-size: 11px !important;
+}
+ 
+.pane-legend-line span {
+    color: #fff;
+}
+ 
+.pane-legend-line.pane-legend-wrap.study > .pane-legend-line {
+    font-size: 11px !important;
+    color: #fff !important;
+}
+ 
+.pane-legend-icon-container{
+    display: none !important;
+}
+ 
+.pane-legend-line>.main{
+    display: none !important;
+}
+ 
+.pane-legend .pane-legend-minbtn{
+    display: none;
+}

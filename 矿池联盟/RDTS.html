@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			.coin_top_box{background: #3D68EF;display: flex;align-items: center;justify-content: space-between;padding: 10px;}
+			.coin_top_box .img img{width: 30%;}
+			.coin_top_box .coin_r{text-align: right;}
+			.coin_top_box .coin_r p{color: #FFFFFF;font-weight: bold;font-size: 1.2rem;}
+			.coin_top_box .coin_r i{color: rgba(255,255,255,0.50);font-size: 0.8rem;}
+			.a_btn{margin:3% auto 0;display: flex;align-items: center;justify-content: flex-end;}
+			.a_btn a{background: #fff;color: #3D68EF;border-radius: 5px;font-size: 0.8rem;padding:3px 10px;text-align: center;width: 40px;white-space: nowrap;}
+			.a_btn a:nth-child(1){margin-right: 15px;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>RDTS</p>
+	    	<!--<a href="transfer.html" class="fr">划转</a>-->
+		</h1>
+		<div class="coin_top_box">
+			<i class="img"><img src="img/logo.png"/></i>
+			<div class="coin_r">
+				<p class="coin_price">168.47811289</p>
+				<i>≈ 429.2916650420916 CNY</i>
+				<div class="a_btn">
+					<a href="turn.html">互转</a>
+					<a href="transfer.html">划转</a>
+				</div>
+			</div>
+		</div>
+		<!--<div class="coin_top_box">
+			<a href="turn.htmlt"><img src="img/asset_4.png"><span>互转</span></a>
+			<a href="transfer.html"><img src="img/asset_4.png"><span>划转</span></a>
+		</div>-->
+		<div class="tips_box">
+			<b>交易记录</b>
+		</div>
+		<div class="team">
+			<div class="team_info">
+				<ul>
+					<li>
+						<div class="info">
+							<i><img src="img/logo.png"></i>
+							<div class="l">
+								<p class="name">红包奖励</p>
+								<p class="id"><span>2020.8.4 14:30</span></p>
+							</div>
+							<div class="r">
+								<p class="num"><span>0.000000</span></p>
+								<p class="time"><span>&nbsp;</span></p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="info">
+							<i><img src="img/logo.png"></i>
+							<div class="l">
+								<p class="name">每日挖矿</p>
+								<p class="id"><span>2020.8.4 14:30</span></p>
+							</div>
+							<div class="r">
+								<p class="num"><span>3.5</span></p>
+								<p class="time"><span>&nbsp;</span></p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>	
+		</div>
+			
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</html>

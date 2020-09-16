@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.sign_btn{background-image: url('img/sign_btn.png');background-size: 100% 100%;background-repeat: no-repeat;
+			position: absolute;bottom: 5vh;left: 0;right: 0;width: 28%;
+			color: #fff;font-weight: bold;letter-spacing: 1px;text-align: center;padding: 5px 0 10px;margin: auto;}
+			.audio_img_box{background-image: url('img/audio_img.png');background-size: 100% 100%;background-repeat: no-repeat;
+			width: 30px;height: 30px;position: absolute;right: 10px;top: 8%;animation:turn 1s linear infinite;
+			animation-play-state:running;
+    		-webkit-animation-play-state:running; }
+			@keyframes turn{
+		      0%{-webkit-transform:rotate(0deg);}
+		      25%{-webkit-transform:rotate(90deg);}
+		      50%{-webkit-transform:rotate(180deg);}
+		      75%{-webkit-transform:rotate(270deg);}
+		      100%{-webkit-transform:rotate(360deg);}
+		    }
+		    .x {
+            border: solid 1px red;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            background-color: transparent;
+        	}
+            .x:before {
+                position: absolute;
+                top: 0px;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                border-bottom: 100px solid red;
+                border-left: 100px solid transparent;
+                content: "";
+            }
+            .x:after {
+                position: absolute;
+                left: 1px;
+                right: 0;
+                top: 1px;
+                bottom: 0;
+                border-bottom: 99px solid white;
+                border-left: 99px solid transparent;
+                content: "";
+            }
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>签到挖矿</p>
+		</h1>
+		<div class="sign">
+			<div class="audio_img_box">
+				<video src="js/8178.wav" id="video" loop="loop"></video>
+			</div>
+			
+			<div class="sign_img_box">
+				<img src="img/sign_1.png" class="sign_top"/>
+				<!--<img src="img/sign_2.png" class="sign_top_1"/>-->
+			</div>
+			<div class="i_box"><i></i><i></i></div>
+			<div class="sign_title">
+				<p>已签到3天</p>
+				<p>已获得加速1bteD</p>
+				<p>已累计获得2.5BTED</p>
+			</div>
+			<div class="sign_img">
+				<img src="img/sign_l.png" class="sign_l"/>
+				<img src="img/sign.gif" class="sign_c"/>
+				<img src="img/sign_r.png" class="sign_r"/>
+				
+				<div class="sign_btn">签到</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.addEventListener('touchstart',function() {
+		  document.getElementsByTagName('audio')[0].play();
+		  document.getElementsByTagName('audio')[0].pause();
+		});
+		
+		$(document).ready(function(){
+			var myVideo = document.getElementById("video");
+			myVideo.play();
+		})
+		
+		$(".audio_img_box").click(function(){
+			var myVideo = document.getElementById("video");
+			if(myVideo.paused){
+				myVideo.play();
+				$(this).css('background-image', 'url(img/audio_img.png)');
+				$(this).css('animation-play-state', 'running');
+				$(this).css('-webkit-animation-play-state', 'running');
+			}else{
+				myVideo.pause();
+				$(this).css('background-image', 'url(img/audio_img_no.png)');
+				$(this).css('animation-play-state', 'paused');
+				$(this).css('-webkit-animation-play-state', 'paused');
+			}
+		})
+	</script>
+</html>

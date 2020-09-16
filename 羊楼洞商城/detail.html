@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style_1.css"/>
+		<style type="text/css">
+			.pay-other{margin-top: 10px;border-radius: 5px;padding: 5px 15px;background:#fff;}
+			.pay-other .yunfei{overflow: hidden;padding: 8px 0;font-size: 0.8rem;color: #1D1E1F;}
+			.pay-other .yunfei:nth-last-child(1){border: none;}
+			.pay-other .yunfei .l{float: left;}
+			.pay-other .yunfei .l s{width: 3px; height: 13px;background:#1A5C52;display: inline-block;margin-right: 8px;}
+			.pay-other .yunfei .r{float: right;color: #666666;}
+			.pay-other .yunfei .r input{text-align: right;}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>提交订单</p>
+		</h1>
+		<div class="order_index">
+			<div class="orders_top" onclick="navigate('/address/addr_list/5.html')">
+				{if !empty($address)}
+				<p><span>{$address['name']}</span><s>{$address['mobile']}</s></p>
+				<div>
+					<i><img src="__INDEX__/images/dz.png"/></i>
+					<span>{$address['province']}{$address['city']}{$address['county']}{$address['content']}</span>
+				</div>
+				<img class="di" src="__INDEX__/images/ban.png"/>
+				{else/}
+				点击添加地址
+				{/if}
+			</div>
+			<div class="orders_conter">
+				<i><img src="{$find['img']}"/></i>
+				<div>
+					<h1>{$find['name']}</h1>
+					<p></p>
+					<span><em>￥ {$find['price']}</em><s>×{$find['buy_num']}</s></span>
+				</div>
+			</div>
+	
+			<div class="pay-other">
+				<div class="yunfei">
+					<p class="l"><s></s>订单信息</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">创建时间</p>
+					<p class="r">2020-09-09 12:00:00</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">付款时间</p>
+					<p class="r">2020-09-09 12:00:00</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">支付方式</p>
+					<p class="r">支付宝</p>
+				</div>
+				<div class="yunfei">
+					<p class="l">状态</p>
+					<p class="r">已付款</p>
+				</div>
+			</div>
+			
+	
+			<input type="hidden" id="address_id" value="{$address['id']}">
+			<input type="hidden" id="num" value="{$find['buy_num']}">
+			<input type="hidden" id="id" value="{$find['id']}">
+	
+		</div>
+	</body>
+</html>

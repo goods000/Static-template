@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,html{background: #F5F5F5 !important;	}
+		</style>
+	</head>
+<body>
+	<h1 class="h1 qrodeh1">
+		<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+		<p>提现记录</p>
+	</h1>
+	<div class="mt"></div>
+	<div class="record">
+	    <ul id="list">
+	        <li>
+				<p>充值数量</p>
+				<i>+7000</i>
+				<span class="way">充值方式:  支付宝充值</span>
+				<div class="state_box">
+					<div class="left">
+						<span>当前状态:</span>
+						<span>已完成</span>
+					</div>
+					<div class="right">
+						<span>交易凭证:</span>
+						<a class="under">
+							<img src="img/see.png"/>点击查看
+							<img src="img/asset_top_bg.png" style="display: none;"/>
+						</a>
+					</div>
+				</div>
+				<div class="time_box">
+					<div class="left">
+						<span>订单编号:</span>
+						<span>2548544875248655</span>
+					</div>
+					<div class="right">
+						<span>交易时间:</span>
+						<span>2020/03/14 10:24</span>
+					</div>
+				</div>
+	        </li>
+	        <li>
+				<p>充值数量</p>
+				<i>+7000</i>
+				<span class="way">充值方式:  支付宝充值</span>
+				<div class="state_box">
+					<div class="left">
+						<span>当前状态:</span>
+						<span>已完成</span>
+					</div>
+					<div class="right">
+						<span>交易凭证:</span>
+						<a class="under">
+							<img src="img/asset_top_bg.png"/>点击查看
+							<img src="img/goods.png" style="display: none;"/>
+						</a>
+					</div>
+				</div>
+				<div class="time_box">
+					<div class="left">
+						<span>订单编号:</span>
+						<span>2548544875248655</span>
+					</div>
+					<div class="right">
+						<span>交易时间:</span>
+						<span>2020/03/14 10:24</span>
+					</div>
+				</div>
+	        </li>
+	    </ul>
+	</div>
+	
+	<div class="img_box">
+		<img src="img/asset_top_bg.png"/>
+	</div>
+	
+	<!--没有数据时显示-->
+	<div class="kong">
+		<img src="img/kong.png" />
+		<p>暂无记录</p>
+	</div>
+</body>
+<script>
+			
+//	$(".under").click(function(){$(".img_box").show()})
+	$(".img_box").click(function(){$(this).hide()})
+	
+    function show() {
+		//没有数据的时候显示
+		if($(".record li").length <= 0) {
+			$(".kong").show();
+		} else {
+			$(".kong").hide();
+		}
+	}
+	show();
+	
+	$("ul#list li").each(function (i) { 
+		$(this).click(function(){
+			var img = $(this).find(".under img").attr("src");
+			$(".img_box").find("img").attr("src",img);
+			$(".img_box").show();
+		})
+	 })
+	
+</script>

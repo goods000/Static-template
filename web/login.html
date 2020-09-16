@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" 
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="login">
+		<div id="header"></div>
+		<div class="login_in">
+			<h2>欢迎登录</h2>
+			<input type="text" class="account" placeholder="请输入账号" />
+			<input type="password" class="pwd" placeholder="请输入密码" />
+			<a href="forgot_password.html">忘记密码</a>
+			<button class="submit" id="submit">登录</button>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+		
+		<!--MD5 js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+			// 记住密码
+			function remember(obj) {
+				if ($(obj).attr("checked") == "checked") { //不记住密码
+					$(obj).siblings(".border").removeClass("mark");
+					$(obj).attr("checked", false)
+				} else { //记住密码
+					$(obj).siblings(".border").addClass("mark");
+					$(obj).attr("checked", "checked");
+				}
+			}
+
+			function remeberCookie() {
+				if ($.cookie("account")) {
+					$("#rememberUser").attr("checked", true);
+					$(".border").addClass("mark");
+					$(".account").val($.cookie("account"));
+					$(".pwd").val($.cookie("pwd"));
+				}
+			}
+			// 添加Cookie
+			function addCookie(mobile,pwd){
+				$.cookie("account", mobile, {
+					expires: 365
+				}); // 存储一个带365天期限的 cookie
+				$.cookie("pwd", pwd, {
+					expires: 365
+				}); // 存储一个带365天期限的 cookie
+				
+			}
+			// 删除cookie
+			function removeCookie() {
+				$.cookie("rememberUser", "false", {
+					expires: -1
+				}); // 删除 cookie
+				$.cookie("account", '', {
+					expires: -1
+				});
+				$.cookie("pwd", '', {
+					expires: -1
+				});
+			}
+
+
+			$(".submit").click(function() {
+				var account = $(".account").val();
+				var pwd = $(".pwd").val();
+				// 是否非空
+				if (!isKong(account, $(".account").attr("placeholder"))) {
+					return false;
+				}
+				// 是否非空
+				if (!isKong(pwd, $(".pwd").attr("placeholder"))) {
+					return false;
+				}
+				pwd = CryptoJS.MD5(pwd).toString().toUpperCase();
+				// console.log(timestamp)
+				var param = {
+					'account': account,
+					'password': pwd,
+					
+				}
+				param=rsaMethod(param)
+				param={
+					"data":param
+				}
+				//console.log(param)
+				$("#submit").attr("disabled",true)
+				$.post(localhostUrl+'/index/login/login_do',param,
+						function(res) {
+						if(res.status==0){
+							var token=res.data.token;
+							var userID=res.data.id
+							var nickName=res.data.nickname;
+							nickName=encodeURI(encodeURI(nickName));
+								
+							var AppDown=res.data.invite_url;
+							var useqiniu_domainrID=res.data.qiniu_domain;
+							var reg_link=res.data.reg_link;
+							SetCookie("token", token)
+							SetCookie("userID", userID)
+							SetCookie("nickName", nickName)
+							SetCookie("AppDown", AppDown)
+							SetCookie("useqiniu_domainrID", useqiniu_domainrID)
+							SetCookie("reg_link", reg_link)
+							layer.msg('登陆成功', {icon: 1,title:false,time:2000,end:function(){
+								//	addCookie(account,pwd
+								//	console.log("token:"+token)
+									window.location.href="index.html"
+								}
+							})
+						}else{
+							layer.msg(res.msg, { icon: 2,time: 2000});
+							$("#submit").attr("disabled",false)
+						}
+							
+						}, 'json');
+				
+				
+			})
+			
+		</script>
+		
+		
+	</body>
+</html>

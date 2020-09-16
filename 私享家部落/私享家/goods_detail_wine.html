@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.back-to-top{position: fixed;bottom: 20vh;right: 10px;display: none;background: #fff;padding: 5px 10px 0px;border-radius: 10px 0 0 10px;
+			animation: topDown 0.5s;}
+			@keyframes topDown {
+			  from {bottom: 20vh;right: -30px; opacity: 0}
+			  to {bottom: 20vh;right: 10px; opacity: 1}
+			}
+		</style>
+	</head>
+<body>
+	<img src="img/return.png" class="return" onclick="javascript:history.back(-1);"/>
+	<div class="goods" name="top">
+		<div class="tab">
+			<a href="javascript:;" class="a_one active">商品</a>
+			<a href="javascript:;" class="a_two">详情</a>
+		</div>
+		<div class="mt" style="margin-top: 50px;"></div>
+	</div>
+	<div class="goodsinfo">
+		<!--轮播-->
+		<!-- Swiper -->
+		  <div class="swiper-container">
+		    <div class="swiper-wrapper">
+		      <div class="swiper-slide">
+		      	<a href=""><img src="img/pro_wine.png"/></a>
+		      </div>
+		      <div class="swiper-slide">
+		      		<a href=""><img src="img/pro_wine.png"/></a>
+		      </div>
+		      <div class="swiper-slide">
+		      		<a href=""><img src="img/pro_wine.png"/></a>
+		      </div>
+		    </div>
+		    <!-- Add Pagination -->
+		    <div class="swiper-pagination"></div>
+		  </div>
+			
+		
+		<div class="info">
+			<div class="price">
+				<p class="guige"><b>$</b><span class="price">500</span></p>
+			</div>
+			<p class="name">【子爵套餐】澳洲/法国酒庄顶级系列红酒2箱 6瓶/箱</p>
+			<div class="div">
+				<p class="fei"><label>销量：</label> <span>2563</span></p>
+				<p class="stock"><label>库存：</label> <span>22252</span></p>
+			</div>
+		</div>
+		<div class="mt"></div>
+		<div class="con">
+			<h4 class="title">详情</h4>
+			<img src="img/pro_wine1.png"/>
+			<img src="img/pro_wine1.png"/>
+			<img src="img/pro_wine1.png"/>
+			<img src="img/pro_wine1.png"/>
+		</div>
+		<div class="sum">
+			<a href="index.html" class="r_img">
+				<img src="img/index.png"/>
+				<span>首页</span>
+			</a>
+			<button class="a jiesuan" onclick="location.href='goods_order_wine.html'">立即购买</button>
+		</div>
+		
+	</div>
+		<!--回顶部-->
+		<div class="back-to-top">
+	      <img src="img/go_top.jpg" alt="">
+	    </div>
+	<script>
+	    var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	        
+	    });
+	    /*商品和详情的判断*/
+	    $(document).ready(function () {
+            $(window).scroll(function () {
+                var a = $(".price").offset().top;
+                if (a < $(window).scrollTop()) {
+                	$(".back-to-top").show();
+                	$(".goods .tab .a_two").addClass("active").siblings().removeClass("active");
+                }else{
+                	$(".back-to-top").hide();
+                	$(".goods .tab .a_one").addClass("active").siblings().removeClass("active");
+                }
+            });
+        });
+        	
+        
+        $(".back-to-top").on("click",function(){
+        	$(window).scrollTop(0) 
+        	if ($(window).scrollTop() === 0) {
+        		console.log($(window).scrollTop());
+        	}
+		 });
+	    
+       
+	</script>
+</body>
+</html>

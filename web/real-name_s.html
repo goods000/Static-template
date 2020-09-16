@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		 <link rel="stylesheet" href="css/select_gj.css">
+		 <!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div id="header" name="0"></div>
+		<div class="gonggong">
+			<div>
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);">C2认证</button>
+			</div>
+		</div>
+		<div class="login_password real-name">
+			<h1>C2身份认证</h1>
+			<!--<p class="iconfont icon-jingshi">修改资金密码后24小时禁止提币和OTC归集</p>-->
+			<div class="wapk" style="display: flex;">
+				
+				<div class="line"> 
+					<a  href=" " class="a-upload"> 
+						<form id="fileImg_1" class="formF" enctype="multipart/form-data" action="#" onsubmit="return false" >     
+							<input type="file" name="file" id="file1" onchange="preview(this)" accept="image/*" placeholder="请上传证件正面照"/>
+						</form>
+						<div id="picImg1" class="img">
+							上传证件正面照
+						</div>						
+					</a> 
+					<h2>上传证件正面照</h2>
+				</div>
+				<div class="line"> 
+					<a  href=" " class="a-upload">    
+						<form id="fileImg_2" class="formF" enctype="multipart/form-data" action="#" onsubmit="return false" >     
+							<input type="file" name="file" id="file2" onchange="preview(this)" accept="image/*" placeholder="请上传证件反面照"/>
+						</form>
+						<div id="picImg2" class="img">
+							上传证件反面照
+						</div>			
+					</a> 
+					<h2>上传证件反面照</h2>
+				</div>
+				<div class="line"> 
+					<a  href=" " class="a-upload">    
+						<form id="fileImg_3" class="formF" enctype="multipart/form-data" action="#" onsubmit="return false" >     
+							<input type="file" name="file" id="file3" onchange="preview(this)" accept="image/*" placeholder="请上传手持证件照"/>
+						</form>
+						<div id="picImg3" class="img">
+							上传证件反面照
+						</div>		
+					</a> 
+					<h2>上传手持证件照</h2>
+				</div>
+			</div>
+			
+			
+			<button id="submit">提交</button>
+		</div>
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+		var Detail={};
+		getDetail();
+		//获取实名详情
+		function getDetail(){
+			var that = this;
+			var param = {
+				"token": $.cookie("token")
+			}
+			param=rsaMethod(param)
+			param={
+				"data":param
+			}
+			$.post(localhostUrl+'/index/setup/get_auth',param, 
+			function(res) {
+				if(res.status==0){
+					Detail=res.data.info;								
+					if(res.data.status==2 ||Detail.status==4){   //C2 已提交						
+						var img1='<img src="http://cnd.cjlnet.com/' +Detail.pic1 + '" />';
+						var img2='<img src="http://cnd.cjlnet.com/' +Detail.pic2 + '" />';
+						var img3='<img src="http://cnd.cjlnet.com/' +Detail.pic3 + '" />';
+					//	console.log(img)
+						$("#picImg1").html(img1);
+						$("#picImg2").html(img2);
+						$("#picImg3").html(img3);
+						if(res.data.status==2){
+						$("#submit").text("已通过C2认证");
+							$("#submit").attr("disabled", true)
+						}
+						if(res.data.info.status==6){
+							$("#submit").text("C2认证失败");
+						}
+						if(res.data.info.status==2){
+							$("#submit").text("已通过C2认证");
+							$("#submit").attr("disabled", true)
+						}
+						if(res.data.info.status==4) {
+							$("#submit").text("已提交，请等待审核");
+							$("#submit").attr("disabled", true)
+						}
+					}
+					
+					
+				}
+				
+				
+			}, 'json');
+		}
+		//获取七牛云token
+		function getTT(){
+				var that=this;
+				var param = {
+					"token": $.cookie("token")
+				}
+				param=rsaMethod(param)
+				param={
+					"data":param
+				}
+				$.post(localhostUrl+'/index/index/getQiNiuToken',param, 
+				function(res) {
+					if(res.status==0){
+					that.qiniu_token=res.data;				
+					//console.log("token1:"+that.qiniu_token)		
+				}else{
+					Invalid(res)  //判断登录是否失效
+					$("#submit").attr("disabled", false)
+				}
+				
+				}, 'json')
+			}
+		getTT();
+		var pic1,pic2,pic3;
+		
+		//上传到七牛云
+		function uploadImg(tt){
+			var that=this;							
+			console.log(tt)	
+			//this.getTT();	
+			console.log("token:"+that.qiniu_token)	
+			var file=document.getElementById(tt);
+			console.log(file)	
+			var param = new FormData(file);
+			param.append('token', that.qiniu_token);
+			$.ajax({
+				url: 'https://upload-z2.qiniup.com/',
+				type: "post",
+				dataType: 'JSON',
+				async: false,
+				cache: false,
+				contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+				processData: false, // 告诉jQuery不要去处理发送的数据
+				beforeSend: function(request) {
+					request.setRequestHeader("token", that.qiniu_token);
+				},
+				data: param,
+				// async:false,
+				success: function(res) {
+					 console.log(res)								
+						var imgurl=res.key;
+						imgurl=imgurl;
+						console.log(imgurl)		
+						if(tt=='fileImg_1'){
+							pic1=imgurl
+						}
+						else if(tt=='fileImg_2'){
+							pic2=imgurl
+						}
+						else{
+							pic3=imgurl
+						}
+				},
+				error: function() {
+					layer.msg('网络不好，稍微再试！');
+				}
+				
+			});
+			$("#submit").attr("disabled", false);
+			
+		}
+
+			
+		
+		$("#submit").click(function(){
+			var file1=$("#file1").val();
+			var file2=$("#file2").val();
+			var file3=$("#file3").val();
+			
+			// 是否非空
+			if(!isKong(file1,$("#file1").attr("placeholder"))){
+				return false;
+			}					
+			// 是否非空
+			if(!isKong(file2,$("#file2").attr("placeholder"))){
+				return false;
+			}
+			if(!isKong(file3,$("#file3").attr("placeholder"))){
+				return false;
+			}
+			uploadImg("fileImg_1");
+			uploadImg("fileImg_2");
+			uploadImg("fileImg_3");
+			
+			var param = {
+				"pic1":pic1	,
+				"pic2":pic2	,
+				"pic3":pic3	,					
+				"token": $.cookie("token")
+			}
+			//console.log(param)
+				param=rsaMethod(param)
+				param={
+					"data":param
+				}
+			$("#submit").attr("disabled", "disabled")
+				$.post(localhostUrl+'/index/setup/auth_c2', param,
+				function(res) {
+					if(res.status==0){
+						layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+								$("#submit").attr("disabled", false)
+								window.parent.location.reload()
+							}
+							});
+						
+					}else{							
+						Invalid(res)  //判断登录是否失效
+						$("#submit").attr("disabled", false)
+					}
+					
+				}, 'json');
+						
+		})
+			//图片预览
+		function preview(file) {	
+				var parent=$(file).parents("form").siblings(".img");
+				//console.log(parent.html())
+				var img;
+				if (file.files && file.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function (evt) {
+					//	console.log('src11:'+evt.target.result)
+						var src=evt.target.result;
+//		                parent.innerHTML = '<img src="' + evt.target.result + '" class="img"/>';
+						img='<img src="' + evt.target.result + '" />';
+					//	console.log(img)
+						parent.html(img);
+					}
+					reader.readAsDataURL(file.files[0]);
+				} else {
+				   // parent.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+					var src=file.value;
+					img='<img src="' + src + '" class="img"/>';
+					parent.html(img);
+//					console.log('src22:'+src)
+
+				}
+			}
+		</script>
+	
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>CTC</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<style>
+			.moneyBox,.titleText{display: none;}
+			.passworldBox{height: 150px !important;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>发布挂卖</p>
+		</h1>
+		<div class="" id="app">
+			<div class="top-tp_bottom">
+				<h4>兑换数量</h4> 
+				<div class="type_box">
+					<div class="type">10</div>
+					<div class="type">100</div>
+					<div class="type">300</div>
+					<div class="type">500</div>
+					<div class="type">2000</div>
+				</div>
+			</div>
+			<div class="top-tp_bottom">
+				<div class="title_list">
+					<div class="left">今日市价</div>
+					<div class="right">4.85 USDT</div>
+				</div>
+				<div class="title_list">
+					<div class="left">挂卖总额</div>
+					<div class="right o">0.00 USDT</div>
+				</div>
+			</div>
+			<div class="top-tp_bottom">
+				<div class="title_list">
+					<div class="left">手续费</div>
+					<div class="right g">-0.00 USDT</div>
+				</div>
+			</div>
+			<div class="annius" id="pay">确认发布</div>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Zcheck.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/zhaler/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/zhaler/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="js/layer/layer.js"></script>
+	<script type="text/javascript" src="js/zhaler/vue.min.js"></script>
+	<script type="text/javascript" src="js/zhaler/config.js"></script>-->
+
+	<script type="text/javascript">
+		$(".type_box .type").each(function(){
+			$(this).click(function(){
+				$(this).addClass("choice").siblings().removeClass("choice");
+			})
+		})
+		
+		let payPassword = createPayPassword({
+	        title:'',
+	        prices:'100',
+	        priceUnit:'元',
+	        activeDom:'#pay',
+	        onInputCompletion(){
+	        	alert("支付成功");
+	        	$(".pwdInput").val('');
+	        	$(".fakeBox input").val('');
+	        	$(".maskBox").hide();
+	        }
+	    });
+	</script>
+	
+</html>

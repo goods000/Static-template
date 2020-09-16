@@ -1,0 +1,90 @@
+
+body{
+	background-color: #fff;
+}
+.header{
+	/* background: url(../images/header-bg.png) no-repeat; */
+	background-size: 100% 100%;
+	background: #fff;border-bottom: 1px solid #eee;
+}
+.headerTitle{
+	/* font-weight: bold; */
+	letter-spacing: 1px;
+}
+.main{
+	padding: 0 0.17rem;
+	overflow: hidden;
+}
+.title{
+	color: #333333;
+	font-size: 0.15rem;
+	margin-top: 0.16rem;
+}
+textarea{
+	width: 100%;
+	border: 0;
+	font-size: 0.13rem;
+	margin-top: 0.14rem;
+	background-color: transparent;
+}
+textarea::placeholder{
+	color: #999999;
+}
+#length-note{
+	text-align: right;
+	color: #999999;
+	font-size: 0.13rem;
+}
+.input{
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #F2F3FA;
+	padding: 0.13rem 0;
+	font-size: 0.13rem;
+	background-color: transparent;
+}
+.input::placeholder{
+	color: #999999;
+}
+
+
+.z_file{
+	border: 1px dashed #D2D2D2;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #F6F6F6;
+}
+.z_file p{
+	color: #999999;
+	font-size: 0.11rem;
+}
+.z_file img{
+	width: 0.2rem;
+}
+.img-box{
+	margin: 0.32rem 0 0;
+}
+.max{
+	margin: 0.08rem 0 0.54rem;
+	color: #999999;
+	font-size: 0.11rem;
+}
+
+.confirm-btn{
+	width: 100%;
+	display: block;
+	height: 0.36rem;
+	background-color: #2983FF;
+	border: 0;
+	border-radius: 4px;
+	color: #fff;
+	letter-spacing: 2px;
+	margin: 0 auto;
+	margin-top: 0.14rem;
+	margin-bottom: 0.18rem;
+	line-height: 0.36rem;
+	text-align: center;
+}

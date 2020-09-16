@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,html{background: url(img/tun_bg.png);background-size: 100% 100%;background-repeat: no-repeat;height: 100%;overflow: scroll;position: relative;}
+			.h1{background: none;border-bottom:none;}
+			.h1 p,.h1 button,.h1 .fr{color: #fff !important;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>游戏</p>
+	    	<a href="turntable_record.html" class="fr">中奖记录</a>
+		</h1>
+		<img src="img/tun_tips_top.png" class="tun_tips_top"/>
+		<div class="wait_btn">
+		    等待开奖
+		</div>
+		<div class="btn_box">
+			<a href="star_rule.html" class="rule_btn">
+			    星级等级规则
+			</a>
+			<a href="team_rule.html" class="team_btn">
+			    团队信息
+			</a>
+		</div>
+		<img src="img/luck.png" class="luck"/>
+		<div class="luck_btn start"></div>
+		<div class="tunn">
+			<div class="tun_title">
+	            <span>每次消耗：</span><span><i>79.65</i> RDTSS + </span><span><i>0.24</i>RDTS</span>
+			</div>
+			<div class="tun_tips_box">
+				<div class="tips_header">
+					<img src="img/tun_tips_1.png"/>
+					<span>规则</span>
+					<img src="img/tun_tips_2.png"/>
+				</div>
+				<div class="tips_rules">
+					<p>游戏规则：</p>
+					<p>1、十人随机匹配进入，开启抢矿之旅；</p>
+					<p>2、点击立即参与，自动扣除价值100￥RDTSS与2%RDTS；</p>
+					<p>3、等待开奖中，够满10人公布开奖结果；</p>
+					<p>4、结束后，可继续参与下一轮！</p>
+				</div>
+			</div>
+			
+			<div class="tun_anniu start">立即参与</div>
+		</div>
+		
+		<!--参与框-->
+		<div class="tun_box">
+			<div class="tun_mo_box">
+				<i><img src="img/logo.png"/></i>
+				<div class="data_box">
+					<div class="data_b">
+						<p>79.56</p>
+						<i>RDTS</i>
+					</div>
+					<div class="fu">
+						+
+					</div>
+					<div class="data_b">
+						<p>1.21</p>
+						<i>RDTSS</i>
+					</div>
+				</div>
+				<i class="fu_title">(需消耗)</i>
+				<div class="div_btn">
+					<div class="return">返回</div>
+					<div class="confirm">确认参与</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--成功-->
+		<!--<div class="success_box">
+			<div class="success_mo_box">
+				<div class="su_top">
+					<i><img src="img/m_success.png"/></i>
+					<div class="su_top_r">
+						<b>中奖啦！</b>
+						<p>恭喜您获得矿机1台</p>
+					</div>
+				</div>
+				<div class="su_bo">
+					<div class="su_return">返回</div>
+					<div class="continue">继续抽奖</div>
+				</div>
+			</div>
+		</div>-->
+		
+		<div class="success_box">
+			<div class="success_mo_box">
+				<div class="su_top">
+					<i class="m_success"><img src="img/m_success.png"/></i>
+					<i class="m_fail"><img src="img/m_fail.png"/></i>
+					<div class="su_top_r m_fail">
+						<b>谢谢参与</b>
+						<p>再试一次吧</p>
+					</div>
+					<div class="su_top_r m_success">
+						<b>中奖啦！</b>
+						<p>恭喜您获得矿机1台</p>
+					</div>
+				</div>
+				<div class="su_bo">
+					<div class="su_return">返回</div>
+					<div class="continue m_success">继续抽奖</div>
+					<div class="continue m_fail">再试一次</div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+	
+	<script type="text/javascript">
+		//立即参与
+		$(".start").click(function(){$(".tun_box").show();})
+		$(".return").click(function(){$(".tun_box").hide();})
+		//成功
+		$(".su_return").click(function(){$(".success_box").hide();})
+		$(".m_success").click(function(){$(".m_fail").show();$(".m_success").hide();})
+		$(".m_fail").click(function(){$(".m_success").show();$(".m_fail").hide();})
+	</script>
+</html>

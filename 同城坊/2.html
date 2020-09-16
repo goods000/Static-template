@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/layui.css">
+    <link rel="stylesheet" href="css/user-common.css">
+    <style>
+        .xian{
+        border-right:1px solid gray;
+        padding-right:5px;
+    }
+    .layui-input{
+        height: 30px !important;
+    }
+    .caozuo li{
+        margin-right: 10px;
+        
+    }
+    .caozuo span{
+        color: #35d0fe !important;
+    }
+    .layui-table .layui-icon{
+        border-radius: 50% !important;
+    }
+    .layui-table .layui-form-checked[lay-skin=primary] i {
+    border-color: red;
+    background-color: #FFB800;
+    color: #fff;
+}
+    .layui-form-checked[lay-skin=primary] i {
+    border-color: #FFB800;
+    background-color: #FFB800;
+    color: #fff;
+}
+.xuan{
+    color: #FFB800;
+}
+.xuan:hover{
+    color: #FFB800;
+}
+.layui-table td, .layui-table th {
+    position: relative;
+    padding: 5px 10px;
+}
+.layui-table thead tr{
+    background: #646c84;
+    color: #fff;
+}
+#page{
+    display: flex;
+    justify-content: center;
+}
+.tun_box{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;z-index: 999;
+    display: none;
+}
+.tun_box .tun_mo_box{
+    background: #fff;
+    border-radius: 10px;
+    width:350px;
+    height:220px;
+    padding: 15px;
+    margin: 10% auto;
+}
+.div_btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.close{border: 1px solid #666;border-radius: 50%;}
+.div_btn button{width: 80px;}
+.msg{display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;}
+.billmsg{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+}
+.billmsg input{
+    width: 150px;
+}
+    </style>
+</head>
+<link id="layuicss-layer" rel="stylesheet" href="css/layer.css" media="all">
+<link id="layuicss-laydate" rel="stylesheet" href="css/laydate.css" media="all">
+
+<body>
+    <div class="layui-body">
+        <div class="header_top_submenu">
+            <a href="https://www.chntcf.com/index/inquiry/report.html">首页</a>
+            <a href="https://www.chntcf.com/index/inquiry/report/menu_id/1.html">/订单</a>
+            <a href="">/订单管理</a>
+        </div>
+        <div class="container" style="width:97%;margin: 0 auto;">
+            <div class="">
+                <div class="time layui-form" lay-filter="myDiv" style="display:flex;height: 40px;
+                background: #fff;
+                margin-bottom: 10px;
+                align-items: center;">
+                    <div class="">
+                        <label class="layui-form-label" style="    height: 30px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100px;">下单时间:</label>
+                        <div style="width:150px;border-radius:5px;margin-left: 100px;">
+                            <select name="time">
+                                <option value="0">一个月内</option>
+                                <option value="1">三个月内</option>
+                                <option value="2">半年内</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="width:200px; border-radius:5px;display: flex;margin: 0px 5%;">
+                        <input type="text" class="layui-input" placeholder="请输入单号">
+                        <button type="button" class="layui-btn layui-btn-sm layui-btn-primary layui-bg-red">
+                            <i class="layui-icon">&#xe615;</i>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="layui-btn layui-btn-sm layui-btn-warm">查询</button>
+                        <button class="layui-btn layui-btn-sm layui-btn-danger">重置</button>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content: space-around;align-items: center;background: #fff;height: 40px;">
+                    <div>
+                        <label for="">排序：</label>
+                        <span class="xian xuan">下单时间</span>
+                        <span>交货时间</span>
+                    </div>
+                    <div>
+                        <label for="">状态:</label>
+                        <a href="" class="xian xuan">全部</a>
+                        <a href="" class="xian">待分配生产</a>
+                        <a href="" class="xian">未完成</a>
+                        <a href="" class="xian">已完成</a>
+                        <a href="" class="xian">延期完成</a>
+                        <a href="" class="xian">已暂停</a>
+                        <a href="" class="xian">已作废</a>
+                        <a href="" class="xian">待出库</a>
+                        <a href="">已出库</a>
+                    </div>
+                    <div class="caozuo">
+                        <ul style="display:flex;">
+                            <li id="allot">
+                                <img src="img/批量分配所属专员.png" alt="">
+                                <span>批量分配所属专员</span>
+                            </li>
+                            <li id="finish">
+                                <img src="img/批量完结.png" alt="">
+                                <span>批量完结</span>
+                            </li>
+                            <li>
+                                <img src="img/出货单打印.png" alt="">
+                                <span>出货单打印</span>
+                            </li>
+                            <li>
+                                <img src="img/导出订单.png" alt="">
+                                <span>导出订单</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form">
+                <table class="layui-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" name="" lay-skin="primary" style="border-radius: 50%;" checked>
+                            </th>
+                            <th>序号</th>
+                            <th>产品</th>
+                            <th>订单金额</th>
+                            <th>订单备注</th>
+                            <th>订单状态</th>
+                            <th>下单时间</th>
+                            <th>交货时间</th>
+                            <th>生产周期</th>
+                            <th>是否加急</th>
+                            <th>是否开票</th>
+                            <th>操作</th>
+                            <th>收款状态</th>
+                            <th>文件下载</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #c2c1d1;">
+                            <td colspan="15">订单编号：22020382 生产批号：232324</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" lay-skin="primary" class="layui-bg-orange" checked>
+                            </td>
+                            <td>01</td>
+                            <td style="width:200px;">
+                                <div style="display:flex;align-items: center;justify-content: space-around;">
+                                    <img src="img/user.png" alt="">
+                                    <span>产品名产品名产品名产品名</span>
+                                </div>
+
+                            </td>
+                            <td>￥200</td>
+                            <td>精美制作</td>
+                            <td>已完成</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>3天</td>
+                            <td>
+                                <img src="img/选择.png" alt="">
+                            </td>
+                            <td>
+                                <img src="img/错误.png" alt="">
+                            </td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">联系客户</button>
+                            </td>
+                            <td>未付款</td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">点击下载</button>
+                            </td>
+                            <td class="caozuo" style="width:200px;">
+                                <div>
+                                    <span>已分配生产</span>
+                                    <span>已出库</span>
+                                    <span>订单详情</span>
+                                </div>
+                                <div>
+                                    <span>出货单打印</span>
+                                    <span>出货单导出</span>
+                                </div>
+
+                                <span id="bill">发票信息录入</span>
+                                <span id="ems">快递号录入</span>
+                            </td>
+                        </tr>
+                        <tr style="background: #c2c1d1;">
+                            <td colspan="15">订单编号：22020382 生产批号：232324</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" lay-skin="primary" class="layui-bg-orange" checked>
+                            </td>
+                            <td>01</td>
+                            <td style="width:200px;">
+                                <div style="display:flex;align-items: center;justify-content: space-around;">
+                                    <img src="img/user.png" alt="">
+                                    <span>产品名产品名产品名产品名</span>
+                                </div>
+
+                            </td>
+                            <td>￥200</td>
+                            <td>精美制作</td>
+                            <td>已完成</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>3天</td>
+                            <td>
+                                <img src="img/选择.png" alt="">
+                            </td>
+                            <td>
+                                <img src="img/错误.png" alt="">
+                            </td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">联系客户</button>
+                            </td>
+                            <td>未付款</td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">点击下载</button>
+                            </td>
+                            <td class="caozuo" style="width:200px;">
+                                <div>
+                                    <span>已分配生产</span>
+                                    <span>已出库</span>
+                                    <span>订单详情</span>
+                                </div>
+                                <div>
+                                    <span>出货单打印</span>
+                                    <span>出货单导出</span>
+                                </div>
+
+                                <span id="bill">发票信息录入</span>
+                                <span>快递号录入</span>
+                            </td>
+                        </tr>
+                        <tr style="background: #c2c1d1;">
+                            <td colspan="15">订单编号：22020382 生产批号：232324</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" lay-skin="primary" class="layui-bg-orange" checked>
+                            </td>
+                            <td>01</td>
+                            <td style="width:200px;">
+                                <div style="display:flex;align-items: center;justify-content: space-around;">
+                                    <img src="img/user.png" alt="">
+                                    <span>产品名产品名产品名产品名</span>
+                                </div>
+
+                            </td>
+                            <td>￥200</td>
+                            <td>精美制作</td>
+                            <td>已完成</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>3天</td>
+                            <td>
+                                <img src="img/选择.png" alt="">
+                            </td>
+                            <td>
+                                <img src="img/错误.png" alt="">
+                            </td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">联系客户</button>
+                            </td>
+                            <td>未付款</td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">点击下载</button>
+                            </td>
+                            <td class="caozuo" style="width:200px;">
+                                <div>
+                                    <span>已分配生产</span>
+                                    <span>已出库</span>
+                                    <span>订单详情</span>
+                                </div>
+                                <div>
+                                    <span>出货单打印</span>
+                                    <span>出货单导出</span>
+                                </div>
+
+                                <span id="bill">发票信息录入</span>
+                                <span>快递号录入</span>
+                            </td>
+                        </tr>
+                        <tr style="background: #c2c1d1;">
+                            <td colspan="15">订单编号：22020382 生产批号：232324</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" lay-skin="primary" class="layui-bg-orange" checked>
+                            </td>
+                            <td>01</td>
+                            <td style="width:200px;">
+                                <div style="display:flex;align-items: center;justify-content: space-around;">
+                                    <img src="img/user.png" alt="">
+                                    <span>产品名产品名产品名产品名</span>
+                                </div>
+
+                            </td>
+                            <td>￥200</td>
+                            <td>精美制作</td>
+                            <td>
+                                <img src="img/已取消.png" alt="">
+                            </td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>3天</td>
+                            <td>
+                                <img src="img/选择.png" alt="">
+                            </td>
+                            <td>
+                                <img src="img/错误.png" alt="">
+                            </td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">联系客户</button>
+                            </td>
+                            <td>未付款</td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">点击下载</button>
+                            </td>
+                            <td class="caozuo" style="width:200px;">
+                                <div>
+                                    <span>已分配生产</span>
+                                    <span>已出库</span>
+                                    <span>订单详情</span>
+                                </div>
+                                <div>
+                                    <span>出货单打印</span>
+                                    <span>出货单导出</span>
+                                </div>
+
+                                <span id="bill">发票信息录入</span>
+                                <span>快递号录入</span>
+                            </td>
+                        </tr>
+                        <tr style="background: #c2c1d1;">
+                            <td colspan="15">订单编号：22020382 生产批号：232324</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" lay-skin="primary" class="layui-bg-orange" checked>
+                            </td>
+                            <td>01</td>
+                            <td style="width:200px;">
+                                <div style="display:flex;align-items: center;justify-content: space-around;">
+                                    <img src="img/user.png" alt="">
+                                    <span>产品名产品名产品名产品名</span>
+                                </div>
+
+                            </td>
+                            <td>￥200</td>
+                            <td>精美制作</td>
+                            <td>已完成</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>2020-05-09 10:22:22</td>
+                            <td>3天</td>
+                            <td>
+                                <img src="img/选择.png" alt="">
+                            </td>
+                            <td>
+                                <img src="img/错误.png" alt="">
+                            </td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">联系客户</button>
+                            </td>
+                            <td>未付款</td>
+                            <td>
+                                <button class="layui-btn layui-btn-sm layui-btn-danger">点击下载</button>
+                            </td>
+                            <td class="caozuo" style="width:200px;">
+                                <div>
+                                    <span>已分配生产</span>
+                                    <span>已出库</span>
+                                    <span>订单详情</span>
+                                </div>
+                                <div>
+                                    <span>出货单打印</span>
+                                    <span>出货单导出</span>
+                                </div>
+
+                                <span id="bill">发票信息录入</span>
+                                <span>快递号录入</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="page"></div>
+                <div style="margin-top:50px;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 批量分配 -->
+    <div class="tun_box allot">
+        <div class="tun_mo_box ">
+            <div style="text-align:right">
+                <span class="layui-icon layui-icon-close close"></span>
+            </div>
+            <div class="layui-form">
+                <label for="">批量分配专属员工</label>
+                <div style="width:200px;border-radius:5px;margin: 10px auto;">
+                    <select name="po">
+                        <option value="0">请选择分配专属员</option>
+                        <option value="1">配送员</option>
+                        <option value="2">库管</option>
+                    </select>
+                </div>
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-warm return">取消</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+        <div class="tun_mo_box allot msg">
+            <div>
+                <img src="img/msg1.png" alt="">
+            </div>
+            <div>
+                请至少选择一条产品信息
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+    </div>
+    <!-- 发票录入 -->
+    <div class="tun_box bill">
+        <div class="tun_mo_box ">
+            <div style="text-align:right">
+                <span class="layui-icon layui-icon-close close"></span>
+            </div>
+            <div class="billmsg">
+                <label for="">上传电子发票</label>
+                <input  type="text" id="upfile" class="layui-input" placeholder="点击上传">
+                <input type="file" style="display:none;">
+            </div>
+            <div class="billmsg">
+                <label for="">上传发票代码</label>
+                <input type="text" class="layui-input">
+            </div>
+            <div class="billmsg">
+                <label for="">上传发票号码</label>
+                <input type="text" class="layui-input">
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-warm return">取消</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+        <div class="tun_mo_box msg bill">
+            <div>
+                <img src="img/msg1.png" alt="">
+            </div>
+            <div>
+                已上传发票
+            </div>
+            <div>
+                <label for="" style="color:#35d0fe" class="update">点击修改</label>
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+        <div class="tun_mo_box bill">
+            <div style="text-align:right">
+                <span class="layui-icon layui-icon-close close"></span>
+            </div>
+            <div class="billmsg">
+                <label for="">上传电子发票</label>
+                <input type="text" class="layui-input" placeholder="修改">
+                <input type="file" style="display:none;">
+            </div>
+            <div class="billmsg">
+                <label for="">上传发票代码</label>
+                <input type="text" class="layui-input">
+            </div>
+            <div class="billmsg">
+                <label for="">上传发票号码</label>
+                <input type="text" class="layui-input">
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-warm return">取消</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+        <div class="tun_mo_box bill msg">
+            <div>
+                <img src="img/msg2.png" alt="">
+            </div>
+            <div>
+                发票上传成功
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+    </div>
+    <!-- 快递单号 -->
+    <div class="tun_box ems">
+        <div class="tun_mo_box">
+            <div style="text-align:right">
+                <span class="layui-icon layui-icon-close close"></span>
+            </div>
+            <div>
+                <label for="">上传快递单号</label>
+            </div>
+            <div class="layui-form" style="margin-top:20px;">
+                <input type="text" class="layui-input" placeholder="请填写单号">
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-warm return">取消</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+
+        <div class="tun_mo_box msg">
+            <div>
+                <img src="img/msg1.png" alt="">
+            </div>
+            <div>
+                已上传快递单号
+            </div>
+            <div>
+                <label for="" style="color:#35d0fe" class="update">点击修改</label>
+            </div>
+            <div>
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+        <div class="tun_mo_box msg">
+            <div>
+                <img src="img/msg2.png" alt="">
+            </div>
+            <div>
+                快递单号上传成功
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+    </div>
+    <!-- 完结 -->
+    <div class="tun_box finish">
+        <div class="tun_mo_box msg">
+            <div>
+                <img src="img/msg3.png" alt="">
+            </div>
+            <div>
+                确认将此订单批量完成？该操作不可以逆！
+                <p style="text-align: center;color: #999;">请谨慎执行！</p>
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-warm return">取消</button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+        <div class="tun_mo_box msg">
+            <div>
+                <img src="img/msg2.png" alt="">
+            </div>
+            <div>
+                更新成功
+            </div>
+            <div class="div_btn">
+                <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+            </div>
+        </div>
+        <div class="tun_mo_box ">
+            <div style="text-align:right">
+                <span class="layui-icon layui-icon-close close"></span>
+            </div>
+            <div class="msg" style="height: 180px;">
+                <div>
+                    <img src="img/msg1.png" alt="">
+                </div>
+                <div>
+                    请选择要批量完结的订单
+                </div>
+                <div class="div_btn">
+                    <button class="layui-btn layui-btn-sm layui-btn-danger comfir">确定</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+
+<script src="js/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/macarons.js"></script>
+<script>
+
+    $('#allot').click(function () {
+        $('.allot').show();
+
+    });
+    $('.close').click(function () {
+        $('.tun_box').hide();
+    });
+    $('.return').click(function () {
+        $('.tun_box').hide();
+    });
+    $('.comfir').click(function () {
+        $('.msg').hide();
+    });
+    $('#bill').click(function () {
+        $('.bill').show();
+    });
+    $('#ems').click(function () {
+        $('.ems').show();
+    });
+    $('#finish').click(function () {
+        $('.finish').show();
+    });
+        //文件上传
+             $("#upfile").click(function(){
+                    $("input[type='file']").trigger('click');
+                });
+                $("input[type='file']").change(function(){
+                    $("#upfile").val($(this).val());
+                });
+    //渲染
+    layui.use(['form', 'laypage', 'layer'], function () {
+        //表单
+        var form = layui.form;
+        form.render();
+        //分页
+        var laypage = layui.laypage;
+        laypage.render({
+            elem: 'page' //分页容器的id
+            , count: 100 //总页数
+            , theme: '#ff8888' //自定义选中色值
+            //,skip: true //开启跳页
+
+        });
+
+    });
+</script>
+
+</html>

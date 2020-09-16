@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/font.css" />
+<link rel="stylesheet" type="text/css" href="css/swiper.css" />
+<style>
+.bottom_nav dl dd:nth-child(3) a .dier {
+	display: block !important;
+}
+
+.bottom_nav dl dd:nth-child(3) a .diyi {
+	display: none !important;
+}
+
+.bottom_nav dl dd:nth-child(3) a span {
+	color: #FF8F46;
+}
+.h_1 img {
+	position: absolute;
+	right: 5%;
+	top: 25%;
+	width: 5%;
+	display: block;
+}
+.btn button{
+	width: 54px;
+    height: 22px;
+    /*background: rgba(41,131,255,1);*/
+    opacity: 1;
+    border-radius: 4px;
+    color: #FF973F;
+}
+.kong{margin:0 0 69px !important;}
+.kong img{margin-top: 0vh !important;}
+.trade .trade_l, .trade .trade_r{width: 100%;}
+.trade #nav ul li{width: 30%;}
+</style>
+</head>
+<body>
+	<h1 class="h1">
+		<p>交易</p>
+	</h1>
+	<h1 class="h_1">
+		<div class="h_top">
+			<div class="shu">
+				<div class="p">
+					<span>系统币/USDT</span>
+					<div class="trade_i_l">
+						<i class="tr">+0.8%</i>
+					</div>
+				</div>
+			</div>
+			<div class="shu two">
+				<div class="p">
+					<span>系统币/USDT</span>
+					<div class="trade_i_r">
+						<i class="tr">-0.12%</i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</h1>
+	<div class="trade">
+		<div class="trade_l">
+			<div id="nav">
+				<ul>
+					<li class="navTitle"><span class="navContent"
+						data-lang="index_title">买入</span></li>
+					<li><span class="navContent" data-lang="label_index_gsp">卖出</span></li>
+				</ul>
+			</div>
+			<div class="tab">
+				<div class="box buy">
+					<div class="trade_input fist">
+						<input type="number" name="" id="numr" class="input_num" placeholder="买入价" value="45.32"
+							oninput="if(value.length>4)value=value.slice(0,6);if(value<0)value=0" />
+							<span class="zi">限时市价</span>
+					</div>
+					<div class="market_input">
+						<input type="number" name="" id="market" class="market border" value="" placeholder="以当前最优惠价格买入" readonly="readonly" />
+					</div>
+					<p class="cny">
+						≈￥<i>4512125.154 </i>CNY
+					</p>
+					<div class="trade_input">
+						<input type="number" name="" id="numrn" class="border" placeholder="请输入数量" /> <span>系统币</span>
+					</div>
+					<p class="usdt">
+						<span>可用</span><span class="yue">4512125.154 USDT</span>
+					</p>
+					<div class="buy_btn" onclick="buyInbb()">买入系统币</div>
+				</div>
+				<div class="box two">
+					<div class="trade_input fist">
+						<input type="number" name="" id="numc" class="input_num" placeholder="卖出价" value="45.32"
+							oninput="if(value.length>4)value=value.slice(0,6);if(value<0)value=0" />
+							<span class="zi">限时</span>
+					</div>
+					<div class="market_input">
+						<input type="number" name="" id="market" class="market border"
+							value=""  placeholder="以当前最优惠价格卖出"
+							readonly="readonly" />
+					</div>
+					<p class="cny">
+						≈￥<i>4545.2323</i>CNY
+					</p>
+					<div class="trade_input">
+						<input type="number" name="" id="numcn" class="border" placeholder="请输入数量" /> <span>系统币 </span>
+					</div>
+					<p class="usdt">
+						<span data-lang="index_tab_match">可用</span><span class="yue">4512125.154 USDT</span>
+					</p>
+					<div class="buy_btn" onclick="buyOutbb()">卖出系统币</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+	<div class="witip">
+		<div class="entrust">
+			<div class="entrust_l"><s></s>当前委托</div>
+			<div class="entrust_r" onclick="location.href='entrust.html'">
+				<!-- <img src="img/history.png" />  -->
+				<span>全部</span>
+			</div>
+		</div>
+		<div class="tab-list-li" id="result" >
+			<div class="shabi">
+				<div class="recode-cont1">
+					<div class="title">
+						<span class="zi">买入</span>
+						<span>系统币/USDT</span>
+					</div>
+					<div class="btn">
+						<button>已完成</button>
+					</div>
+				</div>
+				<div class="recode-cont2">
+					<dl>
+						<dt>
+							<p>时间</p>
+							<span>15:22 7/16</span>
+						</dt>
+						<dt>
+							<p>委托价(USDT)</p>
+							<span>市价</span>
+						</dt>
+						<dt>
+							<p>交易额(系统币)</p>
+							<span>0.245754</span>
+						</dt>
+					</dl>
+					<dl>
+						<dt>
+							<p>成交价格(系统币)</p>
+							<span>021457</span>
+						</dt>
+						<dt>
+							<p>成交均价(USDT)</p>
+							<span>0.0234</span>
+						</dt>
+						<dt>
+							<p>成交量(系统币)</p>
+							<span>100.0</span>
+						</dt>
+					</dl>
+				</div>
+			<div class="chexiao"></div>
+		</div>
+		<div class="shabi">
+				<div class="recode-cont1">
+					<div class="title">
+						<span class="zi1">买出</span>
+						<span>系统币/USDT</span>
+					</div>
+					<div class="btn">
+						<button>已完成</button>
+					</div>
+				</div>
+				<div class="recode-cont2">
+					<dl>
+						<dt>
+							<p>时间</p>
+							<span>15:22 7/16</span>
+						</dt>
+						<dt>
+							<p>委托价(USDT)</p>
+							<span>市价</span>
+						</dt>
+						<dt>
+							<p>交易额(系统币)</p>
+							<span>0.245754</span>
+						</dt>
+					</dl>
+					<dl>
+						<dt>
+							<p>成交价格(系统币)</p>
+							<span>021457</span>
+						</dt>
+						<dt>
+							<p>成交均价(USDT)</p>
+							<span>0.0234</span>
+						</dt>
+						<dt>
+							<p>成交量(系统币)</p>
+							<span>100.0</span>
+						</dt>
+					</dl>
+				</div>
+			<div class="chexiao"></div>
+		</div>
+	</div>
+
+	<!-- 挂单详情 -->
+	<div class="mo_k">
+		<div class="mo_box_k">
+			<h1 class="h1">
+				<p class="buy_show_1">卖出</p>
+				<p class="buy_show_2">买入</p>
+				<a href="javascript:;" class="close">×</a>
+			</h1>
+			<div class="info_box">
+				<div class="info_1 info_mo">
+					<div><span>当前价格：</span><span>1 QSC=7 USDT</span></div>
+					<div class="buy_show_1"><span>挂单数量：</span><span>100.00</span></div>
+					<div class="buy_show_2"><span>买入数量：</span><span>100.00</span></div>
+					<div><span>交易总额：</span><span>24.568 (USDT)</span></div>
+				</div>
+				<div class="info_1">
+					<div class="info_left">
+						<label>交易密码</label>
+						<input type="text" placeholder="请输入您的交易密码" name="" id="">
+					</div>
+					<div class="info_right">
+					</div>
+				</div>
+			</div>
+			<div class="annius_chu buy_show_1">确定</div>
+			<div class="annius_rui buy_show_2">确定</div>
+		</div>
+	</div>
+	
+	<!--没有数据时显示-->
+	<div class="kong">
+		<img src="img/kong.png" />
+		<p>暂无委托记录</p>
+	</div>
+
+	<!--导入底部导航栏-->
+	<div id="footer"></div>
+</body>
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+function show() {
+	//没有数据的时候显示
+	if($(".tab-list-li div.shabi").length <= 0) {
+		$(".kong").show();
+	} else {
+		$(".kong").hide();
+	}
+}
+show();	
+//右边数据切换
+$(".img_b").children().each(function(){
+	$(this).click(function(){
+		var index = $(this).index();
+//		var src=$(this).attr("src");
+//		src=src.slice(0,-4);
+//		src=src+"_selected.png";
+//		$(this).attr("src",src);
+//		$(this).addClass("choice").siblings().removeClass("choice");
+		$(this).addClass("choice").siblings().removeClass("choice");
+		$(".quan").children().eq(index).removeClass("quan_two").siblings().addClass("quan_two");
+	})
+})
+
+
+$(".witip #result").children().each(function(){
+	$(this).click(function () { 
+		if($(this).find("span").hasClass("zi1")){
+			$(".mo_k").show();$(".buy_show_1").show();$(".buy_show_2").hide();
+		}else{
+			$(".mo_k").show();$(".buy_show_1").hide();$(".buy_show_2").show();
+		}
+
+	})
+})
+$(".close").click(function () { $(".mo_k").hide();})
+
+</script>
+<script type="text/javascript">
+		/*规格切换*/
+		$(".box .specs").children().each(function(){
+			$(this).click(function(){
+				$(this).addClass("ac_specs").siblings().removeClass("ac_specs");
+				var value = $(this).html();
+				var rate = 0;
+				if (value == "全仓"||value == "Warehouse") {
+				//	$("#usdtPrice").text(usdt+'USDT');
+					rate = usdt/hxtzPrice;
+					rate = formatDecimal(rate,4);
+					$(this).parent().prev().prev().find("input#numrn").val(rate);
+				}else{
+					rate = usdt/hxtzPrice*value.slice(0,-1)/100;
+				//	$("#usdtPrice").text( usdt*value.slice(0,-1)/100+'USDT');
+					rate = formatDecimal(rate,4);
+					$(this).parent().prev().prev().find("input#numrn").val(rate);
+				}
+			})
+		})
+		/*卖出规格切换*/
+		$(".box .maichu").children().each(function(){
+			$(this).click(function(){
+				$(this).addClass("ac_specs").siblings().removeClass("ac_specs");
+				var value = $(this).html();
+				var rate = 0;
+				if (value == "全仓"||value == "Warehouse") {
+				//	$("#feelPrice").text(usdt+'FEEL');
+					$(this).parent().prev().prev().find("input#numcn").val(asset);
+				}else{
+					rate = value.slice(0,-1)/100*asset;
+					rate = formatDecimal(rate,4);
+			//		$("#feelPrice").text(rate+'FEEL');
+					$(this).parent().prev().prev().find("input#numcn").val(rate);
+				}
+			})
+		})
+		function formatDecimal(num, decimal) {
+		  num = num.toString()
+		  let index = num.indexOf('.')
+		  if (index !== -1) {
+		    num = num.substring(0, decimal + index + 1)
+		  } else {
+		    num = num.substring(0)
+		  }
+		  return parseFloat(num).toFixed(decimal)
+		}
+	
+		/*买入和卖出切换*/
+		var $div_li = $('#nav ul li');
+        $('#nav ul li').click(function(){
+            $(this).addClass("navTitle").siblings().removeClass("navTitle"); 
+            var index =  $div_li.index(this);  
+            $("div.tab > div").eq(index).show().siblings().hide();
+            $(".h_top > div.shu").eq(index).show().siblings().hide(); 
+		})
+        
+        
+        
+        // 价格文本框事件
+		$(".input_num").keyup(function(){
+			var num = $(this).val();
+			var count = (parseFloat((num*7)).toFixed(4));
+			$(this).parent().next().next().find("i").html(count);
+		})
+        
+        /*加*/
+        $(".plus").click(function(){
+			var num = $(this).prev().prev().val();
+			var num_tow = (parseFloat(num)+parseFloat(0.0001)).toFixed(4)
+        	$(this).prev().prev().val(num_tow);
+			var count = (parseFloat((num_tow*7)).toFixed(4));
+			$(this).parent().next().next().find("i").html(count);
+        })
+        /*减*/
+        $(".reduce").click(function(){
+			var num = $(this).prev().val()
+        	if(num == 0){
+				$(this).prev().val(num);
+        	}
+			else{
+				var num_tow = (parseFloat(num)-parseFloat(0.0001)).toFixed(4)
+				$(this).prev().val(num_tow);
+				var count = (parseFloat((num_tow*7)).toFixed(4));
+				$(this).parent().next().next().find("i").html(count);
+			}
+        })
+		
+	</script>
+</html>

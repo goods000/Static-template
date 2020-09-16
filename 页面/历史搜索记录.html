@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html{font-size:13.33333333vw}
+			body,html {margin: 0;}
+			.main  {background-color: #efeff4;height: 2.7rem;}
+			.title_box {width: 100%;height: .8rem;background-color: #fff;box-sizing: border-box;padding: 0px .32rem;}
+			.title_box .back {height: 100%;float: left;}
+			.title_box .back a {display: block;height: 100%;font-family: PingFang-SC-Medium;font-size: .32rem;color: #333333;line-height: .8rem;}
+			.title_box .title {font-size: .36rem;color: #333;line-height: .8rem;text-align: center;margin-right: 0.4rem;font-weight: 600;}
+			.search_box {width: 100%;height: .88rem;background-color: #efeff4;box-sizing: border-box;padding: 0px .28rem;}
+			.search_box .search {width: 100%;height: 100%;display: flex;align-items: center;justify-content: space-between;}
+			.search_box .search >input{width: 6.18rem;height: .56rem;background-color: #ffffff;border-radius: .1rem; border: solid 1px #e6e6ea;padding-left: 20px;box-sizing: border-box;} 
+			.search_box .search .cancel{font-family: PingFang-SC-Medium;font-size: .32rem;color: #f05654;}
+			.hot_box {width: 100%;height: 1.6rem;background-color: #fff;box-sizing: border-box;padding: 0px .3rem;}
+			.hot_box .hot_title {color: #333;font-size: .28rem;height: .6rem;line-height: .6rem;}
+			.hot_box .hot_list {width: 100%;display: flex;align-items: center;}
+			.hot_box .hot_list .hot_shop{padding: .16rem .34rem;background-color: #efeff4;border-radius: .27rem;font-size: .24rem;margin-right: .3rem;}
+			.hot_box .history {text-align: center;font-size: .24rem;}
+		</style>
+	</head>
+	<body>
+		<div class="title_box">
+	        <div class="back">
+	            <a href="./index.html">
+	                <span>
+	                    <</span> <span>返回
+	                </span>
+	            </a>
+	        </div>
+	        <div class="title">搜索页面</div>
+	    </div>
+	    <div class="main">
+	        <div class="search_box">
+	            <div class="search">
+	                <input class="inp" type="text" placeholder="请输入想找的商品">
+	                <div class="cancel">取消</div>
+	            </div>
+	        </div>
+	        <div class="hot_box">
+	            <div class="hot_title">
+	                <span>热搜</span>
+	            </div>
+	            <div class="hot_list">
+	                <div class="hot_shop">睡衣 新品</div>
+	                <div class="hot_shop">圣诞礼物</div>
+	                <div class="hot_shop">衣服鞋子</div>
+	            </div>
+	        </div>        
+	    </div>
+	    <div class="hot_box search_history">
+	        <div class="hot_title">
+	            <span>历史记录</span>
+	            <!-- <span>清除历史</span> -->
+	        </div>
+	        <div class="hot_list hot_history">
+	            <!-- <div class="hot_shop">睡衣 新品</div>
+	            <div class="hot_shop">圣诞礼物</div>
+	            <div class="hot_shop">衣服鞋子</div> -->
+	        </div>
+	    </div>
+	</body>
+	<script>
+	    $(function(){
+	        var search = new Search() 
+	        search.getInp()
+	        search.getInpData()
+	        search.creatHistory()
+	    })
+	    var Search = function(){}
+	    Search.prototype = {
+	        getInpData:function(){
+	            return JSON.parse(localStorage.getItem('searchArr')||'[]')
+	        } ,
+	        getInp: function(){
+	            $('.inp').on('keypress',function(e){
+	                var value =$.trim($(this).val())
+	                if(!value){                    
+	                    return;
+	                }
+	                if(e.keyCode ==13){
+	                    // console.log(value)
+	                    Search.prototype.getSearchList(value)
+	                    Search.prototype.insertTOSearchHistory(value)
+	                    $('.history').css({'display': 'none'})         
+	                }
+	            })
+	        },
+	        getSearchList: function(key){ // 将搜索记录存在本地
+	            var list = Search.prototype.getInpData()
+	            // console.log(list)
+	            $.each(list,function(i,item){
+	                if(item==key){
+	                    // console.log(key,item)
+	                    list.splice(i,1)
+	                    return true;
+	                }                
+	            })
+	            list.push(key)            
+	            // 记录最多的条数
+	            if(list.length>4){
+	                list.splice(0,list.length-4)
+	            }            
+	            localStorage.setItem('searchArr',JSON.stringify(list))
+	        },
+	        insertTOSearchHistory: function(value){ //显示在页面上 
+	            var str ="<div class='hot_shop' id='"+value+"'>"+value+"</div>"       
+	            $('#'+value).remove();
+	            $('.inp').val('');
+	            if ($('.hot_history').children().length == 0) {
+	                $('.hot_history').append(str)
+	            } else {
+	                if ($('.hot_history').children().length < 4) {
+	                    $(str).insertBefore($('.hot_history div:eq(0)'))
+	                }else {
+	                    $('.hot_history div:last').remove()
+	                    $(str).insertBefore($('.hot_history div:eq(0)'))
+	                }
+	            }
+	        },
+	        creatHistory: function(){ //初始化加载
+	            var list = Search.prototype.getInpData()
+	            console.log(list)
+	            if(list.length==0){
+	                var str = "<div class='history'>"+'暂无搜索记录'+"</div>"
+	                $('.search_history').append(str)
+	            }else{
+	                list.forEach(item => {
+	                    var str = "<div class='hot_shop'>"+item+"</div>" 
+	                    $('.hot_history').append(str) 
+	                });
+	            }
+	        }
+	    }
+	</script>
+</html>

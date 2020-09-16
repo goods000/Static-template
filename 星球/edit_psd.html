@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>修改登录密码</p>
+		</h1>
+		<div class="big_box">
+			<div class="input_i">
+				<label>手机号/邮箱</label>
+				<input type="text" value="17565453265" readonly="readonly">
+			</div>
+			<div class="input_i">
+				<label>验证码</label>
+				<input type="number" value="" id="code" placeholder="请输入您的验证码">
+				<p id="getCode">获取验证码</p>
+			</div>
+			<div class="input_i">
+				<label>旧密码</label>
+				<input type="password" value="" id="psd" placeholder="请输入您的旧密码">
+			</div>
+			<div class="input_i">
+				<label>新密码</label>
+				<input type="password" value="" id="re_psd" placeholder="请输入您的新密码">
+			</div>
+			
+			<div class="anniu">确认</div>
+		</div>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+		
+		$(".anniu").click(function(){
+			var code = $("#code").val();
+			var psd = $("#psd").val();
+			var re_psd = $("#re_psd").val();
+			if(code === ""){
+				layer.msg('请输入您的验证码');
+				$("#code").focus();
+				return false;
+			}
+			if(psd === ""){
+				layer.msg('请输入您的旧密码');
+				$("#psd").focus();
+				return false;
+			}
+			if(re_psd === ""){
+				layer.msg('请输入您的新密码');
+				$("#re_psd").focus();
+				return false;
+			}
+			return true;
+		})
+	</script>
+</html>

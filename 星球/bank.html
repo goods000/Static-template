@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>我的银行卡</p>
+	    	<a href="add_bank.html">添加</a>
+		</h1>
+		<div class="bank">
+			<ul class="list">
+				<li>
+					<p class="list_top"><span class="card_name">中国工商银行</span></p>
+					<p class="card_detail">储蓄卡 </p>
+					<div class="set">
+						<div class="label">
+							**** **** **** **** 5457
+						</div>
+						<div class="btn">
+							<a class="edit"><img src="img/delet.png" />删除</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<!--没有数据时显示-->
+		<div class="kong">
+			<img src="img/kong.png" />
+			<p>暂无收货地址</p>
+			<p>为了您良好的购物体验,建议您添加地址</p>
+		</div>
+		
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			show();
+			function show(){
+				//没有数据的时候显示
+				if($(".list li").length <= 0) {
+					$(".kong").show();
+				} else {
+					$(".kong").hide();
+				}
+			}
+			
+			$(".edit").click(function(){
+				var id = $(this).attr("addr_id");
+				layer.confirm('确认删除该地址？', {
+                	btn: ['确认', '取消'] //按钮
+	                }, function(){
+	                    layer.msg('成功', {icon: 1});
+	                }, function(){
+	        			layer.msg('失败', {icon: 1});
+	                });
+			})
+			
+		</script>
+
+	</body>
+
+</html>

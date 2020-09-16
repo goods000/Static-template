@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			body,html{background: #fff;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>收益记录</p>
+		</h1>
+		<div class="record">
+			<div class="tab">
+				<a href="javascript:;" class="active">全部</a>
+				<a href="javascript:;">推荐奖</a>
+				<a href="javascript:;">见点奖</a>
+				<a href="javascript:;">平级奖</a>
+				<a href="javascript:;">全球加权</a>
+				<a href="javascript:;">CEO领导奖</a>
+			</div>
+			<div class="mt"></div>
+			<div class="order_list">
+				<div class="order_box">
+					<!--全部-->
+					<div class="list on">
+						<ul>
+							<li>
+								<div class="info">
+									<div class="l">
+										<p><span class="name">推荐奖(直推)</span></p>
+										<p class="id"><span>时间:</span><span>2020/08/04 10:12</span></p>
+									</div>
+									<div class="r">
+										<p><span class="num_price">+10.00</span></p>
+										<p class="time"><span>订单号 :</span><span>2020/08/04 10:12</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="info">
+									<div class="l">
+										<p><span class="name">见点奖</span></p>
+										<p class="id"><span>时间:</span><span>2020/08/04 10:12</span></p>
+									</div>
+									<div class="r">
+										<p><span class="num_price">+10.00</span></p>
+										<p class="time"><span>订单号 :</span><span>2020/08/04 10:12</span></p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!---->
+					<div class="list">
+						<ul>
+							<li>
+								<div class="info">
+									<div class="l">
+										<p><span class="name">推荐奖</span></p>
+										<p class="id"><span>时间:</span><span>2020/08/04 10:12</span></p>
+									</div>
+									<div class="r">
+										<p><span class="num_price">+10.00</span></p>
+										<p class="time"><span>订单号 :</span><span>2020/08/04 10:12</span></p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+					
+					
+					<!--没有数据时显示-->
+					<div class="kong">
+						<img src="img/kong.png" />
+						<p>暂无记录</p>
+					</div>
+				</div>	
+			</div>	
+		</div>		
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		show();
+		function show() {
+			//没有数据的时候显示
+			if($(".list.on li").length <= 0) {
+				$(".kong").show();
+			} else {
+				$(".kong").hide();
+			}
+		}
+		
+		$(".tab a").click(function() {
+			var index = $(".tab a").index($(this));
+			$(".tab a").removeClass("active").eq(index).addClass("active");
+			$(".list").removeClass("on").eq(index).addClass("on");
+			show();
+		})
+	</script>
+</html>

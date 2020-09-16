@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<div style="height: 50px;"></div>
+	<div class="bottom_nav">
+		<dl>
+			<dd><a href="index.html"><i class="diyi"><img src="img/index.png"/></i><i class="dier"><img src="img/index_select.png"/></i><span data-lang="">首页</span></a></dd>
+			<dd><a href="assets.html"><i class="diyi"><img src="img/Assets.png"/></i><i class="dier"><img src="img/Assets_select.png"/></i><span data-lang="">交易</span></a></dd>
+			<dd><a onclick="no_open()"><i class="diyi"><img src="img/shop.png"/></i><i class="dier"><img src="img/shop_select.png"/></i><span data-lang="">商城</span></a></dd>
+			<dd><a href="find.html"><i class="diyi"><img src="img/nav_1.png"/></i><i class="dier"><img src="img/nav_1_select.png"/></i><span data-lang="">发现</span></a></dd>
+			<dd><a href="capital.html"><i class="diyi"><img src="img/nav_2.png"/></i><i class="dier"><img src="img/nav_2_select.png"/></i><span data-lang="">资金</span></a></dd>
+		</dl>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+<script type="text/javascript">
+	var lang = sessionStorage.getItem('lang');
+	if(!lang) lang = "zh";
+    if(lang == 'zh'){
+    	var zanwei = '暂未开放，敬请期待。';
+    }else{
+    	var zanwei = 'It is not open yet, please wait';
+    }
+    
+	function no_open(){
+    	layer.msg("暂未开放，敬请期待。") //20s后自动关闭;
+    }
+</script>
+</html>

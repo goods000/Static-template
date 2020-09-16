@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/layui.css">
+  <link rel="stylesheet" type="text/css" href="css/user-common.css">
+  <link rel="stylesheet" type="text/css" href="css/report.css">
+
+  <style type="text/css">
+    #body .left,
+    #body .right {
+      position: relative;
+    }
+
+    #body .search_btn {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      z-index: 9999;
+    }
+
+    #body .search_btn button {
+      width: 40px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #838383;
+      color: #838383;
+      border-radius: 2px;
+      background: #fff;
+    }
+
+    #body .search_btn button.active {
+      border: 1px solid #FB7C4F;
+      background: #FB7C4F;
+      color: #fff;
+    }
+  </style>
+  <link id="layuicss-layer" rel="stylesheet" href="css/layer.css" media="all">
+  <link id="layuicss-laydate" rel="stylesheet" href="css/laydate.css" media="all">
+</head>
+
+<body>
+  <div class="layui-body">
+
+
+    <div class="container">
+      <div class="layui-header">
+        <div class="head-con">
+          <div class="left l">
+            <div class="layui-inline" id="test-n1" lay-key="1">
+              <div id="layui-laydate1" class="layui-laydate layui-laydate-static">
+                <div class="layui-laydate-main laydate-main-list-0">
+                  <div class="layui-laydate-header"><i class="layui-icon laydate-icon laydate-prev-y"></i><i class="layui-icon laydate-icon laydate-prev-m"></i>
+                    <div class="laydate-set-ym"><span lay-ym="2020-8" lay-type="year">2020年</span><span lay-ym="2020-8"
+                        lay-type="month">8月</span></div><i class="layui-icon laydate-icon laydate-next-m"></i><i class="layui-icon laydate-icon laydate-next-y"></i>
+                  </div>
+                  <div class="layui-laydate-content">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>日</th>
+                          <th>一</th>
+                          <th>二</th>
+                          <th>三</th>
+                          <th>四</th>
+                          <th>五</th>
+                          <th>六</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="laydate-day-prev" lay-ymd="2020-7-26">26</td>
+                          <td class="laydate-day-prev" lay-ymd="2020-7-27">27</td>
+                          <td class="laydate-day-prev" lay-ymd="2020-7-28">28</td>
+                          <td class="laydate-day-prev" lay-ymd="2020-7-29">29</td>
+                          <td class="laydate-day-prev" lay-ymd="2020-7-30">30</td>
+                          <td class="laydate-day-prev" lay-ymd="2020-7-31">31</td>
+                          <td lay-ymd="2020-8-1" class="">1</td>
+                        </tr>
+                        <tr>
+                          <td lay-ymd="2020-8-2" class="">2</td>
+                          <td lay-ymd="2020-8-3" class="">3</td>
+                          <td lay-ymd="2020-8-4" class="">4</td>
+                          <td class="layui-this" lay-ymd="2020-8-5">5</td>
+                          <td lay-ymd="2020-8-6" class="">6</td>
+                          <td lay-ymd="2020-8-7" class="">7</td>
+                          <td lay-ymd="2020-8-8" class="">8</td>
+                        </tr>
+                        <tr>
+                          <td lay-ymd="2020-8-9" class="">9</td>
+                          <td lay-ymd="2020-8-10" class="">10</td>
+                          <td lay-ymd="2020-8-11" class="">11</td>
+                          <td lay-ymd="2020-8-12" class="">12</td>
+                          <td lay-ymd="2020-8-13" class="">13</td>
+                          <td lay-ymd="2020-8-14" class="">14</td>
+                          <td lay-ymd="2020-8-15" class="">15</td>
+                        </tr>
+                        <tr>
+                          <td lay-ymd="2020-8-16" class="">16</td>
+                          <td lay-ymd="2020-8-17" class="">17</td>
+                          <td lay-ymd="2020-8-18" class="">18</td>
+                          <td lay-ymd="2020-8-19" class="">19</td>
+                          <td lay-ymd="2020-8-20" class="">20</td>
+                          <td lay-ymd="2020-8-21" class="">21</td>
+                          <td lay-ymd="2020-8-22" class="">22</td>
+                        </tr>
+                        <tr>
+                          <td lay-ymd="2020-8-23" class="">23</td>
+                          <td lay-ymd="2020-8-24" class="">24</td>
+                          <td lay-ymd="2020-8-25" class="">25</td>
+                          <td lay-ymd="2020-8-26" class="">26</td>
+                          <td lay-ymd="2020-8-27" class="">27</td>
+                          <td lay-ymd="2020-8-28" class="">28</td>
+                          <td lay-ymd="2020-8-29" class="">29</td>
+                        </tr>
+                        <tr>
+                          <td lay-ymd="2020-8-30" class="">30</td>
+                          <td lay-ymd="2020-8-31" class="">31</td>
+                          <td class="laydate-day-next" lay-ymd="2020-9-1">1</td>
+                          <td class="laydate-day-next" lay-ymd="2020-9-2">2</td>
+                          <td class="laydate-day-next" lay-ymd="2020-9-3">3</td>
+                          <td class="laydate-day-next" lay-ymd="2020-9-4">4</td>
+                          <td class="laydate-day-next" lay-ymd="2020-9-5">5</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="layui-laydate-footer">
+                  <div class="laydate-footer-btns"><span lay-type="clear" class="laydate-btns-clear">重置</span><span
+                      lay-type="now" class="laydate-btns-now">现在</span><span lay-type="confirm" class="laydate-btns-confirm">确定</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right l">
+            <div class="plan">
+              <div style="padding:10px 3%;">今日概况</div>
+              <ul>
+                <li>
+                  <div class="yuan">0%</div>
+                  <div>新增订单</div>
+                </li>
+                <li>
+                  <div class="yuan">0%</div>
+                  <div>加急订单</div>
+                </li>
+                <li>
+                  <div class="yuan">0%</div>
+                  <div>订单完成率</div>
+                </li>
+                <li>
+                  <div class="yuan">0%</div>
+                  <div>延期订单</div>
+                </li>
+                <li>
+                  <div class="yuan">0%</div>
+                  <div>发货完成率</div>
+                </li>
+                <li>
+                  <div class="yuan">0%</div>
+                  <div>已取消清单</div>
+                </li>
+                <li>
+                  <div class="yuan" style="color:red;">0%</div>
+                  <div>生产预警</div>
+                </li>
+              </ul>
+            </div>
+            <div class="menu">
+              <div class="item">
+                <a href="https://www.chntcf.com/index/user/index.html">
+                  <div class="img l">
+                    <img src="img/待处理订单.png" width="50" height="50">
+                  </div>
+                  <div class="info l">
+                    <h1>待处理订单</h1>
+                    <h3>Overdue processing </h3>
+                  </div>
+                  <div class="clear"></div>
+                </a>
+              </div>
+              <div class="item">
+                <a href="https://www.chntcf.com/index/invoice/index.html">
+                  <div class="img l">
+                    <img src="img/货车.png" width="50" height="50">
+                  </div>
+                  <div class="info l">
+                    <h1>待发货订单</h1>
+                    <h3>Late delivery</h3>
+                  </div>
+                  <div class="clear"></div>
+                </a>
+              </div>
+              <div class="item foot">
+                <a href="https://www.chntcf.com/index/order/wait_pay.html">
+                  <div class="img l">
+                    <img src="img/订单管理.png" width="50" height="50">
+                  </div>
+                  <div class="info l">
+                    <h1>发票管理</h1>
+                    <h3>OVER INVOIVES</h3>
+                  </div>
+                  <div class="clear"></div>
+                </a>
+              </div>
+              <div class="item foot">
+                <a href="https://www.chntcf.com/index/order/wait_receive.html">
+                  <div class="img l">
+                    <img src="img/退.png" width="50" height="50">
+                  </div>
+                  <div class="info l">
+                    <h1>待退货审核</h1>
+                    <h3>Return audit</h3>
+                  </div>
+                  <div class="clear"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="status">
+          <ul class="status">
+            <li class="active" data-type="1">本周</li>
+            <li data-type="2">本月</li>
+            <li data-type="3">全年</li>
+            <li class="r"><a href="https://www.chntcf.com/index/report/all_report.html">详情&gt;</a></li>
+          </ul>
+          <div id="report">
+            <div class="btn">
+              <div>经营概况</div>
+              <button class="active" data-types="1">订单金额</button>
+              <button data-types="2">订单笔数</button>
+            </div>
+            <div class="report_info">
+              <div class="item active item_price">
+                订单金额/元：<span class="red current">0</span><span class="prev">0</span>
+              </div>
+              <div class="item item_number">
+                订货单数/笔：<span class="blue current">0</span><span class="prev">0</span>
+              </div>
+            </div>
+            <div class="report report_item active_report" id="report3" _echarts_instance_="ec_1596617166412" style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative;">
+              <div style="position: relative; overflow: hidden; width: 776px; height: 400px; padding: 0px; margin: 0px; border-width: 0px;">
+              </div>
+              <div></div>
+            </div>
+           
+            <div class="report report_item" id="report4" _echarts_instance_="ec_1596617166413" style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative;">
+              <div style="position: relative; overflow: hidden; width: 0px; height: 400px; padding: 0px; margin: 0px; border-width: 0px;"><canvas
+                  data-zr-dom-id="zr_0" width="0" height="500" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+        <div id="product_range">
+          <h1>商品销售情况<a href="#" class="r">详情&gt;</a></h1>
+          <div>
+            <img src="img/product_top.png">
+            <span>订货金额TOP10商品</span>
+          </div>
+          <ul>
+
+            <li>
+              <span class="num first">1</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num">6</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num two">2</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num">7</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num three">3</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num">8</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num">4</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num">9</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num">5</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <li>
+              <span class="num">10</span>
+              <span class="con">不锈钢字钛金玫瑰积极山东发货绝对是</span>
+              <span class="r">￥200.00</span>
+            </li>
+            <p class="clear"></p>
+          </ul>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+
+  <script src="js/layui.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/echarts.min.js"></script>
+  <script type="text/javascript" src="js/macarons.js"></script>
+  <script>
+      var myChart = echarts.init(document.getElementById("report3"));
+      var option = {
+        title: {
+          text: ''
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['本周', '上周'],
+          x: 'right',
+          top: '15px',
+          padding: [0, 50, 0, 0]
+        },
+        grid: {
+          top: '25%',
+          left: '3%',
+          right: '5%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          // feature: {
+          //   saveAsImage: {}
+          // }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            name: '本周',
+            type: 'line',
+            stack: '总量',
+            data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: '上周',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 191, 234, 290, 330, 310]
+          }
+        ]
+      };
+      myChart.setOption(option);
+
+    </script>
+  
+</body>
+
+</html>

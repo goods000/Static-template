@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="header" name="3"></div>
+		<div class="gonggong">
+			<div>
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"> OTC挂单</button>
+			</div>
+		</div>
+		<div class="markets otc_ul otc_order">
+			<div class="container">
+				<div class="top_menu">
+					<div class="common liactive">购买挂单</div>
+					<div class="common">出售挂单</div>
+					<!--<div class="otc_top">
+						<a>商家管理</a>
+						<a>商家申请</a>
+						<a>OTC订单</a>
+					</div>-->
+				</div>
+				
+				<div class="ul" v-cloak>
+					<div class="bottom_content">
+						<div class="body_1 markets_itme">
+							<div class="tab" js-tab="2">
+								<div class="tab-title">
+									<a href="javascript:;" class="item item-cur">USDT 订单</a>
+								</div>
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											<dl>
+												<dt>ID</dt>
+												<dt>状态</dt>
+												<dt>剩余</dt>
+												<dt>单价</dt>
+												<dt>挂单数量</dt>
+												<dt>最小数量</dt>
+												<dt>最大数量</dt>
+												<dt>时间</dt>
+												<dt>操作</dt>
+											</dl>
+											<dl v-for="(item,index) in list"  :key="index">
+												<dd>{{item.id}}</dd>
+												<dd>
+													{{item.stxt}}
+													<!--<span v-if="item.status==1">待上传</span>
+													<span v-if="item.status==2">待放行</span>
+													<span v-if="item.status==3">已完成</span>
+													<span v-if="item.status==4">已撤单</span>
+													<span v-if="item.status==4">有申诉</span>-->
+												</dd>
+												<dd>{{item.lave}} </dd>
+												<dd>{{item.price}} CNY</dd>
+												<dd>{{item.num}} {{item.flg}}</dd>
+												<dd>{{item.min}} {{item.flg}}</dd>
+												<dd>{{item.max}} {{item.flg}}</dd>
+												<dd>{{item.add_time}}</dd>
+												<dd><a href="javascript:;" v-if="item.status==0" @click="revokeOrder(item.id)">撤单</a></dd>
+											</dl>
+										</div>
+									</div>
+									<div class="kong" v-if="list.length<=0">					
+										<p>没有更多数据</p>
+									</div>
+									
+								</div>
+							</div>		
+						</div>
+						<div class="body_1">
+							<div class="tab" js-tab="1">
+								<div class="tab-title">
+									<a href="javascript:;" class="item item-cur">USDT 订单</a>
+								</div>
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											<dl>
+												<dt>ID</dt>
+												<dt>状态</dt>
+												<dt>剩余</dt>
+												<dt>单价</dt>
+												<dt>挂单数量</dt>
+												<dt>最小数量</dt>
+												<dt>最大数量</dt>
+												<dt>时间</dt>
+												<dt>操作</dt>
+											</dl>
+											<dl v-for="(item,index) in list1" :key="index">
+												<dd>{{item.id}}</dd>
+												<dd>
+													{{item.stxt}}
+													<!--<span v-if="item.status==1">待上传</span>
+													<span v-if="item.status==2">待放行</span>
+													<span v-if="item.status==3">已完成</span>
+													<span v-if="item.status==4">已撤单</span>
+													<span v-if="item.status==4">有申诉</span>-->
+												</dd>
+												<dd>{{item.lave}} </dd>
+												<dd>{{item.price}} CNY</dd>
+												<dd>{{item.num}} {{item.flg}}</dd>
+												<dd>{{item.min}} {{item.flg}}</dd>
+												<dd>{{item.max}} {{item.flg}}</dd>
+												<dd>{{item.add_time}}</dd>
+												<dd><a href="javascript:;" v-if="item.status==0" @click="revokeOrder(item.id)">撤单</a></dd>
+											</dl>
+										</div>
+									</div>
+									<div class="kong" v-if="list1.length<=0">					
+										<p>没有更多数据</p>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+   		<script type="text/javascript" src="js/tab_wo.js" ></script>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script type="text/javascript">
+			var vue = new Vue({
+				el: ".ul",
+				data: {	
+					userInfo:{},
+					list:[],	
+					list1:[],					
+					page:1,	
+					page1:1,
+					pageList:[],   //每页获取的数据
+					pageList1:[],   //每页获取的数据
+				},				
+				mounted() {
+				//	window.addEventListener('scroll', this.getScroll);
+				},
+				destroyed() {
+				//	window.removeEventListener('scroll', this.getScroll);
+				},
+				created() {		
+				//	this.getUser()
+					this.getList();	
+					
+				},
+				mounted() {},
+				methods: {	
+					getUser(){
+						var that = this;
+						var param = {
+							"id":that.id,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/index',param, 
+						function(res) {
+							that.userInfo=res.data;
+							//console.log(that.userInfo)
+						}, 'json');
+					},
+					getList(){
+						var that = this;
+						if(that.page==1){		//第一次的时候或者刷新，切换清空数据
+							that.pageList=[];
+							that.list=[];
+						}
+						var param = {					
+							"derection":1,     //买入
+							"page":that.page,							
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/strade',param, 
+						function(res) {
+						if(res.status==0){
+						//console.log(res.data)
+							if(res.data!=null){								
+									that.pageList=res.data;
+									that.list = that.list.concat(that.pageList);
+									console.log(that.list)
+								}
+						}
+						else{
+								Invalid(res)  //判断登录是否失效			
+							}							
+						}, 'json');
+						//console.log(that.trade_list)
+					},
+					getList1(){
+						var that = this;
+						if(that.page==1){		//第一次的时候或者刷新，切换清空数据
+							that.pageList=[];
+							that.list1=[];
+						}
+						var param = {
+							"derection":0,     //卖出
+							"page":that.page,							
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/strade',param, 
+						function(res) {
+							if(res.status==0){
+							//console.log(res.data)
+								if(res.data!=null){								
+									that.pageList=res.data;
+									that.list1 = that.list1.concat(that.pageList);
+									console.log(that.list1)
+								}
+							}else{
+								Invalid(res)  //判断登录是否失效		
+							}								
+							
+						}, 'json');
+					},
+					revokeOrder(id){			//撤单
+					var that = this;
+					var close1=	layer.confirm("确定撤单？", {
+							title:"撤单",
+							btn: ["确定","取消"] ,//按钮
+							yes:function(){	
+								layer.close(close1)								
+								var param = {
+									"id":id,
+									"token": $.cookie("token")
+								}
+								param=rsaMethod(param)
+								param={
+									"data":param
+								}
+								$.post(localhostUrl+'/index/c2c/confirm_trade',param, 
+								function(res) {
+									if(res.status==0){
+										layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+												$("#submit").attr("disabled", false)
+												window.location.reload()
+											}
+											});
+										
+									}else{							
+										Invalid(res)  //判断登录是否失效
+										$("#submit").attr("disabled", false)
+									}
+								}, 'json');
+								  
+							},
+						})								
+					
+					},
+					getScroll() {
+						var that=this;																
+						 var h = $(".scroll").height();//div可视区域的高度
+						var sh = $(".scroll")[0].scrollHeight;//滚动的高度，$(this)指代jQuery对象，而$(this)[0]指代的是dom节点
+						var st =$(".scroll")[0].scrollTop;//滚动条的高度，即滚动条的当前位置到div顶部的距离
+						if(h+st>=sh){
+						//上面的代码是判断滚动条滑到底部的代码
+						//	console.log("滑到底部了");
+							if(that.pageList.length<10){		//买的每页不足10,说明没下一页							
+									layer.msg('没有更多数据');
+									return false;
+								}else{
+									that.page++									
+									
+								}
+							if(index==0){      //初始化的买的
+								that.getList()
+							}
+							if(index==1){      //初始化的卖的
+								that.getList1()
+							}
+							console.log("page:"+that.page)
+						}																												
+
+					},
+				}
+			});
+		
+		
+			
+		
+		$(function(){
+ 			 $('[js-tab=1]').tab();
+		});
+		$(function(){
+ 			 $('[js-tab=2]').tab();
+		});
+			//console.log("left -右滑",(parseInt($('.bottom_content')[0].style.left)));
+			$('.bottom_content')[0].style.left = "0%";
+			var startX = '',disX ='';
+			var index=0;
+			$('.top_menu').on('click','.common',function(){
+				var index = $(this).index();
+				$('.bottom_content').css('left','-' + index * 100 + '%');
+				$('.top_menu .common').eq(index).addClass('liactive').siblings().removeClass('liactive')
+				vue.page=1	;  //每次点击page都为1
+				if(index==1){	///点击才初始化  第二个
+					vue.getList1()					
+				}else{		// 第一次的时候或者刷新，切换清空数据  第一个
+					vue.getList()					
+				}
+			});
+			$('.bottom_content').on('touchstart','.body_1',function(e){
+				startX = e.originalEvent.changedTouches[0].clientX;
+			});
+			$('.bottom_content').on('touchmove','.body_1',function(e){
+				e.stopPropagation()
+			})
+			$('.bottom_content').on('touchend','.body_1',function(e){
+				disX = e.originalEvent.changedTouches[0].clientX - startX;
+				var leftNum = parseInt($('.bottom_content')[0].style.left);
+				if(disX > 0 && disX > 100) {
+					if(leftNum <= -100) {
+						$('.bottom_content')[0].style.left = leftNum + 100 + "%";
+						var order = -parseInt($('.bottom_content')[0].style.left)/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				} else if(disX < 0 && disX < -100) {
+					if(leftNum >= -200) {
+						$('.bottom_content')[0].style.left = leftNum - 100 + "%";
+						var order = (-parseInt($('.bottom_content')[0].style.left))/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

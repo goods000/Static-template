@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p data-lang="">公告</p>
+		</h1>
+		<div class="news">
+			<ul>
+				<li>
+					<a href="news_detail.html">
+						<div class="div">
+							<div class="l">
+								<p class="title">关于RDTS上线通知</p>
+								<p class="time">2020/06/22 10:45</p>
+							</div>
+							<img src="img/more.png" class="ico">
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="news_detail.html">
+						<div class="div">
+							<div class="l">
+								<p class="title">关于RDTS上线通知</p>
+								<p class="time">2020/6/22 10:45</p>
+							</div>
+							<img src="img/more.png" class="ico">
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="kong">
+				<img src="images/logo.png" />
+				<p>暂无数据</p>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			show();
+			function show(){
+				//没有数据的时候显示
+				if($(".news li").length<=0){
+					$(".kong").show();
+				}else{
+					$(".kong").hide();
+				}
+			}
+			
+		</script>
+		
+	</body>
+</html>

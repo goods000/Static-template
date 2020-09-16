@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{padding: 0px !important;}
+		</style>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+			<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+		<div class="login_password buy" v-cloak>
+			<!--<p class="iconfont icon-jingshi">请务必使用您本人的实名账户,被激活的收款方式将在交易时向对方展示</p>-->
+			<div class="yihang adt" v-if="!flag">
+				<div class="wapk">
+					<h2>商家姓名</h2>
+					<input type="text" :value="Detail.store.store_name" readonly/>
+				</div>
+				<div class="wapk adt">
+					<h4><label>成交总量</label><span><s>{{Detail.total_order}}</s></span></h4>
+				</div>
+				<div class="wapk adt">
+					<h4><label>完成率</label><span><s>{{Detail.is_finish}}</s></span></h4>
+				</div>
+				<div class="wapk adt">
+					<h4><label>30日成单</label><span><s>{{Detail.total_order30}}次</s></span></h4>
+				</div>
+				<div class="wapk adt">
+					<h4><label>平均放行</label><span><s>{{Detail.pass}}分钟</s></span></h4>
+				</div>
+				<div class="wapk adt">
+					<h4><label>申请时间</label><span><s>{{Detail.store.create_time}}</s></span></h4>
+				</div>
+			<!--	<button>修改</button>-->
+			</div>
+					
+			<div class="kong"  v-if="flag">					
+				<p>{{errorMsg}}</p>
+			</div>
+		</div>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+		 var vue = new Vue({
+				el: ".login_password",
+				data: {					
+					Detail:{
+					store:{}
+					},
+					errorMsg:"",
+					flag:false,		//是否没有数据
+				},
+				created() {					
+					this.getDetail();				
+				},
+				mounted() {},
+				methods: {					
+					getDetail(){
+						var that = this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/storees/store_info',param, 
+						function(res) {
+							if(res.status==0){
+								that.Detail=res.data;
+							//	console.log(that.Detail)
+							}else{
+								that.flag=true;
+								that.errorMsg=res.msg;
+								Invalid(res)  //判断登录是否失效
+							}
+							
+						}, 'json');
+					
+					},
+				}
+			})
+        
+		</script>
+	</body>
+</html>

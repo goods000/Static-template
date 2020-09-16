@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript" src="js/tab_wo.js" ></script>
+		
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="header" name="3"></div>
+		<div class="gonggong">
+			<div>
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"> 币币交易订单</button>
+			</div>
+		</div>
+		<div class="markets otc_ul otc_order">
+			<div class="container">
+				<div class="top_menu">
+					<div class="common liactive">购买订单</div>
+					<div class="common">出售订单</div>
+					<!--<div class="otc_top">
+						<a>商家管理</a>
+						<a>商家申请</a>
+						<a>OTC订单</a>
+					</div>-->
+				</div>
+				
+				<div class="ul">
+					<div class="bottom_content">
+						<div class="body_1 markets_itme">
+							<div class="tab" js-tab="2">
+								<div class="tab-title">
+									<a href="javascript:;" class="item">USDT 订单</a>
+								</div>
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											<dl>
+												<dt>时间</dt>
+												<dt>交易对</dt>
+												<dt>方向</dt>
+												<dt>价格(USDT)</dt>
+												<dt>数量</dt>
+												<dt>交易额</dt>
+												<dt>成交总额</dt>
+												<dt>成交均价</dt>
+												<dt>操作</dt>
+											</dl>
+											<dl>
+												<dd>18:40 03/04</dd>
+												<dd>BTC/USDT</dd>
+												<dd>卖出</dd>
+												<dd>25478.25</dd>
+												<dd>0.21457854</dd>
+												<dd>1.25478542</dd>
+												<dd>1.25478542</dd>
+												<dd>1.25478542</dd>
+												<!--<dd><a>撤单</a></dd>-->
+												<dd><a href="otc_orde_details.html">订单详情</a></dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+							</div>		
+						</div>
+						<div class="body_1">
+							<div class="tab" js-tab="1">
+								<div class="tab-title">
+									<a href="javascript:;" class="item">USDT 订单</a>
+								</div>
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											<dl>
+												<dt>订单号</dt>
+												<dt>状态</dt>
+												<dt>总价</dt>
+												<dt>单价</dt>
+												<dt>交易数量</dt>
+												<dt>手续费</dt>
+												<dt>时间</dt>
+												<dt>操作</dt>
+											</dl>
+											<dl>
+												<dd>87967589989765</dd>
+												<dd>待付款</dd>
+												<dd>2000 CNY</dd>
+												<dd>54,950.00 CNY</dd>
+												<dd>100 USDT</dd>
+												<dd>0.2 USDT</dd>
+												<dd>2020/12/20 16:00</dd>
+												<dd><a href="otc_orde_details.html">订单详情</a></dd>
+											</dl>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+   		<script type="text/javascript" src="js/tab_wo.js" ></script>
+
+		<script type="text/javascript">
+			function buy(){
+				layer.open({
+				  type: 2,
+				  title:'购买',
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['600px', '430px'], //宽高
+				  content: 'buy.html'
+				});
+			}
+			function sell(){
+				layer.open({
+				  type: 2,
+				  title:'出售',
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['600px', '430px'], //宽高
+				  content: 'sell.html'
+				});
+			}
+		
+		$(function(){
+ 			 $('[js-tab=1]').tab();
+		});
+		$(function(){
+ 			 $('[js-tab=2]').tab();
+		});
+			//console.log("left -右滑",(parseInt($('.bottom_content')[0].style.left)));
+			$('.bottom_content')[0].style.left = "0%";
+			var startX = '',disX ='';
+			$('.top_menu').on('click','.common',function(){
+				var index = $(this).index();
+				$('.bottom_content').css('left','-' + index * 100 + '%');
+				$('.top_menu .common').eq(index).addClass('liactive').siblings().removeClass('liactive')
+			});
+			$('.bottom_content').on('touchstart','.body_1',function(e){
+				startX = e.originalEvent.changedTouches[0].clientX;
+			});
+			$('.bottom_content').on('touchmove','.body_1',function(e){
+				e.stopPropagation()
+			})
+			$('.bottom_content').on('touchend','.body_1',function(e){
+				disX = e.originalEvent.changedTouches[0].clientX - startX;
+				var leftNum = parseInt($('.bottom_content')[0].style.left);
+				if(disX > 0 && disX > 100) {
+					if(leftNum <= -100) {
+						$('.bottom_content')[0].style.left = leftNum + 100 + "%";
+						var order = -parseInt($('.bottom_content')[0].style.left)/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				} else if(disX < 0 && disX < -100) {
+					if(leftNum >= -200) {
+						$('.bottom_content')[0].style.left = leftNum - 100 + "%";
+						var order = (-parseInt($('.bottom_content')[0].style.left))/100;
+						$('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

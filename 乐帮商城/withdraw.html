@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/slide.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,html{background: #fff;}
+			.form{padding: 0;}
+			.form .group{padding: 15px;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>提币</p>
+		</h1>
+		<div class="edit_address">
+			<div class="form">
+				<!-- <form> -->
+					<div class="group">
+						<label>当前可用</label>
+						<input name="" type="text" class="" value="1000.0000USDT" style="text-align: right;"/>
+					</div>
+					<div class="group">
+						<label>提币地址</label>
+						<input name="addr" type="text" class="addr"  placeholder="长按或黏贴提币地址"/>
+						<i><img src="img/saoyisao.png"/ onClick="BSL.Qcode('0','qrcodeCallback')"></i>
+					</div>
+					<div class="mt"></div>
+					<div class="group">
+						<label>提币数量</label>
+						<input name="num" type="number" class="num"  placeholder="最小提币金额为100"/>
+					</div>
+					<div class="group">
+						<label>手续费</label>
+						<input name="" type="text" class=""  value="10.00USDT"/>
+					</div>
+					<div class="group">
+						<label>安全密码</label>
+						<input name="psd" type="password" class="psd"  placeholder="请输入您的安全密码"/>
+					</div>
+					<div class="group">
+						<label>到账数量</label>
+						<input name="" type="" class=""  placeholder="0.00"/>
+					</div>
+					
+			<!-- </form> -->
+		</div>
+		<div class="mt"></div>
+		<button class="annius">确定</button>
+		<script src="layer/layer.js"></script>
+		<script src="js/check.js"></script>
+		<script src="js/area.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/select.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			function qrcodeCallback(result){
+			  if(result.indexOf(window.location.host)==-1){ //等于-1表示这个字符串中没有o这个字符
+			    layer.msg('当前扫描的不属于本系统的二维码',{icon:5,time:1000});
+			  }else{
+			    window.location.href=result
+			  }
+			}
+			
+			$(".annius").click(function(){
+				var addr=$(".addr").val();
+				var num=$(".num").val();
+				var psd=$(".psd").val();
+				//是否非空
+				if(!isKong(addr,"请输入提币地址")){
+					return false;
+				}
+				//是否非空
+				if(!isKong(num,"请输入提币金额")){
+					return false;
+				}
+				//是否非空
+				if(!isKong(psd,"请输入您的安全密码")){
+					return false;
+				}
+				
+				window.location.href = "user.html";
+			})
+		</script>
+		
+		
+	</body>
+</html>

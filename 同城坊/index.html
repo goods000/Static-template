@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>店铺个人中心</title>
+    <link rel="stylesheet" type="text/css" href="css/layui.css">
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="https://www.chntcf.com/">
+                        首页
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="#" target="_blank"
+                        class="">联系客服</a>
+                </li>
+                <li class="layui-nav-item"><a href="https://www.chntcf.com/logout.html">退出</a></li>
+                <li class="layui-nav-item last layui-this">
+                    <a href="javascript:;">
+                        <img src="img/position.png" class="position">
+                        <span></span>
+                        <span></span>
+                    </a>
+                </li>
+                <span class="layui-nav-bar" style="top: 32px; width: 0px; left: 20px; opacity: 0;"></span>
+            </ul>
+        </div>
+        <div class="layui-header-shop">
+            <a href="https://www.chntcf.com/" class="logo">
+                <div class="logo">
+                    <img src="img/1587646652915661.png" alt="同城坊一站式广告服务平台">
+                </div>
+            </a>
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="img/company.png" class="layui-nav-img">
+                        sdjshds</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="img/people.png" class="layui-nav-img">
+                        dssfsd </a>
+                </li>
+                <span class="layui-nav-bar" style="top: 60px; width: 0px; left: 138.15px; opacity: 0;"></span>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="#" id="qiye_down"
+                        class="show_menu">
+                        <img src="img/top01.png" class="layui-nav-img">
+                        询价下单
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="#">
+                        <img src="img/top02.png" class="layui-nav-img">
+                        询价报表
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="#">
+                        <img src="img/top03.png" class="layui-nav-img">
+                        询价管理
+                    </a>
+                </li>
+                <span class="layui-nav-bar" style="top: 60px; width: 0px; left: 0px; opacity: 0;"></span>
+            </ul>
+        </div>
+        <div class="layui-content">
+            <div class="layui-side layui-bg-black">
+                <div class="layui-side-scroll main-lfetmenu">
+                    <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                    <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                        <li class="layui-nav-item layui-this">
+                            <a data-src="#">待办事项</a>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a data-src="#">询价下单</a>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">企业设置<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">企业信息</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">员工信息</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">个人信息</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">部门设置</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">打印模板</span></a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">资金管理<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">资金账户</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">发票管理</span></a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">报表管理<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a data-src="#"><span class="left_border"></span><span class="left_title">业绩统计</span></a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">订单统计<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a data-src="#" class="order"><span class="left_border"></span><span class="left_title">订单管理</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">发货记录</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">退货订单</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">延期完成订单</span></a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">设置<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a data-src=""><span class="left_border"></span><span
+                                            class="left_title">我的地址</span></a></dd>
+                                <dd><a data-src="#"><span class="left_border"></span><span
+                                            class="left_title">安全设置</span></a></dd>
+                            </dl>
+                        </li>
+                        <span class="layui-nav-bar" style="height: 0px; top: 337.5px; opacity: 0;"></span>
+                    </ul>
+                </div>
+            </div>
+            <div class="main_right">
+                <iframe frameborder="0" scrolling="yes" style="width: 100%; height: 650px ;" src="1.html" id="aa"></iframe>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+        <script src="js/layui.js" charset="utf-8"></script>
+        <script>
+            //JavaScript代码区域
+            layui.use('element', function () {
+                var element = layui.element;
+
+            });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                //获取src值
+                $(".main-lfetmenu .layui-nav-tree li a").on("click",function(){
+                    var address =$(this).attr("data-src");
+                    $("iframe").attr("src",address);
+                });
+                //一下代码是根据窗口高度在设置iframe的高度
+                var frame = $("#aa");
+        
+                var frameheight = $(window).height();
+                console.log(frameheight);
+                frame.css("height",frameheight);
+                //左侧菜单点击显示  
+                $(".layui-nav-item").each(function (i) {
+                    var that = this;
+                    $(this).click(function () {
+                        $(that).siblings().removeClass('layui-nav-itemed');
+                    })
+                })
+
+
+            });
+        </script>
+    </div>
+</body>
+
+</html>

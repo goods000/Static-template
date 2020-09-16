@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			body,html{background: url(img/invite_bg.png);background-repeat: no-repeat;background-size: 100% 100%;height: 100vh;}
+			.h1{background: none;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>邀请好友</p>
+		</h1>
+		<div class="invite_box">
+			<b class="invite_top_title">邀请好友 共享好运</b>
+			<p class="invite_top_ti">INVITE FRIENDS TO SHARE YOUR GOOD FORTUNE</p>
+			<div class="code_box">
+				<span class="code_title">邀请码</span>
+				<span class="code_num">2565832</span>
+			</div>
+			<div class="qrcode_box">
+				<div id="code"></div>
+				<p class="title">邀请链接</p>
+				<textarea name="" id="foo_1" rows="2" cols=""> https://www.newduba.cn/?un_111111_1232&hid=16_&pru=164723</textarea>
+				<div class="erweima">
+					<button onclick="copy()" id="copy" class="btn" data-clipboard-action="copy" data-clipboard-target="#foo_1">复制链接</button>
+				</div>
+			</div>
+		</div>
+		
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#code").qrcode({
+	   		width: 120, //宽度 
+	    	height:120, //高度 
+	    	text: "www.zhizuobiao.com" //任意内容 
+		});
+		$('canvas').css({
+	        'display': 'block',
+	        'padding': '10px',
+	        'margin': 'auto',
+	        'border-radius': '5px',
+	        'background': '#fff',
+	    });
+	    
+	    function copy(){
+		layer.msg("复制成功！", { icon: 6,time: 2000});
+		}
+	  	var clipboard = new Clipboard('.btn');
+	    clipboard.on('success', function(e) {
+	        console.log(e);
+	    });
+	    clipboard.on('error', function(e) {
+	        console.log(e);
+	    });
+	</script>
+</html>

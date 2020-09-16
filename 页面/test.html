@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+
+	<body>
+		<div id="value"></div>
+	</body>
+	<script type="text/javascript">
+		setTimeout("location=location; ", 1000);
+		 window.onload = function(){
+			var faultDate = '2020-06-08 18:46:08';
+			var completeTime = new Date();
+			console.log(completeTime);
+			function getTime(faultDate, completeTime) {
+			      var stime = Date.parse(new Date(faultDate));
+			      console.log("stime"+stime)
+			      var etime = Date.parse(new Date(completeTime));
+			      console.log("etime"+etime)
+			      // 两个时间戳相差的毫秒数
+			      var usedTime = stime - etime;
+			      // 计算相差的天数  
+			      var d = Math.floor(usedTime / (24 * 3600 * 1000));
+			      // 计算天数后剩余的毫秒数
+			      var leave1 = usedTime % (24 * 3600 * 1000);  
+			      // 计算出小时数  
+			      var h = Math.floor(leave1 / (3600 * 1000));
+			      // 计算小时数后剩余的毫秒数
+			      var leave2 = leave1 % (3600 * 1000);        
+			      // 计算相差分钟数
+			      var m = Math.floor(leave2 / (60 * 1000));
+			      // 计算分钟数后剩余的毫秒数
+			      var leave3 = leave2 % (60*1000);        
+			      // 计算相差秒数
+			      var s = Math.floor(leave3 / 1000);
+			      var time = d.toString().padStart(2,'0') + "天" + h.toString().padStart(2,'0') + ":" + m.toString().padStart(2,'0') + ":" + s.toString().padStart(2,'0');
+			      console.log("时间结果："+ time)
+			      document.getElementById("value").innerHTML = time;
+			      return time;
+			}
+			getTime(faultDate, completeTime)
+		}
+		 
+	</script>
+	<script type="text/javascript">
+		
+	</script>
+</html>

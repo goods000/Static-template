@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>CTC</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.tab-title a{width: 45%;display:block;text-align: center;float: left;padding:2px 0 6px;border:1px solid #40BC1B;box-sizing: border-box;}
+	    	.tab-title a span{color: #40BC20;font-size: 0.8rem;}
+	    	.tab-title{overflow: hidden;width: 60%;margin: auto;padding: 5px 0;}
+	    	.item-cur{background: #40BC1B!important;}
+	    	.item-cur span{color: #fff !important;}
+	    	.rrsss{background: #1E2134;border-bottom: 1px solid #e6e6e6;}
+	    	.tab-title a:nth-child(1){border-radius: 5px 0 0 5px;}
+	    	.tab-title a:nth-child(2){border-radius: 0 5px 5px 0 ;}
+	    	.navTitle{color: #333333 !important;font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);" style="z-index: 99;"></button>
+			<p>&nbsp;</p>
+		</h1>
+		<div class="ctc_order" id="app">
+			<div class="tab" js-tab="1">
+				<div class="tab-title">
+	  				<a href="javascript:;" class="item"><span>求购订单</span></a>
+	  				<a href="javascript:;" class="item"><span>挂卖订单</span></a>
+				</div>
+				<div class="mt"></div>
+				<div class="tab-cont">
+					<div class="tab-cont_wrap">
+						<ul class="item" >
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i><img src="img/tou_ctc.png"/></i>
+										<span class="name name_state">等待中…</span>
+									</div>
+									<div class="right">
+										<span class="right_title right_state">求购中</span>
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价：</i>
+										<span><i class="d_price">4.82</i> <i class="i">USDT</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i_price">USDT</i></span>							
+									</div>
+								</div>
+								<div class="item_box line">
+									<div class="left">
+										<i class="d_title">数量：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<i class="d_title">总价</i>
+									</div>
+								</div>
+								<div class="item_box juli">
+									<div class="left">
+										<i class="d_title">2020.04.16 15:12:15</i>
+									</div>
+									<div class="right">
+										<p class="state_btn">取消订单</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i><img src="img/tou.png"/></i>
+										<span class="name">蜿蜒</span>
+									</div>
+									<div class="right">
+										<span class="right_title">已完成</span>
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价：</i>
+										<span><i class="d_price">4.80</i> <i class="i">USDT</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i_price">USDT</i></span>							
+									</div>
+								</div>
+								<div class="item_box line">
+									<div class="left">
+										<i class="d_title">数量：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<i class="d_title">总价</i>
+									</div>
+								</div>
+								<div class="item_box juli">
+									<div class="left">
+										<i class="d_title">2020.04.16 15:12:15</i>
+									</div>
+									<div class="right">
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i><img src="img/tou.png"/></i>
+										<span class="name">蜿蜒</span>
+									</div>
+									<div class="right">
+										<span class="right_title">已完成</span>
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价：</i>
+										<span><i class="d_price">4.80</i> <i class="i">USDT</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i_price">USDT</i></span>							
+									</div>
+								</div>
+								<div class="item_box line">
+									<div class="left">
+										<i class="d_title">数量：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<i class="d_title">总价</i>
+									</div>
+								</div>
+								<div class="item_box juli">
+									<div class="left">
+										<i class="d_title">2020.04.16 15:12:15</i>
+									</div>
+									<div class="right">
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i><img src="img/tou.png"/></i>
+										<span class="name">蜿蜒</span>
+									</div>
+									<div class="right">
+										<span class="right_title">已完成</span>
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价：</i>
+										<span><i class="d_price">4.80</i> <i class="i">USDT</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i_price">USDT</i></span>							
+									</div>
+								</div>
+								<div class="item_box line">
+									<div class="left">
+										<i class="d_title">数量：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<i class="d_title">总价</i>
+									</div>
+								</div>
+								<div class="item_box juli">
+									<div class="left">
+										<i class="d_title">2020.04.16 15:12:15</i>
+									</div>
+									<div class="right">
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i><img src="img/tou.png"/></i>
+										<span class="name">蜿蜒</span>
+									</div>
+									<div class="right">
+										<span class="right_title">已完成</span>
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价：</i>
+										<span><i class="d_price">4.80</i> <i class="i">USDT</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i_price">USDT</i></span>							
+									</div>
+								</div>
+								<div class="item_box line">
+									<div class="left">
+										<i class="d_title">数量：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<i class="d_title">总价</i>
+									</div>
+								</div>
+								<div class="item_box juli">
+									<div class="left">
+										<i class="d_title">2020.04.16 15:12:15</i>
+									</div>
+									<div class="right">
+									</div>
+								</div>
+							</li>
+						</ul>	
+						<ul class="item" >
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i><img src="img/tou_ctc.png"/></i>
+										<span class="name name_state">等待中…</span>
+									</div>
+									<div class="right">
+										<span class="right_title right_state">挂卖中</span>
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价：</i>
+										<span><i class="d_price">4.82</i> <i class="i">USDT</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i_price">USDT</i></span>							
+									</div>
+								</div>
+								<div class="item_box line">
+									<div class="left">
+										<i class="d_title">数量：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<i class="d_title">总价</i>
+									</div>
+								</div>
+								<div class="item_box juli">
+									<div class="left">
+										<i class="d_title">2020.04.16 15:12:15</i>
+									</div>
+									<div class="right">
+										<p class="state_btn">取消订单</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i><img src="img/tou.png"/></i>
+										<span class="name">蜿蜒</span>
+									</div>
+									<div class="right">
+										<span class="right_title">已完成</span>
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价：</i>
+										<span><i class="d_price">4.80</i> <i class="i">USDT</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i_price">USDT</i></span>							
+									</div>
+								</div>
+								<div class="item_box line">
+									<div class="left">
+										<i class="d_title">数量：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<i class="d_title">总价</i>
+									</div>
+								</div>
+								<div class="item_box juli">
+									<div class="left">
+										<i class="d_title">2020.04.16 15:12:15</i>
+									</div>
+									<div class="right">
+									</div>
+								</div>
+							</li>
+						</ul>	
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer"></div>
+	</body>
+	<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+		  $('[js-tab=1]').tab();
+		});
+	</script>
+</html>

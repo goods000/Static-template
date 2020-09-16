@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="index">
+			<h2 class="h2">Hi~这里是小牛</h2>
+			<p class="index_p">欢迎来到这里寻找优选好物！</p>
+			<div id="indexHeader">
+				<img src="img/sreach.png" class="indexLeftImg">
+				<input type="text" name="" id="" value="" placeholder="输入搜索名称" />
+			</div>
+			<!-- Swiper -->
+		    <div class="swiper-container swiper-container_sy">
+		        <div class="swiper-wrapper">
+		            <div class="swiper-slide"><img src="img/banner.png"/></div>
+		            <div class="swiper-slide"><img src="img/banner.png"/></div>
+		            <div class="swiper-slide"><img src="img/banner.png"/></div>
+		            <div class="swiper-slide"><img src="img/banner.png"/></div>
+		        </div>
+		        <!-- Add Pagination -->
+		        <div class="swiper-pagination"></div>
+		        <!-- Add Arrows -->
+		        <div class="swiper-button-next"></div>
+		        <div class="swiper-button-prev"></div>
+		    </div>
+		    <div class="support">
+		    	<div class="area">
+					<ul>
+						<a href="news.html">
+							<li>
+								<img src="img/index_1.png"/>
+								<b>系统公告</b>
+								<p>随时随地掌握最新消息</p>
+							</li>
+						</a>
+						<a href="invite.html">
+							<li>
+								<img src="img/index_2.png"/>
+								<b>邀请好友</b>
+								<p>畅快购物好友集结</p>
+							</li>
+						</a>
+						<a href="team.html">
+							<li>
+								<img src="img/index_3.png"/>
+								<b>我的团队</b>
+								<p>亲友聚集共享愉悦</p>
+							</li>
+						</a>
+					</ul>
+				</div>
+		    </div>
+		    <div class="div"><s>汇率专区</s><span>专属购物/优质精选</span></div>
+		    <div class="cart">
+		    	<ul id="cartList">
+					<li>
+						<i><img src="img/goods.png" class="img"/></i>
+						<div class="l">
+							<p class="name">AUWELCARE儿童免疫IMK浓缩黑接骨木紫锥菊……</p>
+							<p class="type">构建天然抵抗力</p>
+							<p class="guige"><b>￥</b><span class="price">1568</span></p>
+							<a href="goods_detail.html" class="btn">立即购买</a>
+						</div>
+						<span class="more">
+							<img src="img/more.png"/>
+						</span>
+					</li>
+				</ul>
+		    </div>
+		</div>
+		
+		<div id="footer" name="1"></div>
+	</body>
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	        
+	    });
+	</script>
+</html>

@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<script type="text/javascript" src="charting_library/charting_library.min.js"></script>
+		<script type="text/javascript" src="datafeeds/udf/dist/polyfills.js"></script>
+		<script type="text/javascript" src="datafeeds/udf/dist/bundle.js"></script>
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+		body{background: #252a44;}
+		.exch_go .title{font-size: 16px;font-weight: bold;color: #fff;    margin: 10px 15px;}
+			.exch_go ul{ margin: 10px 15px;}
+			.exch_go ul li{display: flex;justify-content: space-between;align-items: center;padding: 10px 0;
+			border-bottom: 1px solid #61688a;}
+			.exch_go ul li .label{color: #61688a;font-size: 14px;}
+			.exch_go ul li .p{color: #fff;font-size: 14px;}
+			.exch_go .con{margin: 10px 15px;color: #fff;font-size: 14px;line-height: 23px;}
+			/*.exchang_right{width:50%;}*/
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+
+		<script type="text/javascript">
+
+			function getParameterByName(name) {
+				name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+				var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+					results = regex.exec(location.search);
+				return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+
+			function initOnReady() {
+				var widget = window.tvWidget = new TradingView.widget({
+					// debug: true, // uncomment this line to see Library errors and warnings in the console
+					fullscreen: true,
+					symbol: 'AAPL',
+					interval: 'D',
+					container_id: "tv_chart_container",
+
+					//	BEWARE: no trailing slash is expected in feed URL
+					datafeed: new Datafeeds.UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),
+					library_path: "charting_library/",
+					locale: getParameterByName('lang') || "en",
+
+					disabled_features: ["use_localstorage_for_settings"],
+					enabled_features: ["study_templates"],
+					charts_storage_url: 'http://saveload.tradingview.com',
+					charts_storage_api_version: "1.1",
+					client_id: 'tradingview.com',
+					user_id: 'public_user_id',
+					theme: getParameterByName('theme'),
+					theme:'dark',
+					width:'400',
+					height:'300',
+				});
+			};
+			
+		//	window.addEventListener('DOMContentLoaded', initOnReady, false);
+		</script>
+	</head>
+	 <!--trade-view js-->
+	 <script src="static/tradeview/charting_library/charting_library.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/dataUpdater.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/datafees.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/socket.js" type="text/javascript" charset="utf-8"></script>     
+        <script src="./js/TVjsApi.js" type="text/javascript" charset="utf-8"></script>
+	
+	<body>
+		<div id="header" name="4"></div>
+		<div class="exchange" v-cloak>
+			<div class="exchang_top">
+				<div class="exchang_left">
+					<div class="tab" js-tab="1">
+								<div class="tab-title">
+									<a href="javascript:;" class="item">自选</a>
+					  				<a href="javascript:;" id="1" class="item">USDT</a>
+								</div>
+			
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											<dl>
+												<dt>币种</dt>
+												<dt>最新价</dt>
+												<dt>涨幅</dt>
+											</dl>
+										<!--	<dl v-for="(item,index) in coinList" @click="chooseType(item.name,item.type)">
+												<dd><a class="iconfont icon-guanzhu"></a><em>{{item.enName}}</em></dd>
+												<dd>{{item.close}}</dd>
+												<dd><s>{{item.range}}</s></dd>
+											</dl>-->
+											<div id="coinList">
+											</div>
+										</div>
+										<div class="item markets_itme" >
+											<dl>
+												<dt>币种</dt>
+												<dt>最新价</dt>
+												<dt>涨幅</dt>
+											</dl>
+											<dl>
+												<dd><a class="iconfont icon-guanzhu"></a><em>BTC</em></dd>
+												<dd>7705.21</dd>
+												<dd><s>+0.39%</s></dd>
+											</dl>
+										</div>	
+									</div>
+								</div>
+							</div>
+				</div>
+				<div class="exchang_k">
+					<div id="tv_chart_container" style="height:100%;width:100%;"></div>
+					<div class="trading">
+						<div class="tab" js-tab="3">
+								<div class="tab-title">
+									<a href="javascript:;" class="item">现价交易</a>
+					  				<a href="javascript:;" id="1" class="item">市价交易</a>
+								</div>
+			
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											<div class="mai gong">
+												<div class="mai_top">
+													<p>可用<span>{{Detail.balance}}</span> USDT</p>
+													<span v-if="coin.enName =='EOS' ">
+														
+													</span>
+													<span v-else-if="coin.enName =='JSC'">
+													
+													</span>
+													<span v-else>
+														<a href="javascript:;" @click="charge(coin.type)">充币</a>
+													</span>
+												</div>
+												<div class="mai_cont">
+													<h6>买入价</h6>
+													<input type="number"  @input="inputPrice(this)" v-model.trim="buy_price" class="buy_price" placeholder="0.0"/>
+													<span>{{coin.enName}}</span>
+												</div>
+												<div class="mai_cont">
+													<h6>买入量</h6>
+													<input type="number"  @input="inputNum(this)" v-model.trim="buy_num" class="buy_num" placeholder="0.0"/>
+													<span>{{coin.enName}}</span>
+												</div>
+												<div class="scroll-bar" id="scroll-bar">
+													<div class="entire-bar" id="entire-bar"></div>
+													<div class="action-bar" id="action-bar"></div>
+													<div class="action-block" id="action-block"></div>
+												</div>
+												<div class="mai_bottom">交易额<span>{{total}} USDT</span></div>
+												<button class="mai_button" @click="submitBuy(1)">买入</button>
+											</div>
+											<div class="ma gong">
+												<div class="mai_top">
+													<p>可用<span>{{Detail.balance}}</span>USDT</p>
+													<span v-if="coin.enName =='EOS' ">
+														
+													</span>
+													<span v-else-if="coin.enName =='JSC'">
+													
+													</span>
+													<span v-else>
+														<a href="javascript:;" @click="charge(coin.type)">充币</a>
+													</span>
+												</div>
+												<div class="mai_cont">
+													<h6>卖出价</h6>
+													<input type="number"   @input="inputPrice1(this)" v-model.trim="sell_price" class="sell_price" placeholder="0.0"/>
+													<span>{{coin.enName}}</span>
+												</div>
+												<div class="mai_cont">
+													<h6>卖出量</h6>
+													<input type="number"  @input="inputNum1(this)" v-model.trim="sell_num" class="sell_num" placeholder="0.0"/>
+													<span>{{coin.enName}}</span>
+												</div>
+												<div class="scroll-bar" id="scroll-bar">
+													<div class="entire-bar" id="entire-bar"></div>
+													<div class="action-bar" id="action-bar"></div>
+													<div class="action-block" id="action-block"></div>
+												</div>
+												<div class="mai_bottom">交易额<span>{{total1}} USDT</span></div>
+												<button class="ma_button" @click="submitSell(1)">卖出</button>
+											</div>
+										</div>
+										<div class="item markets_itme">
+											<div class="mai gong">
+												<div class="mai_top">
+													<p>可用<span>{{Detail.balance}}</span>USDT</p>
+													<span v-if="coin.enName =='EOS' ">
+														
+													</span>
+													<span v-else-if="coin.enName =='JSC'">
+													
+													</span>
+													<span v-else>
+														<a href="javascript:;" @click="charge(coin.type)">充币</a>
+													</span>
+												</div>
+												<div class="mai_cont">
+													<h6>买入价</h6>
+													<input type="text" readonly="readonly"  value="以市场最优价格买入" />
+													<span>{{coin.enName}}</span>
+												</div>
+												<div class="mai_cont">
+													<h6>买入量</h6>
+													<input type="number"   @input="inputNum2(this)" v-model.trim="buy_num1" class="buy_num1" placeholder="0.0"/>
+													<span>{{coin.enName}}</span>
+												</div>
+												<div class="scroll-bar" id="scroll-bar">
+													<div class="entire-bar" id="entire-bar"></div>
+													<div class="action-bar" id="action-bar"></div>
+													<div class="action-block" id="action-block"></div>
+												</div>
+												<div class="mai_bottom">交易额<span>{{total2}} USDT</span></div>
+												<button class="mai_button" @click="submitBuy(2)">买入</button>
+											</div>
+											<div class="ma gong">
+												<div class="mai_top">
+													<p>可用<span>{{Detail.balance}}</span>USDT</p>
+													<span v-if="coin.enName =='EOS' ">
+														
+													</span>
+													<span v-else-if="coin.enName =='JSC'">
+													
+													</span>
+													<span v-else>
+														<a href="javascript:;" @click="charge(coin.type)">充币</a>
+													</span>
+												</div>
+												<div class="mai_cont">
+													<h6>卖出价</h6>
+													<input type="text" readonly="readonly" value="以市场最优价格卖出" />
+													<span>{{coin.enName}}</span>
+												</div>
+												<div class="mai_cont">
+													<h6>卖出量</h6>
+													<input type="number" @input="inputNum3(this)" v-model.trim="sell_num1" class="sell_num1" placeholder="0.0"/>
+													<span>{{coin.enName}}</span>
+												</div>
+												<div class="scroll-bar" id="scroll-bar">
+													<div class="entire-bar" id="entire-bar"></div>
+													<div class="action-bar" id="action-bar"></div>
+													<div class="action-block" id="action-block"></div>
+												</div>
+												<div class="mai_bottom">交易额<span>{{total3}} USDT</span></div>
+												<button class="ma_button" @click="submitSell(2)">卖出</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+				<div class="exchang_right">
+					<div class="exchang_dish">
+						<h2>盘口</h2>
+						<div class="tab" js-tab="2">
+								<div class="tab-title">
+									<a href="javascript:;" class="item"><img src="img/e1.png"/></a>
+					  				<a href="javascript:;" class="item"><img src="img/e2.png"/></a>
+					  				<a href="javascript:;" class="item"><img src="img/e3.png"/></a>
+								</div>
+								<div class="dingdan tab-cont">
+									<div class="tab-cont_wrap">
+										<div class="item markets_itme">
+											<dl>
+												<dt>价格</dt>
+												<dt>数量</dt>
+											
+											</dl>
+											<dl v-for="(item,index) in pankouListBuy">
+												<dd><s class="red">{{item[0]}}</s></dd>											
+												<dd>{{item[1]}}</dd>
+											</dl>
+											<div class="exch_div"><h5><span>{{coin.price}}</span> ≈ {{coin_sudtPrice}} CNY</h5>
+											<!--<a href="">更多</a>-->
+											</div>
+											<dl>
+												<dt>价格</dt>
+												<dt>数量</dt>
+											</dl>
+											<dl v-for="(item,index) in pankouListSell">
+												<dd><s class="green">{{item[0]}}</s></dd>											
+												<dd>{{item[1]}}</dd>
+											</dl>
+										</div>
+										<div class="item markets_itme" >
+											<dl>
+												<dt>价格</dt>
+												<dt>数量</dt>												
+											</dl>
+											<dl v-for="(item,index) in pankouListBuy">
+												<dd><s class="red">{{item[0]}}</s></dd>											
+												<dd>{{item[1]}}</dd>
+											</dl>
+										</div>
+										<div class="item markets_itme" >
+											<dl>
+												<dt>价格</dt>
+												<dt>数量</dt>
+											</dl>
+											<dl v-for="(item,index) in pankouListSell">
+												<dd><s class="green">{{item[0]}}</s></dd>											
+												<dd>{{item[1]}}</dd>
+											</dl>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+					<div class="exchang_real">
+						<h2>实时成交价</h2>
+						<div class="item markets_itme">
+							<dl>
+								<dt>时间</dt>
+								<dt>价格</dt>
+								<dt>数量</dt>
+							</dl>
+							<dl v-for="(item,index) in dealPriceList">
+								<dd>{{item.ts}}</dd>
+								<dd>
+									<s class="red" v-if="item.direction=='buy'">{{item.price}}</s>
+									<s class="green" v-if="item.direction=='sell'">{{item.price}}</s>
+								</dd>
+								<dd>{{item.amount}}</dd>
+							</dl>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="exchange_bottom">
+				<div class="exch_top exch_go">
+					<h2><a href="bibi_entrust.html">当前委托</a> <a href="bibi_entrust.html">历史委托</a></h2>
+					<div class="exch_dl">
+						<dl>
+							<dt>时间</dt>
+							<dt>交易对</dt>
+							<dt>方向</dt>
+							<dt>价格(USDT)</dt>
+							<dt>数量</dt>
+							<dt>交易额</dt>
+							<dt>成交总额</dt>
+							<dt>成交均价</dt>
+							<dt>操作</dt>
+						</dl>
+						<dl v-for="(item,index) in list"  :key="index">
+							<dd>{{item.datetime}}</dd>
+							<dd>{{item.symbol}} / USDT</dd>
+							<dd>
+								<span v-if="item.direction==1">买入</span>
+								<span v-if="item.direction==2">卖出</span>
+							</dd>
+							<dd> 
+								<span v-if="item.type==1">{{item.price}} </span>
+								 <span v-if="item.type==21">市价</span>
+							</dd>
+							<dd>
+								<span v-if="item.type==1">{{item.coin_number}} </span>
+								<span v-if="item.type==2">{{item.unit_coin_number}}</span>												
+							</dd>
+							<dd>{{item.total}}</dd>
+							<dd>{{item.total_deal}}</dd>
+							<dd>
+								<span v-if="item.type==1">{{item.actual_deal}} </span>
+								 <span v-if="item.type==21">{{item.actual_deal_unit_coin}}</span>
+							</dd>
+						
+							<dd><a href="javascript:; v-if="item.status==0" @click="revokeOrder(order_detail.id)">撤单</a></dd>
+						</dl>
+					</div>
+				</div>
+				<div class="exch_bot exch_go">
+					<h2><s>简介</s></h2>
+					<p class="title">{{Introduction.name_en}}</p>
+					<ul>
+						<li>
+							<p class="label">发行时间</p>
+							<p class="p">{{Introduction.issue_time}}</p>
+						</li>
+						<li>
+							<p class="label">发行总量</p>
+							<p class="p">{{Introduction.issue_total}}</p>
+						</li>
+						<li>
+							<p class="label">流通总量</p>
+							<p class="p">{{Introduction.circulation}}</p>
+						</li>
+						<li>
+							<p class="label">众筹价格</p>
+							<p class="p">--</p>
+						</li>
+						<li>
+							<p class="label">白皮书</p>
+							<p class="p">{{Introduction.white_paper}}</p>
+						</li>
+						<li>
+							<p class="label">官网</p>
+							<p class="p">{{Introduction.website}}</p>
+						</li>
+						<li>
+							<p class="label">区块查询</p>
+							<p class="p">{{Introduction.block_website}}</p>
+						</li>
+					</ul>
+					<p class="title">{{coin.name}}</p>
+					<div class="con">
+						{{Introduction.descr}}
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+   		<script type="text/javascript" src="js/tab_wo.js" ></script>
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script src="js/slide.js"></script>
+		<script type="text/javascript">
+			
+			
+		
+		new SlideBar({
+			actionBlock : 'action-block',
+			actionBar : 'action-bar',
+			slideBar : 'scroll-bar',
+			barLength : 300,
+			interval : 25,
+			maxNumber : 100,
+			showArea : 'showArea'
+			});
+		$(".icon-guanzhu").click(function(){
+			$(this).addClass("guanzhu");
+		});
+		$(function(){
+ 			 $('[js-tab=1]').tab();
+		});
+		$(function(){
+ 			 $('[js-tab=2]').tab();
+		});
+		$(function(){
+ 			 $('[js-tab=3]').tab();
+
+		});
+	
+			
+
+			var vue = new Vue({
+				el: ".exchange",
+				data: {					
+					priceList:[],
+					coinList:[],
+					pankouListBuy:[],
+					pankouListSell:[],
+					dealPriceList:[],
+					type:4,	
+					coin_sudtPrice:"",
+					usdtPrice:7.16,
+					coinPrice:"",
+					Detail:"",
+					coin:{name:"BTC",type:1},
+					buy_price:'',
+					buy_num:"",
+					sell_price:"",					
+					sell_num:"",
+					buy_num1:"",
+					sell_num1:"",
+					total:0.0,
+					total1:0.0,
+					total2:0.0,
+					total3:0.0,
+					flag:true,
+					page:1,
+					list:[],
+					Introduction:{},
+					rageS:[0,0,0,0],				//存放上一次数据
+					
+				},				
+				mounted(){
+
+				},
+				created() {	
+					if(GetQueryString("symbol")!=null){
+						this.coin.name=GetQueryString("symbol")
+						this.coin.type=GetQueryString("type")						
+					}else{
+						this.coin.name='eos'	
+						this.coin.type=3;						
+					}
+						this.coin.enName=(this.coin.name).toUpperCase();
+						this.coin.symbol=this.coin.name+'usdt';											
+						//console.log(this.coin.name)
+						
+					//console.log(this.coin)
+					
+					this.getPrice();
+				//	this.getcoinPrice();
+					this.getUSDTPrice();
+					this.getPankou();
+					this.getDealPrice();
+					this.getBalance();
+					this.getList();
+					this.getIntroduction()
+				//	this.getkline()
+				},
+				mounted() {},
+				methods: {	
+					getPrice(){		//获取所有币种价格
+					var that=this;											
+						var ws = new WebSocket("ws://39.108.98.14:8282");
+						
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					       // console.log(data)
+							if(data.tick){
+								that.coinList=data.tick
+								that.coinList.forEach(function(item, index) {
+									item.enName=(item.name).toUpperCase();
+									if(item.name=="btc"){
+										item.type=1;
+									//	console.log(item.type)
+									}
+									if(item.name=="eos"){
+										item.type=3
+									}
+									if(item.name=="eth"){
+										item.type=2
+									}
+									if(item.name=="jsc"){
+										item.type=5
+									}
+									//	console.log(that.rageS)
+									if(item.range==undefined){		//当没有涨幅的时候就给上一次的数据
+										item.range=that.rageS[index];
+									//	console.log(item.range)
+									}
+									//item.name=(item.name).toUpperCase();
+									
+									that.rageS[index]=item.range;
+									//console.log(item.type)
+								})
+								if(that.coin.name == that.coinList[0].name){
+									 that.coin.price=that.coinList[0].close;
+								//	console.log("price:"+that.coin.price)
+								}else{
+								
+								}
+								that.coin_sudtPrice= that.coin.price * that.usdtPrice
+								that.coin_sudtPrice=(that.coin_sudtPrice).toFixed(4)
+							
+							//	console.log(that.coinList)
+							}
+														
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.all_24h"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+					            return;
+					            case "all_24h":
+					           	console.log(data);
+					
+					        }
+					    }
+						
+					},
+					getUSDTPrice(callback){	//获取USDT价格						
+						var ws = new WebSocket("ws://39.108.98.14:8282");
+						var that=this;
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					      // console.log(data)
+							if(data.tick){
+							// console.log(data.tick)
+								data.tick.forEach(function(item, index) {
+									if(item.name=='usdt')
+									that.usdtPrice=item.price;
+									console.log("USDT:"+that.usdtPrice)
+								})
+								that.coin_sudtPrice= that.coin.price * that.usdtPrice
+								that.coin_sudtPrice=(that.coin_sudtPrice).toFixed(4)
+								//	console.log("price:"+that.coin.price)
+							}
+														
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.zichan_price"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+					            return;
+					            case "zichan_price":
+					           	console.log(data);
+					
+					        }
+					    }					
+					},
+					getkline(){		//获取k线数据
+					var that=this;					
+						
+						var ws = new WebSocket("ws://39.108.98.14:8282");
+						
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					       // console.log(data)
+							if(data.tick){								
+							//	console.log(data.tick)
+							}
+														
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.'+that.coin.symbol+'.kline.1min"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+					            return;
+					            case "all_24h":
+					           	console.log(data);
+					
+					        }
+					    }
+						// 组件销毁时调用，中断websocket链接,//销毁，然后重新调用其他的币种函数
+				          this.over3 = () => {
+				            ws.close();  		
+							that.getkline()		
+				          }
+					},
+					
+					getcoinPrice(){		//获取单种币种价格
+					var that=this;											
+						var ws = new WebSocket("ws://39.108.98.14:8282");
+						
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					       // console.log(data)
+							if(data.tick){
+								that.coin.price=data.tick.close
+							//	console.log(data.tick)
+							}
+														
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.'+that.coin.symbol+'.24h"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+					            return;
+					            case "all_24h":
+					           	console.log(data);
+					
+					        }
+					    }
+						// 组件销毁时调用，中断websocket链接
+				          this.over = () => {
+				            ws.close();  		//销毁，然后重新调用其他的币种函数
+							that.getcoinPrice()
+				          }
+					},
+					getPankou(){		//获取盘口
+					var that=this;											
+						var ws = new WebSocket("ws://39.108.98.14:8282");						
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					       // console.log(data)
+							if(data.tick){
+								 that.pankouListBuy=data.tick.bids;
+								  that.pankouListSell=data.tick.asks;
+							//	 console.log(that.pankouListBuy)
+								 
+								
+							}
+														
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.'+that.coin.symbol+'.pankou"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+					            return;
+					            case "all_24h":
+					           	console.log(data);
+					
+					        }
+					    }
+						// 组件销毁时调用，中断websocket链接 //销毁，然后重新调用其他的币种函数
+				          this.over1 = () => {
+				            ws.close();  		
+							that.getPankou()
+				          }
+					},					
+					getDealPrice(){			//市场最新成交
+						var that=this;					
+						//获取盘口
+						var ws = new WebSocket("ws://39.108.98.14:8282");						
+						var data;
+					    //接收服务端消息
+					    ws.onmessage = function(e){
+					         data = eval("("+ e.data +")");
+					       // console.log(data)
+							if(data.tick){
+								 that.dealPriceList=data.tick;
+								if(that.dealPriceList.length>27){
+									that.dealPriceList=that.dealPriceList.slice(0,27)
+								}
+								
+							//	 console.log(that.dealPriceList.length)
+								that.dealPriceList.forEach(function(item, index) {	
+									item.ts=new Date(item.ts).Format('hh:mm:ss')
+								//	item.name=(item.name).toUpperCase();
+								})
+							}
+														
+					        switch (data.msg_type){
+					            case "connect":
+					                //发给服务器发送数据 进行订阅
+					                var to_sub = '{"type":"to_sub","subject":"market.'+that.coin.symbol+'.latest"}';
+					                ws.send(to_sub);
+					            return;
+					            case "to_sub":
+					                //得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+					            return;
+					            case "all_24h":
+					           	console.log(data);
+					
+					        }
+					    }
+						// 组件销毁时调用，中断websocket链接,//销毁，然后重新调用其他的币种函数
+				          this.over2 = () => {
+				            ws.close();  		
+							that.getDealPrice()		
+				          }
+					
+					},
+					getList(){				//当前委托
+						var that = this;
+						var param = {					
+							"page":that.page,							
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/bibi/all_bills',param, 
+						function(res) {
+						if(res.status==0){
+						console.log(res.data)
+							if(res.data!=null){								
+									that.pageList=res.data;
+									that.list = that.list.concat(that.pageList);
+								//	console.log(that.list)
+									that.list.forEach(function(item, index) {	//限价单
+										if(item.type==1){
+											item.total=item.price * item.coin_number;
+											item.total_deal=item.price * item.actual_deal;
+										}else{
+											item.total=item.coin_number;
+											item.total_deal= item.actual_deal;
+										}
+										
+									})
+								}
+						}
+						else{
+								Invalid(res)  //判断登录是否失效			
+							}							
+						}, 'json');
+						//console.log(that.trade_list)
+					},
+					chooseType(name,type){		//选择币种										
+						this.coin.name=name
+						this.coin.symbol=name+'usdt';
+						this.coin.type=type
+						this.coin.enName=(this.coin.name).toUpperCase();
+						console.log(this.coin)
+						this.over();
+						this.over1();
+						this.over2();
+						this.over3();
+						
+					},
+					getIntroduction(){				//简介
+						var that = this;
+						var param = {					
+							"symbol":that.coin.name,							
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/bibi/coin_info',param, 
+						function(res) {
+						if(res.status==0){
+							//console.log(res.data)
+							that.Introduction = res.data;								
+						}
+						else{
+								Invalid(res)  //判断登录是否失效			
+							}							
+						}, 'json');
+						//console.log(that.trade_list)
+					},
+					getBalance(){		//获取余额
+						var that = this;
+						var param = {
+							"type":that.type,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/c2c/get_balance',param, 
+						function(res) {
+							if(res.status==0){
+							that.Detail=res.data;
+						//	console.log(that.Detail)
+							}
+							else{
+								Invalid(res)  //判断登录是否失效
+							}
+						}, 'json');
+					},
+					inputPrice(obj){					
+						this.buy_price=this.buy_price<0 ? '':this.buy_price  ;  	// 小于0 则为空
+						this.total=this.buy_price * this.buy_num
+						//console.log(this.total)
+					},
+					inputNum(obj){					
+						this.buy_num=this.buy_num<0 ? '':this.buy_num  ;  	// 小于0 则为空
+						this.total=this.buy_price * this.buy_num
+						//console.log(this.total)
+					},
+					inputPrice1(obj){					
+						this.sell_price=this.sell_price<0 ? '':this.sell_price  ;  	// 小于0 则为空
+						this.total1=this.sell_price * this.sell_num
+						//console.log(this.total)
+					},
+					inputNum1(obj){					
+						this.sell_num=this.sell_num<0 ? '':this.sell_num  ;  	// 小于0 则为空
+						this.total1=this.sell_price * this.sell_num
+						//console.log(this.total1)
+					},
+					inputNum2(obj){					
+						this.buy_num1=this.buy_num1<0 ? '':this.buy_num1  ;  	// 小于0 则为空
+						this.total2=this.buy_num1
+						//console.log(this.total2)
+					},
+					inputNum3(obj){					
+						this.sell_num1=this.sell_num1<0 ? '':this.sell_num1  ;  	// 小于0 则为空
+						this.total3=this.sell_num1
+						//console.log(this.total3)
+					},
+					submitBuy(type){		//购买
+						var that=this;
+						var symbol=that.coin.Name+"/USDT" ;
+						var param
+						if(type==1){		//现价购买
+							// 是否非空
+							if(!isKong(that.buy_price,"请输入价格")){
+								return false;
+							}	
+							// 是否非空
+							if(!isKong(that.buy_num,"请输入数量")){
+								return false;
+							}	
+							 param = {
+							"coin_number":that.buy_num,
+							"price":that.buy_price,
+							"unit_coin_number":that.total,
+							"symbol":symbol,
+							"type":type,							
+							"token": $.cookie("token")
+							}
+							
+						}else{
+							// 是否非空
+							if(!isKong(that.buy_num1,"请输入数量")){
+								return false;
+							}
+							param = {
+							"coin_number":that.buy_num1,
+							"price":"",
+							"unit_coin_number":that.total2,
+							"symbol":symbol,
+							"type":type,							
+							"token": $.cookie("token")
+							}
+							
+						}
+						 param=rsaMethod(param)
+						var data={
+							"data":param
+						}
+					//	console.log(data)
+						
+						if(that.flag){
+							that.flag=false;
+						$.post(localhostUrl+'/index/bibi/bibi_sell', data,
+						function(res) {
+							if(res.status==0){
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+										that.flag=true;
+										window.parent.location.reload()
+									}
+									});
+								
+							}else{							
+								Invalid(res)  //判断登录是否失效
+								that.flag=true;
+							}
+							
+						}, 'json');
+						
+						}
+					},
+					submitSell(type){		//出售
+						var that=this;
+						var symbol=that.coin.Name+"/USDT" ;
+						var param
+						if(type==1){		//现价购买
+							// 是否非空
+							if(!isKong(that.sell_price,"请输入价格")){
+								return false;
+							}	
+							// 是否非空
+							if(!isKong(that.sell_num,"请输入数量")){
+								return false;
+							}	
+							 param = {
+							"coin_number":that.sell_num,
+							"price":that.sell_price,
+							"unit_coin_number":that.total1,
+							"symbol":symbol,
+							"type":type,							
+							"token": $.cookie("token")
+							}
+							
+						}else{
+							// 是否非空
+							if(!isKong(that.sell_num1,"请输入数量")){
+								return false;
+							}
+							param = {
+							"coin_number":that.sell_num1,
+							"price":"",
+							"unit_coin_number":that.total3,
+							"symbol":symbol,
+							"type":type,							
+							"token": $.cookie("token")
+							}
+							
+						}
+						 param=rsaMethod(param)
+						var data={
+							"data":param
+						}
+					//	console.log(data)
+						
+						if(that.flag){
+							that.flag=false;
+						$.post(localhostUrl+'/index/bibi/bibi_sell', data,
+						function(res) {
+							if(res.status==0){
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+										that.flag=true;
+										window.parent.location.reload()
+									}
+									});
+								
+							}else{							
+								Invalid(res)  //判断登录是否失效
+								that.flag=true;
+							}
+							
+						}, 'json');
+						
+						}
+					},
+					
+					charge(type){		//充币
+						console.log("type:"+type)
+						layer.open({
+						  type: 2,
+						  title:'充币',
+						  skin: 'layui-layer-rim', //加上边框
+						  area: ['600px', '430px'], //宽高
+						  content: 'charge.html?type='+type
+						});
+					},
+					
+				}
+			})
+			
+		getPrice();
+		
+		function getPrice(){		//获取所有币种价格
+				var that=this;											
+				var ws = new WebSocket("ws://39.108.98.14:8282");
+						
+				var data;
+				//接收服务端消息
+				ws.onmessage = function(e){
+					 data = eval("("+ e.data +")");
+				   // console.log(data)
+				   var  str="";
+					if(data.tick){
+						that.coinList=data.tick
+						that.coinList.forEach(function(item, index) {
+							item.enName=(item.name).toUpperCase();
+							if(item.name=="btc"){
+								item.type=1;
+							//	console.log(item.type)
+							}
+							if(item.name=="eos"){
+								item.type=3
+							}
+							if(item.name=="eth"){
+								item.type=2
+							}
+							if(item.name=="jsc"){
+								item.type=5
+							}
+							//	console.log(vue.rageS)
+							if(item.range==undefined){		//当没有涨幅的时候就给上一次的数据
+								item.range=vue.rageS[index];
+							//	console.log(item.range)
+							}
+							//item.name=(item.name).toUpperCase();
+							
+							vue.rageS[index]=item.range;
+							//console.log(item.type)
+							str+='<dl onclick="chooseType(\'' + item.name + '\','+item.type+')"><dd><a class=iconfont icon-guanzhu></a><em>'+item.enName+'</em></dd>'
+							+'<dd>'+item.close+'</dd>'
+							+'<dd><s>'+item.range+'</s></dd></dl>'
+						})
+						//console.log(str)
+						$("#coinList").html(str)
+						if(vue.coin.name == that.coinList[0].name){
+							 vue.coin.price=that.coinList[0].close;
+						//	console.log("price:"+vue.coin.price)
+						}else{
+						
+						}
+						console.log("price:"+vue.coin.price)
+						vue.coin_sudtPrice= vue.coin.price * vue.usdtPrice
+						vue.coin_sudtPrice=(vue.coin_sudtPrice).toFixed(4)
+					
+					//	console.log(vue.coinList)
+					}
+												
+					switch (data.msg_type){
+						case "connect":
+							//发给服务器发送数据 进行订阅
+							var to_sub = '{"type":"to_sub","subject":"market.all_24h"}';
+							ws.send(to_sub);
+						return;
+						case "to_sub":
+							//得到订阅数据 渲染页面 同时传给后台存数据库
+//					              console.log(data);
+						return;
+						case "all_24h":
+						
+			
+					}
+			}
+						
+		}
+			TVjsApi = new TVjsApi(vue.coin.name);
+			TVjsApi.init()
+			
+			console.log("name:"+vue.coin.name)
+			function chooseType(name,type){		//选择币种										
+				vue.coin.name=name
+				vue.coin.symbol=name+'usdt';
+				vue.coin.type=type
+				vue.coin.enName=(vue.coin.name).toUpperCase();
+				console.log(vue.coin)
+				vue.over();
+				vue.over1();
+				vue.over2();
+				vue.over3();
+				window.location.href="exchange.html?symbol="+name+"&type="+type
+             //  TVjsApi.widgets.chart().setSymbol(name);
+			}
+			
+			
+			
+			function inputNum(obj){
+				obj.value=obj.value<0 ? '':obj.value  ;  	// 小于0 则为空
+			
+			}
+			
+		</script>
+		
+	</body>
+</html>

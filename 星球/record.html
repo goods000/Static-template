@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.capital{margin: 2vh 8px 0vh;padding:5% 8px 8px;min-height: 85vh !important;}
+			.capital .cap_bottom .recode-cont2 dl dt span{font-size: 0.8rem;}
+			.capital .cap_bottom .recode-cont2 dl dt p.center{text-align: center !important;}
+			.capital .cap_bottom .recode-cont2 dl dt:nth-child(2) p{text-align: right;}
+			.capital .otc_list .tab-cont .item li{border-bottom: 1px solid #333333;}
+			.capital .otc_list .tab-cont .item li:nth-last-child(1){border-bottom: none;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>资产明细</p>
+		</h1>
+		<div class="capital">
+			<div class="otc_list">
+				<div class="tab" js-tab="1">
+					<div class="tab-title">
+		  				<a href="javascript:;" class="item item-cur"><span>交易钱包</span></a>
+		  				<a href="javascript:;" class="item"><span>节点钱包</span></a>
+		  				<a href="javascript:;" class="item"><span>投资钱包</span></a>
+		  				<a href="javascript:;" class="item"><span>赠送钱包</span></a>
+					</div>
+					<div class="tab-cont">
+						<div class="tab-cont_wrap">
+							<ul class="item">
+								<li>
+									<div class="cap_bottom">
+										<div class="tips">
+											<span class="wen">提现</span>
+											<i class="wan">已完成</i>
+										</div>
+										<div class="recode-cont2">
+											<dl>
+												<dt>
+													<p>提现金额(USDT)</p>
+													<span>-1150.121481</span>
+												</dt>
+												<dt>
+													<p>创建时间</p>
+													<span>2020/08/01 18:00</span>
+												</dt>
+											</dl>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="cap_bottom">
+										<div class="tips">
+											<span class="wen">释放</span>
+											<i class="wan">已完成</i>
+										</div>
+										<div class="recode-cont2">
+											<dl>
+												<dt>
+													<p>释放金额(平台币)</p>
+													<span>+4.4574</span>
+												</dt>
+												<dt>
+													<p class="center">资金来源</p>
+													<span>投资钱包释放</span>
+												</dt>
+												<dt>
+													<p>创建时间</p>
+													<span>2020/08/01 18:00</span>
+												</dt>
+											</dl>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul class="item">
+								<li>
+									<div class="cap_bottom">
+										<div class="tips">
+											<span class="wen">释放</span>
+											<i class="wan">已完成</i>
+										</div>
+										<div class="recode-cont2">
+											<dl>
+												<dt>
+													<p>释放金额(平台币)</p>
+													<span>+4.4574</span>
+												</dt>
+												<dt>
+													<p class="center">资金来源</p>
+													<span>投资钱包释放</span>
+												</dt>
+												<dt>
+													<p>创建时间</p>
+													<span>2020/08/01 18:00</span>
+												</dt>
+											</dl>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul class="item">
+								<li>
+									<div class="cap_bottom">
+										<div class="tips">
+											<span class="wen">BTED</span>
+											<i class="wan">已完成</i>
+										</div>
+										<div class="recode-cont2">
+											<dl>
+												<dt>
+													<p>可用</p>
+													<span>1150.121481</span>
+												</dt>
+												<dt>
+													<p class="center">冻结</p>
+													<span>0.124874</span>
+												</dt>
+												<dt>
+													<p>折合(CNY)</p>
+													<span>85847.354744</span>
+												</dt>
+											</dl>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul class="item">
+								
+							</ul>
+						</div>		
+					</div>		
+				</div>		
+			</div>	
+		</div>
+		
+		<!--没有数据时显示-->
+		<div class="kong">
+			<img src="img/kong.png" />
+			<p>暂无提币记录</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+		  $('[js-tab=1]').tab();
+		});
+		
+		function show() {
+			//没有数据的时候显示
+			$("tab-cont_wrap ul.item").each(function(){
+				console.log($(this).children().length)
+				if($(this).children().length <= 0) {
+					$(".kong").show();
+				} else {
+					$(".kong").hide();
+				}
+			})
+		}
+		show();	
+	</script>
+</html>

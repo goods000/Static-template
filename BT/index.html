@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.bottom_nav dl dd:nth-child(1) a .dier {display: block !important;}
+			.bottom_nav dl dd:nth-child(1) a .diyi {display: none !important;}
+			.bottom_nav dl dd:nth-child(1) a span {color: #2983FF;}
+			.h1{background: none !important;}
+			.index .hang_box .list ul li:nth-child(2) div.info_box{color: #E30B34;}
+			.index .hang_box .list ul li:nth-child(3) div.info_box{color: #E30B34;}
+			.index .hang_box .list ul li:nth-child(4) div.info_box{color: #E30B34;}
+			.h1{border-bottom: none;}
+			.h1 p{text-align: center;color: #fff;font-size: 1.2rem;}
+			.h1 p span{text-align: center;color: #fff;font-size: 1.2rem;}
+			.h1 a{position: absolute;font-size: 1rem;right: 15px;top:15px;color: #fff;}
+			.h1 .right{position: absolute;font-size: 1rem;right: 15px;top:15px;color: #FFFFFF;display: flex;align-items: center;justify-content: flex-end;}
+		</style>
+	</head>
+	<body>
+		<div class="index_Profit">
+			<h1 class="h1">
+				<img src="img/index_user.png" alt="" class="left">
+				<p>BT PLUS</p>
+				<div class="right">
+					<img src="img/index_sao.png" alt="" onClick="BSL.Qcode('0','qrcodeCallback')">
+				</div>
+			</h1>
+			<p class="profit_title">昨天最佳持仓量：<b>1420.0000000</b></p>
+			<div class="profit">
+				<div class="profit_box">
+					<b>0.0000000</b>
+					<span>持币收益(BTEZ)</span>
+				</div>
+				<div class="profit_box">
+					<b>0.0000000</b>
+					<span>持仓量(BTED)</span>
+				</div>
+			</div>
+			
+		</div>
+		<div class="indexNav">
+			<ul>
+				<li>
+					<a href="sign.html" class="nav_box">
+						<img src="img/index_1.png" class="nav_img"/>
+						<p class="nav_title">签到挖矿</p>
+					</a>
+				</li>
+				<li>
+					<a class="nav_box">
+						<img src="img/index_2.png" class="nav_img"/>
+						<p class="nav_title">币币交易</p>
+					</a>
+				</li>
+				<li class="no_open">
+					<a class="nav_box">
+						<img src="img/index_3.png" class="nav_img"/>
+						<p class="nav_title">系统公告</p>
+					</a>
+				</li>
+				<li class="no_open">
+					<a class="nav_box">
+						<img src="img/index_4.png" class="nav_img"/>
+						<p class="nav_title">邀请好友</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!--公告-->
+		<div id="notice">
+			<img src="img/gonggao.png" class="notice_img"/>
+			<marquee class="dia" scrollAmount=2 id="test">关于BT PLUS交易所的最新通知如下……</marquee>
+			<!-- <marquee class="dia" scrolldelay="1000" scrollamount="10">关于在BRB系统最新通知......</marquee> -->
+			<a href="/news.html"><span class="tong">07-15</span></a>	
+		</div>
+		<div class="swiper-container swiper-container_sy ">
+	        <div class="swiper-wrapper">
+	            <div class="swiper-slide"><img src="img/banner.png"/></div>
+	            <div class="swiper-slide"><img src="img/banner.png"/></div>
+	            <div class="swiper-slide"><img src="img/banner.png"/></div>
+	            <div class="swiper-slide"><img src="img/banner.png"/></div>
+	        </div>
+	        <div class="swiper-pagination"></div>
+	        <div class="swiper-button-next"></div>
+	        <div class="swiper-button-prev"></div>
+	    </div>
+	    <div class="index">
+			<!--<img src="/img/invter.png" class="lun mt" onclick="location.href='/user/invite'"/>-->
+	    	 <div class="info">
+	    		<div class="info_l">
+	    			<p><span>BTED/USDT</span><i>-0.12%</i></p>
+	    			<b class="r">9203.04</b>
+	    			<p><i>≈63796.67cky</i></p>
+	    		</div>
+	    		<div class="info_l">
+	    			<p><span>BTED/USDT</span><i>-0.12%</i></p>
+	    			<b class="g">9203.04</b>
+	    			<p><i>≈63796.67cky</i></p>
+	    		</div>
+	    		<!--<div class="info_r">
+	    			<p><span>[[${hrfPrice}]]</span></p>
+	    			<p><i th:text="'￥'+${#numbers.formatDecimal(hrfPrice*usdtPrice,1,4)}"></i></p>
+	    		</div>
+	    		<p class="btn">-1.96%</p>-->
+	    	</div> 
+	    	<!--<div class="img_box mt">
+	    		<img src="/img/logo.png"/>
+	    		<img src="/img/logo.png"/>
+	    	</div>-->
+	    	
+		</div>
+		<div class="backcolor mt"></div>
+		<div class="index dao_m">
+			<div class="div"><span>系统引导</span><a href="">更多&gt;</a></div>
+		    <div class="zi_box">
+				<a href="guide.html">
+				    <div class="ziIndex">
+						<img src="img/ziBg1.png" class="ziIndex_img"/>
+						<!--<span class="ziti">
+							客房设施配备一应俱全，有沙发、书桌、餐桌等配置为您保留更多的私人空间。让您轻松行走于魅力都市与……
+						</span>-->
+						<div class="info">
+							<div class="no_zi">
+								<p>BT PLUS新手指南</p>
+								<i>BT PLUS Newbie guide</i>
+							</div>
+							<div class="see_btn">
+								立即观看
+							</div>
+						</div>
+					</div>
+		    	</a>
+				<a href="guide.html">
+				    <div class="ziIndex">
+						<img src="img/ziBg1.png" class="ziIndex_img"/>
+						<!--<span class="ziti">
+							客房设施配备一应俱全，有沙发、书桌、餐桌等配置为您保留更多的私人空间。让您轻松行走于魅力都市与……
+						</span>-->
+						<div class="info">
+							<div class="no_zi">
+								<p>BT PLUS新手指南</p>
+								<i>BT PLUS Newbie guide</i>
+							</div>
+							<div class="see_btn">
+								立即观看
+							</div>
+						</div>
+					</div>
+		    	</a>
+		    </div>
+		</div>
+		
+		<div class="mo_index">
+			<div class="mo_index_box">
+				<div class="content">
+					<div class="ge_top">
+						<div id="xmTanDiv_1" class="touImg">
+		                    <form>
+								<input type="hidden" id="uploadOrderid" name="id" value="">
+								<input type="file" name="file1" id="xdaTanFileImg_1" onchange="preview(this)" accept="image/*" />
+								<i><img src="img/logo.png" alt="" id="xmTanImg_1"/></i>
+							</form>
+						</div>
+						<div class="ge_left">
+							<h2>
+								阿尔哈尔
+								<span id="grade">
+									<img src="img/grade.png">
+									<i>创世</i>
+								</span>
+							</h2>	
+							<p>UID：<i id="v_code">158779876514244</i></p>
+						</div>
+						<img src="img/index_record.png" class="next"  data-clipboard-target="#v_code"/>
+					</div>	
+					<div class="thing">
+						<ul>
+							<a href="recharge">
+								<li>
+									<img src="img/ide_1.png">
+									<p data-lang="title_personal_info">充币</p>
+								</li>
+							</a>
+							<a href="withdraw">
+								<li>
+									<img src="img/ide_2.png">
+									<p data-lang="label_email">提币</p>
+								</li>
+							</a>
+							<a href="transfer.html">
+								<li>
+									<img src="img/ide_3.png">
+									<p data-lang="title_psd_info">划转</p>
+								</li>
+							</a>
+						</ul>
+					</div>	
+					<div class="backcolor mt"></div>
+					<div class="xx">
+						<div class="ge_list">
+							<a href="" class="list">
+								<div class="list_left">
+									<img src="img/tips_1.png" class="tups_img1"/>
+									<span class="zi">
+										邀请好友
+									</span>
+								</div>
+								<img src="img/tips_next.png" class="next_img"/>
+							</a>
+							<a href="team_record.html" class="list">
+								<div class="list_left">
+									<img src="img/tips_2.png" class="tups_img1"/>
+									<span class="zi">
+										我的团队
+									</span>
+								</div>
+								<img src="img/tips_next.png" class="next_img"/>
+							</a>
+							<!--<a href="BT_record.html" class="list">
+								<div class="list_left">
+									<img src="img/tips_22.png" class="tups_img1"/>
+									<span class="zi">
+										BT PLUS地址明细
+									</span>
+								</div>
+								<img src="img/tips_next.png" class="next_img"/>
+							</a>-->
+							<a href="BT_record.html" class="list">
+								<div class="list_left">
+									<img src="img/tips_3.png" class="tups_img1"/>
+									<span class="zi">
+										BT PLUS地址明细
+									</span>
+								</div>
+								<img src="img/tips_next.png" class="next_img"/>
+							</a>
+							<a href="" class="list">
+								<div class="list_left">
+									<img src="img/tips_4.png" class="tups_img1"/>
+									<span class="zi">
+										系统公告
+									</span>
+								</div>
+								<img src="img/tips_next.png" class="next_img"/>
+							</a>
+							<a href="airdrop.html" class="list">
+								<div class="list_left">
+									<img src="img/tips_7.png" class="tups_img1"/>
+									<span class="zi">
+										空投
+									</span>
+								</div>
+								<img src="img/tips_next.png" class="next_img"/>
+							</a>
+							<a href="" class="list">
+								<div class="list_left">
+									<img src="img/tips_5.png" class="tups_img1"/>
+									<span class="zi">
+										系统设置
+									</span>
+								</div>
+								<img src="img/tips_next.png" class="next_img"/>
+							</a>
+							<a href="feedback.html" class="list">
+								<div class="list_left">
+									<img src="img/tips_6.png" class="tups_img1"/>
+									<span class="zi">
+										市场意见收集
+									</span>
+								</div>
+								<img src="img/tips_next.png" class="next_img"/>
+							</a>
+						</div>
+					</div>
+					<div class="anniu_box">
+						<div class="anniu_index">
+							<img src="img/re_btn.png"/><span>返回首页</span>
+						</div>
+					</div>
+				</div>
+				<div class="close"></div>
+			</div>
+		</div>
+		
+	    <!--导入底部导航栏-->
+		<div id="footer"></div>
+	</body>
+	<script type="text/javascript">
+		$(".h1 .left").click(function(){$(".mo_index").show()})
+		$(".anniu_box .anniu_index").click(function(){$(".mo_index").hide()})
+		
+		var clipboard=new Clipboard(".next");
+		clipboard.on("success",function(e){
+			layer.msg("复制成功");
+		})
+		
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	        
+	    });
+		var lang = sessionStorage.getItem('lang');
+		if(!lang) lang = "zh";
+		if(lang == 'zh'){
+			var test = '暂未开放，敬请期待！';
+			var test1 = '当前扫描的不属于HXTZ的二维码';
+		}else if(lang == 'en'){
+			var test = 'Not yet open, please look forward!';
+			var test1 = 'QR code not belonging to hxtz currently scanned';
+		}
+		
+		$(".no_open").click(function(){
+			layer.msg(test);
+		})
+
+		
+	</script>
+</html>

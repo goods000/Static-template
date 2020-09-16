@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/layui.css">
+  <link rel="stylesheet" type="text/css" href="css/user-common.css">
+  <link rel="stylesheet" type="text/css" href="css/report.css">
+
+  <style type="text/css">
+    #body .left,
+    #body .right {
+      position: relative;
+    }
+
+    #body .search_btn {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      z-index: 9999;
+    }
+
+    #body .search_btn button {
+      width: 40px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #838383;
+      color: #838383;
+      border-radius: 2px;
+      background: #fff;
+    }
+
+    #body .search_btn button.active {
+      border: 1px solid #FB7C4F;
+      background: #FB7C4F;
+      color: #fff;
+    }
+    
+    .canvas{
+    	padding-bottom: 20px;
+	    margin: 20px;
+	    background: #fff;
+	}
+	#status{
+		padding-bottom: 0 !important;
+		border: none !important;
+		margin: 0 !important;
+	}
+	.pad{padding: 20px 20px 0;}
+	.pad_mt{margin: 20px;}
+	.layui-card-body .balance_box{display: flex;flex-direction: row;align-items: center;justify-content: space-between;padding: 10px 15px;background: #fff;}
+	.layui-card-body .balance_box .b_b{text-align: center;}
+	.layui-card-body .balance_box .line{height: 45px;border-right:1px solid #C3CBD8;}
+	.layui-card-body .balance_box span{color: #333;font-size: 20px;margin-top: 5px;display: block;}
+	.layui-card-body .balance_box p{color: #333;text-align: center;font-size: 18px;}
+	.layui-card-body .balance_box .balance{color: #333;text-align: center;}
+	.layui-btn+.layui-btn{margin-left: 0 !important;}
+	.layui-input, .layui-select, .layui-textarea{height: 28px;}
+	.layui-colla-title{text-align: center;}
+	.layui-colla-icon{position: static;}
+	.layui-table-cell{text-align: center;}
+	.layui-table td, .layui-table th{background: #fff;}
+	.layui-table tr td:nth-child(7){color: #FC8062!important;}
+	.danger{background-color:#FF5722;color: #fff;border: none;}
+	.layui-table, .layui-table-view{margin: 0px;}
+  </style>
+  <link id="layuicss-layer" rel="stylesheet" href="css/layer.css" media="all">
+  <link id="layuicss-laydate" rel="stylesheet" href="css/laydate.css" media="all">
+</head>
+
+<body>
+  <div class="layui-body">
+    <div class="container">
+      <!--<div class="layui-header">-->
+      <div class="">
+        <div class="pad">
+		  <div class="layui-row layui-col-space15">
+		  	<div class="layui-col-md12">
+		      <div class="layui-card">
+		        <div class="layui-card-header">
+		        	<div class="layui-col-md3">
+					    <button type="button" class="layui-btn layui-btn-sm layui-btn-primary">本周</button>
+					    <button type="button" class="layui-btn layui-btn-sm layui-btn-primary">上周</button>
+					    <button type="button" class="layui-btn layui-btn-sm layui-btn-primary danger">本月</button>
+					    <button type="button" class="layui-btn layui-btn-sm layui-btn-primary">上月</button>
+					</div>
+					<div class="layui-inline layui-col-md6">
+				      <div class="layui-input-inline">
+				        <input type="text" class="layui-input" id="test10" placeholder="请选择时间范围">
+				      </div>
+				    </div>  
+		        </div>
+		      </div>
+		    </div>
+		    <div class="layui-col-md12">
+		      <div class="layui-card">
+		        <div class="layui-card-header">
+		        	<div id="status">
+			          <ul class="status">
+			            <li class="active" data-type="1">全部订单</li>
+			            <li data-type="2">订货单</li>
+			            <li data-type="3">退货单</li>
+			          </ul>
+			        </div>
+		        </div>
+		        <div class="layui-card-body">
+		          	<div class="balance_box">
+	          			<div>
+	          				<p>订货单数</p>
+	          				<span class="balance">0</span>
+	          			</div>
+	          			<div class="line"></div>
+	          			<div>
+	          				<p>退货单数</p>
+	          				<span class="balance">0</span>
+	          			</div>
+	          			<div class="line"></div>
+	          			<div>
+	          				<p>订货金额</p>
+	          				<span class="balance">0</span>
+	          			</div>
+	          			<div class="line"></div>
+	          			<div>
+	          				<p>退货金额</p>
+	          				<span class="balance">0</span>
+	          			</div>
+	          			<div class="line"></div>
+	          			<div>
+	          				<p>合计金额</p>
+	          				<span class="balance red">￥0.00</span>
+	          			</div>
+	          			<div class="line"></div>
+	          			<div>
+	          				<p>未收款金额</p>
+	          				<span class="balance red">￥0.00</span>
+	          			</div>
+		          	</div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div> 
+        <style type="text/css">
+        	.zi_box{width: 100%;display: flex;flex-direction: column;justify-content: space-between;position: absolute;top: 10%;}
+        	.zi_box div{display: flex;flex-direction: row;align-items: center;justify-content: space-between;width: 95%;margin: auto;}
+        	.zi_box div span.zi_info{font-size: 12px;color: #666;}
+        	.zi_box div span.line{border-bottom: 1px solid #eee;width: 100%;}
+        </style>
+        
+        <div class="canvas">
+          <div id="report">
+          	<div class="zi_box">
+	          	<div>
+	          		<span class="zi_info">合计金额/元 </span>
+	          		<span class="zi_info">单数 </span>
+	          	</div>
+	          	<div>
+	          		<span class="zi_info">1</span>
+	          		<span class="line"></span>
+	          		<span class="zi_info">1</span>
+	          	</div>
+          	</div>
+          	<div id="canvas1" style="width: 100%;height: 200px;"></div>
+          </div>
+        </div>
+        
+        <div class="canvas">
+          <div id="report">
+          	<div class="zi_box">
+	          	<div>
+	          		<span class="zi_info">订货金额/元 </span>
+	          		<span class="zi_info">单数 </span>
+	          	</div>
+	          	<div>
+	          		<span class="zi_info">1</span>
+	          		<span class="line"></span>
+	          		<span class="zi_info">1</span>
+	          	</div>
+          	</div>
+          	<div id="canvas2" style="width: 100%;height: 200px;"></div>
+          </div>
+        </div>
+        
+        <div class="canvas">
+          <div id="report">
+          	<div class="zi_box">
+	          	<div>
+	          		<span class="zi_info">退货金额/元 </span>
+	          		<span class="zi_info">单数 </span>
+	          	</div>
+	          	<div>
+	          		<span class="zi_info">1</span>
+	          		<span class="line"></span>
+	          		<span class="zi_info">1</span>
+	          	</div>
+          	</div>
+          	<div id="canvas3" style="width: 100%;height: 200px;"></div>
+          </div>
+        </div>
+        
+    </div>
+    
+    
+    <div class="layui-collapse pad_mt" lay-accordion="">
+	  <div class="layui-colla-item">
+	    <h2 class="layui-colla-title">数据明细</h2>
+	    <div class="layui-colla-content" style="padding: 0;">
+	      <table class="layui-hide" id="test"></table>
+	    </div>
+	  </div>
+	  <div class="layui-colla-item">
+	    <h2 class="layui-colla-title">数据明细</h2>
+	    <div class="layui-colla-content" style="padding: 0;">
+	      <table class="layui-hide" id=""></table>
+	    </div>
+	  </div>
+	</div>
+
+    <div class="clear"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+
+  <script src="js/layui.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/echarts.min.js"></script>
+  <script type="text/javascript" src="js/macarons.js"></script>
+  <script>
+  	$(".layui-card-header .layui-col-md3").children().click(function(){
+  		$(this).addClass("danger").siblings().removeClass("danger");
+  	})
+  	
+  	 layui.use('laydate', function(){
+  		var laydate = layui.laydate;
+ 		//日期时间范围
+		  laydate.render({
+		    elem: '#test10'
+		    ,type: 'datetime'
+		    ,range: true
+		  });
+  	});
+  	
+  	layui.use(['element', 'layer'], function(){
+	  var element = layui.element;
+	  var layer = layui.layer;
+	  
+	  //监听折叠
+	  element.on('collapse(test)', function(data){
+	    layer.msg('展开状态：'+ data.show);
+	  });
+	});
+	
+	layui.use('table', function(){
+	  var table = layui.table;
+	  
+	  table.render({
+	    elem: '#test'
+	    ,url:'json/order.json'
+	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+	    ,cols: [[
+	      {field:'time', title: '日期',width: '18%'}
+	      ,{field:'num',  title: '订货单数',width: '10%'}
+	      ,{field:'tui_num', title: '退货单数',width: '8%'}
+	      ,{field:'name',  title: '订货客户',width: '12.5%'}
+	      ,{field:'price', title: '订货金额',width: '12.5%'} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+	      ,{field:'tui_price', title: '退货金额',width: '12%'}
+	      ,{field:'score', title: '合计总额（元）',width: '15%'}
+	    ]]
+	  });
+	});
+  	
+      var myChart = echarts.init(document.getElementById("canvas1"));
+      var option = {
+        title: {
+          text: ''
+        },
+        tooltip: {
+          trigger: 'axis',
+          show: true,
+          icon: 'circle', // 强制设置图形为圆。
+		  backgroundColor: "#FFF",
+		  borderColor: "#cccccc",
+		  borderWidth: 1,
+		  borderRadius:6,
+		  textStyle: {
+		    color: '#333'
+		  },
+		  axisPointer: { lineStyle: { color: "#C3CBD6" } },
+		  padding: [0, 10],
+//		  formatter: '<span style="color: #657180; margin-left: 8px; float: right;">{a} <br/>{b} : {c}%</span>'
+          
+        },
+        legend: {
+//        icon:'rect',
+          data: ['合计金额', '订货笔数', '退货笔数'],
+          x: 'center',
+          top: '15px',
+          padding: [0, 50, 0, 0]
+        },
+        grid: {
+          top: '20%',
+          left: '2%',
+          right: '2%',
+          bottom: '2%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07'],
+          axisLabel: {
+				show: true,
+				textStyle: {
+					color: '#4f4f4f', //x轴data 的颜色
+					fontSize:10
+				}
+			},
+			nameTextStyle: {
+				color: '#027bd9' //x轴名称的 颜色
+			},
+			axisLine:{
+				lineStyle:{
+					color:'#027bd9',
+					width:1,//这里是为了突出显示加上的
+				}
+			}
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {show:false},
+		  axisTick: {show:false},
+			  "splitLine": {     //网格线
+	          "show": false
+	        },
+	      axisLabel : {
+            formatter: function(){
+                  return "";
+            }
+          }
+        },
+        series: [
+          {
+            name: '合计金额',
+            type: 'line',
+            stack: '总量',
+            data: [120, 132, 101, 134, 90, 230, 210],
+            symbol: null,    // 拐点图形类型
+		    symbolSize: 0,   // 拐点图形大小
+	        itemStyle: {
+				normal: {
+					barGap: '-100%',
+					color:'#30cef6',
+                    borderColor:'#30cef6',  //拐点边框颜色
+					lineStyle: {
+						width:2, //调整 线条的宽度  5已经很宽啦
+                        color : '#30cef6' //线条颜色
+					},
+				},
+			},
+          },
+          {
+            name: '订货笔数',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 191, 234, 290, 330, 310],
+            symbol: null,    // 拐点图形类型
+		    symbolSize: 0,   // 拐点图形大小
+	        itemStyle: {
+				normal: {
+					barGap: '-100%',
+					color:'#6c55ff',
+                    borderColor:'#6c55ff',  //拐点边框颜色
+					lineStyle: {
+						width:2, //调整 线条的宽度  5已经很宽啦
+                        color : '#6c55ff' //线条颜色
+					},
+				},
+			},
+          },
+          {
+            name: '退货笔数',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 191, 234, 290, 330, 310],
+            symbol: null,    // 拐点图形类型
+		    symbolSize: 0,   // 拐点图形大小
+	        itemStyle: {
+				normal: {
+					barGap: '-100%',
+					color:'#fffc00',
+                    borderColor:'#fffc00',  //拐点边框颜色
+					lineStyle: {
+						width:2, //调整 线条的宽度  5已经很宽啦
+                        color : '#fffc00' //线条颜色
+					},
+				},
+			},
+          }
+        ]
+      };
+      myChart.setOption(option);
+
+    </script>
+    
+    <script>
+      var myChart2 = echarts.init(document.getElementById("canvas2"));
+      var option2 = {
+        title: {
+          text: ''
+        },
+        tooltip: {
+          trigger: 'axis',
+          show: true,
+          icon: 'circle', // 强制设置图形为圆。
+		  backgroundColor: "#FFF",
+		  borderColor: "#cccccc",
+		  borderWidth: 1,
+		  borderRadius:6,
+		  textStyle: {
+		    color: '#333'
+		  },
+		  axisPointer: { lineStyle: { color: "#C3CBD6" } },
+		  padding: [0, 10],
+//		  formatter: '<span style="color: #657180; margin-left: 8px; float: right;">{a} <br/>{b} : {c}%</span>'
+          
+        },
+        legend: {
+//        icon:'rect',
+          data: ['订货金额', '订货笔数'],
+          x: 'center',
+          top: '15px',
+          padding: [0, 50, 0, 0]
+        },
+        grid: {
+          top: '20%',
+          left: '2%',
+          right: '2%',
+          bottom: '2%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07'],
+          axisLabel: {
+				show: true,
+				textStyle: {
+					color: '#4f4f4f', //x轴data 的颜色
+					fontSize:10
+				}
+			},
+			nameTextStyle: {
+				color: '#027bd9' //x轴名称的 颜色
+			},
+			axisLine:{
+				lineStyle:{
+					color:'#027bd9',
+					width:1,//这里是为了突出显示加上的
+				}
+			}
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {show:false},
+		  axisTick: {show:false},
+			  "splitLine": {     //网格线
+	          "show": false
+	        },
+	      axisLabel : {
+            formatter: function(){
+                  return "";
+            }
+          }
+        },
+        series: [
+          {
+            name: '订货金额',
+            type: 'line',
+            stack: '总量',
+            data: [120, 132, 101, 134, 90, 230, 210],
+            symbol: null,    // 拐点图形类型
+		    symbolSize: 0,   // 拐点图形大小
+	        itemStyle: {
+				normal: {
+					barGap: '-100%',
+					color:'#30cef6',
+                    borderColor:'#30cef6',  //拐点边框颜色
+					lineStyle: {
+						width:2, //调整 线条的宽度  5已经很宽啦
+                        color : '#30cef6' //线条颜色
+					},
+				},
+			},
+          },
+          {
+            name: '订货笔数',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 191, 234, 290, 330, 310],
+            symbol: null,    // 拐点图形类型
+		    symbolSize: 0,   // 拐点图形大小
+	        itemStyle: {
+				normal: {
+					barGap: '-100%',
+					color:'#6c55ff',
+                    borderColor:'#6c55ff',  //拐点边框颜色
+					lineStyle: {
+						width:2, //调整 线条的宽度  5已经很宽啦
+                        color : '#6c55ff' //线条颜色
+					},
+				},
+			}
+          }
+        ]
+      };
+      myChart2.setOption(option2);
+
+    </script>
+    
+    
+    <script>
+      var myChart3 = echarts.init(document.getElementById("canvas3"));
+      var option3 = {
+        title: {
+          text: ''
+        },
+        tooltip: {
+          trigger: 'axis',
+          show: true,
+          icon: 'circle', // 强制设置图形为圆。
+		  backgroundColor: "#FFF",
+		  borderColor: "#cccccc",
+		  borderWidth: 1,
+		  borderRadius:6,
+		  textStyle: {
+		    color: '#333'
+		  },
+		  axisPointer: { lineStyle: { color: "#C3CBD6" } },
+		  padding: [0, 10],
+//		  formatter: '<span style="color: #657180; margin-left: 8px; float: right;">{a} <br/>{b} : {c}%</span>'
+          
+        },
+        legend: {
+//        icon:'rect',
+          data: ['退货金额', '订货笔数'],
+          x: 'center',
+          top: '15px',
+          padding: [0, 50, 0, 0]
+        },
+        grid: {
+          top: '20%',
+          left: '2%',
+          right: '2%',
+          bottom: '2%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04', '2020-07-05', '2020-07-06', '2020-07-07'],
+          axisLabel: {
+				show: true,
+				textStyle: {
+					color: '#4f4f4f', //x轴data 的颜色
+					fontSize:10
+				}
+			},
+			nameTextStyle: {
+				color: '#027bd9' //x轴名称的 颜色
+			},
+			axisLine:{
+				lineStyle:{
+					color:'#027bd9',
+					width:1,//这里是为了突出显示加上的
+				}
+			}
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {show:false},
+		  axisTick: {show:false},
+			  "splitLine": {     //网格线
+	          "show": false
+	        },
+	      axisLabel : {
+            formatter: function(){
+                  return "";
+            }
+          }
+        },
+        series: [
+          {
+            name: '退货金额',
+            type: 'line',
+            stack: '总量',
+            data: [120, 132, 101, 134, 90, 230, 210],
+            symbol: null,    // 拐点图形类型
+		    symbolSize: 0,   // 拐点图形大小
+	        itemStyle: {
+				normal: {
+					barGap: '-100%',
+					color:'#30cef6',
+                    borderColor:'#30cef6',  //拐点边框颜色
+					lineStyle: {
+						width:2, //调整 线条的宽度  5已经很宽啦
+                        color : '#30cef6' //线条颜色
+					},
+				},
+			},
+          },
+          {
+            name: '订货笔数',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 191, 234, 290, 330, 310],
+            symbol: null,    // 拐点图形类型
+		    symbolSize: 0,   // 拐点图形大小
+	        itemStyle: {
+				normal: {
+					barGap: '-100%',
+					color:'#6c55ff',
+                    borderColor:'#6c55ff',  //拐点边框颜色
+					lineStyle: {
+						width:2, //调整 线条的宽度  5已经很宽啦
+                        color : '#6c55ff' //线条颜色
+					},
+				},
+			}
+          }
+        ]
+      };
+      myChart3.setOption(option3);
+
+    </script>
+  <!-- <script>
+
+    //表格切换
+    $("#report button").each(function (i) {
+      $(this).click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        $("#report .report_item").removeClass('active_report');
+        $("#report .report_item").eq(i).addClass('active_report');
+        $("#report .report_info .item").removeClass('active');
+        $("#report .report_info .item").eq(i).addClass('active');
+        var id = $("#report .report_item").eq(i).attr('id');
+        chartresize(id);
+      })
+    })
+
+
+    //时间切换
+    $("#status ul.status li").each(function (i) {
+      $(this).click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        return_report();
+      })
+    })
+
+    function chartresize(id) {
+      console.log("chartresize");
+      var temp = new initchart(id);
+      temp.resize();
+    }
+    var initchart = function (id) {
+      var myChart2 = echarts.init(document.getElementById(id), 'light');
+      $(function () {
+        window.onresize = function () {
+          myChart2.resize();
+        }
+      })
+      this.resize = function size() {
+        var tabcontent = document.getElementById('report4');
+        width = tabcontent.offsetWidth;
+        height = 400;
+        myChart2.resize(width, height);
+      }
+    }
+    //JavaScript代码区域
+    layui.use(['form', 'element', 'layedit', 'laydate'], function () {
+      var form = layui.form
+        , layer = layui.layer
+        , layedit = layui.layedit
+        , laydate = layui.laydate
+        , element = layui.element;
+
+
+      //直接嵌套显示
+      laydate.render({
+        elem: '#test-n1'
+        , position: 'static'
+      });
+
+      $(".look_more").click(function () {
+        var url = $(this).attr('data-url');
+        var id = $(this).attr('data-id');
+        $.get(url + "?id=" + id, function (dt) {
+          console.log(dt);
+          if (1 == dt.code) {
+            $(".modal .con h1").text(dt.data.title);
+            $(".modal .con p").text(dt.data.add_time);
+            $(".modal .con .info").text(dt.data.detail);
+
+
+          }
+        })
+      })
+
+    });
+
+    return_report();
+    function return_report() {
+
+      var type = $("#status ul.status li.active").attr('data-type');
+      var types = $("#report .btn button.active").attr('data-types');
+
+      $.post("#", { type: type, types: types }, function (dt) {
+        if (1 == dt.code) {
+          var data = dt.data;
+          $("#report .report_info .item_price span.prev").text(data.prev.all_price);
+          $("#report .report_info .item_price span.current").text(data.current.all_price);
+
+          $("#report .report_info .item_number span.prev").text(data.prev.all_number);
+          $("#report .report_info .item_number span.current").text(data.current.all_number);
+
+
+
+          var myChart1 = echarts.init(document.getElementById('report1'), 'light');
+          option = {
+            title: [
+              {
+                text: '平台订单',
+                textStyle: {
+                  fontSize: 16,
+                  color: "black"
+                },
+                textAlign: "center",
+                x: '48%',
+                y: '44%',
+              }
+            ],
+            tooltip: {
+              trigger: 'item',
+              formatter: '{b}:￥{c}',
+            },
+            color: ['#1FBFE7', '#FE6969'],
+            series: [{
+              name: '平台订单',
+              type: 'pie',
+              center: ['50%', '50%'],
+              // radius: ['90%', '60%'],
+              radius: ['65%', '90%'],
+              clockwise: false, //饼图的扇区是否是顺时针排布
+              avoidLabelOverlap: false,
+              label: {
+                normal: {
+                  show: false,
+                  position: 'outter',
+                }
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                { value: data.complete_pay_price, name: '已付款' },
+                { value: data.wait_price, name: '未付款' },
+              ]
+            }]
+          }
+          myChart1.setOption(option);
+
+
+          var myChart2 = echarts.init(document.getElementById('report2'), 'light');
+          option = {
+            title: [
+              {
+                text: '本店订单',
+                textStyle: {
+                  fontSize: 16,
+                  color: "black"
+                },
+                textAlign: "center",
+                x: '48%',
+                y: '44%',
+              }
+            ],
+            tooltip: {
+              trigger: 'item',
+              formatter: '{b}:￥{c}',
+            },
+            color: ['#1FBFE7', '#FE6969'],
+            series: [{
+              name: '本店订单',
+              type: 'pie',
+              center: ['50%', '50%'],
+              // radius: ['90%', '60%'],
+              radius: ['65%', '90%'],
+              clockwise: false, //饼图的扇区是否是顺时针排布
+              avoidLabelOverlap: false,
+              label: {
+                normal: {
+                  show: false,
+                  position: 'outter',
+                }
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                { value: data.complete_inquiry_price, name: '已收款' },
+                { value: data.wait_inquiry_price, name: '未收款' },
+              ]
+            }]
+          }
+          myChart2.setOption(option);
+
+          var myChart3 = echarts.init(document.getElementById('report3'), 'macarons');
+          var option = {
+            tooltip: {
+              trigger: 'axis',
+              axisPointer: {
+                type: 'cross',
+                label: {
+                  backgroundColor: '#6a7985'
+                }
+              }
+            },
+            legend: {
+              data: data.title,
+              x: 'right',
+              top: '15px',
+              padding: [0, 50, 0, 0]
+            },
+            toolbox: {
+              show: true,
+              feature: {
+                mark: { show: true },
+              }
+            },
+            grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '3%',
+              top: '120px',
+              containLabel: true
+            },
+            xAxis: [
+              {
+                type: 'category',
+                boundaryGap: false,
+                data: data.current.key
+              }
+            ],
+            yAxis: [
+              {
+                type: 'value'
+              }
+            ],
+            series: [
+              {
+                name: data.current.title,
+                type: 'line',
+                data: data.current.price,
+              },
+              {
+                name: data.prev.title,
+                type: 'line',
+                data: data.prev.price,
+              }
+            ]
+          };
+          myChart3.setOption(option);
+
+
+
+          // 主要是这个legendselectchanged监听方法实现
+          myChart3.on('legendselectchanged', function (params) {
+            var option = this.getOption();
+            var selected = Object.keys(params.selected);
+            var name = Object.values(params.name);
+
+            // 简单的实现
+            if (params.name == '本周' || params.name == '本月' || params.name == '今年') {
+              option.legend[0].selected[params.name] = true;
+            }
+            this.setOption(option)
+
+          })
+
+
+
+
+
+
+
+
+
+          var myChart4 = echarts.init(document.getElementById('report4'), 'macarons');
+
+          option = {
+            tooltip: {
+              trigger: 'axis',
+              axisPointer: {
+                type: 'cross',
+                label: {
+                  backgroundColor: '#6a7985'
+                }
+              }
+            },
+            legend: {
+              data: data.title,
+              x: 'right',
+              top: '15px',
+              padding: [0, 50, 0, 0]
+            },
+            toolbox: {
+              show: true,
+              feature: {
+                mark: { show: true },
+              }
+            },
+            grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '3%',
+              top: '120px',
+              containLabel: true
+            },
+            xAxis: [
+              {
+                type: 'category',
+                boundaryGap: false,
+                data: data.current.key
+              }
+            ],
+            yAxis: [
+              {
+                type: 'value'
+              }
+            ],
+            series: [
+              {
+                name: data.current.title,
+                type: 'line',
+                data: data.current.number,
+              },
+              {
+                name: data.prev.title,
+                type: 'line',
+                data: data.prev.number,
+              }
+            ]
+          };
+          myChart4.setOption(option);
+          // 主要是这个legendselectchanged监听方法实现
+          myChart4.on('legendselectchanged', function (params) {
+            var option = this.getOption();
+            var selected = Object.keys(params.selected);
+            var name = Object.values(params.name);
+
+            // 简单的实现
+            if (params.name == '本周' || params.name == '本月' || params.name == '今年') {
+              option.legend[0].selected[params.name] = true;
+            }
+            this.setOption(option)
+
+          })
+        }
+      })
+    }
+
+    //搜索报表展示
+    $(".search_btn button").click(function () {
+      $(this).addClass('active').siblings().removeClass('active');
+      var type = $(this).attr('data-type');
+      var report = $(this).attr('data-report');
+      return_circle_report(type, report);
+    })
+    function return_circle_report(type, report) {
+
+      $.post("/index/inquiry/return_circle_report.html", { type: type, report: report }, function (dt) {
+        if (1 == dt.code) {
+          var data = dt.data;
+          // $("#report .report_info .item_price span.prev").text(data.prev.all_price);
+          // $("#report .report_info .item_price span.current").text(data.current.all_price);
+
+          // $("#report .report_info .item_number span.prev").text(data.prev.all_number);
+          // $("#report .report_info .item_number span.current").text(data.current.all_number);
+
+          if (report == 1) {
+
+            $("#body .left .tongji .item").eq(0).find('.money').text('￥' + data.all_order_price);
+            $("#body .left .tongji .item").eq(1).find('.money').text('￥' + data.complete_pay_price);
+            $("#body .left .tongji .item").eq(2).find('.money').text('￥' + data.wait_price);
+            var myChart1 = echarts.init(document.getElementById('report1'), 'light');
+            option = {
+              title: [
+                {
+                  text: '平台订单',
+                  textStyle: {
+                    fontSize: 16,
+                    color: "black"
+                  },
+                  textAlign: "center",
+                  x: '48%',
+                  y: '44%',
+                }
+              ],
+              tooltip: {
+                trigger: 'item',
+                formatter: '{b}:￥{c}',
+              },
+              color: ['#1FBFE7', '#FE6969'],
+              series: [{
+                name: '平台订单',
+                type: 'pie',
+                center: ['50%', '50%'],
+                // radius: ['90%', '60%'],
+                radius: ['65%', '90%'],
+                clockwise: false, //饼图的扇区是否是顺时针排布
+                avoidLabelOverlap: false,
+                label: {
+                  normal: {
+                    show: false,
+                    position: 'outter',
+                  }
+                },
+                labelLine: {
+                  show: false,
+                },
+                data: [
+                  { value: data.complete_pay_price, name: '已付款' },
+                  { value: data.wait_price, name: '未付款' },
+                ]
+              }]
+            }
+            myChart1.setOption(option);
+          } else {
+            $("#body .right .tongji .item").eq(0).find('.money').text('￥' + data.all_order_price);
+            $("#body .right .tongji .item").eq(1).find('.money').text('￥' + data.complete_pay_price);
+            $("#body .right .tongji .item").eq(2).find('.money').text('￥' + data.wait_price);
+            var myChart2 = echarts.init(document.getElementById('report2'), 'light');
+            option = {
+              title: [
+                {
+                  text: '本店订单',
+                  textStyle: {
+                    fontSize: 16,
+                    color: "black"
+                  },
+                  textAlign: "center",
+                  x: '48%',
+                  y: '44%',
+                }
+              ],
+              tooltip: {
+                trigger: 'item',
+                formatter: '{b}:￥{c}',
+              },
+              color: ['#1FBFE7', '#FE6969'],
+              series: [{
+                name: '本店订单',
+                type: 'pie',
+                center: ['50%', '50%'],
+                // radius: ['90%', '60%'],
+                radius: ['65%', '90%'],
+                clockwise: false, //饼图的扇区是否是顺时针排布
+                avoidLabelOverlap: false,
+                label: {
+                  normal: {
+                    show: false,
+                    position: 'outter',
+                  }
+                },
+                labelLine: {
+                  show: false,
+                },
+                data: [
+                  { value: data.complete_pay_price, name: '已付款' },
+                  { value: data.wait_price, name: '未付款' },
+                ]
+              }]
+            }
+            myChart2.setOption(option);
+          }
+
+
+        }
+      })
+    }
+
+
+
+    $(".list .more").click(function () {
+      $(".modal_mask").show();
+      $(".modal").show();
+    })
+    $(".close,.cancel").click(function () {
+      $(".modal_mask").hide();
+      $(".modal").hide();
+    })
+
+  </script> -->
+
+</body>
+
+</html>

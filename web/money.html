@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{padding: 0px !important;}
+		</style>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		
+			<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+
+		<div class="login_password buy">
+			<p class="iconfont icon-jingshi"> 最小提币数量为：{{coin_detail.rec_min}} {{coin}}</p>
+			<div class="wapk" v-if="type==4 ">
+				<h2>提币类型</h2>
+				<select id="selectExample" v-model="typeSelected"  @change="type_Selected">
+					<option value="4">ERC20</option>
+					<option value="42">OMNI</option>
+				</select>
+			</div>
+			<div class="yihang adt">
+				<div class="wapk">
+					<h2>提币地址</h2>
+					<input type="text" oninput="this.value=this.value.substr(0,60)" v-model.trim="addr" placeholder="输入提币地址"/>
+				</div>
+				<div class="wapk">
+					<h2>提币数量 <span class="" style="position:relative;">( {{coin}} )</span></h2>
+					<input type="number" @input="InputNum(this)" v-model.trim="inpNum" placeholder="输入提币数量"/>
+					
+				</div>
+				<div class="wapk">
+					<h2>交易密码</h2>
+					<input type="password" oninput="this.value=this.value.substr(0,6)" v-model.trim="pwd" placeholder="输入交易密码"/>					
+				</div>
+			<!--	<div class="wapk">
+					<h2>验证码类型</h2>
+					<select id="selectExample" v-model="codeSelected"  @change="code_Selected">
+						<option value="1">短信验证</option>
+						<option value="2">谷歌</option>
+					</select>			
+				</div>-->
+				<div class="wapk" v-if="coin_detail.mark==1">
+					<h2>短信验证码</h2>
+					<input type="number" oninput="this.value=this.value.substr(0,6)" v-model.trim="code" placeholder="输入短信验证码"/>	
+					<button id="getCode" @click="get_Code(this)">获取验证码</button>			
+				</div>
+				<div class="wapk" v-if="coin_detail.mark==2">
+					<h2>谷歌验证码</h2>
+					<input type="number" oninput="this.value=this.value.substr(0,6)" v-model.trim="google" placeholder="输入谷歌验证码"/>								
+				</div>
+				<div class="wapk">
+					<h4><label>到账数量</label><span><s>{{receive_num}}</s> {{coin}}</span> </h4>
+					<h4><label>手续费</label><span><s>{{coin_detail.rec_fee}}</s> {{coin}}</span></h4>
+				</div>
+			</div>
+			
+			
+			<button @click="submitT()" id="submit">提币</button>
+		</div>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script>
+		
+		
+			var vue = new Vue({
+				el: ".login_password",
+				data: {					
+					coin_detail:{},					
+					coin:"",	
+					receive_num:0.0,
+					addr:"",
+					inpNum:"",
+					pwd:"",
+					code:"",
+					google:"",
+					typeSelected:4,
+					codeSelected:1,
+		
+	
+				},
+				created() {		
+					if(GetQueryString("type")!=null){
+						this.type=GetQueryString("type")
+						this.coin=GetQueryString("coin")
+					}
+					this.getDetail();						
+				},
+				mounted() {},
+				methods: {					
+					getDetail(){
+						var that = this;
+					
+						var param = {
+							"coin":that.type,
+							"token": $.cookie("token")
+						}
+					//	console.log(param)
+						param=rsaMethod(param)					
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/wallet/get_coin_notice',param, 
+						function(res) {
+							that.coin_detail=res.data;
+							//that.rec_fee=res.data.rec_fee
+							//that.mark=res.data.mark
+						//	console.log(that.coin_detail)
+						}, 'json');
+					},					
+					 InputNum(obj){
+						obj.value=obj.value<0 ? ' ':obj.value  ;  	// 小于0 则为空
+						var num=this.inpNum;
+						var rate=this.rec_fee;
+						console.log(rate)
+						var recceiveNum=num * (1- parseFloat(rate) / 100 );
+						this.receive_num=recceiveNum
+						
+					},
+					type_Selected(){			//选中的地址类型
+						this.type=this.typeSelected;
+						console.log(this.typeSelected)
+						
+					},
+					code_Selected(){			//选中的验证码类型
+						this.codeSelected=this.codeSelected;
+						console.log(this.codeSelected)
+						
+					},
+					get_Code(obj){		//获取短信验证码
+						var that=this;
+						
+						getyan($("#getCode"));
+						var that = this;					
+						var param = {
+							"type":2,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/setup/get_code',param, 
+						function(res) {
+						//console.log(res)
+							if(res.status==0){
+								
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){	} });
+								
+							}else{
+								
+								Invalid(res)  //判断登录是否失效
+							}
+						}, 'json');
+					},
+					submitT(){
+						var that=this;
+						// 是否非空
+						if(!isKong(this.addr,"请输入提币地址")){
+							return false;
+						}
+						// 是否非空
+						if(!isKong(this.inpNum,"请输入提币数量")){
+							return false;
+						}
+						// 是否非空
+						if(!isKong(this.pwd,"请输入交易密码")){
+							return false;
+						}
+						if(this.codeSelected==1){
+							// 是否非空
+							if(!isKong(this.code,"请输入短信验证码")){
+								return false;
+							}
+						}else{
+							// 是否非空
+							if(!isKong(this.google,"请输入谷歌验证码")){
+								return false;
+							}
+						}
+						var  code=1;
+						if(that.coin_detail.mark==1){
+							code=this.code
+						}else{
+							code=this.google
+						}
+						var param = {
+							"type":that.type,
+							"addr":that.addr,
+							"num":that.inpNum,
+							"pwd":that.pwd,
+							"mark":that.coin_detail.mark,
+							"code":code,
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$("#submit").attr("disabled", "disabled")
+						$.post(localhostUrl+'/index/wallet/get_coin',param, 
+						function(res) {
+							if(res.status==0){
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+										$("#submit").attr("disabled", false)
+									}
+									});
+								
+							}else{
+								Invalid(res)  //判断登录是否失效
+								$("#submit").attr("disabled", false)
+								
+							}
+							
+						}, 'json');
+						
+						
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

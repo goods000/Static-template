@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{padding: 0px !important;}
+		</style>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+		<div class="login_password">
+			<p class="iconfont icon-jingshi">请务必使用您本人的实名账户,被激活的收款方式将在交易时向对方展示</p>
+			<div class="wapk">
+				<h2>选择添加类型</h2>
+				<select id="selectExample" onchange="ChangeT()">
+					<option value="3" index="0">银行卡</option>
+					<option value="2" index="1">微信</option>
+					<option value="1" index="2">支付宝</option>
+				</select>
+			</div>
+			<div class="yihang content">
+				<div class="wapk">
+					<h2>开户行姓名</h2>
+					<input type="text" v-model.trim="realname" placeholder="输入开户行姓名(2-6位)"/>
+				</div>
+				<div class="wapk adt">
+					<h2>开户银行</h2>
+					<input type="text" v-model.trim="bank_name" placeholder="输入开户银行(4-30位)"/>
+				</div>
+				<div class="wapk adt">
+					<h2>银行卡号</h2>
+					<input type="number" v-model.trim="card_num" placeholder="输入银行卡号"/>
+				</div>
+			</div>
+			<div class="weixin content">
+				<div class="wapk">
+					<h2>姓名</h2>
+					<input type="text" v-model.trim="wechat_name" placeholder="输入姓名"/>
+				</div>
+				<div class="wapk">
+					<h2>微信账号</h2>
+					<input type="text" v-model.trim="wechat_account" placeholder="输入微信账号"/>
+				</div>
+				<div class="wapk">
+					<h2>收款二维码</h2>
+					<div class="line"> 
+					<a  href=" " class="a-upload">   
+						<form id="xdaTanFileImg_2" class="formF" enctype="multipart/form-data" action="#" onsubmit="return false" >  
+							<input type="file" name="file" id="file2" onchange="preview(this)"  accept="image/*"/>
+						</form>
+						<div id="xmTanDiv_1" class="img">
+							上传收款码
+						</div> 
+					</a> 
+				</div>
+				</div>
+			</div>
+			<div class="zhifubao content">
+				<div class="wapk">
+					<h2>姓名</h2>
+					<input type="text" v-model.trim="alipay_name" placeholder="输入姓名"/>
+				</div>
+				<div class="wapk">
+					<h2>支付宝账号</h2>					
+						<input type="text" v-model.trim="alipay_account" placeholder="输入支付宝账号"/>					
+				</div>
+				<div class="wapk">
+					<h2>收款二维码</h2>
+					<div class="line"> 
+					<a  href=" " class="a-upload">  
+						<form id="xdaTanFileImg_1" class="formF" enctype="multipart/form-data" action="#" onsubmit="return false" >  
+							<input type="file" name="file" id="file1" onchange="preview(this)" accept="image/*"/>
+						</form>
+						<div id="xmTanDiv_2" class="img">
+							上传收款码
+						</div> 
+					</a> 
+				</div>
+				</div>
+			</div>
+			<div class="wapk">
+				<h2>交易密码</h2>
+				<input type="password" v-model.trim="pwd" class="pwd" placeholder="输入交易密码"/>
+			</div>
+			<button id="submit" @click="submitT()">确定</button>
+		</div>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script src="js/qiniu.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/plupload.full.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+		var vue = new Vue({
+				el: ".login_password",
+				data: {					
+					Detail:{},	
+					edit_add:0,	
+					type:"",
+					realname:"",
+					alipay_name:"",
+					wechat_name:"",
+					alipay_account:"",
+					wechat_account:"",
+					pay_pwd:"",					
+					account:"",
+					bank_name:"",
+					card_num:"",
+					pwd:"",
+					imgurl:"",
+					qiniu_token:"",
+					
+				},
+				created() {					
+					if(GetQueryString("edit_add")!=null){
+						this.edit_add=GetQueryString("edit_add")
+					}
+				//	console.log(this.edit_add)	
+					this.getTT();
+				},
+				mounted() {},
+				methods: {
+					getTT(){
+						var that=this;
+						var param = {
+							"token": $.cookie("token")
+						}
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.post(localhostUrl+'/index/index/getQiNiuToken',param, 
+						function(res) {
+							if(res.status==0){
+							that.qiniu_token=res.data;				
+							//console.log("token1:"+that.qiniu_token)		
+						}else{
+							Invalid(res)  //判断登录是否失效
+							$("#submit").attr("disabled", false)
+						}
+						
+						}, 'json')
+					},
+					uploadImg(tt){
+						var that=this;							
+					//	console.log(tt)	
+						//this.getTT();	
+					//	console.log("token:"+that.qiniu_token)	
+						var file=document.getElementById(tt);
+					//	console.log(file)	
+						var param = new FormData(file);
+						param.append('token', that.qiniu_token);
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						$.ajax({
+							url: 'https://upload-z2.qiniup.com/',
+							type: "post",
+							dataType: 'JSON',
+							async: false,
+							cache: false,
+							contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+							processData: false, // 告诉jQuery不要去处理发送的数据
+							beforeSend: function(request) {
+								request.setRequestHeader("token", that.qiniu_token);
+							},
+							data: param,
+							// async:false,
+							success: function(res) {
+								// console.log(res)								
+									that.imgurl=res.key;
+									that.imgurl=that.imgurl;
+								//	console.log(that.imgurl)																		
+							},
+							error: function() {
+								layer.msg('网络不好，稍微再试！');
+							}
+							
+						});
+						$("#submit").attr("disabled", false);
+						
+					},
+					submitT(){
+						var that=this;
+						that.type= $('#selectExample option:selected').val();
+					//	console.log("type:"+that.type)											
+						
+						if(that.type==1){		//支付宝
+							// 是否非空
+							if(!isKong(that.alipay_name,"请输入姓名")){
+								return false;
+							}	
+							// 是否非空
+							if(!isKong(that.alipay_account,"请输入支付宝账号")){
+								return false;
+							}	
+							
+						}
+						else if(that.type==2){		//微信
+							// 是否非空
+							if(!isKong(that.wechat_name,"请输入姓名")){
+								return false;
+							}	
+							// 是否非空
+							if(!isKong(that.wechat_account,"请输入微信账号")){
+								return false;
+							}	
+						}
+						else{
+							// 是否非空
+							if(!isKong(that.realname,"输入开户行姓名")){
+								return false;
+							}	
+							// 是否非空
+							if(!isKong(that.bank_name,"请输入开户银行(4-30个字符)")){
+								return false;
+							}// 是否非空
+							if(!isKong(that.card_num,"请输入银行卡号")){
+								return false;
+							}
+							if (!isCard(that.card_num)) {
+								return false;
+							}							
+							
+						}
+						var pwd=that.pwd
+						// 是否非空
+						if (!isKong(pwd, $(".pwd").attr("placeholder"))) {
+							return false;
+						}
+						
+						pwd = CryptoJS.MD5(pwd).toString().toUpperCase();
+						var param = {
+							"type":that.type,
+							"id":that.edit_add,										
+							"pay_pwd":pwd,
+							"token": $.cookie("token")
+						}
+						if(that.type==1){	//支付宝
+							param.realname=that.alipay_name;
+							param.account=that.alipay_account;
+							
+							if($("#file1").val() !='' ){
+								//console.log($("#xdaTanFileImg_1").val())
+								that.uploadImg("xdaTanFileImg_1" );
+								param.alipay_code=that.imgurl;
+							}
+							
+						}
+						else if(that.type==2){		//微信
+							param.realname=that.wechat_name;
+							param.account=that.wechat_account;							
+							if($("#file2").val!=''){
+								that.uploadImg("xdaTanFileImg_2");
+								param.wechat_code=that.imgurl;
+							}
+						}else{			//银行卡
+							param.realname=that.realname;
+							param.bank_name=that.bank_name;
+							param.card_num=that.card_num;
+							
+						}	
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						//console.log(param)
+						$("#submit").attr("disabled", "disabled")
+						$.post(localhostUrl+'/index/pay/add_pay', param,
+						function(res) {
+							if(res.status==0){
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+										$("#submit").attr("disabled", false)
+										window.parent.location.reload()
+									}
+									});
+								
+							}else{							
+								Invalid(res)  //判断登录是否失效
+								$("#submit").attr("disabled", false)
+							}
+							
+						}, 'json');
+						
+					}
+				}
+			})
+		
+		
+		 function ChangeT(){
+				var index = $('#selectExample option:selected').attr("index");
+				console.log("index:"+index)
+				$(".content").hide().eq(index).show();
+			
+			}
+		
+			//图片预览
+		function preview(file) {	
+				var parent=$(file).parents("form").siblings(".img");
+				//console.log(parent.html())
+				var img;
+				if (file.files && file.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function (evt) {
+					//	console.log('src11:'+evt.target.result)
+						var src=evt.target.result;
+//		                parent.innerHTML = '<img src="' + evt.target.result + '" class="img"/>';
+						img='<img src="' + evt.target.result + '" />';
+					//	console.log(img)
+						parent.html(img);
+					}
+					reader.readAsDataURL(file.files[0]);
+				} else {
+				   // parent.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+					var src=file.value;
+					img='<img src="' + src + '" class="img"/>';
+					parent.html(img);
+//					console.log('src22:'+src)
+
+				}
+			}
+		
+				
+		</script>
+	</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="css/font.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style type="text/css">
+    	#files{z-index: 2;}
+    	img[src=""],img:not([src]){opacity:0;}
+    	#xmImg_1{width: 100%;height: 100%;z-index: 1;}
+    </style>
+</head>
+<body>
+	<h1 class="h1">
+		<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+    	<p data-lang="shoukuanxinxi">收集市场意见</p>
+	</h1>
+	<div class="mt"></div>
+	<h2 style="padding: 10px 0 0 10px;">【人工线下回复】</h2>
+	<div class="feedback" id="app" v-cloak>
+		<div class="feedb_list">
+			<h2>反馈标题</h2>
+			<div class="feedback_contert">
+				<input id="text" type="text" placeholder="请输入反馈标题"  maxlength="30" v-model="feed.title"/>
+				<span id="in" type="text" disabled="disabled">{{titleLimit-feed.title.length}}/{{titleLimit}}</span>
+			</div>
+		</div>
+		<div class="mt"></div>
+		<div class="feedb_list">
+			<h2>反馈内容<span id="ins">{{contentLimit-feed.content.length}}/{{contentLimit}}</span></h2>
+			<div class="feedback_contert">
+				<textarea id="texts" placeholder="请输入反馈详细内容" type="text"  maxlength="200" v-model="feed.content"/></textarea>
+			</div>
+		</div>
+		<div class="mt"></div>
+		<div class="feedb_list images">
+			<h2>上传图片</h2>
+			<div class="release_up_pic">		
+				<div class="up_pic">
+					<span id="chose_pic_btn" style="">
+						<input type="file" name="file1" id="files" accept="image/*" @change="load"/>
+						<!--<img src="" id="xmImg_1" accept="image/*"/>-->
+					</span>	
+				</div>
+			</div>
+		</div>
+		<button class="annius" @click="update">提交</button>
+	</div>
+	
+<script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+<script src="js/vue-2.4.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/vue-resource-1.3.4.js" type="text/javascript" charset="utf-8"></script>
+<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			url:null,
+			currency:null,
+			feed:{title:"",content:""},
+			titleLimit:20,
+			contentLimit:200,
+			imgList:[],
+			img1Url:null,
+			img2Url:null,
+			img3Url:null
+			
+		},
+		methods: {
+			preview: function(file,img) {//纯前端预览时调用 有上传接口不需要调用
+				console.log(file);
+				console.log("file.size = " + file.size);
+				
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					img.src = e.target.result;
+				}
+				reader.readAsDataURL(file);
+		 	},
+			upload: function(file){
+		        var formData = new FormData();
+		        formData.append("file",file);
+		        //formData.append("id", id);
+		         $.ajax({
+		            url: baseURL +"/oss/uploadImage",
+		            type: 'POST',
+		            async : false,
+		            data: formData,
+		            processData: false,// ⑧告诉jQuery不要去处理发送的数据
+		            contentType: false, // ⑨告诉jQuery不要去设置Content-Type请求头
+		            success: function (r) {
+		            	if(r.code==0){
+		            		console.log("1:"+r.data.serverPath);
+		            		vm.url=r.data.serverPath;
+		            	}else{
+		            		alert(r.msg);
+		            		return;
+		            	}
+		            }
+		        });
+		     },
+		     clearway: function(event){
+		    	 
+		    	var a=$(event.target);
+		    	var index=$("em").index(a);
+		         
+		        a.parents(".pic_look").remove();//移除html
+		        vm.imgList.splice(index,1);//移除
+				
+			 },
+			 load: function(event){
+		    	var file=event.target.files[0];
+		    	if (file.size>1048576) {//单位为byte
+					alert('上传图片不能超过1MB，请重新选择!');
+					return;
+				}
+		    	
+				vm.upload(file);
+				console.log("2:"+vm.url)
+				
+				vm.imgList.push(vm.url);
+				
+				var imgHtml = "<span class='pic_look'><img src="+ vm.url + " style='max-width: 100%;max-height: 100%;'/><em>-</em></span>"
+				$('#chose_pic_btn').before(imgHtml);
+				$("em").off("click").on("click", vm.clearway);
+				
+			 },
+		     update:  function(){
+		    	 
+		    	 /* if(vm.img1Url!=null||vm.img2Url!=null||vm.img3Url!=null){
+			    	 var aa=[vm.img1Url,vm.img2Url,vm.img3Url]
+			    	 var picPath=aa.join(",");
+		    		 vm.feed.picPath=picPath;
+		    	 } */
+		    	 
+		    	if(vm.imgList.length>0){
+		    		var picPath=vm.imgList.join(",");
+		    		vm.feed.picPath=picPath;
+		    	}
+		    	 
+				if(isBlank(vm.feed.content)){
+					alert("请输入内容");
+					return true;
+				}
+				
+				if(isBlank(vm.feed.title)){
+					alert("请输入标题");
+					return true;
+				}
+		    	 
+		        $.ajax({
+		            url: baseURL +"/feedback/save",
+		            contentType:"application/json",
+		            type: 'POST',
+		            data: md5Method(vm.feed),
+		            success: function (r) {
+		            	if(r.code==0){
+			            	alert("提交成功", function(index){
+			            		window.location.reload();
+			                  });
+		            	}else{
+		            		alert(r.msg);
+		            	}
+		            }
+		        });
+			},
+			getSessionCurrency: function(){
+				this.currency=getCurrency();
+			}
+		},
+		created: function(){
+	        this.getSessionCurrency();
+	    }
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body{padding: 0px !important;}
+		</style>
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/swiper.css" />
+		<!--js-->
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+			
+		</style>
+		
+		<div class="login_password buy">
+			<!--<p class="iconfont icon-jingshi">请务必使用您本人的实名账户,被激活的收款方式将在交易时向对方展示</p>-->
+		<!--	<div class="wapk">
+				<h2>选择购买类型</h2>
+				<select id="selectExample">
+					<option value="1" onclick="yinhangka()">按数量</option>
+					<option value="2" onclick="weixin()">按金额</option>
+				</select>
+			</div>
+			<div class="wapk">
+				<h2>选择支付方式</h2>
+				<select v-model="typeSelected"  @change="type_Selected">
+					<option value="1">微信</option>
+					<option value="2">支付宝</option>
+					<option value="2">银行卡</option>
+				</select>
+			</div>-->
+			<div class="yihang adt">
+				<div class="wapk">
+					<h2>购买数量 ({{coin}})</h2>
+					<input type="number" @input="InputNum(this)" v-model.trim="inpNum" :placeholder="'输入购买数量(最低购买'+min+')'"/>
+				</div>
+				<div class="wapk adt">
+					<h4><label>交易限额</label><span><s>{{min}} - {{max}}</s>{{coin}}</span></h4>
+				</div>
+				<div class="wapk adt">
+					<h4><label>交易单价</label><span><s>{{price}}</s>CNY</span></h4>
+				</div>
+			</div>
+			
+			<div class="wapk">
+				<h2>交易密码</h2>
+				<input type="password" oninput="this.value=this.value.substr(0,6)" v-model.trim="pwd" placeholder="输入交易密码"/>					
+			</div>
+			
+			<button @click="submitT()" id="submit">购买</button>
+		</div>
+		
+		<!--MD5js-->
+		<script src="js/core.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jsencrypt.js"></script>
+		
+		<script type="text/javascript" src="js/Zcheck.js" ></script>
+		<script>
+		 $('#selectExample').change(function(data){
+            //获取选中项的值
+            var value = $("#selectExample option:selected").attr("value");
+            //输出日志
+            if(value == 1){
+            	$(".yihang").show();
+				$(".weixin").hide();
+            }else{
+            	$(".yihang").hide();
+				$(".weixin").show();
+            }
+        });
+		var vue = new Vue({
+				el: ".login_password",
+				data: {	
+					coin:'',
+					inpNum:"",
+					pwd:"",
+					id:"",	
+					price:0,
+					min:0,
+					max:0,
+					typeSelected:1,
+					
+				},
+				created() {		
+					if(GetQueryString("id")!=null){
+						this.coin=GetQueryString("coin");
+						this.id=GetQueryString("id");
+						this.min=GetQueryString("min");
+						this.max=GetQueryString("max")
+						this.price=GetQueryString("price")
+					}
+					//console.log("id:"+this.id)			
+				},
+				mounted() {},
+				methods: {										
+					type_Selected(){
+						this.type=this.typeSelected;
+						console.log(this.typeSelected)
+					},
+					InputNum(){
+						this.inpNum=this.inpNum<0 ? ' ':this.inpNum  ;  	// 小于0 则为空
+					},
+					submitT(){
+						var that=this;
+						
+						// 是否非空
+						if(!isKong(that.inpNum,"请输入购买数量")){
+							return false;
+						}
+						if(that.inpNum<that.min){
+							layer.msg("最低购买"+that.min, { icon: 2,time: 2000});
+							return false;
+						}
+						if(that.inpNum > that.max){
+							layer.msg("最高购买"+that.max, { icon: 2,time: 2000});
+							return false;
+						}
+						// 是否非空
+						if(!isKong(that.pwd,"请输入交易密码")){
+							return false;
+						}
+						
+						
+						var param = {
+							"id":that.id,
+							"num":that.inpNum,
+							"total":that.price	,
+							"paypass":that.pwd,
+							"token": $.cookie("token")
+						}
+						console.log(param)
+						param=rsaMethod(param)
+						param={
+							"data":param
+						}
+						
+						$("#submit").attr("disabled", "disabled")
+						$.post(localhostUrl+'/index/c2c/buy',param, 
+						function(res) {
+							if(res.status==0){
+								layer.msg(res.msg, { icon: 1,time: 2000,end:function(){
+										window.parent.location.reload()
+										$("#submit").attr("disabled", false)
+										
+									}
+									});
+								
+							}else{
+								Invalid(res)  //判断登录是否失效
+								$("#submit").attr("disabled", false)
+								
+							}
+							
+						}, 'json');
+						
+					}
+				}
+			})
+        
+		</script>
+	</body>
+</html>

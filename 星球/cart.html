@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/public.js"></script>
+		<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			/*.no{display: none;}*/
+			nav ul li:nth-child(3) i img{display: none;}
+			nav ul li:nth-child(3) i .on{display: block;}
+			nav ul li:nth-child(3) p{color: #1A5C52;}
+			.tab-title a{width: 33.33%;display:block;text-align: center;float: left;color: #333;font-size: 1rem;}
+			.tab-title{overflow: hidden;background: #fff;margin-bottom:2%;border-top: 1px solid #eee;}
+			.tab-title span{display: inline-block;padding: 10px 0;}
+			.item-cur span{border-bottom:1px solid #1A5C52 !important;color:#1A5C52 !important;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>购物车</p>
+	    	<a class="fr"><span class="fr" style="font-size: 12px;">编辑</span></a>
+		</h1>	
+		<div class="tab" js-tab="1">
+			<!--<div class="tab-title">
+				<a href="javascript:;" class="item item-cur"><span>普通购物车</span></a>
+				<a href="javascript:;" class="item"><span>报单区购物车</span></a>
+  				<a href="javascript:;" class="item"><span>兑换区购物车</span></a>
+			</div>-->
+			<div class="dingdan tab-cont">
+				<div class="tab-cont_wrap">
+					<div class="no">
+				    	<p>暂无数据，快去逛逛吧</p>
+				    </div>
+				    <div class="con gt">	
+				    <div class="content">
+					    <ul ind="0">
+					    	<li class="clearfix">
+					    		<div class="label fl">
+					    			<label>
+						    			<input type="checkbox" class="zhi"/>
+						    			<img src="img/noChoice.png"/>
+						    		</label>
+					    		</div>
+					    		<div class="img">
+					    			<img src="img/goods_1.png"/>
+					    		</div>
+					    		<div class="text fl">
+					    			<p class="overflow">格子连衣裙女喇叭长袖 2020秋冬季新款复古V领气质收腰显…</p>
+					    			<span class="tips">XL</span>
+					    			<p class="clearfix">
+					    				<span class="fl red fl_txt">￥249.99</span>
+					    				<span class="fr btn_box">
+					    					<input type="button" value="-" class="btn1">
+					    					<span class="number">1</span>
+					    					<input type="button" value="+" class="btn2">
+					    				</span>
+					    			</p>
+					    		</div>
+					    	</li>
+					    	<li class="clearfix">
+					    		<div class="label fl">
+					    			<label>
+						    			<input type="checkbox" class="zhi"/>
+						    			<img src="img/noChoice.png"/>
+						    		</label>
+					    		</div>
+					    		<div class="img fl">
+					    			<img src="img/goods_1.png"/>
+					    		</div>
+					    		<div class="text fl">
+					    			<p class="overflow">格子连衣裙女喇叭长袖 2020秋冬季新款复古V领气质收腰显格子连衣裙女喇叭长袖 2020秋冬季新款复古V领气质收腰显</p>
+					    			<span class="tips">XL</span>
+					    			<p class="clearfix">
+					    				<span class="fl red fl_txt">￥598.00</span>
+					    				<span class="fr btn_box">
+					    					<input type="button" value="-" class="btn1">
+					    					<span class="number">5</span>
+					    					<input type="button" value="+" class="btn2">
+					    				</span>
+					    			</p>
+					    		</div>
+					    	</li>
+					    </ul>
+					    <!--不可以删除，已经自动隐藏-->
+					    <p class="total">一共<number></number>件商品：<span></span></p>
+				    </div>
+
+				</div>
+			</div>
+		</div>
+		
+	    </div>
+	    <!--主题-->
+	    <!--结算-->
+	    <div class="bottom fixed">
+	    	<div class="fl bottom-label">
+	    		<label class="xq">
+	    			<input type="checkbox"/>
+	    			<img src="img/noChoice.png" class="" />
+	    			全选
+	    		</label>
+	    	</div>
+    		<div class="fr i_details_box">
+    			<div class="i_details">
+    				<p class="xq">合计:￥<span class="zong"></span></p>
+    				<i class="ze">购买赠送：399QSC</i>
+    			</div>
+    			<button class="sett">立即购买</button>
+    		</div>
+	    </div>
+	     <!--结算-->
+	     <!--删除-->
+	    <div class="bottom fixed" style="display: none;">
+	    	<!--<div class="fl"></div>-->
+	    	<div class="fl bottom-label">
+	    		<label class="xq">
+	    			<input type="checkbox"/>
+	    			<img src="img/noChoice.png" class="" />
+	    			全选
+	    		</label>
+	    	</div>
+    		<div class="fr">
+    			<button class="delete">删除</button>
+    		</div>
+	    </div>
+	     <!--删除-->
+		<script src="js/index.js"></script>
+		
+		<!--底部导航栏-->
+		<div id="footer" name="3"></div>
+	</body>
+	<script>
+		$(function(){
+			$('[js-tab=1]').tab();
+		});
+	</script>
+</html>

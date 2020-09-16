@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+	body,html{height:100vh;}
+	.login h2 a:nth-child(1){font-size:20px;font-weight:600;color: #333;border-bottom: 2px solid #677ee8;}
+</style>
+<body>
+	<div class="logo">
+		<img src="img/logo.png"/>
+		<h2>登录</h2>
+		<p>欢迎来到小牛</p>
+	</div>
+	<div class="login login_1">
+		<!--<h2><a href="login.html">登录</a><a href="rst.html">注册</a></h2>-->
+		<form>			
+			<div class="locgin_i">
+				<input type="text"class="mobile" placeholder="输入注册账号" />
+			</div>
+			<div class="locgin_i">
+				<input type="password" class="pwd" placeholder="输入登录密码" />
+				<img src="img/login_nosee.png" class="img see_img"/>
+			</div>
+			<div class="a_box">
+				<a class="a" href="forget.html">忘记密码</a>
+			</div>
+			<button class="anniu">登录</button>
+		</form>
+	</div>
+	<a href="register.html" class="to_regiser"><span> 还没有账号？</span><span class="chioce"> 立即注册</span></a>
+</body>
+<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+<script>
+		$("input").on("blur",function(){
+	        var toFix=$(this).offset().top;
+	        window.scroll(0,toFix);//失焦后强制让页面归位
+	    });
+	
+		$(".anniu").click(function(){
+			var mobile=$(".mobile").val();
+			var pwd=$(".pwd").val();
+			// 是否非空
+			if(!isKong(mobile,$(".mobile").attr("placeholder"))){
+				return false;
+			}
+			// 是否非空
+			if(!isKong(pwd,$(".pwd").attr("placeholder"))){
+				return false;
+			}
+			layer.msg('登录成功',function() {
+				addCookie(mobile,pwd);
+				window.location.href = "index.html";
+			});
+		})
+	
+		</script>
+		<script type="text/javascript">
+			var toggle = true;
+			$(".see_img").click(function() {
+				if(toggle) {
+					$(this).attr("src","img/login_see.png");
+					$(this).prev().attr("type","text");
+					toggle = false;
+				} else {
+					$(this).attr("src", "img/login_nosee.png");
+					$(this).prev().attr("type","password");
+					toggle = true;
+				}
+			});
+		</script>
+</html>

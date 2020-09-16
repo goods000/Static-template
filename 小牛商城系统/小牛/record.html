@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+		<style type="text/css">
+			body,html{background: #F5F5F5 !important;	}
+		</style>
+	</head>
+<body>
+	<h1 class="h1 qrodeh1">
+		<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+		<p>明细</p>
+	</h1>
+	<div class="mt"></div>
+	<div class="record">
+	    <ul id="list">
+	        <li>
+				<p>金额</p>
+				<i>+7000</i>
+				<span class="way">方式:  提现</span>
+				<div class="time_box">
+					<div class="left">
+						<span>订单编号:</span>
+						<span>2548544875248655</span>
+					</div>
+					<div class="right">
+						<span>交易时间:</span>
+						<span>2020/03/14 10:24</span>
+					</div>
+				</div>
+	        </li>
+	        <li>
+				<p>金额</p>
+				<i>+7000</i>
+				<span class="way">方式:  充值</span>
+				<div class="time_box">
+					<div class="left">
+						<span>订单编号:</span>
+						<span>2548544875248655</span>
+					</div>
+					<div class="right">
+						<span>交易时间:</span>
+						<span>2020/03/14 10:24</span>
+					</div>
+				</div>
+	        </li>
+	    </ul>
+	</div>
+	<div class="img_box">
+		<img src="img/asset_top_bg.png"/>
+	</div>
+	<!--没有数据时显示-->
+	<div class="kong">
+		<img src="img/kong.png" />
+		<p>暂无记录</p>
+	</div>
+</body>
+<script>
+    function show() {
+		//没有数据的时候显示
+		if($(".record li").length <= 0) {
+			$(".kong").show();
+		} else {
+			$(".kong").hide();
+		}
+	}
+	show();
+	
+	$(".under").click(function(){$(".img_box").show()})
+	$(".img_box").click(function(){$(this).hide()})
+</script>

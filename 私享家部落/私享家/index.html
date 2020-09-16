@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			/*[v-cloak] {display: none;}*/
+			.back-to-top{position: fixed;bottom: 20vh;right: 10px;display: none;background: #fff;padding: 5px 10px 0px;border-radius: 10px 0 0 10px;
+			animation: topDown 0.5s;}
+			@keyframes topDown {
+				from {bottom: 20vh;right: -30px; opacity: 0}
+				to {bottom: 20vh;right: 10px; opacity: 1}
+			}
+			.back-to-top .jiegou{display: flex;flex-direction: column;justify-content: center;}
+			.back-to-top .go_cart{text-align: center;}
+			.back-to-top .go_cart img{width: 30px;margin-bottom: 15%;}
+			
+		</style>
+	</head>
+	<body>
+		<div id="app" v-cloak>
+			<h1 class="h1">
+		    	<p>私享家</p>
+		    	<a href="news_detail.html" class="fr"><img src="img/index_top_notice.png" class="index_img"/><i class="new"></i></a>
+			</h1>
+			<p class="index_title">欢迎您：尊敬的{{}}伯爵。</p>
+			<div class="mt"></div>
+			<div class="index">
+				<!-- Swiper -->
+			    <div class="swiper-container swiper-container_sy">
+			        <div class="swiper-wrapper">
+			            <div class="swiper-slide"><img src="img/banner.png"/></div>
+			            <div class="swiper-slide"><img src="img/banner.png"/></div>
+			            <div class="swiper-slide"><img src="img/banner.png"/></div>
+			            <div class="swiper-slide"><img src="img/banner.png"/></div>
+			        </div>
+			        <!--<div class="swiper-pagination"></div>
+			        <div class="swiper-button-next"></div>
+			        <div class="swiper-button-prev"></div>-->
+			    </div>
+			    <div class="support">
+			    	<div class="area">
+						<ul>
+							<a href="javascript:;" class="no_open">
+								<li>
+									<img src="img/index_1.png"/>
+									<b>爆品区</b>
+								</li>
+							</a>
+							<a href="javascript:;" class="no_open">
+								<li>
+									<img src="img/index_2.png"/>
+									<b>度假区</b>
+								</li>
+							</a>
+							<a href="meal.html">
+								<li>
+									<img src="img/index_3.png"/>
+									<b>套餐区</b>
+								</li>
+							</a>
+							<a href="javascript:;" class="no_open">
+								<li>
+									<img src="img/index_4.png"/>
+									<b>会员区</b>
+								</li>
+							</a>
+						</ul>
+					</div>
+			    </div>
+			    <!--公告-->
+				<div id="notice">
+					<img src="img/notice.png" class="notice_img"/>
+					<marquee class="dia" scrollAmount=2 >关于私享家最新系统公告说明...</marquee>
+					<a href="news.html"><i></i><span class="tong">查看更多</span></a>	
+				</div>
+				<div class="mt"></div>
+			    <div class="div"><s></s><span>最新资讯</span><a href="">更多</a></div>
+			    <div id="zi_box" v-for="item in list">
+			    	<a href="zi_details.html">
+					    <div class="ziIndex">
+							<img :src="item.index_img" class="ziIndex_img"/>
+							<span class="ziti">{{item.content}}</span>
+						</div>
+			    	</a>
+					<!--<a href="zi_details.html">
+					    <div class="ziIndex">
+							<img src="img/ziBg1.png" class="ziIndex_img"/>
+							<span class="ziti">
+								客房设施配备一应俱全，有沙发、书桌、餐桌等配置为您保留更多的私人空间。让您轻松行走于魅力都市与……
+							</span>
+						</div>
+			    	</a>-->
+			    </div>
+			</div>
+			
+			<!--回顶部-->
+			<div class="back-to-top">
+				<div class="jiegou">
+					<a href="goods_detail.html" class="go_cart"><img src="img/shop_cart.png" alt=""></a>
+					<img src="img/go_top.jpg" class="go_top" alt="">
+				</div>
+			</div>
+			
+			<div id="footer" name="1"></div>
+			
+		</div>	
+		
+	</body>
+	<script src="js/vue-2.4.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue-resource-1.3.4.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        slidesPerView: 1,
+	        paginationClickable: true,
+	        loop: true,
+	        autoplay: 3500,
+	        autoplayDisableOnInteraction: false
+	    });
+	    
+	    $(".no_open").click(function(e){
+	    	console.log(1);
+	    	e.preventDefault()
+			layer.msg("暂未开放，敬请期待！");
+		})
+	    
+	    var vm = new Vue({
+	    	el: '#app',
+	    	data:{
+	    		index_img: '',
+	    		content: '',
+	    		list: [],
+	    	},
+	    	created(){
+	    		this.getAllList()
+	    	},
+	    	methods:{
+	    		getAllList() { 
+		            $.get('json/index/index.json').then(result => {
+			            if(result.status == 0){	
+							this.list=result.content_list;
+						}else{					
+							layer.msg("获取失败。。。")
+						}
+			        })
+	    		},
+	    	}
+	    })
+	    
+	    $(document).ready(function () {
+            $(window).scroll(function () {
+                var a = $(".div").offset().top;
+                if (a < $(window).scrollTop()) {
+                	$(".back-to-top").show();
+                }else{
+                	$(".back-to-top").hide();
+                }
+            });
+        });
+        
+        $(".back-to-top .go_top").on("click",function(){
+        	$(window).scrollTop(0) 
+        	if ($(window).scrollTop() === 0) {
+        		console.log($(window).scrollTop());
+        	}
+		 });
+	    
+//	    $(document).ready(function(){
+//	    	$.ajax({	
+//			    type:'post',
+//			    url:'json/index/index.json',
+//			    dataType:'json',
+//			    contentType: 'application/json',
+//			    success:function(data){
+//			        console.log(data);
+//			        var group = data.data;
+//				    var str = '';
+//			        for(var i=0;i<group.length;i++){
+//			        	str += '<a href="zi_details.html">'+
+//								    '<div class="ziIndex">'+
+//										'<img src="img/ziBg1.png" class="ziIndex_img"/>'+
+//										'<span class="ziti">'+ group[i].content +'</span>'+
+//									'</div>'+
+//						    	'</a> '
+//			        }
+//			        //放入页面的容器显示
+//			        $('#zi_box').html(str);
+//			    },
+//			    //请求失败的处理
+//			    error:function(err){
+//			        console.log(err);
+//			    }
+//			});
+//	    })
+
+	</script>
+</html>
