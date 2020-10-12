@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			.h1{background: none;}
+			.div_box{background: url(img/gift_bg.png);background-size: 100% 100%;background-repeat: no-repeat;padding-bottom: 8vh;}
+			.div_box .top{display: flex;align-items: center;justify-content: space-between;background: none;padding:1rem 15px 1.8rem;}
+			.div_box .top .l .id{color: #fff;}
+			.div_box .top .num{color: #fff;}
+			.team_list{margin: -8vh 10px 0;border-radius: 6px;}
+			.team_list .tab{display: flex;align-items: center;}
+			.team_list .tab a{background: #fff;color: #FF6955;border: 1px solid #FF6955;margin-right: 0%;font-size: 14px;padding: 5px;width: 50%;display: block;text-align: center;}
+			.team_list .tab a.active{background: #FF6955;color: #FFFFFF;border: 1px solid #FF6955;font-size: 14px;}
+			.team_list .tab a:nth-child(1){border-radius: 6px 0 0 6px;}
+			.team_list .tab a:nth-child(2){border-radius: 0 6px 6px 0;}
+			.team_list .team_info li .num_price_red{font-size: 18px;color: #FF0000;}
+			.team_list .team_info li .num_price{font-size: 18px;color: #FF0000;}
+		</style>
+	</head>
+	<body>
+		<div class="div_box">
+			<h1 class="h1">
+				<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"></button>
+				<p>我的积分</p>
+			</h1>
+			<div class="top">
+				<div class="l">
+					<p class="id">总积分</p>
+					<p class="txt"><span class="num">0.0000.000</span></p>
+				</div>
+				<div class="l">
+					<p class="id">可用积分</p>
+					<p class="txt"><span class="num">1234.0000.000</span></p>
+				</div>
+			</div>
+		</div>
+		<div class="team_list">
+			<div class="tab">
+				<a href="javascript:;" class="active">积分获得记录</a>
+				<a href="javascript:;" class="">积分释放记录</a>
+			</div>
+			<div class="team_info mall on">
+				<ul>
+					<li>
+						<div class="info">
+							<div class="l">
+								<p><span class="name">积分获得记录</span></p>
+								<p class="id"><span></span><span>2020-08-01</span></p>
+							</div>
+							<div class="r">
+								<p><span class="num_price_red">+150</span></p>
+								<p class="time">&nbsp;</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="info">
+							<div class="l">
+								<p><span class="name">支出类型</span></p>
+								<p class="id"><span></span><span>2020-08-01</span></p>
+							</div>
+							<div class="r">
+								<p><span class="num_price_red">+150</span></p>
+								<p class="time">&nbsp;</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="team_info mall">
+				<ul>
+					<li>
+						<div class="info">
+							<div class="l">
+								<p><span class="name">积分释放记录</span></p>
+								<p class="id"><span>2020/08/04 10:12</span></p>
+							</div>
+							<div class="r">
+								<p><span class="num_price">+10.00</span></p>
+								<p class="time">&nbsp;</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="info">
+							<div class="l">
+								<p><span class="name">积分释放记录</span></p>
+								<p class="id"><span>2020/08/04 10:12</span></p>
+							</div>
+							<div class="r">
+								<p><span class="num_price">+10.00</span></p>
+								<p class="time">&nbsp;</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".tab a").click(function() {
+			var index = $(".tab a").index($(this));
+			$(".tab a").removeClass("active").eq(index).addClass("active");
+			$(".mall").removeClass("on").eq(index).addClass("on");
+			show();
+		})
+	</script>
+</html>

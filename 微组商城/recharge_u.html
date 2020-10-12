@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<style type="text/css">
+			textarea{outline: none;-webkit-appearance: none;}
+			.screen-right .container{padding: 0px !important;}
+			.charge_bbj{padding:20px 20px 4vh;margin: 15px;}
+			.chas_lianjie textarea{background: none;border:0px;color: #333;text-align: center;width: 75%;font-size: 1rem;margin: 20px auto;display: block;}
+			.chas_lianjie{display: block;text-align: center;}
+			.charge_bbj .bao_btn{background: #FF7122;color: #FFFFFF;padding: 2% 5%;width: 30%;margin:0 auto;text-align: center;border-radius: 5px;}
+			.chas_lianjie a{color: #FFFFFF;font-size: 0.8rem;display: inline-block;border-radius: 5px;padding:1.5% 4% 2%;margin: auto;
+			background:#351303;margin-bottom: 10px;width: 20%;}
+			.charge_dl{padding: 5% 5% 10% 5%;font-size: 1.1rem;} 
+			.charge_dl dt{color: #FFFFFF;font-size: 1rem;}
+			.charge_dl dd{color: #FFFFFF;font-size: 0.8rem;line-height: 22px;}
+			.select_box{background: #f5f5f5;padding: 10px;position: relative;height: 22px;}
+			/*.select_box select{width: 95%;background: none;border:none;font-size: 1.1rem;color: #FFFFFF;position: absolute;z-index: 2;}*/
+			.select_box .coin{font-size: 1.1rem;}
+			.select_box .div_r .div{font-size: 0.8rem;color: #999999;}
+			.select_box .div_r{color: #333;position: absolute;display: block;right: 10px;top: 12px;font-size: 1rem;z-index: 1;
+			display: flex;align-items: center;justify-content: space-around;}
+			.select_box .div_r img{width: 18%;}
+			.charge_bbj p{color: #333;font-size: 1.1rem;text-align: center;padding-top: 5%;}
+
+		</style>
+	</head>
+	<body>
+		<header class="header">
+		    <div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">收款码</span>
+		</header>
+		<div class="charge_money">
+		<div class="charge_bbj">
+			<div id="code" style="padding:10% 0;margin: auto;">
+			</div>
+			<p data-lang="label_wallet_num">USDT充币地址</p>
+			<div class="chas_lianjie">
+				<textarea readonly="readonly" id="biao1">6467CGDXNBJKBCFGC H8HTVCVXFBCVCXHGYFGYTFRTEFGFSBFV</textarea>
+				<a onclick="copyUrl2()" data-lang="label_administrative_fee">复制</a>
+			</div>
+		</div>
+		<dl class="charge_dl">
+			<dt>注意：</dt>
+			<dd>请勿向上述地址充值任何非USDT资产，否则资产将不可找回。</dd>
+			<dd>您充值到上述地址后，需要网络节点确认。</dd>
+			<dd>您的充值地址不会经常改变，可以重复充值;如有更改我们将通过网站公告或邮件通知您。</dd>
+		</dl>
+	</div>
+	</body>
+	<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+	<script type="text/javascript">
+		$("#code").qrcode({
+	   		width: 120, //宽度 
+	    	height:120, //高度 
+	    	text: "www.zhizuobiao.com" //任意内容 
+		});
+		$('canvas').css({
+	        'display': 'block',
+	        'margin': 'auto',
+	        'padding': '3px',
+	    });
+	    
+	    function copyUrl2(){
+			var Url2=document.getElementById("biao1");
+			 Url2.select(); // 选择对象
+			document.execCommand("Copy"); // 执行浏览器复制命令
+			layer.msg("已复制好，可粘贴。");
+		}
+	</script>
+</html>

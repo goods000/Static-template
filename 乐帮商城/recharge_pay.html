@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">  
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+		
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/font.css">
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body,html{background: #fff;}
+			.tocast_box {position: static;border-radius: 0 !important;display: none;}
+			.tocast_box.on{display: block;}
+			.tocast_box .info .set {padding: 15px 0;}
+			.tocast_box .info .set .ico{width: 1.4rem;height: 1.4rem;}
+			.tocast_box .info .radio{display: none;}
+			.tocast_box .info .set.on .radio{display: block;}
+			.tocast_box .info .radio img{width: 0.9rem;}
+			.mt-32{margin-top: 2.2rem;}
+			.more{width: 7px;vertical-align: middle;}
+			.show_img{overflow: hidden;text-align: center;display: none;}
+			.show_img img{max-width: 100%;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>充值</p>
+	    	<a href="">充值记录</a>
+		</h1>
+		
+		<div class="recharge">
+			<div class="bg-white mt-2">
+			<div class="div">
+				<p class="p" >充值金额</p>
+				<div class="d-flex mt-32">
+					<span class="sp">￥</span>
+					<input type="number" class="num" id="num" oninput="this.value=this.value<0?'':this.value" 
+						value="" placeholder="请输入充值数量"/>
+				</div>
+			</div>
+			</div>
+		<div class="bg-white">
+			<div class="div ">
+				<p class="p">充值类型</p>
+				<div class="tab">
+					<span class="a active" onclick="chooseTT(1,0)">线上</span>
+					<span class="a" onclick="chooseTT(2,1)">线下</span>
+				</div>
+			</div>
+		</div>
+		<!-- 线上 -->
+		<div class="tocast_box on mt-2" >
+			<p class="title">充值方式</p>
+			<div class="info">
+				<div class="set" value="1" onClick="choosetype(this,0)">
+					<p>
+						<img src="img/alipay.png" class="ico" />
+						<span class="txt">支付宝</span>
+					</p>
+					<p>
+						<span class="radio">
+							<img src="img/check1.png" alt="" class="check" />
+							<input type="radio" value="2" name="check"/>
+						</span>
+						
+					</p>
+				</div>
+				<div class="set" value="2" onClick="choosetype(this,1)">
+					<p>
+						<img src="img/wechat.png" class="ico" />
+						<span class="txt">微信</span>
+					</p>
+					<p>
+						<span class="radio">
+							<img src="img/check1.png" alt="" class="check" />
+							<input type="radio" value="2" name="check"/>
+						</span>
+					</p>
+					
+				</div>
+			</div>
+		</div> 
+			<!--线下方式-->
+		<div class="tocast_box mt-2" >
+			<p class="title">充值方式</p>
+			<div class="info">
+				<div class="set" value="1" onClick="choosetype(this,0)">
+					<p>
+						<img src="img/alipay.png" class="ico" />
+						<span class="txt">支付宝</span>
+					</p>
+					<p>
+						<span class="radio">
+							<img src="img/check1.png" alt="" class="check" />
+							<input type="radio" value="2" name="check"/>
+						</span>
+						
+					</p>
+				</div>
+				<div class="set" value="2" onClick="choosetype(this,1)">
+					<p>
+						<img src="img/wechat.png" class="ico" />
+						<span class="txt">微信</span>
+					</p>
+					<p>
+						<span class="radio">
+							<img src="img/check1.png" alt="" class="check" />
+							<input type="radio" value="2" name="check"/>
+						</span>
+					</p>
+					
+				</div>
+				<div class="set" value="3" onClick="choosetype(this,2)">
+					<p>
+						<img src="img/card.png" class="ico" />
+						<span class="txt">银行卡</span>
+					</p>
+					<p>
+						<span class="radio">
+							<img src="img/check1.png" alt="" class="check" />
+							<input type="radio" value="2" name="check"/>
+						</span>
+					</p>
+				</div>
+			</div>
+		
+		<div class="card_info card_none">
+			<p class="p">姓名：陈建平</p>
+			<p class="p mt-3">支付宝号：621 2552 5555 5587</p>
+			<div class="d-flex jc-between ai-center mt-3">
+				<p class="p ">支付宝收款二维码</p>
+				<p class="p look" onclick="showImg(0,'支付宝收款二维码')" src="img/index_top.png"> 点击查看大图 <img src="img/next.png" class="more"></p>
+			</div>
+		</div>
+		<div class="card_info card_none">
+			<p class="p">姓名：陈建平</p>
+			<p class="p mt-3">微信号：621 2552 5555 5587</p>
+			<div class="d-flex jc-between ai-center mt-3">
+				<p class="p ">微信收款二维码</p>
+				<p class="p look" onclick="showImg(1,'微信收款二维码')" src="img/index_min.png"> 点击查看大图 <img src="img/next.png" class="more"></p>
+			</div>
+		</div>
+		<div class="card_info card_none">
+			<p class="p">姓名：陈建平</p>
+			<p class="p mt-3">银行卡：中国工商银行</p>
+			<p class="p mt-3">银行卡号：621 2552 5555 5587</p>
+		</div>
+			<div class="bg-white mt-2">
+				<div class="div">
+					<p class="p" >交易凭证</p>
+					<div class="d-flex mt-32">
+						<div class="uplaod_box">
+							<div class="upload">
+								<div class="photo">
+									<div class="photo_l">
+										<p class="txt" >点击上传交易凭证</p>
+									</div>
+									<input type="file" class="file" id="file" onchange="preview(this)" placeholder="点击上传交易凭证"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+		<div class="bg-white mt-2">
+			<div class="warn">
+				<p>注意：充值可以线上和线下充值。</p>
+			</div>
+		</div>
+		<div class="bg-white mt-2">
+			<div class="div">
+				<p class="p" >支付密码</p>
+				<div class="d-flex mt-32">
+					<input type="password" class="wt-100 pay_pwd" id="pay_pwd" value="" placeholder="请输入支付密码"/>
+				</div>
+			</div>
+		</div>
+			<button class="annius">充值</button>
+			
+			<div class="show_img">
+				<img src="" />
+			</div>
+			
+			<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				
+				// 图片展示
+				function showImg(index, title) {
+					var src=$(".recharge .look").eq(index).attr("src")
+						console.log(src)
+					$(".show_img img").attr("src", src)
+					n = layer.open({
+						title: title,
+						type: 1,
+						area: ["100%", "100%"],
+						content: $(".show_img")
+					
+					})
+				}
+				
+			var receipt_type=1	   //充值类型,m默认充值类型线上1
+			var receipt_index='';		//充值类型索引
+			function chooseTT(type,index) {		//选择充值类型
+				$(".recharge .tab .a").removeClass("active");
+				$(".recharge .tab .a").removeClass("active").eq(index).addClass("active");
+				$(".tocast_box").removeClass("on").eq(index).addClass("on");
+				receipt_type=type;
+				receipt_index=index;
+				console.log("receipt_type:" + receipt_type+",receipt_index:"+index);
+				// 切换后清空选择的充值方式
+				$(".tocast_box .set").find(".radio input").attr("checked",false)
+				$(".tocast_box .set").removeClass("on");
+				$(".card_none").removeClass("on")
+				reType="";
+			}	
+			
+			//充值方式
+			var reType=''; 
+			 //选择充值方式
+			 function choosetype(obj,index){
+					if($(obj).hasClass("on")){
+						$(obj).find(".radio input").attr("checked",false)
+						$(obj).removeClass("on");
+						$(".card_none").removeClass("on")
+						reType="";
+					}else{
+						$(".set").removeClass("on")
+						$(".radio input").attr("checked",false)
+						$(obj).find(".radio input").attr("checked","checked")
+						$(obj).addClass("on");
+						reType=$(obj).attr("value");
+						$(".card_none").removeClass("on").eq(index).addClass("on")
+						
+				}
+			}
+			 
+			 $(".annius").click(function(){
+				var num=$("#num").val();
+				var pay_pwd=$("#pay_pwd").val();
+				console.log("receipt_type:" + receipt_type+"，reType:"+reType);
+				// 是否非空
+				if(!isKong(reType,"请选择充值方式")){
+					return false;
+				}
+				if(receipt_index==1){      //线下
+					var file=$("#file").val();
+					// 是否非空
+					if(!isKong(file,$("#file").attr("placeholder"))){
+						return false;
+					}
+					
+				}
+				// 是否非空
+				if(!isKong(pay_pwd,$("#pay_pwd").attr("placeholder"))){
+					return false;
+				}
+				
+				layer.msg("提交成功", {
+					icon: 1, //提示的样式
+					time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+					end: function() {
+						// window.location.href = "user.html";
+					}
+				});
+			})
+			
+			//图片预览
+			 function preview(file) {
+			//    var prevDiv = document.getElementById('preview');
+				//	var parent=$(file).parents(".photo");
+				var parent=$(file).prev();
+			//	console.log(parent.html())
+				var img;
+				if (file.files && file.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function (evt) {
+					//	console.log('src11:'+evt.target.result)
+						var src=evt.target.result;
+//		                parent.innerHTML = '<img src="' + evt.target.result + '" class="img"/>';
+						img='<img src="' + evt.target.result + '" class="img"/>';
+						console.log(img)
+						parent.html(img);
+					}
+					reader.readAsDataURL(file.files[0]);
+				} else {
+				   // parent.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+					var src=file.value;
+					img='<img src="' + src + '" class="img"/>';
+//					console.log('src22:'+src)
+//					$("#demo1").attr('src',src)
+				}
+			}
+			</script>
+			
+		</div>
+		
+	</body>
+</html>

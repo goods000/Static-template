@@ -11,12 +11,12 @@
 		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 <body>	
-	<header class="header">
-	    <div class="headerLeft" onclick="goBack(-1)">
-	        <img src="img/return-white.png" alt="">
-	    </div>
-	    <span class="headerTitle">详情</span>
-	</header>
+		<header class="header">
+		    <div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">详情</span>
+		</header>
 		<div class="goodsinfo mian_top">
 			<!--轮播-->
 			<!-- Swiper -->
@@ -52,13 +52,13 @@
 				<img src="img/detail.png"/>
 			</div>
 			<div class="sum">
-				<a href="shop.html" class="r">
+				<a href="see_business.html" class="r">
 					<img src="img/business-1-s.png"/>
 					<span class="a_txt">店铺</span>
 				</a>
 				<div class="sum_btn_box">
 					<button class="add_1">加入购物车</button>
-					<button class="jiesuan_1" onclick="location.href='goods_order.html'">立即购买</button>
+					<button class="jiesuan_1">立即购买</button>
 				</div>
 			</div>
 		</div>
@@ -100,7 +100,11 @@
 					<input class="join-money1" type="text" value="1">
 					<input class="addBtn min1" type="button" value="-">
 				</div>
-				<a href="#">确定</a>
+				<div class="sum_btn_box">
+					<button class="goto_cart">加入购物车</button>
+					<button class="goto_buy" onclick="location.href='goods_order.html'">立即购买</button>
+				</div>
+				<!--<a href="#">确定</a>-->
 			</div>
 		</div>
 		
@@ -110,11 +114,17 @@
 		$('.guiBox').children().each(function() {
 			$(this).click(function(){
 				$(this).addClass("xuan").siblings().removeClass("xuan");
+				$(this).siblings().addClass("not").removeClass("xuan");
 			})
 		})
 		
 		$(document).ready(function() {
 			$(".add_1").click(function() {
+				$(".gw").animate({
+					top: '0px'
+				})
+			});
+			$(".jiesuan_1").click(function() {
 				$(".gw").animate({
 					top: '0px'
 				})

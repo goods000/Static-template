@@ -1,0 +1,91 @@
+
+
+body{
+	background: url(../images/reg-bg.png) no-repeat;
+	background-size: 100% 100%;
+	min-height: 8.39rem;
+}
+
+.main{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 0.28rem;
+}
+
+.main h3{
+	font-size: 0.24rem;
+	color: #2E2E2E;
+	margin-bottom: 0.5rem;
+}
+
+.input-item{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	background:rgba(27,74,148,.15);
+	margin-bottom: 0.28rem;
+	border-radius: 50rem;
+	height: 0.44rem;
+	padding: 0 0.035rem 0 0.135rem;
+}
+.input-item img{
+	width: 0.23rem;
+	margin-right: 0.1rem;
+}
+.input-item input{
+	width: 100%;
+	border: 0;
+}
+.input-item input::placeholder{
+	color: #351304;
+}
+
+.confirm-btn{
+	width: 100%;
+	background: url(../images/reg-btn-1.png) no-repeat;
+	background-size: 100% 100%;
+	border: 0;
+	line-height: 0.45rem;
+	font-size: 0.17rem;
+	color: #fff;
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+.down-btn{
+	width: 100%;
+	background: url(../images/reg-btn-2.png) no-repeat;
+	background-size: 100% 100%;
+	border: 0;
+	line-height: 0.45rem;
+	font-size: 0.17rem;
+	color: #351304;
+	margin-bottom: 0.74rem;
+	font-weight: bold;
+}
+.return-a{
+	color: #351304;
+	font-size: 0.18rem;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+.forget-pwd{
+	width: 100%;
+	text-align: right;
+	font-size: 0.13rem;
+	color: #351304;
+	margin-top: -0.2rem;
+}
+.forget-pwd a{
+	margin-right: 0.2rem;
+}
+
+.return-img{
+	position: absolute;
+	top: 1.08rem;
+	left: 0.15rem;
+	width: 0.2rem;
+}

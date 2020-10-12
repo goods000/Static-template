@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.abc .gorup input{text-align: left;padding: 0;background: none;}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">编辑信息</span>
+		</header>
+		
+		<div class="abc mian_top">
+			<div class="gorup line_b">
+				<label>商品名称</label>
+				<input type="text" name="" id="" value="商品名称商品名称" />
+			</div>
+			
+			<div class="row_box">
+				<div class="pay-other">
+					<div class="tips_h"><s></s>商品图<i class="tips">（最多上传5张图片）</i></div>
+					<div class="release_up_pic">		
+						<div class="up_pic">
+							<span class='pic_look' style='background-image: url("img/goods.png")'><em id='delete_pic'></em></span>
+							<span id="chose_pic_btn" style="" class="chose_pic">
+								<input type="file" id="files" accept="image/*" />
+							</span>	
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--<div class="gorup m_top">
+				<label>商品名称</label>
+				<select name="">
+					<option value="">商品名称</option>
+				</select>
+			</div>
+			<div class="gorup m_top">
+				<label>商品价格</label>
+				<div class="yun">
+					<i>300.00</i>
+					<span>元</span>
+				</div>
+			</div>-->
+			<div class="gorup m_top">
+				<label>商品价格</label>
+				<input type="text" name="" id="" value="300.00" />
+			</div>
+			<div class="gorup m_top">
+				<label>商品库存</label>
+				<input type="text" name="" id="" value="999" />
+			</div>
+			<div class="gorup m_top">
+				<label>商品规格</label>
+				<input type="text" name="" id="" value="M" />
+			</div>
+			
+			<div class="row_box m_top">
+				<div class="pay-other">
+					<div class="tips_h"><s></s>商品详情图<i class="tips">（最多上传5张图片）</i></div>
+					<div class="release_up_pic">		
+						<div class="up_pic">
+							<span class='pic_look' style='background-image: url("img/goods.png")'><em id='delete_pic'></em></span>
+							<span class='pic_look' style='background-image: url("img/goods.png")'><em id='delete_pic'></em></span>
+							<span id="chose_pic_btn_1" style="" class="chose_pic">
+								<input type="file" id="files_1" accept="image/*" />
+							</span>	
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="gorup_1">
+				<div class="anniu">确认</div>
+			</div>
+			
+		</div>
+		
+	</body>
+	<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/LocalResizeIMG.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mobileBUGFix.mini.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var picArr = new Array();// 存储图片
+		$('#files').localResizeIMG({
+			width:800,// 宽度
+			quality: 0.5, // 压缩参数 1 不压缩 越小清晰度越低
+			success: function (result) {
+				if(picArr.length <= 4){
+					var img = new Image();
+					img.src = result.base64;
+					var _str = "<span class='pic_look' style='background-image: url("+ img.src + ")'><em id='delete_pic'></em></span>"
+					$('#chose_pic_btn').before(_str);
+					var _i =  picArr.length
+					picArr[_i] = result.base64;
+					// picArr[_i] = _i;
+					console.log(picArr)
+				}else{
+					$("#chose_pic_btn").hide();
+					layer.msg("最多上传5张")
+				}
+			}
+		});
+		
+		var picArr_1 = new Array();// 存储图片
+		$('#files_1').localResizeIMG({
+			width:800,// 宽度
+			quality: 0.5, // 压缩参数 1 不压缩 越小清晰度越低
+			success: function (result) {
+				if(picArr_1.length <= 4){
+					var img = new Image();
+					img.src = result.base64;
+					var _str = "<span class='pic_look' style='background-image: url("+ img.src + ")'><em id='delete_pic'></em></span>"
+					$('#chose_pic_btn_1').before(_str);
+					var _i =  picArr_1.length
+					picArr_1[_i] = result.base64;
+					// picArr[_i] = _i;
+					console.log(picArr_1)
+				}else{
+					$("#chose_pic_btn_1").hide();
+					layer.msg("最多上传5张")
+				}
+			}
+		});
+		
+		// 删除
+		$(document).on('click', '#delete_pic', function(event) {
+			var aa = $(this).parents(".pic_look").index();
+			picArr.splice(aa,1);
+			$(this).parents(".pic_look").remove();
+			console.log(picArr);
+			$("#chose_pic_btn").show();
+		});	
+	</script>
+</html>

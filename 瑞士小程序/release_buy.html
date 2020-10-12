@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>CTC</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<style>
+			.moneyBox,.titleText{display: none;}
+			.passworldBox{height: 150px !important;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>发布求购</p>
+		</h1>
+		<div class="" id="app">
+			<div class="top-tp_bottom">
+				<h4>买入数量</h4> 
+				<div class="type_box">
+					<div class="type choice">10</div>
+					<div class="type">100</div>
+					<div class="type">300</div>
+					<div class="type">500</div>
+					<div class="type">2000</div>
+				</div>
+			</div>
+			<div class="backcolor"></div>
+			<div class="top-tp_bottom">
+				<div class="title_list">
+					<div class="left">单价    0.5</div>
+					<div class="right">USDT</div>
+				</div>
+				<div class="title_list">
+					<div class="left o">价格为参考价±5%</div>
+				</div>
+			</div>
+			<div class="backcolor"></div>
+			<div class="top-tp_bottom">
+				<div class="title_list">
+					<div class="left">今日市价</div>
+					<div class="right">4.85 USDT</div>
+				</div>
+				<div class="title_list">
+					<div class="left">挂卖总额</div>
+					<div class="right">0.00 USDT</div>
+				</div>
+			</div>
+			<div class="backcolor"></div>
+			<div class="top-tp_bottom">
+				<div class="title_list">
+					<div class="left">今日市价</div>
+					<input type="password" placeholder="请输入交易密码" name="" class="psd" value="" />
+				</div>
+			</div>
+			<div class="backcolor"></div>
+			
+			
+			<div class="anniu">确认</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Zcheck.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+		$(".type_box").children().each(function(){
+			$(this).click(function(){
+				$(this).addClass("choice").siblings().removeClass("choice");
+			})
+		})
+		
+	</script>
+	
+</html>

@@ -49,7 +49,7 @@ background: linear-gradient(180deg, #223CFF 0%, #0081F8 0%, #19A3FC 100%);color:
 .footerItemActive {color: #0771F9;}
 .footerItem span{position: absolute;top: 0;left: 50%;margin-left: 3px;height:16px;background:rgba(245,21,58,1);border:1px solid rgba(255,255,255,1);border-radius:8px;font-size: 0.1rem;color: #fff;line-height: 0.13rem;text-align: center;padding:  0 0.04rem;}
 
-.mian_top{margin-top: 50px;}
+.mian_top{margin-top: 50px;margin-bottom: 10vh;}
 .total{display: none;}
 
 input[type="checkbox"]{

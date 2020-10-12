@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style>
+			body,html{background: #000000;}
+			.bottom_nav dl dd:nth-child(5) a .dier {display: block !important;}
+			.bottom_nav dl dd:nth-child(5) a .diyi {display: none !important;}
+			.bottom_nav dl dd:nth-child(5) a span {color: #04BFEF;}
+			.h1{background: none;border-bottom: none;}
+			.annius{margin: 10% auto;width: 95%;}
+		</style>
+	</head>
+	<body>
+		<header class="user_top">
+			<h1 class="h1">
+		    	<p>&nbsp;</p>
+			</h1>
+			<div class="ge_top">
+				<div class="ge_right">
+					<img src="img/logo.png" class="info_img">
+					<span id="grade">
+						<u>中级节点</u>
+					</span>
+				</div>
+				<div class="ge_left">
+					<h2>
+						账号：瑞士
+						<span class="stars">★★★☆☆</span>
+					</h2>	
+					<div class="num_box">
+						<div class="num" id="v_code">SDFSA15S4DFA1F5S4A11A</div>
+						<img src="img/code_cion.png" class="code_cion" data-clipboard-target="#v_code"/>
+					</div>
+				</div>
+			</div>
+			
+			<div class="activation_box">
+				<div class="activation_l">
+					<img src="img/user_0.png"/>
+					<span class="ac_addr">激活地址</span>
+				</div>
+				<div class="activation_btn">
+					激活
+				</div>
+			</div>
+		</header>
+		
+		<div class="xx">
+			<div class="ge_list">
+				<a href="wallet_list.html" class="list">
+					<div class="list_left">
+						<img src="img/user_1.png" class="tups_img1"/>
+						<span class="zi">分钱包</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="team.html" class="list">
+					<div class="list_left">
+						<img src="img/user_2.png" class="tups_img1"/>
+						<span class="zi">我的团队</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="setup.html" class="list">
+					<div class="list_left">
+						<img src="img/user_3.png" class="tups_img1"/>
+						<span class="zi">安全中心</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="edit_psd.html" class="list">
+					<div class="list_left">
+						<img src="img/user_4.png" class="tups_img1"/>
+						<span class="zi">修改密码</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="customer.html" class="list">
+					<div class="list_left">
+						<img src="img/user_5.png" class="tups_img1"/>
+						<span class="zi">客服中心</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="invite.html" class="list">
+					<div class="list_left">
+						<img src="img/user_6.png" class="tups_img1"/>
+						<span class="zi">邀请好友</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="about.html" class="list">
+					<div class="list_left">
+						<img src="img/user_7.png" class="tups_img1"/>
+						<span class="zi">关于我们</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="news.html" class="list">
+					<div class="list_left">
+						<img src="img/user_10.png" class="tups_img1"/>
+						<span class="zi">公告列表</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="feedback.html" class="list">
+					<div class="list_left">
+						<img src="img/user_9.png" class="tups_img1"/>
+						<span class="zi">用户反馈</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				<a href="" class="list">
+					<div class="list_left">
+						<img src="img/user_8.png" class="tups_img1"/>
+						<span class="zi">区块链浏览器</span>
+					</div>
+					<img src="img/tips_next.png" class="next_img"/>
+				</a>
+				
+			</div>
+		</div>
+		
+		<div class="annius">
+			安全退出
+		</div>
+		
+		<!--导入底部导航栏-->
+		<div id="footer"></div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/clipboard.min.js"></script>
+	<script type="text/javascript">
+	    // 复制
+	    var clipboard=new Clipboard(".code_cion");
+	    clipboard.on("success",function(e){
+	        layer.msg("复制成功",{ icon: 1,time: 2000});
+	    })
+	</script>
+</html>

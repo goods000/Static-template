@@ -1,0 +1,67 @@
+
+
+body{
+	background: url(../images/reg-bg.png) no-repeat;
+	background-size: 100% 100%;
+	min-height: 100vh;
+	letter-spacing: 0.01rem;
+	color: #000;
+}
+
+.main{
+	margin: 0.59rem 0.15rem 0 0.15rem;
+}
+ul{
+	/* background: rgba(255,255,255,.6);
+	border-radius: 6px; 
+	padding: 0.1rem 0.17rem;*/
+	padding: 0.1rem 0rem;
+}
+.ul-2{
+	display: none;
+}
+li{
+	background: url(../images/wallet_bg.png) no-repeat;
+	background-size: 100% 100%;
+	/* background:rgba(255,255,255,1);
+	border:2px solid rgba(137,78,38,1);
+	box-shadow:inset 0px 4px 4px 0px rgba(0, 0, 0, 0.35); */
+	opacity:0.8;
+	border-radius:6px;
+	padding: 0.2rem 0.15rem 0.21rem 0.2rem;
+	margin-bottom: 0.1rem;
+	display: flex;
+	align-items: center;
+}
+.wallet-icon{
+	width: 0.4rem;
+	margin-right: 0.1rem;
+}
+.wallet-info{
+	width: 100%;
+	font-size: 0.16rem;
+}
+.wallet-info p,.main a{
+	color: #FFFFFF;
+}
+.wallet-info p:last-of-type{
+	margin-top: 0.1rem;
+	color: #FFFFFF;
+}
+.wallet-info span{
+	font-size: 0.12rem;
+}
+li a{
+	display: flex;
+	align-items: flex-end;
+	white-space: nowrap;
+	margin-top: 0.3rem;
+	color: #333333;
+	font-size: 0.12rem;
+}
+li a img{
+	width: 0.14rem;
+	margin-right: 3px;
+}
+
+

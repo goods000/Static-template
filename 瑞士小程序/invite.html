@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			body,html{background: url(img/invite_bg.png);background-size: 100% 100%;background-repeat: no-repeat;}
+			.h1{background: none;border-bottom: none;}
+		</style>
+	</head>
+	<body id="app">
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>邀请好友</p>
+		</h1>
+		<div class="invite">
+			<img src="img/invite_top.png" class="invite_top"/>
+			
+			<div class="code_box">
+				<div class="code_bg">
+					<!--<p class="info">扫码注册</p>-->
+					<div class="invite_box">
+						<p class="number">我的邀请码</p>
+						<p class="num">RS8899</p>
+					</div>
+					<div id="code"></div>
+					<textarea readonly="readonly" id="biao1">http://liangzihy.wgzvip.com/login/register?pid=1</textarea>
+                    <div class="anniu_neibu" onclick="copyUrl2()">复制</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+	<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#code").qrcode({
+	   		width: 110, //宽度 
+	    	height:110, //高度 
+	    	text: "www.zhizuobiao.com" //任意内容 
+		});
+		$('canvas').css({
+	        'display': 'block',
+	        'margin': '10px auto',
+	        'padding': '5px',
+	        'background': '#fff',
+	    });
+	    
+	    function copyUrl2(){
+//			var Url2=document.getElementById("biao1");
+//			Url2.select(); // 选择对象
+//			document.execCommand("Copy"); // 执行浏览器复制命令
+//			layer.msg("已复制好，可粘贴。");
+			
+			//下载二维码图片
+			let myCanvas = document.getElementById('app').getElementsByTagName('canvas');
+		    let a = document.createElement('a')
+		    a.href = myCanvas[0].toDataURL('image/png');
+		    a.download = '二维码';
+		    a.click()
+		}
+	    
+	</script>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.h1{background: none;border-bottom: none;}
+			.wallet_data .yue{margin-bottom: 0% !important;}
+			.wallet_data .count{font-size: 20px;margin-bottom: 5px !important;}
+			.wallet_data .balance_box{display: flex;flex-direction: row;align-items: center;justify-content: space-between;margin: 10px 0 20px;}
+			.wallet_data .balance_box .b_b{text-align: center;width: 50%;}
+			.wallet_data .balance_box span{color: #FFFFFF;font-size: 1rem;margin: 5px 0;display: block;}
+			.wallet_data .balance_box .balance{color: #fff;font-size: 12px;}
+			.capital{margin: 10px 0 !important;}
+			.capital .cap_bottom{background: #152A5D;padding: 3% 0;}
+			.capital .cap_bottom .tips{border-bottom: 1px solid #1A2748;padding:0 15px 3%;}
+			.capital .cap_bottom .tips .wen {display: flex;align-items: center;}
+			.capital .cap_bottom .tips .wen s{margin-right:5px;background: linear-gradient(180deg, #01B9EE 0%, #21FBFE 100%);height: 17px;width: 4px;display: inline-block;}
+			.capital .cap_bottom .tips div{text-align: right;display: flex;align-items: center;justify-content: flex-end;}
+			.capital .cap_bottom .tips div .more_txt{color: #6A738A;margin-right:5px;}
+			.capital .cap_bottom .tips .more_next{width: 15%;font-size: 14px;}
+			.capital .cap_bottom .recode-cont2 dl{padding: 0 15px;}
+			.capital .cap_bottom .recode-cont2 dl dt p{color: #19EAFA !important;}
+			.capital .cap_bottom .recode-cont2 dl dt span{color: #FFFFFF !important;}
+			.pool {margin-bottom: 5vh;}
+			.pool .pool_box{border: 1px solid #13DFF7;border-radius: 10px;margin: 12px 15px 0;position: relative;}
+			.pool .pool_box .tt_div{padding: 10px 15px 0;}
+			.pool .pool_box .pool_data{border: none;}
+			.pool .pool_box .pool_data i{width: 70px;height: 70px;}
+			.pool .pool_box .pool_btn{background: linear-gradient(180deg, #01B9EE 0%, #21FBFE 100%);position: absolute;right: 15px;}
+			.pool .pool_box .pool_btn{border-radius: 50px;padding: 4px 0px;color: #FFFFFF;font-size: 14px;width: 22%;text-align: center;}
+		</style>
+	</head>
+	<body>
+		<div class="wallet_data">
+			<h1 class="h1">
+				<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+				<p>资产包</p>
+			</h1>
+			<p class="count txt_eye">0.00000.000 </p>
+			<span class="yue">总资产</span>
+			<div class="balance_box">
+				<div class="b_b">
+					<span>000.00</span>
+					<p class="balance">昨日收益(USDC)</p>
+				</div>
+				<div class="b_b">
+					<span>000.00</span>
+					<p class="balance">累计收益(USDC)</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="capital">
+			<div class="cap_bottom">
+				<div class="tips">
+					<span class="wen"><s></s>我的投资</span>
+					<div>
+						<span class="more_txt">查看更多</span>
+						<img src="img/more.png" class="more_next"/>
+					</div>
+				</div>
+				<div class="recode-cont2">
+					<dl>
+						<dt>
+							<p>5000 U</p>
+							<span>投资金额</span>
+						</dt>
+						<dt>
+							<p>10000 U</p>
+							<span>静态资产(2倍)</span>
+						</dt>
+						<dt>
+							<p>5000 U</p>
+							<span>动态资产</span>
+						</dt>
+					</dl>
+				</div>
+			</div>
+		</div>
+		<div class="pool">
+			<div class="pool_box">
+				<div class="tt_div">
+					<span>套餐一</span>
+				</div>
+				<div class="pool_data">
+					<i><img src="img/pool_1.png"/></i>
+					<div class="data_box">
+						<p>100U-499U</p>
+						<p>放大倍数：2</p>
+					</div>
+					<div class="pool_btn" onclick="location.href='pool.html'">购买</div>
+				</div>
+			</div>
+			<div class="pool_box">
+				<div class="tt_div">
+					<span>套餐二</span>
+				</div>
+				<div class="pool_data">
+					<i><img src="img/pool_1.png"/></i>
+					<div class="data_box">
+						<p>500U-499U</p>
+						<p>放大倍数：2</p>
+					</div>
+					<div class="pool_btn" onclick="location.href='pool.html'">购买</div>
+				</div>
+			</div>
+			<div class="pool_box">
+				<div class="tt_div">
+					<span>套餐三</span>
+				</div>
+				<div class="pool_data">
+					<i><img src="img/pool_1.png"/></i>
+					<div class="data_box">
+						<p>1000U-2999U</p>
+						<p>放大倍数：2</p>
+					</div>
+					<div class="pool_btn" onclick="location.href='pool.html'">购买</div>
+				</div>
+			</div>
+			<div class="pool_box">
+				<div class="tt_div">
+					<span>套餐四</span>
+				</div>
+				<div class="pool_data">
+					<i><img src="img/pool_1.png"/></i>
+					<div class="data_box">
+						<p>3000U-4999U</p>
+						<p>放大倍数：2</p>
+					</div>
+					<div class="pool_btn" onclick="location.href='pool.html'">购买</div>
+				</div>
+			</div>
+			<div class="pool_box">
+				<div class="tt_div">
+					<span>套餐五</span>
+				</div>
+				<div class="pool_data">
+					<i><img src="img/pool_1.png"/></i>
+					<div class="data_box">
+						<p>5000U</p>
+						<p>放大倍数：2</p>
+					</div>
+					<div class="pool_btn" onclick="location.href='pool.html'">购买</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<script type="text/javascript">
+		
+	</script>
+</html>

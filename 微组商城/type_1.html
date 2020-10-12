@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	    <link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+	    <style type="text/css">
+	    	.h1{display: flex;justify-content: flex-end;align-items: center;}
+	    	.h1 button{left: 2%;}
+	    	.shop .search{width: 90%;}
+	    	.tab{display: flex;flex-direction: row;justify-content: space-between;height: 95vh;}
+	    	.tab-title{overflow: scroll;background: #fff;display: flex;flex-direction: column;width: 25%;padding:2% 0 5%;}
+	    	.tab-title a{width: 100%;display:block;text-align: center;float: left;color: #333;font-size: 1rem;margin:5% 0;border-bottom:1px solid #F5F5F5;}
+			.tab-title span{display: inline-block;padding:5px 12px 15px;color: #56585C;}
+			.item-cur span{color:#0771F9 !important;}
+			.tab-cont{width: 75%;height: 100%;overflow: scroll;}
+			.index_bottom{margin: 0px 0 5vh;background: none;}
+			.index_bottom .i_img .goods_img{height: 130px;}
+	    </style>
+	</head>
+	<body>
+		<header class="header">
+		    <div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">宝贝分类</span>
+		</header>
+		<div class="tab mian_top" js-tab="1">
+			<div class="tab-title">
+				<a href="javascript:;" class="item item-cur"><span>商城推荐</span></a>
+				<a href="javascript:;" class="item"><span>家用电器</span></a>
+				<a href="javascript:;" class="item"><span>家居家装</span></a>
+				<a href="javascript:;" class="item"><span>居家餐厨</span></a>
+				<a href="javascript:;" class="item"><span>智能家庭</span></a>
+				<a href="javascript:;" class="item"><span>日用玩具</span></a>
+				<a href="javascript:;" class="item"><span>电视影音</span></a>
+				<a href="javascript:;" class="item"><span>手机电脑</span></a>
+				<a href="javascript:;" class="item"><span>数码周边</span></a>
+				<a href="javascript:;" class="item"><span>服装配饰</span></a>
+				<a href="javascript:;" class="item"><span>鞋靴箱包</span></a>
+				<a href="javascript:;" class="item"><span>家用电器</span></a>
+				<a href="javascript:;" class="item"><span>家用电器</span></a>
+				<a href="javascript:;" class="item"><span>智能家庭</span></a>
+				<a href="javascript:;" class="item"><span>日用玩具</span></a>
+				<a href="javascript:;" class="item"><span>电视影音</span></a>
+				<a href="javascript:;" class="item"><span>手机电脑</span></a>
+				<a href="javascript:;" class="item"><span>数码周边</span></a>
+				<a href="javascript:;" class="item"><span>服装配饰</span></a>
+			</div>
+			<div class="tab-cont">
+				<div class="tab-cont_wrap">
+					<div class="index_bottom">
+						<a href="goods_detail.html" class="goods">
+							<img src="img/goods.png" class="goods_img">
+							<p class="goods_title">商品详情</p>
+							<div class="goods_box">
+								<span class="price">￥299.00</span>
+							</div>
+						</a>
+						<a href="" class="goods">
+							<img src="img/goods.png" class="goods_img">
+							<p class="goods_title">睡大街啊了开关机</p>
+							<div class="goods_box">
+								<span class="price">￥450.00</span>
+							</div>
+						</a>
+						<a href="" class="goods">
+							<img src="img/goods.png" class="goods_img">
+							<p class="goods_title">易武普洱茶熟茶易武熟饼云南七子饼茶勐腊黑茶易武普洱茶熟茶易武熟饼云南七子饼茶勐腊黑茶</p>
+							<div class="goods_box">
+								<span class="price">￥299.00</span>
+							</div>
+						</a>
+					</div>
+					<div class="kong">
+						<img src="img/kong.png" />
+						<p>暂无记录</p>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</dody>
+	<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//		$(function(){$('[js-tab=1]').tab();});
+		
+		$(".item").click(function(){
+			$(this).addClass("item-cur").siblings().removeClass("item-cur");
+		})
+		
+		function show() {
+			//没有数据的时候显示
+			console.log($(".index_bottom .goods").length)
+			if($(".index_bottom .goods").length <= 0) {
+				$(".kong").show();
+			} else {
+				$(".kong").hide();
+			}
+		}
+		show();	
+		
+		function GetQueryString(name)
+		{
+			 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			 var r = window.location.search.substr(1).match(reg);
+			 if(r!=null)return  unescape(r[2]); return null;
+		}
+		// 一开始根据参数显示币种
+		var type=GetQueryString("type");
+		shoTab(type)
+		function shoTab(type){
+			$(".tab a").removeClass("active").eq(type).addClass("active");
+			$(".list").removeClass("on").eq(type).addClass("on");
+			show();
+		}
+	</script>
+</html>

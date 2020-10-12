@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.h1{background: none;border-bottom: none;}
+			.wallet_data{background: url(img/pool_bg.png);}
+		</style>
+	</head>
+	<body>
+		<div class="wallet_data">
+			<h1 class="h1">
+				<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+				<p>矿池</p>
+			</h1>
+			<p class="count txt_eye">&nbsp;</p>
+			<span class="yue">&nbsp;</span>
+		</div>
+		<div class="pool_body">
+			<p class="yong">矿池资产</p>
+			<div class="mine_box">
+				<p>EHL数量</p>
+				<div class="money">
+					<span>EHL</span><b>2776616.0790</b>
+				</div>
+				<div class="yi">
+					<!-- <span>总收益: 9989893244543</span> -->
+				</div>
+			</div>
+		</div>
+		<div class="backcolor"></div>
+		<div class="pool">
+			<div class="pool_box">
+				<!--<div class="tt_div">
+					<span>套餐一</span>
+				</div>-->
+				<div class="pool_data">
+					<i><img src="img/pool_1.png"/></i>
+					<div class="data_box">
+						<p>投资数量:100U-499U【最高收益 2 倍】</p>
+						<p>放大倍数：2</p>
+						<p>每天释放：3‰</p>
+						<p>投资金额 ：100U-499U</p>
+					</div>
+				</div>
+				<div class="pool_btn_box">
+					<div class="pool_btn" onclick="location.href='pool.html'">购买</div>
+				</div>
+			</div>
+		</div>
+		<div class="backcolor"></div>
+		<div class="buy_box">
+			<div class="tt_div">
+				<span>套餐一</span>
+			</div>
+			<div class="buy">
+				<div class="buy_l">
+					<i><img src="img/pool_1.png"/></i>
+					<div class="ju">
+						<p>100U-499U【最高收益 2 倍】</p>
+						<div class="suan">
+							<div class="buy_title">
+								<p class="qian">15.0000</p>
+								<p><i>昨日收益</i></p>
+							</div>
+				
+							<div class="buy_title">
+								<p class="qian">23260</p>
+								<p><i>剩余收益</i></p>
+							</div>
+							<div class="buy_title">
+								<p class="qian">1740.0000</p>
+								<p><i>累计收益</i></p>
+							</div>
+				
+						</div>
+					</div>
+				</div>
+				<div class="time_box">
+					<i>购买时间</i>
+					<i>2020-05-02 23:01:03</i>
+				</div>
+			</div>
+			
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+//		$(".pool_btn").click(function(){
+//			var payment = $('#payment').val();
+//			if(payment==""){
+//	            layer.msg('请输入交易密码', { icon: 2,time: 2000});
+//	            return false;
+//	        }
+//			layer.confirm('是否购买？',function(){
+//              $.ajax({
+//                  type: 'POST',
+//                  url: '',
+//                  dataType: 'json',
+//                  data: {pay_type:pay_type,goods_id:1,password:payment},
+//                  success: function (data) {
+//                  	   if(data.status == 200){
+//                  		    layer.msg(data.msg, { icon: 1,time: 2000},function(){
+//                                  location.href="/"
+//                          });
+//                             }else{
+//                             	 layer.msg(data.msg, { icon: 2,time: 2000});
+//                               $(this).attr('disabled',false);
+//                           }
+//                  }
+//              });
+//			});
+//		})
+	</script>
+</html>

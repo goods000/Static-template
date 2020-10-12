@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>提币</title>
+		<meta name="apple-mobile-web-app-capable" content="yes"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/convert.css">
+		<style>
+    	select {background: none;border-bottom: 1px solid #eee !important;}
+    </style>
+		
+	</head>
+	<body>
+		<header class="header">
+		    <div class="headerLeft" onclick="javascript:history.back(-1);">
+		        <img src="images/return.png" alt="">
+		    </div>
+		    <span class="headerTitle">提币</span>
+		    <a href="withdraw_record.html" class="headerRight">提币记录</a>
+		</header>
+		<main class="main" id="app" v-cloak>
+			<div class="input-wrap">
+				<div class="input-item">
+					<label>提币地址</label>
+					<input type="text" placeholder="请输入您的提币地址" v-model="convert.addr"/>
+				</div>
+				<div class="input-item">
+					<label>提币数量</label>
+					<input type="number" placeholder="请输入您的提币数量" v-model="convert.sendNum"/>
+				</div>
+				<div class="input-item">
+					<label>手续费</label>
+					<input type="text" value="5%"/>
+				</div>
+				<div class="input-item">
+					<label>交易密码</label>
+					<input type="password" placeholder="请输入您交易密码" v-model="convert.payPassword"/>
+				</div>
+			</div>
+			<button type="button" class="send-btn">确定</button>
+			
+		</main>
+		
+	</body>
+	<script type="text/javascript" src="js/zhaler/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/zhaler/jquery.cookie.min.js"></script>
+	<!--<script type="text/javascript" src="js/zhaler/encrypt/core.js"></script>
+	<script type="text/javascript" src="js/zhaler/encrypt/md5.js"></script>-->
+	<script type="text/javascript" src="js/zhaler/encrypt/encrypt.js"></script>
+	<script type="text/javascript" src="js/layer/layer.js"></script>
+	<script type="text/javascript" src="js/zhaler/vue.min.js"></script>
+	<script type="text/javascript" src="js/zhaler/config.js"></script>
+	<script type="text/javascript" src="js/zhaler/validator.js"></script>
+	<script>
+	var vm = new Vue({
+    	el:'#app',
+    	data:{
+    		convert:{},
+    	},
+    	methods: {
+    		validator: function () {
+    			if(isBlank(vm.convert.addr)){
+                    alert("请输入您的提币地址");
+                    return true;
+                }
+                if(isBlank(vm.convert.sendNum)){
+                    alert("请输入您的提币数量");
+                    return true;
+                }
+               	if(isBlank(vm.convert.payPassword)){
+                      alert("请输入交易密码");
+                      return true;
+       			}
+            },
+    	},
+    	created: function(){
+            
+        }
+    }); 
+   </script>
+</html>

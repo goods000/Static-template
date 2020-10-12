@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.anniu{width: 90%;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>转账</p>
+	    	<a href="transfer_record.html"><img src="img/record.png"/></a>
+		</h1>
+		<div class="big_box">
+			<div class="input_i">
+				<label>转账类型</label>
+				<select name="" id="type">
+					<option value="">请选择转账类型</option>
+					<option value="1">第一第一</option>
+					<option value="2">第二第二</option>
+				</select>
+			</div>
+			<div class="backcolor"></div>
+			<div class="input_i">
+				<label>转入ID</label>
+				<input type="number" value="" class="cid" placeholder="请输入ID号"/>
+			</div>
+			<div class="backcolor"></div>
+			<div class="input_i input_line">
+				<label>转入数量</label>
+				<input type="number" value="" class="num" placeholder="请输入转入数量" />
+			</div>
+			<div class="bi_k">
+				<span>剩余余额：10000</span>
+			</div>
+			<div class="backcolor"></div>
+			<div class="input_i_1">
+				<label>交易密码</label>
+				<input type="password" value="" class="pwd" placeholder="请输入交易密码"/>
+			</div>
+			<div class="backcolor"></div>
+			<div class="anniu">确认</div>
+		</div>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".anniu").click(function(){
+			var type = $("#type option:selected").val();
+			var cid=$(".cid").val();
+			var num=$(".num").val();
+			var pwd=$(".pwd").val();
+			// 是否非空
+			if(!isKong(type,"请选择转账类型")){
+				return false;
+			}
+			if(!isKong(cid,$(".cid").attr("placeholder"))){
+				$(".cid").focus();
+				return false;
+			}
+			if(!isKong(num,$(".num").attr("placeholder"))){
+				$(".num").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(pwd,$(".pwd").attr("placeholder"))){
+				$(".pwd").focus();
+				return false;
+			}
+			$.ajax({
+	            type: "POST",
+	            contentType:"application/json",
+		        url:'',
+	            async: false,
+	            data : {
+    				"type" :type,
+    				"cid" : cid,
+    				"number" : num,
+    				"password" : pwd
+    			},
+	            success: function(data) {
+	            	console.log(data)
+					if(data.code == 0){
+						layer.msg(data.msg,{icon:6,time:1000});
+	    			}else{
+						layer.msg(data.msg,{icon:2,time:1000});
+					}
+				},
+				error:function(data){
+			        console.log(data);
+			    }
+	        })
+		})
+	</script>
+</html>

@@ -1,0 +1,83 @@
+*{margin: 0px;padding: 0px;font-size: 15px;font-family: "microsoft yahei";}
+li{list-style: none;}
+a{text-decoration: none; -webkit-tap-highlight-color:transparent;}
+input[type="text"],input[type="password"],input[type="number"],input[type="submit"],input[type="button"],button,textarea{outline:none;-webkit-appearance: none;}
+select{outline: none;-webkit-appearance: none;}
+s{font-style: normal;text-decoration: none;}
+em{font-style: normal;}
+input,button{background: none;border:0px;outline: none;}
+input::-webkit-input-placeholder{color:#6A738A;}
+textarea::-webkit-input-placeholder{color:#6A738A;}
+body,html{background: url(../img/login_bg.png);background-repeat: no-repeat;background-size: 100% 100%;height: 100%;}
+i{font-style: normal;}
+.anniu{background: linear-gradient(180deg, #01B9EE 0%, #21FBFE 100%);width: 100%;color: #fff;padding: 10px 0;margin-top:10%;border-radius: 5px;text-align: center;font-size: 18px;}
+.anniu_neibu{background: linear-gradient(180deg, #01B9EE 0%, #21FBFE 100%);width:40%;color: #fff;padding: 10px 0;margin: auto;margin-top:20%;display: block;}
+.annius{background: linear-gradient(180deg, #01B9EE 0%, #21FBFE 100%);width:90%;color: #fff;padding: 10px 0;margin: auto;margin-top:15%;margin-bottom:10%;display: block;border-radius: 5px;font-size: 18px;}
+.mt{height: 5px;background: #F5F5F5;}
+
+.h1{width: 100%;position: relative;padding:8% 2%;font-weight: 500;box-sizing: border-box;
+    /*background: url(../img/header_bg.png);background-size: 100% 100%;background-repeat: no-repeat;*/background: none;}
+.h1 button{position: absolute;margin-left:0px;margin-top:0px;font-size: 1.4rem;color: #FFFFFF;}
+.h1 p{text-align: center;color:#FFFFFF;font-size: 1.2rem;}
+.h1 p span{text-align: center;color:#FFFFFF;font-size: 1.2rem;}
+.h1 p img{width: 25%;margin-top: 1%;}
+.h1 s{font-size: 18px;color: #FFFFFF;}
+.h1 a{position: absolute;font-size: 1rem;right: 15px;top:15px;color: #FFFFFF;}
+.h1 .left{position: absolute;left: 15px;top:15px;width: 5%;}
+.h1 .right{position: absolute;font-size: 1rem;right: 15px;top:15px;color: #FFFFFF;display: flex;align-items: center;justify-content: flex-end;}
+.h1 .right img{width: 66%;}
+/*.h1 .right img:nth-child(1){margin-right: 15px;}*/
+.h1 a span{color: #999;font-size: 1rem;}
+
+.logo{text-align: center;/*background: url(../img/login_top.png);background-repeat: no-repeat;background-size: 100% 100%;*/min-height: 20vh;}
+img.logo_img{display: block;margin:auto;width: 28%;padding-top: 15vh;}
+.logo h2{font-size:1.4rem;font-weight: 600;}
+.logo p{font-size: 0.8rem;margin-top: 5px;}
+.login img.icon{width: 8%;margin-right: 5%;}
+.login label{color: #FFFFFF;width: 25%;text-align: left;}
+.login input{flex:1;outline: none;background: none;border: 0px;color: #fff;box-sizing: border-box;box-sizing: border-box;}
+.login input.code{width: 66%;}
+.login input.tu_code{width: 75%;}
+/*.login input:focus{border-bottom:1px solid #42c2a8;transition-duration:0.7s;}*/
+.login{width: 95%;padding:10px 5%;margin:auto;text-align: right;box-sizing: border-box;}
+.login h2{color: #FFFFFF;font-weight: 100;font-size: 20px;margin:0% 0 20%;text-align: center;letter-spacing: 2px;}
+.login h2 a{color: #666;padding-bottom:5px;}
+.login h2 a:nth-child(2){margin-left: 20px;}
+.login form .a{color: #333;margin-top:10px;text-decoration: none;}
+.locgin_i .img{width: 6%;}
+.locgin_i{position: relative;display: flex;flex-direction: row;align-items: center;border-bottom: 1px solid #2E3F6B;padding:20px 5px;}
+.shouji p{background: #f0f3ff;padding: 10px;box-sizing: border-box;color: #185cc7;border-radius: 0 0 5px 5px;margin-top: -15px;margin-bottom: 10px;}
+.getCode1{width: 30% !important;display: block;position: absolute;right:0%;bottom: 33%;color:#04BFEF !important;text-align: right;}
+.get_code1{display:none;width:30%;position: absolute;right:0%;font-size: 12px;color:#04BFEF !important;text-align: right;}
+#J_second{color: #E69F20;font-size:12px;}
+.login .a_box{display: flex;align-items: center;justify-content:space-between;}
+.login .a_box a{color: #FFFFFF;font-size: 0.8rem;}
+.login .a_box a.register{color: #04BFEF !important;}
+.to_regiser{display: block;text-align: center;padding: 5% 0;}
+.to_regiser span{font-size: 0.9rem;color: #333333;}
+.to_regiser .chioce{color: #04BFEF;}
+
+.login .tab{overflow: hidden;}
+.login .tab a{float:left;display: inline-block;width: 50%;text-align: center;padding: 1rem 0;font-size: 1rem;color:#999999;font-weight:bold;position: relative;}
+.login .tab a.active{color: #04BFEF;}
+.login .tab a.active::after{content: " ";position: absolute;bottom: 0;left: 25%;width: 50%;height: 2px; background:#04BFEF;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

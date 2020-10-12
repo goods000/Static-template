@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+	body,html{height:100vh;}
+	input::-webkit-input-placeholder{color:#999999;}
+	.locgin_i{border-bottom: none;background: #FFFFFF;border-radius: 5px;margin: 15% auto 0px;padding: 12px 20px;}
+	.anniu{margin-top: 20%;}
+	.login input{color: #333;}
+</style>
+<body>
+	<div id="app">
+		<!--<div class="logo"></div>-->
+		<img src="img/logo.png" class="logo_img"/>
+		<div class="login login_1">
+			<h2>瑞士欢迎您</h2>
+			<!--<h2><a href="login.html">登录</a><a href="rst.html">注册</a></h2>-->
+			<form>			
+				<div class="locgin_i">
+					<img src="img/login_1.png" class="icon"/>
+					<input type="text" class="mobile" placeholder="用户名" />
+				</div>
+				<div class="locgin_i">
+					<img src="img/login_2.png" class="icon"/>
+					<input type="password" class="pwd" placeholder="密码" />
+				</div>
+				<div class="a_box">
+					<a class="a register" href="register.html">注册</a>
+					<a class="a" href="forget.html">忘记密码？</a>
+				</div>
+				<div class="anniu" @click="login">登录</div>
+			</form>
+		</div>
+	</div>	
+</body>
+<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+		$("input").on("blur",function(){
+	        var toFix=$(this).offset().top;
+	        window.scroll(0,toFix);//失焦后强制让页面归位
+	    });
+	
+	
+		$(".anniu").click(function(){
+			var mobile=$(".mobile").val();
+			var pwd=$(".pwd").val();
+			// 是否非空
+			if(!isKong(mobile,$(".mobile").attr("placeholder"))){
+				$(".mobile").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(pwd,$(".pwd").attr("placeholder"))){
+				$(".pwd").focus();
+				return false;
+			}
+			$.ajax({
+	            type: "POST",
+	            contentType:"application/json",
+		        url:'json/login/login.json',
+	            async: false,
+	            data : {
+    				"username" :mobile,
+    				"password" : pwd
+    			},
+	            success: function(data) {
+	            	console.log(data)
+					if(data.code == 0){
+						layer.msg('登录成功',{icon:6,time:1000},function() {
+//							window.location.href = "index.html";
+						});
+	    			}else{
+						layer.msg('登录失败',{icon:2,time:1000});
+					}
+				},
+				error:function(data){
+			        console.log(data);
+			    }
+	        })
+	    })
+</script>
+</html>

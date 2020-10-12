@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.big_box .input_i .aa{position: absolute;right: 10px;bottom: 10px;color: #FF7122;text-align: right;font-size: 12px;}
+			.big_box .label{float: right;text-align: right;}
+			.big_box .input_i select{background: url(img/info_next.png) no-repeat right 10px center; background-size: 8px 12px;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>添加钱包地址</p>
+		</h1>
+		<div class="big_box">
+			<div class="input_i">
+				<label>钱包地址</label>
+				<input type="text" placeholder="请输入钱包地址" name="account" class="account">
+			</div>
+			<div class="backcolor"></div>
+			<div class="input_i">
+				<label>钱包名称</label>
+				<input type="text" placeholder="请输入钱包名称" name="nickname" class="nickname">
+			</div>
+			<div class="backcolor"></div>
+			<div class="anniu">确认</div>
+		</div>
+		<dl class="charge_dl">
+			<dt>注意：</dt>
+			<dd>请添加交易所对应币种的ERC20类型收币地址，否则提币造成的资产损失，平台概不负责。</dd>
+		</dl>
+	</body>
+	<script src="js/area.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/select.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".anniu").click(function(){
+			var account = $("input[name='account']").val();
+            var nickname = $("input[name='nickname']").val();
+			// 是否非空
+			if(!isKong(account,$(".account").attr("placeholder"))){
+				$(".account").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(nickname,$(".nickname").attr("placeholder"))){
+				$(".nickname").focus();
+				return false;
+			}
+			$.ajax({
+                type: 'POST',
+                url: '/user/addwallet',
+                dataType: 'json',
+                data: {account:account,nickname:nickname},
+                success: function (data) {
+                    if( data.result == 0 ){
+                        layer.msg(data.msg, { icon: 1,time: 2000},function(){
+                            window.history.back(-1)
+                        });
+                    }else{
+                        layer.msg(data.msg, { icon: 2,time: 2000});
+                    }
+                }
+            });
+		})
+		
+		
+
+    function submitConfirm() {
+            
+            if (account==""){
+                layer.msg("地址不准为空",{ icon: 0,time: 2000});
+                return false;
+            }
+
+            if (nicknema==""){
+                layer.msg("钱包名称不准为空",{ icon: 0,time: 2000});
+                return false;
+            }
+
+            
+    }
+	</script>
+</html>

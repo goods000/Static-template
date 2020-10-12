@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.anniu{width: 90%;}
+			.get-code,.reset-code{bottom:32% !important;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>闪兑</p>
+	    	<a href="exchange_record.html"><img src="img/record.png"/></a>
+		</h1>
+		<div class="big_box">
+			<div class="bi_k">
+				<p>闪兑币种：USDT</p>
+			</div>
+			<div class="input_i">
+				<label>闪兑类型</label>
+				<select name="" id="type">
+					<option value="1">  USDC 闪兑  USDT</option>
+				</select>
+			</div>
+			<div class="backcolor"></div>
+			<div class="input_i input_line">
+				<label>闪兑数量</label>
+				<input type="number" value="" class="num" placeholder="请输入闪兑数量" />
+			</div>
+			<div class="bi_k">
+				<span>可用USDT现金：100000</span>
+				<span>手续费（0%）</span>
+			</div>
+			<div class="backcolor"></div>
+			<div class="input_i_1">
+				<label>交易密码</label>
+				<input type="password" value="" class="pwd" placeholder="请输入交易密码"/>
+			</div>
+			<div class="input_i_1">
+				<label>验证码</label>
+			    <input type="number" placeholder="请输入验证码" name="code" class="code" value="">
+		        <a class="btn btn-small get-code" onclick="getCode(this)" id="J_getCode">获取验证码</a>
+		        <a class="btn btn-small reset-code" id="J_resetCode"><span id="J_second">60</span><s>秒后重发</s></a>
+			</div>
+			<div class="backcolor"></div>
+			<div class="anniu">闪兑</div>
+		</div>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".anniu").click(function(){
+			var type = $("#type option:selected").val();
+			var num=$(".num").val();
+			var pwd=$(".pwd").val();
+			var code=$(".code").val();
+			// 是否非空
+			console.log(type)
+			if(type == ''){
+				layer.msg("请选择闪兑类型",{icon:2,time:2000});
+				return false;
+			}
+			if(!isKong(num,$(".num").attr("placeholder"))){
+				$(".num").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(pwd,$(".pwd").attr("placeholder"))){
+				$(".pwd").focus();
+				return false;
+			}
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				$(".code").focus();
+				return false;
+			}
+			$.ajax({
+	            type: "POST",
+	            contentType:"application/json",
+		        url:'',
+	            async: false,
+	            data : {
+    				"type" :type,
+    				"number" : num,
+    				"password" : pwd,
+    				"code" : code,
+    			},
+	            success: function(data) {
+	            	console.log(data)
+					if(data.code == 0){
+						layer.msg(data.msg,{icon:6,time:1000});
+	    			}else{
+						layer.msg(data.msg,{icon:2,time:1000});
+					}
+				},
+				error:function(data){
+			        console.log(data);
+			    }
+	        })
+		})
+	</script>
+</html>

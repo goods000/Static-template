@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/font.css" />
+		<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.bottom_nav dl dd:nth-child(3) a .dier {display: block !important;}
+			.bottom_nav dl dd:nth-child(3) a .diyi {display: none !important;}
+			.bottom_nav dl dd:nth-child(3) a span {color: #04BFEF;}
+			body {padding-bottom: 15%;}
+			.tab-title{background: #0D1A3A;}
+	    	.tab-title a{width: 25%;display:block;text-align: center;float: left;color: #333;font-size: 16px;}
+	    	.tab-title{overflow: hidden;margin-top:2%}
+	    	.tab-title span{display: inline-block;padding: 10px 0;color: #5C5C5C;font-size: 0.8rem;}
+	    	.item-cur span{color:#FFFFFF !important;font-weight: bold;font-size: 16px;position: relative;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+	    	<p>交易</p>
+	    	<!--<a href="CTC_rule.html">规则</a>-->
+		</h1>
+		<div class="ctc" id="app">
+			<div class="ctc_top">
+				<span>当日价格：$1.23</span>
+				<span>当日价格：￥0.23</span>
+			</div>
+			<!--折线图-->
+			<div class="charts">
+				<div id="chartmain" style="width: 100%;height: 200px;"></div>
+			</div>
+			<div class="backcolor"></div>
+			<div class="buy_btn">
+				<ul>
+					<li>
+						<a href="release_buy.html" class="nav_box">
+							<img src="img/CTC_1.png" class="nav_img">
+							<p class="nav_title">发布求购</p>
+						</a>
+					</li>
+					<div class="line"></div>
+					<li>
+						<a href="record.html" class="nav_box">
+							<img src="img/CTC_2.png" class="nav_img">
+							<p class="nav_title">交易记录</p>
+						</a>
+					</li>
+					<div class="line"></div>
+					<li>
+						<a href="CTC_order.html" class="nav_box">
+							<img src="img/CTC_3.png" class="nav_img">
+							<p class="nav_title">我的订单</p>
+						</a>
+					</li>
+				</ul>	
+			</div>
+			<div class="backcolor"></div>
+			<div class="tab" js-tab="1">
+				<div class="tab-title">
+	  				<a href="javascript:;" class="item item-cur"><span>求购大厅</span></a>
+				</div>
+				<div class="tab-cont">
+					<div class="tab-cont_wrap">
+						<ul class="item" >
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价 (USDT)：</i>
+										<span><i class="d_price">4.8</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i">USDT</i></span>							
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">数量 (B币)：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<p class="buyBtn">卖给TA</p>					
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">单价 (USDT)：</i>
+										<span><i class="d_price">4.8</i></span>
+									</div>
+									<div class="right">
+										<span><i class="i_price">48.00</i> <i class="i">USDT</i></span>						
+									</div>
+								</div>
+								<div class="item_box">
+									<div class="left">
+										<i class="d_title">数量 (B币)：</i>
+										<span class="d_price">10</span>
+									</div>
+									<div class="right">
+										<p class="buyBtn">卖给TA</p>					
+									</div>
+								</div>
+							</li>
+						</ul>	
+					</div>
+				</div>
+			</div>
+			<!-- 付款框 -->
+			<div class="mo_1">
+				<div class="mo_box">
+					<h1 class="h1 no_line">
+						<a href="javascript:;" class="close">×</a>
+					</h1>
+					<div class="info_box">
+						<div class="info_1">
+							<div class="info_left">
+								<span class="info_name">卖出USDT</span>
+							</div>
+							<div class="info_right">
+								<span class="info_data">单价0.00</span>
+								<span class="info_data">剩余数量50</span>
+							</div>
+						</div>
+						<div class="info_1">
+							<div class="info_left">
+								<span class="info_name">卖出数量</span>
+							</div>
+							<div class="info_right">
+								<input type="number" placeholder="请输入卖出数量" name="" class="num" value="" />
+							</div>
+						</div>
+						<div class="info_1">
+							<div class="info_left">
+								<span class="info_name">交易密码</span>
+							</div>
+							<div class="info_right">
+								<input type="password" placeholder="请输入交易密码" name="" class="psd" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="anniu sell_btn">立即出售</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div id="footer"></div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+		  $('[js-tab=1]').tab();
+		
+		});
+		$(".buyBtn").click(function () { $(".mo_1").show();})
+		$(".purchaseBtn").click(function () { $(".mo_1").show();})
+		$(".close").click(function () { $(".mo_1").hide();})
+		
+		$(".sell_btn").click(function(){
+			var num = $(".num").val();
+			var psd = $(".psd").val();
+			if( num === ""){
+	            layer.msg('请输入卖出数量',{icon:2,time:1000});
+	            $(".num").focus();
+	            return false;
+	        }
+			if(psd===""){
+				layer.msg('请输入交易密码',{icon:2,time:1000});
+				$(".psd").focus();
+                return false;
+			}
+			$.ajax({
+				type: "POST",
+				url:"",
+				data:{data:{num:num,payment:psd}},
+				success: function(res) {
+					if (res.code == 0) {
+						layer.msg(res.msg);
+					}else{
+						layer.msg(res.msg);
+					}
+				}
+			})
+		})
+		
+	</script>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('chartmain'));
+		option = {
+			grid: {
+		        left: '2%',
+		        right: '4%',
+		        top: '5%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		    xAxis: {
+		        type: 'category',
+		        data: ['12日', '13日', '14日', '15日', '16日', '17日'],
+		        axisLabel: {
+						show: true,
+						textStyle: {
+							color: '#EEF3FF', //x轴data 的颜色
+							fontSize:10
+						}
+					},
+					nameTextStyle: {
+						color: '#EEF3FF' //x轴名称的 颜色
+					},
+					axisLine:{
+						lineStyle:{
+							color:'#EEF3FF',
+							width:1,//这里是为了突出显示加上的
+						}
+					}
+		    },
+		    yAxis: [
+		    	{
+			        type: 'value',
+			        axisLabel: {
+					show: true,
+					textStyle: {
+							color: '#EEF3FF', //x轴data 的颜色
+							fontSize:10
+						}
+					},
+					nameTextStyle: {
+						color: '#EEF3FF' //x轴名称的 颜色
+					},
+					axisLine:{
+						lineStyle:{
+							color:'#EEF3FF',
+							width:1,//这里是为了突出显示加上的
+						}
+					},
+					splitLine: {	//网格样式
+						show: true,
+						lineStyle:{
+							color: '#EEF3FF',
+							width: 1,
+							type: 'solid'
+						}
+					}
+			    }
+		    ],
+		    series: [{
+		        data: [820,1330,1320, 934, 290,330 ,220 ],
+		        type: 'line',
+		        itemStyle: {
+					normal: {
+						barGap: '-100%',
+						color:'#21FBFE',
+                        borderColor:'#21FBFE',  //拐点边框颜色
+						lineStyle: {
+							width:1, //调整 线条的宽度  5已经很宽啦
+                            color : '#A8E7F8' //线条颜色
+						},
+						label : {show: true}
+					},
+				},
+		    }]
+		};
+		// 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+	</script>
+</html>

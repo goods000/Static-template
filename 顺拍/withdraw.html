@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.css"/>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.input_list{margin-top: 20%;}
+			.anniu{display:block;border-radius: 2px;color: #d13b49 !important;background-color: #ffcbd0;border-color: #ffb5bc;font-size: 12px;text-align: center;padding: 0.5em 1em;
+    vertical-align: middle;font-weight: normal;line-height: 1.2;white-space: nowrap;background-image: none;border-radius: 2px;cursor: pointer;}
+			.big_box{padding: 15px 10px;}
+			.big_box .input_i{display: flex;flex-direction: column;justify-content: flex-start;position: relative;margin-bottom: 1.5rem;}
+			.big_box .input_i label{display: inline-block;margin-bottom: 5px;font-weight: bold;font-size: 12px;}
+			.big_box .input_i input{border:1px solid #ccc;padding:0.5em;margin: 0;color: #555555;border-radius: 2px;background: #fff;line-height: 1.2;display: block;vertical-align: middle;}
+			.big_box .input_i select{border:none;background:none;border-bottom:1px solid #3e3f5a;padding: 10px 0;margin: 10px 0 0;color: #fff;}
+			.big_box .input_i i{position: absolute;right: 10px;bottom: 10px;color: #FFFFFF;text-align: right;font-size: 12px;}
+			.big_box .input_i i img{width: 55%;}
+			.big_box .input_list{display: flex;flex-direction: row;justify-content: space-between;align-items: center;}
+			.big_box .input_list span{color: #FFFFFF;font-size: 0.8rem;}
+			.big_box .banlance{color: #ACACAC;font-size:0.5rem;margin: 2% 0 0;}
+			.big_box .label{float: left;position: relative;color: #CFCFCF;width: 50%;}
+			.big_box input.check{width: 18px;height: 18px;-webkit-appearance: none;position: relative;margin-right: 5px}
+			.big_box input.check:before{background-image: url(../img/node_no.png);background-repeat: no-repeat;background-size: 100% 100%;
+				content: '';width: 18px;height: 18px;display: inline-block;vertical-align: middle;}
+			.big_box input.check:checked:before{background-image: url(../img/node_chioce.png);background-repeat: no-repeat;background-size: 100% 100%;
+				content: '';width: 18px;height: 18px;display: inline-block;vertical-align: middle;}
+			.big_box .check_box{display: flex;align-content: flex-start;align-items: center;border-bottom:1px solid #3e3f5a;padding-bottom: 10px;}
+			.big_box .mark{color: #FF7122;}
+			.big_box .titie{color: #FFFFFF;text-align: center;width: 55%;display: block;margin: auto;}
+			.big_box .bi_k{margin-top: 5px;color: #FF7122;}
+			.big_box .bi_k span{color: #FF7122;}
+		</style>
+	</head>
+	<body>
+		<header class="am-topbar shop-navigation" style="background: #FFFFFF">
+		    <div class="am-container">
+		        <a href="javascript:history.back(-1);" class="am-icon-btn am-icon-arrow-left" style="background-color:
+		            #ffffff;width: 100%;border-radius:100%;font-size: 16px;text-align: left;padding-left: 8px;line-height: 48px;color: #555555;">
+		            <span style="text-align: center;margin-left: 5px;font-size: 12px;">返回</span>
+		        </a>
+		    </div>
+		</header>
+		<div class="big_box">
+			<div class="input_i">
+				<label>互提币地址</label>
+				<input type="text" value="" placeholder="输入或长按黏贴地址">
+				<i>USDT</i>
+			</div>
+			<div class="input_i">
+				<label>互提币数量</label>
+				<input type="text" value="" placeholder="最小互提币数量为100.00">
+				<i>USDT</i>
+			</div>
+			<div class="input_i">
+				<label>手续费</label>
+				<input type="text" value="1.00" readonly="readonly">
+				<i>USDT</i>
+			</div>
+			<div class="input_i">
+				<label>安全密码</label>
+				<input type="password" value="" placeholder="请输入您的安全密码">
+			</div>
+			<div class="anniu am-btn">确认</div>
+			<dl class="charge_dl">
+				<dt>注意：</dt>
+				<dd>最小提币数量为10.0USDT</dd>
+				<dd>为保障您的账号安全，策略变更、密码修改我们会对提币进行人工审核，请耐心等待。</dd>
+				<dd>请务必确保电脑及浏览安全，防止信息被篡改或泄露。</dd>
+			</dl>
+		</div>
+	</body>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+	
+		$(".anniu").click(function(){
+			var addr=$(".addr").val();
+			var num=$(".num").val();
+			var code=$(".code").val();
+			var re_pwd=$(".re_pwd").val();
+			// 是否非空
+			if(!isKong(addr,$(".addr").attr("placeholder"))){
+				$(".addr").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(num,$(".num").attr("placeholder"))){
+				$(".num").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				$(".code").focus();
+				return false;
+			}
+			// 是否非空
+			if(!isKong(re_pwd,$(".re_pwd").attr("placeholder"))){
+				$(".re_pwd").focus();
+				return false;
+			}
+			layer.msg('修改成功',{ icon: 6,time: 2000},function() {
+			});
+		})
+	</script>
+</html>

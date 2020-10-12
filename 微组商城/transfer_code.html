@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/recharge.css"/>
+		<style type="text/css">
+			.mian_top{margin-top: 60px;}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+		    <div class="headerLeft" onclick="goBack(-1)">
+		        <img src="img/return-white.png" alt="">
+		    </div>
+		    <span class="headerTitle">收款码</span>
+		</header>
+		<main class="main">
+			<div class="content">
+				<h4>扫二维码 向我付款</h4>
+				<p class="qrcode bg-white" style="height: 150px;"></p>
+				<!--<p id="uid" style="word-break: break-all;">0xb70fffb6b5bd92d6025e82d84d8072b45fc1e4ea</p>-->
+				<!--<button type="button" class="copy-btn" onclick="Zfast.copy(&quot;0xb70fffb6b5bd92d6025e82d84d8072b45fc1e4ea&quot;)">复制地址</button>-->
+				<!--<p>1CNY≈0.147 USDT</p>-->
+			</div>
+			<!--<h3>充币说明：</h3>
+			<p>1.USDT钱包禁止充币任何除USDT之外的其他资产,非USDT资产充币将不可找回,请确认所充数字币,以免发生不必要的损失。 </p>
+			<p>2.请务必确定网络安全，防止信息的泄露或更改。</p>
+			<p>3.充值到账的USDT会自动换算成为现金券。</p>-->
+		</main>
+	</div>
+	</body>
+	<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+	<script type="text/javascript">
+		jQuery('.qrcode').qrcode({
+			render: "canvas", //也可以替换为table
+			width: 150,
+			height: 150,
+			text: $("#uid").text()
+		});
+		
+		$('canvas').css({
+			'width': '100%',
+			"height": "100%"
+		});
+		//让二维码宽高一样大
+		$(".qrcode").height($(".qrcode").width())
+	
+	    function copyUrl2(){
+			var Url2=document.getElementById("biao1");
+			 Url2.select(); // 选择对象
+			document.execCommand("Copy"); // 执行浏览器复制命令
+			layer.msg("已复制好，可粘贴。");
+		}
+	</script>
+</html>

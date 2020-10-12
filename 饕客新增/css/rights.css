@@ -1,0 +1,154 @@
+
+
+
+body{
+	min-height: 100vh;
+	background: url(../images/index-bg.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.main{
+	margin: 0.23rem 0.15rem 0;
+}
+.top{
+	background: url(../images/rights-bg.png) no-repeat;
+	background-size: 100% 100%;
+	padding: 0.21rem 0 0.32rem 13%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	position: relative;
+}
+.top .head{
+	width: 0.45rem;
+	height: 0.45rem;
+	margin-right: 0.1rem;
+}
+.top span{
+	color: #333333;
+	font-size: 0.16rem;
+}
+.top span p{
+	/* font-size: 0.12rem; */
+}
+.top>p{
+	width: 100%;
+	color: #333333;
+	font-size: 0.18rem;
+	margin-top: 0.15rem;
+}
+
+
+.level{
+	position: absolute;
+	top: 0rem;
+	right: 0.45rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+	/* background: url(../images/level-bg.png) no-repeat; */
+	background-size: 100% 100%;
+	width: 0.4rem;
+	line-height: 0.3rem;
+	color: #333333;
+	font-size: 0.13rem;
+	padding-bottom: 0.1rem;
+}
+.level img{
+	width: 0.4rem;
+	margin-top: 8px;
+}
+
+
+
+.rights-list{
+	min-height: 9.5rem;
+	margin-top: 0.13rem;
+	background: url(../images/rights-bg-2.png) no-repeat;
+	background-size: 100% 100%;
+	padding: 8% 7% 0;
+}
+.rights-title{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.rights-title div{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.rights-title strong{
+	display: block;
+	width: 0.05rem;
+	height: 0.18rem;
+	background-color: #351303;
+	border-radius: 3px;
+	margin-right: 0.1rem;
+}
+.rights-title b{
+	width: 45%;
+	padding-bottom: 0.02rem;
+	font-size: 0.18rem;
+	color: #333333;
+	border-bottom: 2px solid #FBB23F;
+}
+.rights-title span{
+	color: #333333;
+	font-size: 0.12rem;
+	margin-top: 0.04rem;
+}
+
+
+ul{
+	margin-top: 0.17rem;
+}
+li{
+	background: url(../images/rights-bg-3.png) no-repeat;
+	background-size: 100% 100%;
+	color: #FFF;
+	margin-bottom: 0.1rem;
+}
+.desc-wrap{
+	display: flex;
+	align-items: flex-start;
+	padding: 0.1rem 0.1rem 0.1rem;
+}
+.desc-wrap img{
+	width: 0.555rem;
+	min-width: 0.555rem;
+	height: 0.555rem;
+	margin-right: 0.1rem;
+	display: block;
+}
+.desc-font h3{
+	font-size: 0.14rem;
+}
+.desc-font p{
+	font-size: 0.11rem;
+	margin-top: 5px;
+}
+
+.status{
+	padding: 0 0.12rem;
+	display: flex;
+	justify-content: space-between;
+	height: 0.28rem;
+}
+.status span{
+	font-size: 0.15rem;
+}
+.small-fill-btn{
+	line-height: 0.2rem;
+	height: 0.25rem;
+	/* background-color: #351303; */
+	background: url(../images/rights-btn.png) no-repeat;
+	background-size: 100% 100%;
+	color: #fff;
+	border-radius: 5px;
+	width: 23%;
+}

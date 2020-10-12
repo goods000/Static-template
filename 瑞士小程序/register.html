@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/font.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+    	<style type="text/css">
+    		#code_box{position: absolute;bottom: 15%;right: 0;}
+    		#code_box img{width: 65%;}
+    		/*多语言*/
+			.language {position: absolute;top: 35%;right: 1rem;z-index: 999999;}
+			.language .li_hover{;border-radius: 5px;}
+			/*.language li:nth-child(1){background: none !important;}*/
+			.language li { float: left; margin-left: 80px; line-height: 32px;width: 55px;
+				border: 1px solid #04BFEF;text-align: center;height: 25px; line-height: 25px;color:#04BFEF;}
+			.language li span{color:#04BFEF;font-size: 10px;white-space: nowrap;text-overflow: ellipsis;-o-text-overflow: ellipsis;overflow: hidden;width: 100px;}
+			.language li img{width: 15%;position: relative;top: 0%;}
+			.language .menu_nav{ display: none;   position: absolute;  top: 30px; left: 0;}
+    	</style>
+</head>
+<body>
+	<h1 class="h1">
+		<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+    	<p>注册</p>
+    	
+    	<!-- 多语言 -->
+	    <ul class="language">
+			<li class="li_hover">
+				<span class="en current_lang" data-lang="qiehuan" >中文</span>
+				<img src="img/selt.png"/>
+				<ul id="languages" class="menu_nav more_lang">
+	                <li attr="zh" class="my" onclick="changelanguage('zh-CN')">中文</li>
+					<li attr="en" class="my" onclick="changelanguage('en')">英文</li>
+				</ul>
+			</li>
+		</ul> 
+    	
+	</h1>
+	<div class="login login_1">
+		<div class="box">
+			<form class="on">			
+				<div class="locgin_i">
+					<label>用户名</label>
+					<input type="text" class="account" placeholder="请输入用户名" />
+				</div>
+				<div class="locgin_i">
+					<label>手机号</label>
+					<input type="number" class="phone" placeholder="请输入手机号码" />
+				</div>
+				<div class="locgin_i">
+					<label>验证码</label>
+					<input type="number" class="code" placeholder="请输入短信验证码"/>
+					<input type="button" class="getCode1" id="getCode"  value="获取验证码">
+				</div>
+				<div class="locgin_i">
+					<label>图形验证</label>
+					<input type="text" class="img_code" placeholder="请输入图形验证码"/>
+					<p id="code_box"></p>
+				</div>
+				<div class="locgin_i">
+					<label>登录密码</label>
+					<input type="password" class="pwd" placeholder="请输入登录密码" />
+				</div>
+				<div class="locgin_i">
+					<label>确认密码</label>
+					<input type="password" class="re_pwd" placeholder="请确认登录密码" />
+				</div>
+				<div class="locgin_i">
+					<label>交易密码</label>
+					<input type="password" class="pay_pwd" placeholder="请输入交易密码" />
+				</div>
+				<div class="locgin_i">
+					<label>确认密码</label>
+					<input type="password" class="re_pay_pwd" placeholder="请确认交易密码" />
+				</div>
+				<div class="locgin_i">
+					<label>邀请码</label>
+					<input type="text" class="invite" placeholder="请输入邀请码" />
+				</div>
+				<button class="anniu">注册</button>
+			</form>
+		</div>
+		<a href="" class="to_regiser"><span class="chioce">下载APP</span></a>
+		
+		<input type="hidden" name="yzm" id="yzm" value="" />
+	</div>
+</body>
+<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/Zcheck.js" type="text/javascript" charset="utf-8"></script>
+<script>
+		$(".language .li_hover").click(function(){
+			$(".language .menu_nav").toggle();
+		})
+		
+		function changelanguage(val){
+			console.log("值："+val);
+			if (val == 'en') {
+				layer.msg("当前IP显示地址为中国，暂不支持英文",{icon:2,time:2000});
+			}
+		}
+		
+		let image = document.createElement('img');
+	    image.src = drawCode(100,50,'green');
+	    image.onclick = function() {
+	        this.src = drawCode(100,50,'green');
+	    };
+		document.getElementById("code_box").appendChild(image);
+	
+		$("input").on("blur",function(){
+	        var toFix=$(this).offset().top;
+	        window.scroll(0,toFix);//失焦后强制让页面归位
+	    });
+		
+		//获取手机验证码
+		$("#getCode").click(function(){
+			var that=this;
+			getyan(that);
+		})
+	
+		$(".anniu").click(function(){
+			var account=$(".account").val();
+			var phone=$(".phone").val();
+			var code=$(".code").val();
+			var img_code=$(".img_code").val();
+			var pwd=$(".pwd").val();
+			var re_pwd=$(".re_pwd").val();
+			var pay_pwd=$(".pay_pwd").val();
+			var re_pay_pwd=$(".re_pay_pwd").val();
+			var invite=$(".invite").val();
+			var yzm = $("#yzm").text();
+			// 是否非空
+			if(!isKong(account,$(".account").attr("placeholder"))){
+				$(".account").focus();
+				return false;
+			}
+			if(!isKong(phone,$(".phone").attr("placeholder"))){
+				$(".phone").focus();
+				return false;
+			}
+			if(!telCheck(phone)){
+				$(".phone").focus();
+				return false;
+			}
+			if(!isKong(code,$(".code").attr("placeholder"))){
+				$(".code").focus();
+				return false;
+			}
+			if(!isKong(img_code,$(".img_code").attr("placeholder"))){
+				$(".img_code").focus();
+				return false;
+			}
+			if(img_code != yzm){
+				layer.msg('请输入正确的图形验证码',{icon:2,time:2000});
+				$(".img_code").focus();
+				return false;
+			}
+			if(!CheckPw(pwd)){
+				$(".pwd").focus();
+				return false;
+			}
+			if(!CheckPw(re_pwd)){
+				$(".re_pwd").focus();
+				return false;
+			}
+			if(pwd != re_pwd){
+				layer.msg("两者密码不一致",{icon:2,time:2000});
+				$(".re_pwd").focus();
+				return false;
+			}
+			if(!Check_payPwd(pay_pwd)){
+				$(".pay_pwd").focus();
+				return false;
+			}
+			if(!Check_payPwd(re_pay_pwd)){
+				$(".re_pay_pwd").focus();
+				return false;
+			}
+			if(pay_pwd != re_pay_pwd){
+				$(".re_pay_pwd").focus();
+				layer.msg("两者密码不一致",{icon:2,time:2000});
+				return false;
+			}
+			if(!isKong(invite,$(".invite").attr("placeholder"))){
+				$(".invite").focus();
+				return false;
+			}
+			layer.msg('登录成功',function() {
+				window.location.href = "login.html";
+			});
+		})
+	
+		</script>
+</html>

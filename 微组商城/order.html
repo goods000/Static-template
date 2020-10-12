@@ -14,6 +14,12 @@
 			.order .list li{padding: 0 !important;}
 			.order .list .div{border-top: 1px solid #E5E5E5;margin: 0;padding: 10px;}
 			.order .pay-info .pay-div .tips{text-align: right;}
+			.d_list{width: 100%;padding: .6rem .6rem 0 .6rem;display: flex;align-items: center;background: #fff;position: relative;}
+			.d_list img.shop_img{width: 30px !important;height: 30px !important;border-radius: 50px;}
+			.d_list p{margin-left: 1rem;}
+			.d_list .phone_box{position: absolute;right: 0.6rem;display: flex;align-items: center;}
+			.d_list .phone_box span{color: #333;}
+			.d_list .phone_box img{width: 15px;margin-left: 5px;}
 		</style>
 	</head>
 	<body>
@@ -37,9 +43,20 @@
 						<ul>
 							<li>
 								<a href="goods_order.html">
+									<div class="d_list">
+							    		<div class="fl">
+							    			<label>
+								    			<img src="img/goods.png" class="shop_img">
+								    		</label>
+							    		</div>
+							    		<p>店铺名称店铺名称</p>
+							    		<div class="phone_box">
+							    			<span>17565456598</span>
+							    			<!--<img src="img/next.png">-->
+							    		</div>
+							    	</div>
 									<div class="top">
 										<p class="store"><span>订单号:</span>4546513546546874631563454</p>
-										<!--<p class="state">待付款</p>-->
 									</div>
 									<div class="pay-pro">
 										<div class="pay-info">
@@ -87,6 +104,18 @@
 							</li>
 							<li>
 								<a href="goods_order.html">
+									<div class="d_list">
+							    		<div class="fl">
+							    			<label>
+								    			<img src="img/goods.png" class="shop_img">
+								    		</label>
+							    		</div>
+							    		<p>店铺名称店铺名称</p>
+							    		<div class="phone_box">
+							    			<span>17565456598</span>
+							    			<!--<img src="img/next.png">-->
+							    		</div>
+							    	</div>
 									<div class="top">
 										<p class="store"><span>订单号:</span>4546513546546874631563454</p>
 										<!--<p class="state">待付款</p>-->
@@ -160,10 +189,30 @@
 					
 				</div>
 			</div>
-			
 		</div>
+		
+		<!--物流弹框-->
+		<div class="mo">
+			<div class="mo_box">
+				<img src="img/gb.png" class="gb"/>
+				<div class="abc">
+					<div class="gorup m_top">
+						<label>快递单号</label>
+						<input type="text" placeholder="请输入快递单号" name="" id="number" value="">
+					</div>
+					<div class="gorup m_top">
+						<label>物流信息</label>
+						<input type="text" placeholder="请输入物流信息" name="" id="informate" value="">
+					</div>
+					<div class="anniu">确认</div>
+				</div>
+			</div>
+		</div>
+		
+		
 	</body>
 	<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/check.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		show();
 		function show() {
@@ -180,6 +229,23 @@
 			$(".tab a").removeClass("active").eq(index).addClass("active");
 			$(".list").removeClass("on").eq(index).addClass("on");
 			show();
+		})
+		
+		$(".info_btn").click(function(){$(".mo").show();})
+		$(".gb").click(function(){$(".mo").hide();})
+		
+		$(".anniu").click(function(){
+			var number=$("#number").val();
+			var informate=$("#informate").val();
+			// 是否非空
+			if(!isKong(number,$("#number").attr("placeholder"))){
+				$("#number").focus();
+				return false;
+			}
+			if(!isKong(informate,$("#informate").attr("placeholder"))){
+				$("#informate").focus();
+				return false;
+			}
 		})
 		
 		$(".del").click(function(id){

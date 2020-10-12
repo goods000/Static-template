@@ -1,0 +1,80 @@
+
+body{
+	background-color: #fff;
+}
+.main{
+	margin-top: 0.4rem;
+	background-color: #fff;
+	padding: 0.08rem 0.17rem;
+	overflow: hidden;
+	border-top: 0.05rem solid #F6F6F6;
+}
+.header{
+	background: url(../images/header-bg.png) no-repeat;
+	background-size: 100% 100%;
+}
+.content{
+	background-color: #F2F2F2;
+	padding: 0 0.43rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	border-radius: 4px;
+	margin-bottom: 0.19rem;
+}
+.content h3{
+	margin: 0.345rem 0 0.25rem;
+	font-size: 0.15rem;
+}
+.content img{
+	width: 1.41rem;
+	margin: 0.35rem 0 0.2rem 0;
+}
+.save-btn{
+	width: 1.38rem;
+	border-radius: 5px;
+	background-color: #3D78FA;
+	height: 0.31rem;
+	border: 0;
+	font-size: 0.13rem;
+	letter-spacing: 1px;
+	color: #fff;
+	margin: 0.2rem 0 0.27rem;
+}
+.content h4{
+	font-size: 0.13rem;
+	color: #333333;
+	font-size: 0.16rem;
+	margin: 0.3rem auto;
+}
+.content p{
+	color: #666666;
+	font-size: 0.15rem;
+	margin: 0.1rem 0 0.22rem;
+}
+.copy-btn{
+	width: 1.1rem;
+	line-height: 0.27rem;
+	background-color: #0771F9;
+	border-radius: 3px;
+	border: 0;
+	color: #fff;
+	font-size: 0.15rem;
+	margin-bottom: 0.29rem;
+	letter-spacing: 2px;
+}
+.main>p{
+	color: #999999;
+	font-size: 0.11rem;
+	line-height: 0.2rem;
+	padding: 0 0.05rem;
+}
+.main>h3{
+	color: #333333;
+	font-weight: normal;
+	font-size: 0.15rem;
+	margin-bottom: 0.02rem;
+}
+
+

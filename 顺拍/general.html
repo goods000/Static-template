@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/amazeui.css"/>
+		<style type="text/css">
+			.index_data{background:#E73A45;padding: 8px 5px;}
+			.index_data div.p{color: #FFFFFF;font-size: 12px;text-align: center;margin: 5px 0;}
+			.index_data i.i{color: #FFFFFF;font-size: 12px;text-align: center;display:block;}
+			.index_data .balance_box{display: flex;flex-direction: row;align-items: center;justify-content: space-between;padding: 0 15px;}
+			.index_data .balance_box .b_b{text-align: center;}
+			.index_data .balance_box .line{height: 30px;border-right:1px solid #FFFFFF;}
+			.index_data .balance_box span{color: #FFFFFF;font-size: 12px;margin-top: 8px;display: block;}
+			.index_data .balance_box .balance{color: #fff;}
+			.indexNav{width: 100%;display: inline-block;}
+			.indexNav ul{padding-left:0px !important;}
+			.indexNav ul li{width: 25%;float: left;margin: 15px 0px;}
+			.indexNav ul li a:link{text-decoration: none !important;color: transparent;}
+			.indexNav ul li a:visited{text-decoration: none !important;color: transparent;}
+			.indexNav ul li a:hover{text-decoration: none !important;color: transparent;}
+			.indexNav ul li a:active {text-decoration: none !important;color: transparent;}
+			.indexNav ul li .nav_box{display: flex;flex-direction: column; justify-content: center;align-items: center;}
+			.indexNav ul li .nav_img{width: 35%;}
+			.indexNav ul li .nav_title{color: #333;margin-top: 2px;width: 80px;white-space: nowrap;text-align: center;overflow: hidden;text-overflow: ellipsis;}
+			
+		</style>
+	</head>
+	<body>
+		<header class="am-topbar shop-navigation" style="background: #FFFFFF">
+		    <div class="am-container">
+		        <a href="javascript:history.back(-1);" class="am-icon-btn am-icon-arrow-left" style="background-color:
+		            #ffffff;width: 100%;border-radius:100%;font-size: 16px;text-align: left;padding-left: 8px">
+		            <span style="text-align: center;margin-left: 5px">返回</span>
+		        </a>
+		    </div>
+		</header>
+		<div class="index_data">
+			<div class="balance_box">
+				<div class="b_b">
+					<span>通证数量</span>
+					<span class="balance">0.00000.000 </span>
+				</div>
+				<div class="line"></div>
+				<div class="b_b">
+					<span>冻结数量</span>
+					<span class="balance">0.00000.000 </span>
+				</div>
+			</div>
+			<div class="p">0.00000.000 </div>
+			<i class="i">预期收益</i>
+		</div>
+		<div class="indexNav">
+			<ul>
+				<li>
+					<a href="transfer.html" class="nav_box">
+						<img src="img/index_1.png" class="nav_img">
+						<p class="nav_title">互转</p>
+					</a>
+				</li>
+				<li>
+					<a href="withdraw.html" class="nav_box">
+						<img src="img/index_2.png" class="nav_img">
+						<p class="nav_title">提币</p>
+					</a>
+				</li>
+				<li>
+					<a href="lock.html" class="nav_box">
+						<img src="img/index_3.png" class="nav_img">
+						<p class="nav_title">锁仓</p>
+					</a>
+				</li>
+				<li>
+					<a href="record.html" class="nav_box">
+						<img src="img/index_4.png" class="nav_img">
+						<p class="nav_title">记录</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</html>

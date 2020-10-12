@@ -1,0 +1,39 @@
+body{
+	background-color: #fff;
+}
+.list-block{
+	margin-top: 5px;
+	padding: 0.15rem 0;
+	border-bottom: 1px solid #EBEBEB;
+	margin: 0 0.12rem;
+}
+.list-block>p{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.12rem;
+}
+.list-block>p>span:first-of-type{
+	white-space: nowrap; 
+	margin-right: 10px;
+}
+.list-block>p:first-of-type>span:nth-of-type(2){
+	width: 100%;
+}
+.list-block .title{
+	font-weight: bold;
+	font-size: 0.14rem;
+	color: #BD8700;
+}
+.list-block .title span{
+	text-align: right;
+}
+.list-block .title span:first-of-type{
+	color: #1F1F1F;
+}
+.list-block .details{
+	color: #9EA2A8;
+	margin-top: 0.1rem;
+	display: flex;
+	justify-content: space-between;
+}

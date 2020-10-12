@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			.h1 a {text-align: right;}
+			.h1 a img {width: 60%;}
+			.select_box .div_r {width: 55%;justify-content: flex-end;}
+			.select {width: 100%;direction: rtl;background: none;border: none;outline: none;-webkit-appearance: none;color: #333;}
+			.select_box .div_r img {margin-left: 5%;width: 5%;}
+			.phone_list .sfer_coin {color: #333;font-size: 1rem;font-weight: bold;position: absolute;right: 4%;bottom: 15%;}
+			.charge_dl{padding: 5% 0;}
+			.select{position: relative;z-index: 99;direction: unset !important;font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<h1 class="h1">
+			<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+	    	<p>互转</p>
+	    	<a href="transferRecord" data-lang="Transfers_records"><img src="img/recharge_record.png" alt=""></a>
+		</h1>
+		<div class="sfer">
+			<div class="select_box">
+				<div class="div_r">
+					<div class="div">选择互转类型</div>
+					<img src="img/h_sel.png" />
+				</div>
+				<select id="fun" class="select" name="type">
+					<option value="1">USDT转BTDM</option>
+					<option value="2">激活</option>
+				</select> 
+			</div>
+			<div class="phone_list phone_to bt">
+				<span data-lang="btn_reseta">当前比率</span>
+				<input type="text" name="" id="" value="1USDT≈10BTDM" readonly="readonly"/>
+			</div>
+			<div class="phone_list phone_to bt">
+				<span data-lang="btn_reseta">互转数量</span> 
+				<input type="number" name="" id="balacne" placeholder="最小互转数量10.00" /> 
+				<i class="sfer_coin">USDT</i>
+			</div>
+			<div class="phone_list bb" id="chargeIn">
+				<span data-lang="qudengd">手续费</span> 
+				<input type="text" value="1.0000" id="" readonly="readonly" /> 
+				<i class="sfer_coin">USDT</i>
+			</div>
+			<div class="phone_list bb">
+				<span data-lang="qudengb">交易密码</span> 
+				<input type="password" value="" id="passWord"  placeholder="请输入交易密码" />
+			</div>
+			
+			
+		</div>
+		<button class="annius send-btn" data-lang="qudengf">互转</button>
+		
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		$(".send-btn").click(function() {
+			var balacne = $("#balacne").val();
+			var passWord = $("#passWord").val();
+			pwd = CryptoJS.MD5(passWord).toString().toUpperCase();
+			console.log("pwd:"+pwd);
+			
+			if (balacne === "") {
+				layer.msg('请输入互转数量');
+				$("#balacne").focus();
+				return false;
+			}
+			if (passWord === "") {
+				layer.msg('请输入交易密码');
+				$("#passWord").focus();
+				return false;
+			}
+			$(".annius").attr("disabled", true);
+			$.ajax({
+				type : "POST",
+				url : '',
+				dataType : "json",
+				data : {
+					balacne : balacne,
+					type : fun,
+					passWord : pwd
+				},
+				success : function(data) {
+					var lang = sessionStorage.getItem('lang');
+					if (data.success == true) {
+						loadPropertiesLocal(lang, '0');
+						layer.msg("转账成功", {
+								icon: 1, //提示的样式
+								time: 5000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+								end: function() {
+										location.reload();
+									}
+							}); 
+						
+					} else {
+						loadPropertiesLocal(lang, data.code);
+						$(".annius").attr("disabled", false);
+					}
+				}
+			})
+	
+		})
+	</script>
+</html>

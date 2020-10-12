@@ -170,7 +170,7 @@
 							</div>
 							<div class="label">
 								<input type="radio" class="check" name="1">
-								<span>VSET 激活账户</span>
+								<span>VSET 激活账户（14.7436 VSET）</span>
 							</div>
 						</div>
 						<div class="ac_btn">激活</div>
@@ -196,6 +196,9 @@
 		$(".ac_close_1").click(function(){$(".active_mo_1").hide();$(".state_111").show();$(".state_222").hide();})
 		$(".go_btn_1").click(function(){$(".state_111").hide();$(".state_222").show();})
 		
+		$(".ac_btn").click(function(){
+			layer.msg("激活成功")
+		})
 		
 //		$(".check").click(function(){
 //			var index=$(".check").index($(this));

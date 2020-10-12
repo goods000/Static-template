@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/tab_wo.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.h1{background: none;border-bottom: none;}
+		</style>
+	</head>
+	<body>
+		<div class="wallet_data">
+			<h1 class="h1">
+				<button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+				<p>资产明细</p>
+			</h1>
+			<p class="count txt_eye">0.00000.000 </p>
+			<span class="yue">余额</span>
+		</div>
+		
+		<div class="big_tean">
+			<div class="tab_box">
+				<div class="a active">USDT</div>				
+				<div class="a">USDC</div>				
+				<div class="a">BTL</div>				
+			</div>
+			<div class="team">
+				<div class="team_box">
+					<ul>
+						<li>
+							<div class="ge_left">
+								<div class="da_info"><h2>获得</h2><h2>+5</h2></div>
+								<div class="da_info"><span>&nbsp;</span><span>获得时间：2020.09.17  12:12:12</span></div>
+							</div>
+						</li>
+						<li>
+							<div class="ge_left">
+								<div class="da_info"><h2>获得</h2><h2>+5</h2></div>
+								<div class="da_info"><span>&nbsp;</span><span>获得时间：2020.09.17  12:12:12</span></div>
+							</div>
+						</li>
+						<li>
+							<div class="ge_left">
+								<div class="da_info"><h2>获得</h2><h2>+5</h2></div>
+								<div class="da_info"><span>&nbsp;</span><span>获得时间：2020.09.17  12:12:12</span></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="team_box two">
+					<ul>
+						<li>
+							<div class="ge_left">
+								<div class="da_info"><h2>获得</h2><h2>+5</h2></div>
+								<div class="da_info"><span>&nbsp;</span><span>获得时间：2020.09.17  12:12:12</span></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+		
+			</div>
+			
+		</div>
+	</body>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<script type="text/javascript">
+		$('.tab_box .a').click(function() {
+	        $(this).addClass("active").siblings().removeClass("active");
+			var index = $(this).index()
+	        $("div.team > div.team_box").eq(index).show().siblings().hide();
+	    })
+		
+	</script>
+</html>

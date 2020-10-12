@@ -29,7 +29,7 @@
 					<div class="list on">
 						<ul>
 							<li>
-								<a href="goods_order.html">
+								<a href="business_list.html">
 									<!--<div class="top">
 										<p class="store"><span>订单编号:</span>4546513546546874631563454</p>
 										<p class="state">待付款</p>
@@ -54,14 +54,14 @@
 								</a>
 								<div class="div">
 									<p class="btn">
-										<a href="javascript:;" class="a">编辑信息</a>
+										<a href="edit_information.html" class="a">编辑信息</a>
 										<a href="javascript:;" class="a">上架商品</a>
 										<a href="javascript:;" class="a del">删除商品</a>
 									</p>
 								</div>
 							</li>
 							<li>
-								<a href="goods_order.html">
+								<a href="business_list.html">
 									<div class="pay-pro">
 										<div class="pay-info">
 										<i>
@@ -82,7 +82,7 @@
 								</a>
 								<div class="div">
 									<p class="btn">
-										<a href="javascript:;" class="a">编辑信息</a>
+										<a href="edit_information.html" class="a">编辑信息</a>
 										<a href="javascript:;" class="a">上架商品</a>
 										<a href="javascript:;" class="a del">删除商品</a>
 									</p>
@@ -94,7 +94,7 @@
 					<div class="list">
 						<ul>
 							<li>
-								<a href="goods_order.html">
+								<a href="business_list.html">
 									<div class="pay-pro">
 										<div class="pay-info">
 										<i>
@@ -117,7 +117,7 @@
 								</a>
 								<div class="div">
 									<p class="btn">
-										<a href="javascript:;" class="a">编辑信息</a>
+										<a href="edit_information.html" class="a">编辑信息</a>
 										<a href="javascript:;" class="a">下架商品</a>
 										<a href="javascript:;" class="a del">删除商品</a>
 									</p>
@@ -130,7 +130,7 @@
 					<div class="list">
 						<ul>
 							<li>
-								<a href="goods_order.html">
+								<a href="business_list.html">
 									<!--<div class="top">
 										<p class="store"><span>订单编号:</span>4546513546546874631563454</p>
 										<p class="state">待付款</p>
@@ -157,7 +157,7 @@
 								</a>
 								<div class="div">
 									<p class="btn">
-										<a href="javascript:;" class="a">编辑信息</a>
+										<a href="edit_information.html" class="a">编辑信息</a>
 										<a href="javascript:;" class="a del">删除商品</a>
 									</p>
 								</div>
@@ -186,7 +186,7 @@
 								</a>
 								<div class="div">
 									<p class="btn">
-										<a href="javascript:;" class="a">编辑信息</a>
+										<a href="edit_information.html" class="a">编辑信息</a>
 										<a href="javascript:;" class="a del">删除商品</a>
 									</p>
 								</div>
@@ -220,7 +220,7 @@
 									<p class="btn">
 										<a href="javascript:;" class="a">删除</a>
 										<a href="specs_add.html" class="a">添加规格</a>
-										<a href="javascript:;" class="a">编辑信息</a>
+										<a href="edit_information.html" class="a">编辑信息</a>
 										<a href="release.html" class="release">发布</a>
 									</p>
 								</div>
@@ -296,27 +296,27 @@
 				title:"删除地址",
 			  	btn: ["确定","取消"] ,//按钮
 				yes:function(){
-					   $.ajax({
-				         	type : "POST",
-								url : '',
-								dataType : "json",
-								data : {"addressId":id},
-								success : function(data) {
+				    $.ajax({
+			         	type : "POST",
+							url : '',
+							dataType : "json",
+							data : {"addressId":id},
+							success : function(data) {
+								layer.close();
+								if(data.success==true){
+									 layer.msg("删除成功", {
+										  icon: 1,//提示的样式
+										  time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+											end:function(){
+											 window.location.reload();
+											}
+										}); 
+								} else {
 									layer.closeAll();
-									if(data.success==true){
-										 layer.msg("删除成功", {
-											  icon: 1,//提示的样式
-											  time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-												end:function(){
-												 window.location.reload();
-												}
-											}); 
-									} else {
-										layer.closeAll();
-										layer.msg(data.msg,{icon:5,time : 1000});
-									}
+									layer.msg(data.msg,{icon:5,time : 1000});
 								}
-				         }) 
+							}
+			        }) 
 				},
 			})
 		})

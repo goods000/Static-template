@@ -1,0 +1,103 @@
+
+body{
+	background: url(../images/deal-bg.png) no-repeat;
+	background-size: 100% 100%;
+	min-height: 100vh;
+	padding-bottom: 1.13rem;
+}
+
+.main{
+	margin: 0.23rem 0.15rem 0;
+}
+
+.container{
+	background: url(../images/deal-bg-2.png) no-repeat;
+	background-size: 100% 100%;
+	min-height: 2.8rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 0.3rem;
+}
+.container h3{
+	color: #fff;
+	font-size: 0.17rem;
+	margin-bottom: 0.05rem;
+}
+
+.deal-module{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.19rem 0.1rem 0.14rem;
+}
+.deal-module-block{
+	width: 0.555rem;
+}
+
+
+
+/* 大厅 */
+.hall{
+	background: url(../images/deal-bg-3.png) no-repeat;
+	background-size: 100% 100%;
+	padding:0.22rem  0.25rem ;
+	min-height: 6.61rem;
+}
+.nav-wrap{
+	background: url(../images/deal-nav-bg.png) no-repeat;
+	background-size: 100% 100%;
+	padding:0.055rem 0.065rem;
+	width: 1.97rem;
+	display: flex;
+	line-height: 0.36rem;
+	text-align: center;
+	font-size: 0.17rem;
+	margin: 0 auto;
+}
+.nav{
+	width: 50%;
+	color: #fff;
+}
+.nav-active{
+	background-color: #E7B061;
+	color: #833E1F;
+	border-radius: 8px;
+}
+
+
+ul li{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px dashed #A5A796;
+	padding: 0.23rem 0;
+	color: #351304;
+	font-size: 0.13rem;
+	font-weight: bold;
+}
+ul li p{
+	margin-bottom: 0.1rem;
+}
+ul li p:last-of-type{
+	margin-bottom: 0;
+}
+.small-fill-btn{
+	background-color: #4FAD3E;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 0.13rem;
+	margin-top: 0.1rem;
+	min-width: 0.71rem;
+}
+.li-right{
+	font-size: 0.18rem;
+	color: #D30500;
+	text-align: right;
+}
+.li-right span{
+	font-size: 0.12rem;
+}
+.ul-2{
+	display: none;
+}

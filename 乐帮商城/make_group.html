@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			body,html{background: #fff;}
+		    .index_bottom .goods_img{height: 90px;overflow: auto;width: 28%;}
+		    /*.index_bottom{margin: -15% 0;overflow: scroll;height: 28vh;display: flex;align-items: flex-start;}
+		    @media only screen and (width: 375px) and (height: 812px) {.index_bottom{height: 35vh;}}
+		    .index_bottom::-webkit-scrollbar {display:none}*/
+		    .h1{background: none;}
+		    .index_bottom .goods{display: flex;width: 100%;border: none;border-radius: 6px;padding: 12px;
+			box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);}
+		    .index_bottom .goods_box{display: flex;flex-direction: column;width: 65%;align-items: flex-start;}
+		    .index_bottom .goods_title{padding: 0;}
+		    .index_bottom .price,.index_bottom .goods_l b{font-size: 18px;color: #FF0000;}
+		    .hang_title span{color: #000000;}
+		</style>
+	</head>
+	<body>
+		<div class="gift_box_b">
+			<h1 class="h1">
+			    <button class="iconfont icon-xiangzuo1" onclick="javascript:history.back(-1);"></button>
+			    <p>100元区</p>
+			</h1>
+			<div class="gift_top">
+				<div class="gift_box">
+					<ul>
+						<li><b>3:00</b><b>已开抢</b></li>
+						<li><b>4:00</b><b>已开抢</b></li>
+						<li><b>5:00</b><b>已开抢</b></li>
+						<li><b>6:00</b><b>已开抢</b></li>
+						<li><b>7:00</b><b>已开抢</b></li>
+						<li><b>8:00</b><b>已开抢</b></li>
+						<li><b>9:00</b><b>已开抢</b></li>
+						<li><b>10:00</b><b>已开抢</b></li>
+						<li><b>11:00</b><b>已开抢</b></li>
+						<li id="about">
+							<b class="active">12:00</b>
+							<b class="active">进行中</b>
+						</li>
+						<li><b>13:00</b><b>即将开场</b></li>
+						<li><b>14:00</b><b>即将开场</b></li>
+						<li><b>15:00</b><b>即将开场</b></li>
+						<li><b>16:00</b><b>即将开场</b></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<p class="end_time">距离开奖时间  <span id="timer1">1533</span></p>
+		
+		<div class="index_bottom">
+		    <div class="goods">
+		        <img src="img/pro.png" class="goods_img">
+		        <div class="goods_box">
+		        	<p class="goods_title">第三方</p>
+		            <div class="goods_l">
+		                <b>￥</b><span class="price">1319.00</span>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="win_btn">自动参团</div>
+		<div class="win_rule_box">
+			<img src="img/win_rule.png"/><span>游戏规则</span>
+		</div>
+		
+		<div class="win_list">
+			<p class="hang_title">
+				<s></s>
+				<span>中奖名单</span>
+				<s></s>
+			</p>
+			<div class="win_box">
+				<div class="win">
+					<ul>
+						<li>
+							<div class="win_l"><img src=""/><span>135****7889</span></div>
+							<div class="win_time">2020.07.31 08:45</div>
+						</li>
+						<li>
+							<div class="win_l"><img src=""/><span>135****7889</span></div>
+							<div class="win_time">2020.07.31 08:45</div>
+						</li>
+						<li>
+							<div class="win_l"><img src=""/><span>135****7889</span></div>
+							<div class="win_time">2020.07.31 08:45</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="news note" id="note">
+			<div class="news_k">
+				<div class="news_box">
+					<h1>游戏规则</h1>
+					<p>
+						<p class="p1"><span class="s1">&nbsp;&nbsp;&nbsp;</span>
+							<span class="s2">游戏规则</span>
+							<span class="s1">“</span><span class="s2">本站</span>
+							<span class="s1">”</span><span class="s2">，网址：</span>
+							<span class="s1">http://szhxqkl.xyz</span>
+							<span class="s2">）所有者（以下简称为</span>
+							<span class="s1">“</span>
+							<span class="s2">游戏规则</span>
+							<span class="s1">”</span>
+							<span class="s2">）游戏规则</span>
+							<span class="s1">“</span>
+							<span class="s2">游戏规则</span>
+							<span class="s1">”</span>
+							<span class="s2">游戏规则</span>
+							<span class="s1"> &nbsp;</span>
+						</p>
+					</p>
+				</div>
+				<div class="news_btn"><a onclick="tong()">确定</a></div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".win_rule_box span").click(function(){
+			$("#note").show();
+		})
+		function tong(){
+			$("#note").hide();
+		}
+		
+		$(document).ready(function(){
+			var $li = document.querySelector(".active");
+			console.log("$li:"+$li);
+			console.log("$li:"+$li.innerHTML);
+			$li.scrollIntoView(false)
+//			if($li.hasClass("active")){
+//				document.getElementById('about').scrollIntoView(false)
+//			}
+//			document.getElementById('about').scrollIntoView(false)
+		})
+		
+		countDown( 1533,function( msg ) { 
+	    	document.getElementById('timer1').innerHTML = msg; 
+	    }) 
+		function countDown( maxtime,fn ) {   
+		    var timer = setInterval(function() { 
+		        if( !!maxtime ){   
+//		        var day = Math.floor(maxtime / 86400),
+//		        hour = Math.floor((maxtime % 86400) / 3600),
+//		        minutes = Math.floor((maxtime % 3600) / 60), 
+		        seconds = Math.floor(maxtime),  
+//		        msg = day+"天"+hour+"时"+minutes+"分"+seconds+"秒";   
+		        msg = seconds+"秒";   
+		        fn( msg ); 
+		        --maxtime;   
+		      } else {   
+		        clearInterval( timer ); 
+		        window.location.reload();//刷新当前页面.
+		      }   
+		    }, 1000); 
+	    } 
+	</script>
+</html>

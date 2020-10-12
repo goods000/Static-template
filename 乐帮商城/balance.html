@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font.css"/>
+		<style type="text/css">
+			.h1{background: #fff;}
+			.h1 p,.h1 button{color: #000000;}
+			.team{background: url(img/balance_bg.png);background-size: 100% 100%;background-repeat: no-repeat;}
+			.div_box .top{background: none;}
+			.div_box .top .l .id{color: #FFFFFF;font-size: 18px;}
+			.div_box .top .num{color: #FFFFFF;font-size: 30px;}
+			.gongneng{background: #fff;width: 100%;padding: 0;}
+			.gongneng ul{margin-top: 0;padding:5px 5% 15px;}
+			.gongneng li .ico img{width: 2rem;}
+			.record .list li .info{padding: 10px 0px;border-bottom: none;}
+			.record .tab{border-bottom: 1px solid #DDDDDD;}
+			.record .tab a{width: 33.33%;padding: 0.5rem 0;color: #999999;}
+			.record .tab a.active{color: #000000;}
+			.record .tab a.active::after{background: #000000;bottom: 5px;left: 37%;width: 25%;}
+			.record .list li .num_price{color: #FF0000;}
+		</style>
+	</head>
+	<body>
+		<div class="team div_box">
+			<h1 class="h1">
+				<button class="iconfont icon-xiangzuo1" onclick="javascript:window.history.back(-1);"></button>
+				<p>余额</p>
+			</h1>
+			<div class="top">
+				<img src="img/logo.png" class="div_box_img_1"/>
+				<p class="txt"><span class="num">0.0000.000</span></p>
+				<div class="l">
+					<p class="id">账户总额</p>
+				</div>
+			</div>
+		</div>
+		<div class="gongneng">	
+			<ul>
+				<a href="recharge.html">
+				<li>
+					<p class="ico"><img src="img/balance_1.png"></p>
+					<p class="txt">充值</p>
+				</li>
+				</a>
+				<a href="withdraw.html">
+				<li>
+					<p class="ico"><img src="img/balance_2.png"></p>
+					<p class="txt">提币</p>
+				</li>
+				</a>
+				<a href="transfer.html">
+				<li>
+					<p class="ico"><img src="img/balance_3.png"></p>
+					<p class="txt">互转</p>
+				</li>
+				</a>
+			</ul>
+		</div>
+		<div class="tt_div" onclick="location.href='integral.html'">
+	        <s></s><span>账单记录</span>
+	    </div>
+		<div class="record">
+			<div class="tab">
+				<a href="javascript:;" class="active">充币明细</a>
+				<a href="javascript:;">提币明细</a>
+				<a href="javascript:;">互转明细</a>
+			</div>
+			<div class="order_list">
+				<div class="order_box">
+					<!--全部-->
+					<div class="list on">
+						<ul>
+							<li>
+								<div class="info">
+									<div class="l">
+										<p><span class="name">充值</span></p>
+										<p class="id"><span>2020-08-01</span></p>
+									</div>
+									<div class="r">
+										<p><span class="num_price">+6USDT</span></p>
+										<p class="time"><span>17:15:23</span></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="info">
+									<div class="l">
+										<p><span class="name">充值</span></p>
+										<p class="id"><span>2020-08-01</span></p>
+									</div>
+									<div class="r">
+										<p><span class="num_price">+6USDT</span></p>
+										<p class="time"><span>17:15:23</span></p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!---->
+					<div class="list">
+						<ul>
+							<li>
+								<div class="info">
+									<div class="l">
+										<p><span class="name">提币</span></p>
+										<p class="id"><span>2020-08-01</span></p>
+									</div>
+									<div class="r">
+										<p><span class="num_price">+10.00USDT</span></p>
+										<p class="time"><span>17:15:23</span></p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="list">
+						<ul>
+							
+						</ul>
+					</div>
+					
+					
+					
+					<!--没有数据时显示-->
+					<div class="kong">
+						<img src="img/kong.png" />
+						<p>暂无记录</p>
+					</div>
+				</div>	
+			</div>	
+		</div>
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		show();
+		function show() {
+			//没有数据的时候显示
+			if($(".list.on li").length <= 0) {
+				$(".kong").show();
+			} else {
+				$(".kong").hide();
+			}
+		}
+		
+		$(".tab a").click(function() {
+			var index = $(".tab a").index($(this));
+			$(".tab a").removeClass("active").eq(index).addClass("active");
+			$(".list").removeClass("on").eq(index).addClass("on");
+			show();
+		})
+	</script>
+</html>
